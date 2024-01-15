@@ -1,13 +1,25 @@
-const express = require("express")
-const app = express()
-require("dotenv").config()
-//initalizing Cloud Functions (firebase.)
-const {initializeApp,applicationDefault,cert} =require("firebase-admin/app")
-const serviceAccount=require("./db/Firebase.json")
-const admin=require("firebase-admin")
-initializeApp({
-    credential:admin.credential.cert(serviceAccount),
-    databaseURL:process.env.DATABASE_URL
-})
+const express = require("express");
+const { initializeApp, firestore } = require("firebase-admin");
+const serviceAccount = require("./db/Firebase.json");
+const { cert } = require("firebase-admin/app");
 
-module.exports = { app }
+// Initialize Firebase Admin SDK
+initializeApp({
+  credential: cert(serviceAccount),
+  databaseURL: process.env.DATABASE_URL,
+});
+
+// Firestore instance
+const db = firestore();
+
+// Adding fake data
+const docRef = db.collection("user").doc(''); // Replace with a valid document ID
+docRef.set({
+  first: 'Ada',
+  last: 'Lovelace',
+  born: 1815,
+});
+
+const app = express();
+
+module.exports = { app };

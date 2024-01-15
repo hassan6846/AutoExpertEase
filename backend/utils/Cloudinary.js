@@ -4,6 +4,6 @@ cloudinary.config({
   api_key: process.env.API_KEY, 
   api_secret: process.env.API_SECRET 
 });
-//for Naming Convention the Name Alias is name Different ..
+//for Naming Convention the Name Alias is name Different for Module Export ..
 //but instances and method would remain same..
 module.exports={cloudinaryInstance:cloudinary}

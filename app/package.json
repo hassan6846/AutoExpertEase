@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "autoexpertease",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^4.6.0",
     "@rneui/base": "^4.0.0-rc.8",
     "@rneui/themed": "^4.0.0-rc.8",
     "expo": "~49.0.15",
@@ -17,7 +18,15 @@
     "react-native": "0.72.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@types/react": "~18.2.14",
+    "typescript": "^5.1.3"
   },
-  "private": true
+  "overrides": {
+    "semver": "^7.5.3"
+  },
+  "private": true,
+  "description": "a revolutionary app for mechanic",
+  "author": "hassan ali",
+  "license": "ISC"
 }

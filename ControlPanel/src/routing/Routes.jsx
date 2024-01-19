@@ -1,10 +1,18 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { React } from "react";
+import { Route, Routes } from "react-router-dom";
 
-
-//All Pages/Screens of Admin
-
+// Pages
+import ErrorPage from "../pages/Error/Error";
 
 const Routing = () => {
 
-}
-export default Routing
+    return (
+        <Routes>
+            <Route path="/" element={<ErrorPage />} />
+        </Routes>
+
+
+    );
+};
+
+export default Routing;

@@ -24,7 +24,7 @@ const ErrorPage = () => {
             <Link to="/" className='HomeLink'> <KeyboardBackspaceIcon />Go BackHome</Link>
           </div>
         </div>
-   
+
       </div>
     </>
   )

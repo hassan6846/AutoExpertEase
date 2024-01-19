@@ -1,5 +1,22 @@
+/* Reset CSS */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
 *{
+  font-family: 'Outfit', sans-serif;
+  margin-bottom: 0;
+  text-decoration: none;
+  list-style-type: none
+}
+body {
+  background: #eee;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  list-style: none;
+  text-decoration: none;
+  outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

@@ -1,25 +1,27 @@
 //module and Library
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { ThemeProvider } from "@rneui/themed"
+
+
 //Utils or localImports
+
+
+//navigator (react navigation)
+import { NavigationContainer } from "@react-navigation/native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+const Stack = createNativeStackNavigator()
+//pages or Screens
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </View>
-    </ThemeProvider>
+    <NavigationContainer>
+      <Stack.Navigator>
+        {/* EnrollScreen */}
+        <Stack.Screen name="" component={ } />
+        {/* LoginScreen Phone Number */}
+        <Stack.Screen name="" component={ } />
+        {/* Otp Screen */}
+        <Stack.Screen name="" component={ } />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

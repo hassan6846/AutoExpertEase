@@ -1,14 +1,15 @@
 //modules and Libarary
 
 import { View, Text } from "react-native"
-
+import { SkeletonProps } from "@rneui/themed"
 //utils
 
 // Privacy Policy Component
 const PrivacyPolicy = ({ navigation }: { navigation: any }) => {
     return (
         <View>
-            <Text onPress={() => navigation.navigate('login')}>Goback</Text>
+            <Text>Hello</Text>
+
         </View>
     )
 }

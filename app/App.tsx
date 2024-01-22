@@ -1,11 +1,11 @@
 //module and Library
 import { TouchableOpacity, View } from "react-native"
 import { Icon } from "@rneui/themed"
-//Utils or localImports
+//Utils or localImports or Configs
 
 //navigator (react navigation)
 import { NavigationContainer } from "@react-navigation/native"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { createNativeStackNavigator} from "@react-navigation/native-stack"
 const Stack = createNativeStackNavigator()
 //pages or Screens
 
@@ -17,11 +17,14 @@ import PrivacyPolicy from "./screens/PrivacyPolicy"
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator >
+      <Stack.Navigator 
+      >
         {/* LoginScreen */}
         <Stack.Screen name="login" component={LoginPage}
           options={{
+          
             title: "Get Started",
+            
             headerShadowVisible: false,
             headerTitleAlign: "center",
             headerLeft: () => (

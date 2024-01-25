@@ -4,7 +4,7 @@ import { } from "@rneui/themed"
 //utils
 
 //main void Function
-const EasterEggPage = () => {
+const SelectLanguage = ({ navigation }: { navigation: any }) => {
   return (
     <SafeAreaView></SafeAreaView>
     )
@@ -14,4 +14,4 @@ const EasterEggPage = () => {
 
 
 // exported
-export default EasterEggPage
+export default SelectLanguage

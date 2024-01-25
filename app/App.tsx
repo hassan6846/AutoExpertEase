@@ -17,7 +17,7 @@ import PrivacyPolicy from "./screens/PrivacyPolicy"
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator 
+      <Stack.Navigator initialRouteName=""
       >
         {/* LoginScreen */}
         <Stack.Screen name="login" component={LoginPage}
@@ -49,6 +49,7 @@ export default function App() {
 {/* Privacy Policy */}
 <Stack.Screen name="privacypolicy" component={PrivacyPolicy}
           options={{
+  
             title: "Privacy & Policy",
             headerShadowVisible: false,
             headerTitleAlign: "center",

@@ -1,5 +1,5 @@
 //modules
-import {View,} from "react-native"
+import { View, } from "react-native"
 //utils or props
 //statics
 

@@ -24,7 +24,9 @@ export default function App({ navigation }: { navigation: any }) {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName="selectLanguage"
+      >
         {/* LoginScreen */}
         <Stack.Screen name="login" component={LoginPage}
           options={{
@@ -76,9 +78,9 @@ export default function App({ navigation }: { navigation: any }) {
 
         />
         {/* Settings Page */}
-        <Stack.Screen name="SelectLanguage" component={SelectLanguage}
+        <Stack.Screen name="selectLanguage" component={SelectLanguage}
           options={{
-            title: "Setting",
+            title: "Settings",
             headerShadowVisible: false,
             headerTitleAlign: "left",
 

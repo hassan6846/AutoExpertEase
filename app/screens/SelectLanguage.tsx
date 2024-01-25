@@ -1,6 +1,7 @@
 //modules
 import { SafeAreaView, ScrollView, View, StyleSheet } from "react-native"
 import { Text, Input, Button } from "@rneui/themed"
+import CustomButton from "../components/ButtonProps/ButtonProps"
 //utils
 
 //main void Function
@@ -12,7 +13,7 @@ const SelectLanguage = ({ navigation }: { navigation: any }) => {
       <SafeAreaView>
         <ScrollView></ScrollView>
       </SafeAreaView>
-      <Button buttonStyle={styles.LanguageSelectBTn} color="#E04E2F" title="Select" />
+      <CustomButton title="Select Language." />
     </View>
   )
 }

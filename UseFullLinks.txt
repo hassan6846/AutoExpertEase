@@ -3,3 +3,5 @@ https://universe.roboflow.com/gift-university-qazvo/cnic-card-detection/dataset/
 //roboflow APi Interface Typescript.
 // for Realtime GeoQuery
 https://stackoverflow.com/questions/43357990/query-for-nearby-locations
+//find nearby
+https://www.sflivebus.com/

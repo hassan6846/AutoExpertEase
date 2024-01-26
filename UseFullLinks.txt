@@ -1,0 +1,3 @@
+//link  for image dataset 
+https://universe.roboflow.com/gift-university-qazvo/cnic-card-detection/dataset/1
+//roboflow APi Interface Typescript.

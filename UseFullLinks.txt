@@ -5,3 +5,7 @@ https://universe.roboflow.com/gift-university-qazvo/cnic-card-detection/dataset/
 https://stackoverflow.com/questions/43357990/query-for-nearby-locations
 //find nearby
 https://www.sflivebus.com/
+Geofire
+GeoFences.
+Mapbox.
+https://support.google.com/maps/answer/7326816?hl=en&co=GENIE.Platform%3DAndroid

@@ -1,3 +1,5 @@
 //link  for image dataset 
 https://universe.roboflow.com/gift-university-qazvo/cnic-card-detection/dataset/1
 //roboflow APi Interface Typescript.
+// for Realtime GeoQuery
+https://stackoverflow.com/questions/43357990/query-for-nearby-locations

@@ -1,16 +1,42 @@
 //modules and Libarary
-import { View, StyleSheet } from "react-native"
-import { } from "@rneui/themed"
+import { SafeAreaView, View, StyleSheet } from "react-native"
+import React, { useEffect, useState, useRef, useMemo } from "react"
+import CustomButton from "../components/ButtonProps/ButtonProps"
+import { } from "lottie-react-native"
+import { Text } from "@rneui/themed"
 //utils
 
-// Privacy Policy Component
-const OtpPage = ({ navigation }: { navigation: any }) => {
-    return (
-        <View>
+// OTP VERIFY COMPONENT...
 
+const OtpPage = ({ navigation }: { navigation: any }) => {
+    // Truncute or hide Number for profesionlism please🤏
+    const phoneNumber = "9230048152";
+    const maskedNumber = phoneNumber.slice(0, 4) + "****" + phoneNumber.slice(-4);
+    // OTP FIELD STATES
+
+    
+    return (
+        <View style={Styles.OtpContainer}>
+            <View>
+                <Text style={Styles.otpSub}>A Code has been Send to <Text style={{ fontWeight: "bold" }}>+{maskedNumber}</Text>  {""}via Sms check messsage inbox </Text>
+            </View>
+
+            <CustomButton title="Verify" />
         </View>
     )
 }
+// styles 
+const Styles = StyleSheet.create({
+    OtpContainer: {
+        padding: 30,
+
+        backgroundColor: "#fff",
+        flex: 1,
+    }, otpSub: {
+        textAlign: "center",
+        color: "#97ADB6"
+    }
+})
 export default OtpPage;
 
 

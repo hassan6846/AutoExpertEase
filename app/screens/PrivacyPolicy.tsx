@@ -32,7 +32,7 @@ const PrivacyPolicy = ({ navigation }: { navigation: any }) => {
 
                     By continuing to use the app, you acknowledge and agree to all the terms and conditions outlined above.
                 </Text>
-                <Button buttonStyle={styles.AcceptBtn} color="#E04E2F" title="Accept" onPress={() => navigation.goBack()} />
+                <Button buttonStyle={styles.AcceptBtn} color="#E04E2F" title="Accept" onPress={() => navigation.navigate("login")} />
             </ScrollView>
         </SafeAreaView>
     )

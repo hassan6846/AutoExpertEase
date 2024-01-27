@@ -1,8 +1,9 @@
 //module and Library
 import { TouchableOpacity, View } from "react-native"
 import "react-native-gesture-handler"
-import { Icon } from "@rneui/themed"
+import { Icon,ThemeProvider } from "@rneui/themed"
 //Utils or localImports or Configs
+import theme from "./context/ThemeContext"
 
 //navigator (react navigation)
 import { NavigationContainer } from "@react-navigation/native"
@@ -14,9 +15,11 @@ const Stack = createNativeStackNavigator()
 import LoginPage from "./screens/LoginScreen"
 import PrivacyPolicy from "./screens/PrivacyPolicy"
 import SelectLanguage from "./screens/SelectLanguage"
+import OfflineComponent from "./screens/Offline.page"
+import OtpPage from "./screens/OtpScreen"
 
-// Animation
 
+//Context and provider
 
 //Root App Router...
 export default function App({ navigation }: { navigation: any }) {
@@ -25,10 +28,10 @@ export default function App({ navigation }: { navigation: any }) {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="selectLanguage"
+        initialRouteName="login"
       >
         {/* LoginScreen */}
-        <Stack.Screen name="login" component={LoginPage}
+        <Stack.Screen name="login" component={OtpPage}
           options={{
             title: "Get Started",
 
@@ -99,6 +102,7 @@ export default function App({ navigation }: { navigation: any }) {
             ),
           }}
         />
+        {/*  */}
       </Stack.Navigator>
     </NavigationContainer>
   );

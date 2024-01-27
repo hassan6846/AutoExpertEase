@@ -6,10 +6,10 @@ import { Icon,ThemeProvider } from "@rneui/themed"
 import theme from "./context/ThemeContext"
 
 //navigator (react navigation)
-import { NavigationContainer } from "@react-navigation/native"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { NavigationContainer} from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
 
-const Stack = createNativeStackNavigator()
+const Stack = createStackNavigator()
 //pages or Screens
 
 import LoginPage from "./screens/LoginScreen"

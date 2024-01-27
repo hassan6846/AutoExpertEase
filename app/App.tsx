@@ -1,14 +1,14 @@
 //module and Library
 import { TouchableOpacity, View } from "react-native"
 import "react-native-gesture-handler"
-import { Icon,ThemeProvider } from "@rneui/themed"
+import { Icon, ThemeProvider } from "@rneui/themed"
 //Utils or localImports or Configs
 import theme from "./context/ThemeContext"
 
 //navigator (react navigation)
-import { NavigationContainer} from "@react-navigation/native"
-import { createStackNavigator } from "@react-navigation/stack"
-
+import { NavigationContainer } from "@react-navigation/native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
 const Stack = createStackNavigator()
 //pages or Screens
 
@@ -31,10 +31,10 @@ export default function App({ navigation }: { navigation: any }) {
         initialRouteName="login"
       >
         {/* LoginScreen */}
-        <Stack.Screen name="login" component={OtpPage}
+        <Stack.Screen name="login" component={LoginPage}
           options={{
             title: "Get Started",
-
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             headerShadowVisible: false,
             headerTitleAlign: "center",
 
@@ -56,10 +56,11 @@ export default function App({ navigation }: { navigation: any }) {
         {/* Privacy Policy */}
         <Stack.Screen name="privacypolicy" component={PrivacyPolicy}
           options={{
-
+            cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
             title: "Privacy & Policy",
             headerShadowVisible: false,
             headerTitleAlign: "center",
+            gestureEnabled: true,
             headerLeft: () => (
 
               <TouchableOpacity activeOpacity={0.7}

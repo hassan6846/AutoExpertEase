@@ -9,3 +9,7 @@ Geofire
 GeoFences.
 Mapbox.
 https://support.google.com/maps/answer/7326816?hl=en&co=GENIE.Platform%3DAndroid
+//tab navigation
+https://github.com/vonovak/react-navigation-props-mapper
+//nestd route navigation
+https://reactnavigation.org/docs/tab-based-navigation 

@@ -7,9 +7,14 @@ import theme from "./context/ThemeContext"
 
 //navigator (react navigation)
 import { NavigationContainer } from "@react-navigation/native"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
-const Stack = createStackNavigator()
+// import { createNativeStackNavigator } from "@react-navigation/native-stack"
+// import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
+// const Stack = createStackNavigator()
+
+// Tab Navigator
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+const Tab = createBottomTabNavigator()
+
 //pages or Screens
 
 import LoginPage from "./screens/LoginScreen"
@@ -19,92 +24,65 @@ import OfflineComponent from "./screens/Offline.page"
 import OtpPage from "./screens/OtpScreen"
 
 
-//Context and provider
-
-//Root App Router...
+// Tabs Root Pages
+import Home from "./screens/HomeTab"
+import EcommerceTab from "./screens/EcommerceTab"
+import ServiceTab from "./screens/ServiceTab"
+import ProfileTab from "./screens/ProfileTab"
+import ExploreTab from "./screens/ExploreTab"
+// tabs Configs
+import TabsConfigs from "./configs/TabsConfigs"
 export default function App({ navigation }: { navigation: any }) {
   // animation
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="login"
-      >
-        {/* LoginScreen */}
-        <Stack.Screen name="login" component={LoginPage}
+      {/* Bottom Tab Navigator */}
+      <Tab.Navigator>
+        <Tab.Screen name="Home"
+          component={Home}
           options={{
-            title: "Get Started",
-            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-            headerShadowVisible: false,
-            headerTitleAlign: "center",
+            tabBarLabel: TabsConfigs.Home.tabLabel,
+            tabBarIcon: TabsConfigs.Home.Svg
 
-            headerLeft: () => (
-              <TouchableOpacity activeOpacity={0.7}
-                style={{ height: "auto", borderRadius: 50, shadowColor: "#97ADB6" }}
-              >
-                <Icon
-                  size={18}
-                  iconStyle={{ fontSize: 30 }}
-                  name="chevron-left"
-                  type="evilicon"
-                  raised={true}
-                />
-              </TouchableOpacity>
-            ),
+          }} />
+
+        {/* ShopTab */}
+        <Tab.Screen name="Shop"
+          component={EcommerceTab}
+          options={{
+            tabBarLabel: TabsConfigs.Shop.tabLabel,
+            tabBarIcon: TabsConfigs.Shop.Svg
           }}
         />
-        {/* Privacy Policy */}
-        <Stack.Screen name="privacypolicy" component={PrivacyPolicy}
+
+        {/* Service Tabs */}
+        <Tab.Screen name="Service"
+          component={ServiceTab}
           options={{
-            cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
-            title: "Privacy & Policy",
-            headerShadowVisible: false,
-            headerTitleAlign: "center",
-            gestureEnabled: true,
-            headerLeft: () => (
-
-              <TouchableOpacity activeOpacity={0.7}
-
-                style={{ height: "auto", borderRadius: 50, shadowColor: "#97ADB6" }}
-              >
-                <Icon
-                  size={18}
-                  iconStyle={{ fontSize: 30 }}
-                  name="chevron-left"
-                  type="evilicon"
-
-                  raised={true}
-                />
-                {/* Use the appropriate icon library */}
-              </TouchableOpacity>
-            ),
-          }}
-
-        />
-        {/* Settings Page */}
-        <Stack.Screen name="selectLanguage" component={SelectLanguage}
-          options={{
-            title: "Settings",
-            headerShadowVisible: false,
-            headerTitleAlign: "left",
-
-            headerLeft: () => (
-              <TouchableOpacity activeOpacity={0.7}
-                style={{ height: "auto", borderRadius: 50, shadowColor: "#97ADB6" }}
-              >
-                <Icon
-                  size={18}
-                  iconStyle={{ fontSize: 30 }}
-                  name="chevron-left"
-                  type="evilicon"
-                  raised={true}
-                />
-              </TouchableOpacity>
-            ),
+            tabBarLabel: TabsConfigs.Service.tabLabel,
+            tabBarIcon: TabsConfigs.Service.Svg
           }}
         />
-        {/*  */}
-      </Stack.Navigator>
+        {/* Explore More Tabs. */}
+        <Tab.Screen
+          component={ExploreTab}
+          name="Explore"
+          options={{
+            tabBarLabel: TabsConfigs.Explore.tabLabel,
+            tabBarIcon: TabsConfigs.Explore.Svg
+          }}
+        />
+        {/* user ProfilePage */}
+        <Tab.Screen
+          component={ProfileTab}
+          name="Profile"
+          options={{
+            tabBarLabel:TabsConfigs.Profile.tabLabel,
+            tabBarIcon:TabsConfigs.Profile.Svg,
+          }}
+          />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }

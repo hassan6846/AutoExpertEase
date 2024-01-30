@@ -7,6 +7,7 @@ import { ReactElement, JSXElementConstructor } from "react"
 interface ButtonProps {
     title: string | ReactElement<{}, string | JSXElementConstructor<any>> | undefined;
     color?: string; 
+
 }
 //Main Prop
 const CustomButton = (props: ButtonProps) => {

@@ -30,16 +30,19 @@ import ProfileTab from "./screens/ProfileTab"
 import ExploreTab from "./screens/ExploreTab"
 // tabs Configs
 import TabsConfigs from "./configs/TabsConfigs"
+
 //pages/screens
 //OFlinePage
-import OfflineComponent from "./screens/Offline.page"
+import OfflinePage from "./screens/OfflinePage"
 export default function App({ navigation }: { navigation: any }) {
   // animation
 
   return (
     <NavigationContainer>
       {/* Bottom Tab Navigator */}
-      <Tab.Navigator>
+      <Tab.Navigator
+ 
+      >
         <Tab.Screen
           name="Home"
           component={Home}

@@ -20,9 +20,7 @@ const Tab = createBottomTabNavigator()
 import LoginPage from "./screens/LoginScreen"
 import PrivacyPolicy from "./screens/PrivacyPolicy"
 import SelectLanguage from "./screens/SelectLanguage"
-import OfflineComponent from "./screens/Offline.page"
 import OtpPage from "./screens/OtpScreen"
-
 
 // Tabs Root Pages
 import Home from "./screens/HomeTab"
@@ -32,24 +30,23 @@ import ProfileTab from "./screens/ProfileTab"
 import ExploreTab from "./screens/ExploreTab"
 // tabs Configs
 import TabsConfigs from "./configs/TabsConfigs"
+//pages/screens
+//OFlinePage
+import OfflineComponent from "./screens/Offline.page"
 export default function App({ navigation }: { navigation: any }) {
   // animation
 
   return (
     <NavigationContainer>
       {/* Bottom Tab Navigator */}
-      <Tab.Navigator
-      screenOptions={{
-     headerTintColor:"red"
-      }}
-      >
-        <Tab.Screen 
+      <Tab.Navigator>
+        <Tab.Screen
           name="Home"
           component={Home}
           options={{
             tabBarLabel: TabsConfigs.Home.tabLabel,
             tabBarIcon: TabsConfigs.Home.Svg
-            
+
           }} />
 
         {/* ShopTab */}
@@ -83,10 +80,10 @@ export default function App({ navigation }: { navigation: any }) {
           component={ProfileTab}
           name="Profile"
           options={{
-            tabBarLabel:TabsConfigs.Profile.tabLabel,
-            tabBarIcon:TabsConfigs.Profile.Svg,
+            tabBarLabel: TabsConfigs.Profile.tabLabel,
+            tabBarIcon: TabsConfigs.Profile.Svg,
           }}
-          />
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );

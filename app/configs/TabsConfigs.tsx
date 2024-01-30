@@ -12,31 +12,31 @@ const TabsConfigs = {
     Home: {
         tabLabel: "Home",
         Svg: () => (
-            <Icon color="#5F6368" name="home-filled" type="material" />
+            <Icon size={25} color="#5F6368" name="home-filled" type="material" />
         )
     },
     Shop: {
         tabLabel: "Shop",
         Svg: () => (
-            <Icon color="#5F6368" name="storefront" type="material" />
+            <Icon size={25} color="#5F6368" name="storefront" type="material" />
         )
     },
     Service: {
         tabLabel: "Auto Fix",
         Svg: () => (
-            <Icon color="#5F6368" name="home-repair-service" type="material" />
+            <Icon size={25} color="#5F6368" name="home-repair-service" type="material" />
         )
     },
     Explore: {
         tabLabel: "More",
         Svg: () => (
-            <Icon color="#5F6368" name="explore" type="material" />
+            <Icon  size={25} color="#5F6368" name="explore" type="material" />
         )
     },
     Profile: {
         tabLabel: "Profile",
         Svg: () => (
-            <Icon color="#5F6368" name="person" type="material" />
+            <Icon size={25} color="#5F6368" name="person" type="material" />
         )
     },
     // If he is a buissness or a Seller

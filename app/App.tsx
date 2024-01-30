@@ -38,13 +38,18 @@ export default function App({ navigation }: { navigation: any }) {
   return (
     <NavigationContainer>
       {/* Bottom Tab Navigator */}
-      <Tab.Navigator>
-        <Tab.Screen name="Home"
+      <Tab.Navigator
+      screenOptions={{
+     headerTintColor:"red"
+      }}
+      >
+        <Tab.Screen 
+          name="Home"
           component={Home}
           options={{
             tabBarLabel: TabsConfigs.Home.tabLabel,
             tabBarIcon: TabsConfigs.Home.Svg
-
+            
           }} />
 
         {/* ShopTab */}

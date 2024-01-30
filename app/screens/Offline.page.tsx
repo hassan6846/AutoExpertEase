@@ -1,9 +1,13 @@
 //modules 
 import { View, SafeAreaView, StyleSheet } from "react-native"
-import { } from "@rneui/themed"
+import { Text} from "@rneui/themed"
+import CustomButton from "../components/ButtonProps/ButtonProps"
+
 const OfflineComponent = () => {
     <SafeAreaView>
-        <View></View>
+        <View>
+            <CustomButton  title="Retry"/>
+        </View>
     </SafeAreaView>
 }
 // style 

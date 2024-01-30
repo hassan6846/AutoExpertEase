@@ -7,6 +7,9 @@ import { ReactElement, JSXElementConstructor } from "react"
 interface ButtonProps {
     title: string | ReactElement<{}, string | JSXElementConstructor<any>> | undefined;
     color?: string; 
+    // ok these retinary operators said ke 
+    //agar element props ko define nhi kia to error nhi dene
+    //required option h
 
 }
 //Main Prop

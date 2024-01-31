@@ -83,6 +83,7 @@ export default function App({ navigation }: { navigation: any }) {
           component={ProfileTab}
           name="Profile"
           options={{
+            headerTitleAlign:"center",
             tabBarLabel: TabsConfigs.Profile.tabLabel,
             tabBarIcon: TabsConfigs.Profile.Svg,
           }}

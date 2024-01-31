@@ -1,12 +1,12 @@
 import { ScrollView, StyleSheet, View } from "react-native"
 import { Text, ListItem, Icon, Badge, Avatar } from "@rneui/themed"
-
+import {} from "@gorhom/bottom-sheet"
 
 const ProfileTab = () => {
     return (
-        <View style={Styles.ProfileSettingContainer}>
-
-        </View>
+        <ScrollView style={Styles.ProfileSettingContainer}>
+        
+        </ScrollView>
     )
 }
 //Stylesheet Please Follow The Hirarchy boyies.
@@ -14,7 +14,8 @@ const ProfileTab = () => {
 
 const Styles = StyleSheet.create({
     ProfileSettingContainer: {
-        backgroundColor: "white",
+    
+        backgroundColor: "red",
         flex: 1,
         padding: 30,
     }

@@ -1,8 +1,16 @@
 import { SafeAreaView, StyleSheet, View } from "react-native"
-import { Text, Icon } from "@rneui/themed"
+import { Text, Icon, Button } from "@rneui/themed"
 import CustomButton from "../components/ButtonProps/ButtonProps"
+// expo Refresh Library.
+import * as Updates from 'expo-updates'
+
 
 const OfflinePage = () => {
+    // Handle The Refresh
+    const HandleClick = () => {
+        Updates.reloadAsync()
+    }
+
     return (
         <SafeAreaView style={styles.OfflineContainer} >
             <View style={styles.OfflineWrapper}>
@@ -10,7 +18,8 @@ const OfflinePage = () => {
                 <Icon color="rgb(95,99,104)" size={150} name="wifi-off" type="material" />
                 <Text style={{ textAlign: "center", }}>You might have slow Internet Connection.Please Try Reloading the app.</Text>
             </View>
-            <CustomButton  title="Retry" />
+            <CustomButton title="Retry" />
+
         </SafeAreaView>
     )
 }

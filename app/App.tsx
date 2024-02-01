@@ -23,11 +23,11 @@ import SelectLanguage from "./screens/SelectLanguage"
 import OtpPage from "./screens/OtpScreen"
 
 // Tabs Root Pages
-import Home from "./screens/HomeTab"
-import EcommerceTab from "./screens/EcommerceTab"
-import ServiceTab from "./screens/ServiceTab"
-import ProfileTab from "./screens/ProfileTab"
-import ExploreTab from "./screens/ExploreTab"
+import Home from "./screens/BottomsTabs/HomeTab"
+import EcommerceTab from "./screens/BottomsTabs/EcommerceTab"
+import ServiceTab from "./screens/BottomsTabs/ServiceTab"
+import ProfileTab from "./screens/BottomsTabs/ProfileTab"
+import ExploreTab from "./screens/BottomsTabs/ExploreTab"
 // tabs Configs
 import TabsConfigs from "./configs/TabsConfigs"
 

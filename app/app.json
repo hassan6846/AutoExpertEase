@@ -22,10 +22,13 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "blockedPermissions":[]
+      "blockedPermissions": []
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-localization"
+    ]
   }
 }

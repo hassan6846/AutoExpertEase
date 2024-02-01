@@ -1,34 +1,30 @@
 import { ScrollView, StyleSheet, View, TouchableOpacity } from "react-native"
 import { Text, ListItem, Icon, Badge, Avatar } from "@rneui/themed"
 import CountryFlag from "react-native-country-flag"
+import { AvatarSrc, DefaultImageSrc } from "../constants/ImagesConstants"
 
 
-import { AvatarSrc, DefaultImageSrc } from "../context/ImagesConstants"
 
 
 const ProfileTab = () => {
-    const ProfileMenuArray = [
-        {
-           
-        }
-    ]
+
     return (
         <ScrollView style={Styles.ProfileSettingContainer}>
             {/* Avatar container bois to alignItems to the center */}
             <View style={Styles.AvatarContainer} >
-                <Avatar rounded size={100} source={{ uri: AvatarSrc || DefaultImageSrc }} ><Avatar.Accessory  size={30}/></Avatar>
-                <Text>Hi, {"user"} <CountryFlag size={12} isoCode="pk" /></Text>
+                <Avatar rounded size={100} source={{ uri: AvatarSrc || DefaultImageSrc }} ><Avatar.Accessory size={25} /></Avatar>
+                <Text>Hi, <CountryFlag size={12} isoCode="pk" /></Text>
             </View>
             {/* List Items Will be map Below ok */}
             <Text style={{ marginTop: 8, marginBottom: 8, marginLeft: 10 }}>Account</Text>
             <ListItem containerStyle={Styles.ProfileListStyle} >
                 <Icon name="person" type="material" color="grey" />
                 <ListItem.Content>
-                    <ListItem.Title>Switch Role:</ListItem.Title>
+                    <ListItem.Title>Switch Role</ListItem.Title>
                 </ListItem.Content>
-                <ListItem.Chevron />
+                <ListItem.Chevron size={23} />
             </ListItem>
-
+   
             {/* map */}
 
         </ScrollView>
@@ -55,10 +51,9 @@ const Styles = StyleSheet.create({
     // List items Style styles will only be applied through the ContainerStyleProp.
 
     ProfileListStyle: {
-        shadowColor: "red",
-
-
-        elevation: 5,
+        borderColor: "#d4d4d4",
+        borderWidth: 0.21,
+        borderRadius: 3,
 
     }
 })

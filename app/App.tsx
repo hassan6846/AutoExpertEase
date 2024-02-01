@@ -34,6 +34,7 @@ import TabsConfigs from "./configs/TabsConfigs"
 //pages/screens
 //OFlinePage
 import OfflinePage from "./screens/OfflinePage"
+import { BottomNavigator_Height } from "./configs/TabNavigatorConfigs"
 export default function App({ navigation }: { navigation: any }) {
   // animation
 
@@ -41,7 +42,11 @@ export default function App({ navigation }: { navigation: any }) {
     <NavigationContainer>
       {/* Bottom Tab Navigator */}
       <Tab.Navigator
- 
+ screenOptions={{
+  tabBarStyle:{
+   height:BottomNavigator_Height,
+  }
+ }}
       >
         <Tab.Screen
           name="Home"
@@ -83,7 +88,7 @@ export default function App({ navigation }: { navigation: any }) {
           component={ProfileTab}
           name="Profile"
           options={{
-            headerTitleAlign:"center",
+            headerTitleAlign: "center",
             tabBarLabel: TabsConfigs.Profile.tabLabel,
             tabBarIcon: TabsConfigs.Profile.Svg,
           }}

@@ -87,6 +87,17 @@ const ProfileTab = () => {
                     <ListItem.Chevron size={23} />
                 </ListItem>
             </View>
+            {/* ChatSupport */}
+            <Text style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Help</Text>
+            <View style={{ borderRadius: 5 }}>
+                <ListItem containerStyle={{ backgroundColor: "#f7f7f7af" }} >
+                    <Icon name="support-agent" type="material" color="grey" />
+                    <ListItem.Content>
+                        <ListItem.Title>Help & Support</ListItem.Title>
+                    </ListItem.Content>
+                    <ListItem.Chevron size={23} />
+                </ListItem>
+            </View>
             {/* More  */}
             <Text style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>More</Text>
             <View style={{ borderRadius: 5 }}>
@@ -115,8 +126,6 @@ const ProfileTab = () => {
 const Styles = StyleSheet.create({
     ProfileSettingContainer: {
         flex: 1,
-
-
         paddingTop: 10,
         paddingBottom: 10,
         paddingRight: 30,

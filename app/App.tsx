@@ -18,9 +18,9 @@ const Tab = createBottomTabNavigator()
 //pages or Screens
 
 import LoginPage from "./screens/Authentication/LoginScreen"
-import PrivacyPolicy from "./screens/PrivacyPolicy"
+import PrivacyPolicy from "./screens/pages/PrivacyPolicy"
 import SelectLanguage from "./screens/SelectLanguage"
-import OtpPage from "./screens/OtpScreen"
+import OtpPage from "./screens/Authentication/OtpScreen"
 
 // Tabs Root Pages
 import Home from "./screens/BottomsTabs/HomeTab"

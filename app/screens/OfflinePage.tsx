@@ -23,6 +23,7 @@ const OfflinePage = () => {
         </SafeAreaView>
     )
 }
+
 // styleSheet
 const styles = StyleSheet.create({
     OfflineContainer: {

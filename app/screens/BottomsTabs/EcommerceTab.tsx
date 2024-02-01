@@ -1,8 +1,10 @@
-import {View,Text} from "react-native"
-
+import { View } from "react-native"
+// Ecommerce PageStack Navigator
 const EcommerceTab = () => {
   return (
-    <View><Text>Ecommerce</Text></View>
+    <View>
+
+    </View>
   )
 }
 

@@ -1,7 +1,7 @@
 //modules and Libarary
 import { SafeAreaView, View, StyleSheet } from "react-native"
 import React, { useEffect, useState, useRef, useMemo } from "react"
-import CustomButton from "../components/ButtonProps/ButtonProps"
+import CustomButton from "../../components/ButtonProps/ButtonProps"
 import { } from "lottie-react-native"
 import { Text } from "@rneui/themed"
 //utils

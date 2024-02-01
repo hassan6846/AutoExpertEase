@@ -8,6 +8,7 @@ import { AvatarSrc, DefaultImageSrc } from "../constants/ImagesConstants"
 
 const ProfileTab = () => {
 
+
     return (
         <ScrollView style={Styles.ProfileSettingContainer}>
             {/* Avatar container bois to alignItems to the center */}
@@ -24,7 +25,7 @@ const ProfileTab = () => {
                 </ListItem.Content>
                 <ListItem.Chevron size={23} />
             </ListItem>
-   
+
             {/* map */}
 
         </ScrollView>

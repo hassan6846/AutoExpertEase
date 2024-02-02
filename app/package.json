@@ -48,6 +48,7 @@
   },
   "private": true,
   "description": "a revolutionary app for mechanic",
-  "author": "hassan ali",
-  "license": "ISC"
+  "author": "Ali Shan Chadhar|Saddan Aziz|Hamza Abbass",
+  "license": "ISC",
+  "keywords": []
 }

@@ -15,25 +15,41 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your Camera.",
+        "NSMicrophoneUsageDescription": "$(PRODUCT_NAME) needs access to your Microphone."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "blockedPermissions": []
+      "blockedPermissions": [],
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-localization",
-      ["react-native-vision-camera", {
-        "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera.",
-        "enableMicrophonePermission": true,
-        "microphonePermissionText": "$(PRODUCT_NAME) needs access to your Microphone."
-      }]
-    ]
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera.",
+          "enableMicrophonePermission": true,
+          "microphonePermissionText": "$(PRODUCT_NAME) needs access to your Microphone."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0acb402d-8d60-4fc8-b90a-d7b4ddf5b3c3"
+      }
+    }
   }
 }

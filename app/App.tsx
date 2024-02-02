@@ -61,6 +61,7 @@ export default function App({ navigation }: { navigation: any }) {
         <Tab.Screen name="Shop"
           component={EcommerceTab}
           options={{
+            headerShown:false,
             tabBarLabel: TabsConfigs.Shop.tabLabel,
             tabBarIcon: TabsConfigs.Shop.Svg
           }}

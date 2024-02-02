@@ -30,7 +30,8 @@
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
-      ]
+      ],
+      "package": "com.autoexpertease.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"

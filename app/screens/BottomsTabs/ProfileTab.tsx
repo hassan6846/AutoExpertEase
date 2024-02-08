@@ -24,7 +24,7 @@ const ProfileTab = () => {
             {/* 1 */}
             <View >
                 <TouchableOpacity>
-                    <ListItem containerStyle={{ backgroundColor: "#f7f7f7af", borderRadius: 5,marginBottom:10}} >
+                    <ListItem containerStyle={{ backgroundColor: "#f7f7f7af", borderRadius: 5, marginBottom: 10 }} >
                         <Icon name="person" type="material" color="grey" />
                         <ListItem.Content>
                             <ListItem.Title>Switch Role</ListItem.Title>
@@ -36,21 +36,21 @@ const ProfileTab = () => {
             {/* Shopping */}
             <Text style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Shoppings</Text>
             <View style={{ elevation: 5, shadowColor: "#d4d4d4" }}>
-                <ListItem containerStyle={{ backgroundColor: "#f7f7f7af",marginBottom:5 }} >
+                <ListItem containerStyle={{ backgroundColor: "#f7f7f7af", marginBottom: 5 }} >
                     <Icon name="shopping-cart" type="material" color="grey" />
                     <ListItem.Content>
                         <ListItem.Title>Cart</ListItem.Title>
                     </ListItem.Content>
                     <ListItem.Chevron size={23} />
                 </ListItem>
-                <ListItem containerStyle={{ backgroundColor: "#f7f7f7af",marginBottom:5 }} >
+                <ListItem containerStyle={{ backgroundColor: "#f7f7f7af", marginBottom: 5 }} >
                     <Icon name="local-shipping" type="material" color="grey" />
                     <ListItem.Content>
                         <ListItem.Title>Orders</ListItem.Title>
                     </ListItem.Content>
                     <ListItem.Chevron size={23} />
                 </ListItem>
-                <ListItem containerStyle={{ backgroundColor: "#f7f7f7af",marginBottom:5 }} >
+                <ListItem containerStyle={{ backgroundColor: "#f7f7f7af", marginBottom: 5 }} >
                     <Icon name="favorite" type="material" color="grey" />
                     <ListItem.Content>
                         <ListItem.Title>Liked Items</ListItem.Title>

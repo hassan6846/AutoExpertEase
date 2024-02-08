@@ -42,11 +42,11 @@ export default function App({ navigation }: { navigation: any }) {
     <NavigationContainer>
       {/* Bottom Tab Navigator */}
       <Tab.Navigator
- screenOptions={{
-  tabBarStyle:{
-   height:BottomNavigator_Height,
-  }
- }}
+        screenOptions={{
+          tabBarStyle: {
+            height: BottomNavigator_Height,
+          }
+        }}
       >
         <Tab.Screen
           name="Home"
@@ -61,7 +61,7 @@ export default function App({ navigation }: { navigation: any }) {
         <Tab.Screen name="Shop"
           component={EcommerceTab}
           options={{
-            headerShown:false,
+            headerShown: false,
             tabBarLabel: TabsConfigs.Shop.tabLabel,
             tabBarIcon: TabsConfigs.Shop.Svg
           }}

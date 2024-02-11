@@ -87,7 +87,7 @@ export default function App({ navigation }: { navigation: any }) {
         {/* user ProfilePage */}
         <Tab.Screen
           component={ProfileTab}
-          name="Me"
+          name="Profile"
           options={{
             headerTitleAlign: "center",
             tabBarLabel: TabsConfigs.Profile.tabLabel,

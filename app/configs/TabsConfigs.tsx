@@ -34,7 +34,7 @@ const TabsConfigs = {
         )
     },
     Profile: {
-        tabLabel: "Profile",
+        tabLabel: "Me",
         Svg: () => (
             <Icon size={25} color="#5F6368" name="person" type="material" />
         )

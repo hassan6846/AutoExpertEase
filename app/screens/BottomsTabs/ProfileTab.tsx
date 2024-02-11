@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View,  KeyboardAvoidingView,Pressable } from "react-native"
+import { ScrollView, StyleSheet, View, KeyboardAvoidingView, Pressable } from "react-native"
 import { Text, ListItem, Icon, Badge, Avatar } from "@rneui/themed"
 import CountryFlag from "react-native-country-flag"
 import { AvatarSrc, DefaultImageSrc } from "../../constants/ImagesConstants"
@@ -11,7 +11,7 @@ const ProfileTab = () => {
 
     return (
 
-        <ScrollView style={Styles.ProfileSettingContainer}>
+        <ScrollView showsVerticalScrollIndicator={false} style={Styles.ProfileSettingContainer}>
             {/* Avatar container bois to alignItems to the center */}
             <View style={Styles.AvatarContainer} >
                 <Avatar rounded size={100} source={{ uri: AvatarSrc || DefaultImageSrc }} ><Avatar.Accessory size={25} /></Avatar>
@@ -20,7 +20,7 @@ const ProfileTab = () => {
             {/* List Items Will be map Below ok */}
 
             {/* Account */}
-            <Text h4  style={{ marginTop: 8, marginBottom: 2, marginLeft: 10, }}>Account</Text>
+            <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10, }}>Account</Text>
             {/* 1 */}
             <Pressable >
                 <View >

@@ -1,12 +1,12 @@
 import { SafeAreaView, StyleSheet, View } from "react-native"
-import { Text, Icon, Button } from "@rneui/themed"
+import { Text, Icon } from "@rneui/themed"
 import CustomButton from "../../../components/ButtonProps/ButtonProps"
 // expo Refresh Library.
 import * as Updates from 'expo-updates'
 
 
 const OfflinePage = () => {
-    // Handle The Refresh
+    // Handle The Refresh Through The Redux.
     const HandleClick = () => {
         Updates.reloadAsync()
     }

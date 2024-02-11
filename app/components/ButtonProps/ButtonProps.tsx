@@ -7,6 +7,7 @@ import { ReactElement, JSXElementConstructor } from "react"
 interface ButtonProps {
     title: string | ReactElement<{}, string | JSXElementConstructor<any>> | undefined;
     color?: string; 
+    
     // ok these retinary operators said ke 
     //agar element props ko define nhi kia to error nhi dene
     //required option h
@@ -15,7 +16,7 @@ interface ButtonProps {
 //Main Prop
 const CustomButton = (props: ButtonProps) => {
     return (
-        <Button color={props.color ||"#E04E2F" } buttonStyle={Styles.ButtonPropsStyle} title={props.title} />
+        <Button icon color={props.color ||"#E04E2F" } buttonStyle={Styles.ButtonPropsStyle} title={props.title} />
     )
 }
 

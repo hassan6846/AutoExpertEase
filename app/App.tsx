@@ -9,6 +9,10 @@ import { StatusBar } from "expo-status-bar"
        //TabNavigator 
 import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+       // tabs Configs
+import TabsConfigs from "./configs/TabsConfigs"
+      //TabStyle
+import { BottomNavigator_Height } from "./configs/TabNavigatorConfigs"
       //Stack Navigator
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
@@ -31,10 +35,7 @@ import ProfileTab from "./screens/BottomsTabs/ProfileTab"
 import ExploreTab from "./screens/BottomsTabs/ExploreTab"
 //OfflineScreen
          import OfflinePage from "./screens/pages/OfflinePage/OfflinePage"
-// tabs Configs
-import TabsConfigs from "./configs/TabsConfigs"
-//TabStyle
-import { BottomNavigator_Height } from "./configs/TabNavigatorConfigs"
+
 
 
 

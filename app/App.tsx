@@ -1,48 +1,55 @@
-//module and Library
-import { TouchableOpacity, View } from "react-native"
-import {StatusBar} from "expo-status-bar"
 import "react-native-gesture-handler"
-import { Icon, ThemeProvider } from "@rneui/themed"
-//Utils or localImports or Configs
-import theme from "./context/ThemeContext"
+import { TouchableOpacity, View } from "react-native"
+import { Provider } from "react-redux"
+import { StatusBar } from "expo-status-bar"
 
-//navigator (react navigation)
+
+
+//navigator
+       //TabNavigator 
 import { NavigationContainer } from "@react-navigation/native"
-// import { createNativeStackNavigator } from "@react-navigation/native-stack"
-// import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
-// const Stack = createStackNavigator()
-
-// Tab Navigator
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-const Tab = createBottomTabNavigator()
+      //Stack Navigator
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
+   // Tab Navigator
+      const Tab = createBottomTabNavigator()
+  //Stack Navigator
+      const Stack = createStackNavigator()
 
-//pages or Screens
 
-import LoginPage from "./screens/Authentication/LoginScreen"
-import PrivacyPolicy from "./screens/pages/PrivacyPolicy/PrivacyPolicy"
-import SelectLanguage from "./screens/pages/Localization/SelectLanguage"
-import OtpPage from "./screens/Authentication/OtpScreen"
 
-// Tabs Root Pages
+
+
+
+
+//TabsParentsRoots
 import Home from "./screens/BottomsTabs/HomeTab"
 import EcommerceTab from "./screens/BottomsTabs/EcommerceTab"
 import ServiceTab from "./screens/BottomsTabs/ServiceTab"
 import ProfileTab from "./screens/BottomsTabs/ProfileTab"
 import ExploreTab from "./screens/BottomsTabs/ExploreTab"
+//OfflineScreen
+         import OfflinePage from "./screens/pages/OfflinePage/OfflinePage"
 // tabs Configs
 import TabsConfigs from "./configs/TabsConfigs"
-
-//pages/screens
-//OFlinePage
-import OfflinePage from "./screens/pages/OfflinePage/OfflinePage"
+//TabStyle
 import { BottomNavigator_Height } from "./configs/TabNavigatorConfigs"
+
+
+
 export default function App({ navigation }: { navigation: any }) {
   // animation
 
   return (
     <NavigationContainer>
-      <StatusBar/>
-      {/* Bottom Tab Navigator */}
+      <StatusBar style="auto" />
+      {/* Offline */}
+
+      {/* Authentication Flows */}
+
+
+      {/* Home Page. */}
       <Tab.Navigator
         screenOptions={{
           tabBarStyle: {
@@ -97,6 +104,7 @@ export default function App({ navigation }: { navigation: any }) {
           }}
         />
       </Tab.Navigator>
+
     </NavigationContainer>
   );
 }

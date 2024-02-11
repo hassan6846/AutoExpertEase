@@ -1,11 +1,12 @@
 //CreateStore using toolkit
-import {configureStore} from "@reduxjs/toolkit"
+import { configureStore } from "@reduxjs/toolkit"
+
+
 //all Slices
-
-
-const Store=configureStore({
-    reducer:{
-        
+import NetworkSlice from "../slices/NetworkSlice"
+const Store = configureStore({
+    reducer: {
+        network: NetworkSlice
     }
 })
 

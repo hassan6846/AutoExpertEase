@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, View, KeyboardAvoidingView, Pressable } from "react-native"
-import { Text, ListItem, Icon, Badge, Avatar } from "@rneui/themed"
+import { Text, ListItem, Icon, Badge, Avatar,BottomSheet } from "@rneui/themed"
 import CountryFlag from "react-native-country-flag"
 import { AvatarSrc, DefaultImageSrc } from "../../constants/ImagesConstants"
 

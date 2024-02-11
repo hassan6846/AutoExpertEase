@@ -1,7 +1,7 @@
 import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, Image, TouchableOpacity } from "react-native"
 import { useRef, useState, useEffect, createRef } from "react"
 
-import { StatusBar } from "expo-status-bar"
+
 import { Button, Icon, Input, Text } from "@rneui/themed"
 //Page
 const LoginPage = ({ navigation }: { navigation: any }) => {
@@ -16,7 +16,7 @@ const LoginPage = ({ navigation }: { navigation: any }) => {
         >
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.LoginContainer}>
-                    <StatusBar />
+           
                     <Text style={styles.LoginHeading} h3={true} >Enter Phone Number for Verification</Text>
                     <Text style={styles.LoginSub}>This number will be used for all ride-related communication. You shall receive an SMS with code for verification.</Text>
                     <Input inputContainerStyle={styles.LoginInputCont} rightIcon={<TouchableOpacity activeOpacity={0.7} ><Icon name="close" reverseColor="#66696D" reverse={true} color="#e3e3e3" iconStyle={{ fontSize: 15, fontWeight: "bold" }} type="evilicon" size={8} raised={true} /></TouchableOpacity>} leftIcon={<Image style={{ width: 35, height: 30, shadowColor: "red" }} source={require('../assets/pakflag.png')} />} placeholder="+92 399 3148142" errorMessage="Sorry! Rate Limit Exceded Please Try Later in 1hr." keyboardType="number-pad" />

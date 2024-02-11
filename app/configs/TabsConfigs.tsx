@@ -28,9 +28,9 @@ const TabsConfigs = {
         )
     },
     Explore: {
-        tabLabel: "More",
+        tabLabel: "Messages",
         Svg: () => (
-            <Icon  size={25} color="#5F6368" name="explore" type="material" />
+            <Icon  size={25} color="#5F6368" name="chat" type="material" />
         )
     },
     Profile: {

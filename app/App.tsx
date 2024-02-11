@@ -42,9 +42,9 @@ function HomePageActivity() {
   return (
     <Tab.Navigator
       screenOptions={{
-      
+
         tabBarStyle: {
-        
+
           height: BottomNavigator_Height,
         }
       }}
@@ -106,7 +106,7 @@ export default function App({ navigation }: { navigation: any }) {
   return (
     <NavigationContainer >
       <StatusBar style="auto" />
-      <Stack.Navigator screenOptions={{headerShown:false}}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         {NetworkInfo.isOnline ? (
           Auth.isAuthenticated ? (
             <Stack.Screen name="Main" component={OfflinePage} />

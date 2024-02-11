@@ -39,11 +39,6 @@
     "plugins": [
       "expo-localization",
       "expo-tracking-transparency"
-    ],
-    "extra": {
-      "eas": {
-        "projectId": "0acb402d-8d60-4fc8-b90a-d7b4ddf5b3c3"
-      }
-    }
+    ]
   }
 }

@@ -16,7 +16,7 @@ const EcommerceStack = createStackNavigator()
  *  
  */
 // main Parent Component
-import ShopInitalRoute from "../Stacks/Shop/InitialRoute_Shop"
+ import ShopInitalRoute from "../Stacks/Shop/InitialRoute_Shop"
 // Child Components
 import SearchPage from "../Stacks/Shop/nested/ProductSearchPage"
 import CartPage from "../Stacks/Shop/nested/CartPage"
@@ -28,7 +28,7 @@ const EcommerceTab = () => {
   return (
     <EcommerceStack.Navigator initialRouteName="ShopContainer" >
       <EcommerceStack.Screen name="ShopContainer"
-      
+
         options={{
           title: StackNavigatorConfigs.ShopStack.title,
 

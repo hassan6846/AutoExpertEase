@@ -18,8 +18,8 @@ const Tab = createBottomTabNavigator()
 //pages or Screens
 
 import LoginPage from "./screens/Authentication/LoginScreen"
-import PrivacyPolicy from "./screens/pages/PrivacyPolicy"
-import SelectLanguage from "./screens/SelectLanguage"
+import PrivacyPolicy from "./screens/pages/PrivacyPolicy/PrivacyPolicy"
+import SelectLanguage from "./screens/pages/Localization/SelectLanguage"
 import OtpPage from "./screens/Authentication/OtpScreen"
 
 // Tabs Root Pages
@@ -33,7 +33,7 @@ import TabsConfigs from "./configs/TabsConfigs"
 
 //pages/screens
 //OFlinePage
-import OfflinePage from "./screens/OfflinePage"
+import OfflinePage from "./screens/pages/OfflinePage/OfflinePage"
 import { BottomNavigator_Height } from "./configs/TabNavigatorConfigs"
 export default function App({ navigation }: { navigation: any }) {
   // animation
@@ -87,7 +87,7 @@ export default function App({ navigation }: { navigation: any }) {
         {/* user ProfilePage */}
         <Tab.Screen
           component={ProfileTab}
-          name="Profile"
+          name="Me"
           options={{
             headerTitleAlign: "center",
             tabBarLabel: TabsConfigs.Profile.tabLabel,

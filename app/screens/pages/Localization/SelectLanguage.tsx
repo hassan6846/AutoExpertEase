@@ -1,7 +1,7 @@
 // modules
 import { SafeAreaView, ScrollView, KeyboardAvoidingView, StyleSheet, View, TouchableOpacity } from "react-native";
 import { Text, CheckBox } from "@rneui/themed";
-import CustomButton from "../components/ButtonProps/ButtonProps";
+import CustomButton from "../../../components/ButtonProps/ButtonProps";
 import CountryFlag from "react-native-country-flag";
 
 // main void Function

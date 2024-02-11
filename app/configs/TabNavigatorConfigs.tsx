@@ -1,2 +1,2 @@
 // Tabs Styles Screen Options
-export const BottomNavigator_Height:any=60
+export const BottomNavigator_Height:any=55

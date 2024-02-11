@@ -1,11 +1,15 @@
 // modules
 import { SafeAreaView, ScrollView, KeyboardAvoidingView, StyleSheet, View, TouchableOpacity } from "react-native";
-import { Text, CheckBox } from "@rneui/themed";
+import { useState } from "react";
+import { Text } from "@rneui/themed";
 import CustomButton from "../../../components/ButtonProps/ButtonProps";
 import CountryFlag from "react-native-country-flag";
+import * as Localization from "expo-localization" //localization Library
 
 // main void Function
 const SelectLanguage = ({ navigation }: { navigation: any }) => {
+  // ButtonState for Selecting Language
+  const [Language,SetLanguage]=useState<boolean>(false)
   // Language Support Array
   const LanguageSupport = [
     {
@@ -134,7 +138,7 @@ const SelectLanguage = ({ navigation }: { navigation: any }) => {
         </ScrollView>
 
       </SafeAreaView>
-      <CustomButton  title="Select Language" />
+      <CustomButton title="Select Language" />
     </KeyboardAvoidingView>
   );
 };

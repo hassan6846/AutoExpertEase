@@ -1,6 +1,6 @@
 //module and Library
 import { TouchableOpacity, View } from "react-native"
-import { StatusBar } from "expo-status-bar"
+import {StatusBar} from "expo-status-bar"
 import "react-native-gesture-handler"
 import { Icon, ThemeProvider } from "@rneui/themed"
 //Utils or localImports or Configs
@@ -34,20 +34,17 @@ import TabsConfigs from "./configs/TabsConfigs"
 
 //pages/screens
 //OFlinePage
-
+import OfflinePage from "./screens/pages/OfflinePage/OfflinePage"
 import { BottomNavigator_Height } from "./configs/TabNavigatorConfigs"
-import Chatbot from "./screens/pages/Help&Support/HelpSupport"
 export default function App({ navigation }: { navigation: any }) {
   // animation
 
   return (
-    <NavigationContainer >
-      {/* StatusBar */}
-      <StatusBar style="auto" />
+    <NavigationContainer>
+      <StatusBar/>
       {/* Bottom Tab Navigator */}
       <Tab.Navigator
         screenOptions={{
-
           tabBarStyle: {
             height: BottomNavigator_Height,
           }
@@ -55,15 +52,12 @@ export default function App({ navigation }: { navigation: any }) {
       >
         <Tab.Screen
           name="Home"
-          component={Chatbot}
+          component={Home}
           options={{
-        
             tabBarLabel: TabsConfigs.Home.tabLabel,
-            tabBarIcon: TabsConfigs.Home.Svg,
-          
+            tabBarIcon: TabsConfigs.Home.Svg
 
-          }
-          } />
+          }} />
 
         {/* ShopTab */}
         <Tab.Screen name="Shop"

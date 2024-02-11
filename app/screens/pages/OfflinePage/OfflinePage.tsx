@@ -15,10 +15,10 @@ const OfflinePage = () => {
         <SafeAreaView style={styles.OfflineContainer} >
             <View style={styles.OfflineWrapper}>
                 <Text style={styles.OfflineHead} h4>Ooops... Something Went Wrong</Text>
-                <Icon color="rgb(95,99,104)" size={150} name="wifi-off" type="material" />
+                <Icon  color="rgb(95,99,104)" size={150} name="wifi-off" type="material" />
                 <Text style={{ textAlign: "center", }}>You might have slow Internet Connection.Please Try Reloading the app.</Text>
             </View>
-            <CustomButton title="Retry" />
+            <CustomButton icon={{   name: 'home',type: 'font-awesome', size: 15,color: 'white',}} title="Retry" />
 
         </SafeAreaView>
     )

@@ -42,9 +42,7 @@ function HomePageActivity() {
   return (
     <Tab.Navigator
       screenOptions={{
-
         tabBarStyle: {
-
           height: BottomNavigator_Height,
         }
       }}
@@ -64,14 +62,18 @@ function HomePageActivity() {
         options={{
           headerShown: false,
           tabBarLabel: TabsConfigs.Shop.tabLabel,
-          tabBarIcon: TabsConfigs.Shop.Svg
+          tabBarIcon: TabsConfigs.Shop.Svg,
+
+        
         }}
       />
 
       {/* Service Tabs */}
       <Tab.Screen name="Service"
         component={ServiceTab}
+        
         options={{
+          headerShown:false,
           tabBarLabel: TabsConfigs.Service.tabLabel,
           tabBarIcon: TabsConfigs.Service.Svg
         }}
@@ -109,10 +111,11 @@ export default function App({ navigation }: { navigation: any }) {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {NetworkInfo.isOnline ? (
           Auth.isAuthenticated ? (
-            <Stack.Screen name="Login" options={{ headerShown: true, headerTitle: "GetStarted", headerTitleAlign: "center" }} component={LoginPage} />
+            <Stack.Screen name="Main" component={HomePageActivity} />
+
           ) : (
 
-            <Stack.Screen name="Main" component={LoginPage} />
+            <Stack.Screen name="Login" options={{ headerShown: true, headerTitle: "GetStarted", headerTitleAlign: "center" }} component={LoginPage} />
           )
         ) : null}
       </Stack.Navigator>

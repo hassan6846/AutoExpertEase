@@ -20,7 +20,6 @@ const OtpPage = ({ navigation }: { navigation: any }) => {
             <View>
                 <Text style={Styles.otpSub}>A Code has been Send to <Text style={{ fontWeight: "bold" }}>+{maskedNumber}</Text>  {""}via Sms check messsage inbox </Text>
             </View>
-
             <CustomButton title="Verify" />
         </View>
     )

@@ -106,12 +106,12 @@ export default function App({ navigation }: { navigation: any }) {
   return (
     <NavigationContainer >
       <StatusBar style="auto" />
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator>
         {NetworkInfo.isOnline ? (
           Auth.isAuthenticated ? (
-            <Stack.Screen name="Main" component={OfflinePage} />
+            <Stack.Screen name="Main" options={{ headerShown: false }} component={LoginPage} />
           ) : (
-            <Stack.Screen name="login" component={Enrollment} />
+            <HomePageActivity />
           )
         ) : null}
       </Stack.Navigator>

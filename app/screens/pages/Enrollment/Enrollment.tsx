@@ -1,12 +1,12 @@
 //Modules and library
-import { View } from "react-native";
+import { SafeAreaView } from "react-native";
 import { Button } from "@rneui/base"
 //utils or imports
 const Enrollment = () => {
     return (
-        <View>
-            <Button title="Hello" />
-        </View>
+        <SafeAreaView style={{flex:1}}>
+  
+        </SafeAreaView>
     );
 };
 

@@ -16,10 +16,10 @@ const LoginPage = ({ navigation }: { navigation: any }) => {
         >
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.LoginContainer}>
-           
+
                     <Text style={styles.LoginHeading} h3={true} >Enter Phone Number for Verification</Text>
                     <Text style={styles.LoginSub}>This number will be used for all ride-related communication. You shall receive an SMS with code for verification.</Text>
-                    <Input inputContainerStyle={styles.LoginInputCont} rightIcon={<TouchableOpacity activeOpacity={0.7} ><Icon name="close" reverseColor="#66696D" reverse={true} color="#e3e3e3" iconStyle={{ fontSize: 15, fontWeight: "bold" }} type="evilicon" size={8} raised={true} /></TouchableOpacity>} leftIcon={<Image style={{ width: 35, height: 30, shadowColor: "red" }} source={require('../assets/pakflag.png')} />} placeholder="+92 399 3148142" errorMessage="Sorry! Rate Limit Exceded Please Try Later in 1hr." keyboardType="number-pad" />
+                    <Input inputContainerStyle={styles.LoginInputCont} rightIcon={<TouchableOpacity activeOpacity={0.7} ><Icon name="close" reverseColor="#66696D" reverse={true} color="#e3e3e3" iconStyle={{ fontSize: 15, fontWeight: "bold" }} type="evilicon" size={8} raised={true} /></TouchableOpacity>}  placeholder="+92 399 3148142" errorMessage="Sorry! Rate Limit Exceded Please Try Later in 1hr." keyboardType="number-pad" />
                     <Button buttonStyle={styles.LoginButton} color="#E04E2F" title="Send Otp" />
                     <Text style={styles.LoginConsent}>By providing my phone number, I hereby agree and accept the <Text style={styles.LoginLink} onPress={() => navigation.push("privacypolicy")}>Terms of Service</Text> and <Text onPress={() => navigation.push("privacypolicy")} style={styles.LoginLink}>Privacy Policy</Text> in use of the  app.</Text>
                 </View>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     LoginContainer: {
         padding: 30,
         flex: 1,
-        backgroundColor: "#fff"
+        backgroundColor: "red"
     },
     // ScrollView
     scrollContainer: {

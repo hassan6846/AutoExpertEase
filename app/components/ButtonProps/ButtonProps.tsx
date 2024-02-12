@@ -26,6 +26,7 @@ const Styles = StyleSheet.create({
     ButtonPropsStyle: {
         padding: 12,
         zIndex: 999,
+        
         borderRadius: 10,
     }
 })

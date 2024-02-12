@@ -1,13 +1,16 @@
-import { ScrollView, StyleSheet, View, KeyboardAvoidingView, Pressable } from "react-native"
-import { Text, ListItem, Icon, Badge, Avatar,BottomSheet } from "@rneui/themed"
+import { ScrollView, StyleSheet, View, KeyboardAvoidingView, Pressable, TouchableHighlight, TouchableHighlightBase } from "react-native"
+import { Text, ListItem, Icon, Badge, Avatar, BottomSheet } from "@rneui/themed"
 import CountryFlag from "react-native-country-flag"
 import { AvatarSrc, DefaultImageSrc } from "../../constants/ImagesConstants"
+import { TouchableOpacity } from "react-native-gesture-handler"
 
 
 
 
 const ProfileTab = () => {
-
+    interface ListItemProps {
+        Component?: React.ComponentType<any>;
+    }
 
     return (
 
@@ -22,16 +25,16 @@ const ProfileTab = () => {
             {/* Account */}
             <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10, }}>Account</Text>
             {/* 1 */}
-            <Pressable >
-                <View >
-                    <ListItem containerStyle={{ borderRadius: 5, marginBottom: 10 }} >
-                        <Icon name="person" type="material" color="#3E4958" />
-                        <ListItem.Content>
-                            <ListItem.Title>View Profile</ListItem.Title>
-                        </ListItem.Content>
-                        <ListItem.Chevron size={23} />
-                    </ListItem></View>
-            </Pressable>
+
+
+            <ListItem Component={TouchableOpacity} disabledStyle={{ opacity: 0.9 }} containerStyle={{ borderRadius: 5, marginBottom: 10 }} >
+                <Icon name="person" type="material" color="#3E4958" />
+                <ListItem.Content>
+                    <ListItem.Title>View Profile</ListItem.Title>
+                </ListItem.Content>
+                <ListItem.Chevron size={18} />
+            </ListItem>
+
 
             {/* Shopping */}
             <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Shoppings</Text>

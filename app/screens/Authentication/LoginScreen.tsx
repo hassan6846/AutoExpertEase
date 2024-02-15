@@ -1,5 +1,5 @@
 import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from "react-native"
-import {LinearProgress} from "@rneui/themed"
+import { LinearProgress } from "@rneui/themed"
 import { useState, createRef } from "react"
 
 
@@ -16,9 +16,9 @@ const LoginPage = ({ navigation }: { navigation: any }) => {
         <KeyboardAvoidingView
             style={{ flex: 1 }}
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-        >                  
-        <View style={{display:"flex",justifyContent:"center",alignItems:'center',backgroundColor:"#fff"}}><LinearProgress variant="determinate"  color="#E04E2F" trackColor="#d9d9d9" style={{width:"60%",height:8,borderRadius:5}}/></View>
-          
+        >
+            <View style={{ display: "flex", justifyContent: "center", alignItems: 'center', backgroundColor: "#fff" }}><LinearProgress variant="determinate" color="#E04E2F" trackColor="#d9d9d9" style={{ width: "60%", height: 8, borderRadius: 5 }} /></View>
+
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.LoginContainer}>
                     <Text style={styles.LoginHeading} h3={true} >Enter Phone Number for Verification</Text>

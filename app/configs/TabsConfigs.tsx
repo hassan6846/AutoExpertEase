@@ -13,7 +13,7 @@ const TabsConfigs = {
     // HomeScreen 
     Home: {
         Svg: ({ focused }: { focused: any }) => (
-            <Pressable>
+            <Pressable android_ripple={{ color: '#CCD5D5', borderless: true, }}>
                 <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-filled" type="material" />
             </Pressable>
         )
@@ -22,31 +22,37 @@ const TabsConfigs = {
     Shop: {
 
         Svg: ({ focused }: { focused: any }) => (
-            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="storefront" type="material" />
+            <Pressable android_ripple={{ color: '#CCD5D5', borderless: true }}>
+                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="storefront" type="material" />
+            </Pressable>
         )
     },
     //Service
     Service: {
         Svg: ({ focused }: { focused: any }) => (
-            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-repair-service" type="material" />
+            <Pressable android_ripple={{ color: '#CCD5D5', borderless: true }}>
+                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-repair-service" type="material" />
+            </Pressable>
         )
     },
     //Explore
     Explore: {
         Svg: ({ focused }: { focused: any }) => (
-            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="chat" type="material" />
+            <Pressable android_ripple={{ color: '#CCD5D5', borderless: true }}>
+                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="chat" type="material" />
+            </Pressable>
         )
     },
     //Profile
     Profile: {
         Svg: ({ focused }: { focused: any }) => (
-            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="person" type="material" />
+            <Pressable android_ripple={{ color: '#CCD5D5', borderless: true }}>
+                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="person" type="material" />
+            </Pressable>
         )
     },
-    // If he is a buissness or a Seller
-    Buissness: {
+    //Dashboard
 
-    }
 }
 export default TabsConfigs
 

@@ -61,7 +61,7 @@ function HomePageActivity() {
         component={EcommerceTab}
         options={{
           headerShown: false,
-      
+          tabBarShowLabel: false,
           tabBarIcon: TabsConfigs.Shop.Svg,
 
 
@@ -74,7 +74,7 @@ function HomePageActivity() {
 
         options={{
           headerShown: false,
-
+          tabBarShowLabel: false,
           tabBarIcon: TabsConfigs.Service.Svg
         }}
       />
@@ -83,7 +83,7 @@ function HomePageActivity() {
         component={ExploreTab}
         name="Explore"
         options={{
-
+          tabBarShowLabel: false,
           tabBarIcon: TabsConfigs.Explore.Svg
         }}
       />
@@ -93,6 +93,7 @@ function HomePageActivity() {
         name="Profile"
         options={{
           headerTitleAlign: "center",
+          tabBarShowLabel: false,
           tabBarIcon: TabsConfigs.Profile.Svg,
         }}
       />

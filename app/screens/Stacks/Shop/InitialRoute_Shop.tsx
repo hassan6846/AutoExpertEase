@@ -4,7 +4,7 @@ import { Text } from "@rneui/themed"
 const ShopInitalRoute = () => {
     return (
         <View style={Styles.InitialShopContainer}>
-            {/* add The Carsoul */}
+
         </View>
     )
 }

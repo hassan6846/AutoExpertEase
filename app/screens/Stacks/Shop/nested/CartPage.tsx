@@ -1,12 +1,12 @@
 //modules
-import { View, } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
 //utils or props
 //statics
 
 
 const CartPage = () => {
     return (
-        <View>CartPage</View>
+        <View><Text>SearchPage</Text></View>
     )
 }
 

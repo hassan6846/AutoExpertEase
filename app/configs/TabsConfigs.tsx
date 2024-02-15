@@ -7,39 +7,38 @@
 //App Etc
 import { Icon } from "@rneui/themed"
 import ThemeProviderColors from "../provider/ThemeProvider"
+import { Pressable, StyleSheet } from "react-native"
 //note use theme provided color only to manage a better code and ui ok not 😞
 const TabsConfigs = {
     // HomeScreen 
     Home: {
-        tabLabel: "Home",
         Svg: ({ focused }: { focused: any }) => (
-            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-filled" type="material" />
+            <Pressable>
+                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-filled" type="material" />
+            </Pressable>
         )
     },
     // ShopScreen
     Shop: {
-        tabLabel: "Shop",
+
         Svg: ({ focused }: { focused: any }) => (
             <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="storefront" type="material" />
         )
     },
     //Service
     Service: {
-        tabLabel: "Auto Fix",
         Svg: ({ focused }: { focused: any }) => (
             <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-repair-service" type="material" />
         )
     },
     //Explore
     Explore: {
-        tabLabel: "Messages",
         Svg: ({ focused }: { focused: any }) => (
             <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="chat" type="material" />
         )
     },
     //Profile
     Profile: {
-        tabLabel: "Me",
         Svg: ({ focused }: { focused: any }) => (
             <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="person" type="material" />
         )
@@ -50,3 +49,8 @@ const TabsConfigs = {
     }
 }
 export default TabsConfigs
+
+// Styles
+const BottomTabBarStyles = StyleSheet.create({
+
+})

@@ -6,37 +6,42 @@
 //Customize the Icon Focus styles here
 //App Etc
 import { Icon } from "@rneui/themed"
+import ThemeProviderColors from "../provider/ThemeProvider"
 //note use theme provided color only to manage a better code and ui ok not 😞
 const TabsConfigs = {
     // HomeScreen 
     Home: {
         tabLabel: "Home",
-        Svg: () => (
-            <Icon size={25} color="#5F6368" name="home-filled" type="material" />
+        Svg: ({ focused }: { focused: any }) => (
+            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-filled" type="material" />
         )
     },
+    // ShopScreen
     Shop: {
         tabLabel: "Shop",
-        Svg: () => (
-            <Icon size={25} color="#5F6368" name="storefront" type="material" />
+        Svg: ({ focused }: { focused: any }) => (
+            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="storefront" type="material" />
         )
     },
+    //Service
     Service: {
         tabLabel: "Auto Fix",
-        Svg: () => (
-            <Icon size={25} color="#5F6368" name="home-repair-service" type="material" />
+        Svg: ({ focused }: { focused: any }) => (
+            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-repair-service" type="material" />
         )
     },
+    //Explore
     Explore: {
         tabLabel: "Messages",
-        Svg: () => (
-            <Icon  size={25} color="#5F6368" name="chat" type="material" />
+        Svg: ({ focused }: { focused: any }) => (
+            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="chat" type="material" />
         )
     },
+    //Profile
     Profile: {
         tabLabel: "Me",
-        Svg: () => (
-            <Icon size={25} color="#5F6368" name="person" type="material" />
+        Svg: ({ focused }: { focused: any }) => (
+            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="person" type="material" />
         )
     },
     // If he is a buissness or a Seller

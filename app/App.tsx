@@ -51,7 +51,7 @@ function HomePageActivity() {
         name="Home"
         component={Home}
         options={{
-          tabBarLabel: TabsConfigs.Home.tabLabel,
+          tabBarShowLabel: false,
           tabBarIcon: TabsConfigs.Home.Svg
 
         }} />
@@ -61,20 +61,20 @@ function HomePageActivity() {
         component={EcommerceTab}
         options={{
           headerShown: false,
-          tabBarLabel: TabsConfigs.Shop.tabLabel,
+      
           tabBarIcon: TabsConfigs.Shop.Svg,
 
-        
+
         }}
       />
 
       {/* Service Tabs */}
       <Tab.Screen name="Service"
         component={ServiceTab}
-        
+
         options={{
-          headerShown:false,
-          tabBarLabel: TabsConfigs.Service.tabLabel,
+          headerShown: false,
+
           tabBarIcon: TabsConfigs.Service.Svg
         }}
       />
@@ -83,7 +83,7 @@ function HomePageActivity() {
         component={ExploreTab}
         name="Explore"
         options={{
-          tabBarLabel: TabsConfigs.Explore.tabLabel,
+
           tabBarIcon: TabsConfigs.Explore.Svg
         }}
       />
@@ -93,7 +93,6 @@ function HomePageActivity() {
         name="Profile"
         options={{
           headerTitleAlign: "center",
-          tabBarLabel: TabsConfigs.Profile.tabLabel,
           tabBarIcon: TabsConfigs.Profile.Svg,
         }}
       />

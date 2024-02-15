@@ -1,7 +1,6 @@
 //CreateStore using toolkit
 import { configureStore } from "@reduxjs/toolkit"
 
-
 //all Slices
 import NetworkSlice from "../slices/NetworkSlice"
 const Store = configureStore({

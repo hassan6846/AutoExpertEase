@@ -24,7 +24,7 @@ const Stack = createStackNavigator()
 //TabsParentsRoots
 import Home from "./screens/BottomsTabs/HomeTab"
 import EcommerceTab from "./screens/BottomsTabs/EcommerceTab"
-import ServiceTab from "./screens/BottomsTabs/ServiceTab"
+// import ServiceTab from "./screens/BottomsTabs/ServiceTab"
 import ProfileTab from "./screens/BottomsTabs/ProfileTab"
 import ExploreTab from "./screens/BottomsTabs/ExploreTab"
 //OfflineScreen
@@ -70,7 +70,7 @@ function HomePageActivity() {
 
       {/* Service Tabs */}
       <Tab.Screen name="Service"
-        component={ServiceTab}
+        component={LoginPage}
 
         options={{
           headerShown: false,

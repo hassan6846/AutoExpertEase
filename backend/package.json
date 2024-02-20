@@ -1,19 +1,11 @@
 {
-  "name": "backend",
+  "name": "autoexpert",
   "version": "1.0.0",
-  "description": "autoexpert ease backend",
+  "description": "a revolutionary autoapp",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "ucp kids",
-  "license": "ISC",
-  "dependencies": {
-    "cloudinary": "^1.41.2",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-rate-limit": "^7.1.5",
-    "firebase-admin": "^12.0.0"
-  }
+  "author": "",
+  "license": "ISC"
 }

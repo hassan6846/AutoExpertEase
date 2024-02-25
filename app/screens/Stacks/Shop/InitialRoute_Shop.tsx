@@ -12,6 +12,12 @@ const ShopInitalRoute = () => {
         "https://res.cloudinary.com/diml3oeaw/image/upload/v1708888306/AutoExpertEase/Assets/Shop/CategoryList/xb07fhjr9jpboisrldea.png"
 
     ]
+    const PriceRangeFilter = [
+        "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891864/AutoExpertEase/Assets/Shop/PriceRange/nyolfv7d4bcl2nfmohsb.png",
+        "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891864/AutoExpertEase/Assets/Shop/PriceRange/znmu7lazyhzjwr1kyyyn.png",
+        "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891864/AutoExpertEase/Assets/Shop/PriceRange/nkvwzty5i9rslehypuio.png",
+        "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891865/AutoExpertEase/Assets/Shop/PriceRange/uantcdu0c07o53fgi2ij.png"
+    ]
     return (
         <View style={Styles.InitialShopContainer}>
             {/* Text  header*/}
@@ -20,14 +26,34 @@ const ShopInitalRoute = () => {
                 <Pressable android_ripple={{ color: '#CCD5D5', borderless: true }} style={{ display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "center" }}><Text style={Styles.NavigateText}>See all </Text><Icon color={ThemeProviderColors.Light.Primary} name="navigate-next" type="material" /></Pressable>
             </View>
             {/* Flatlist Slider Cateogry Bar */}
-            <FlatList style={{ flexGrow: 0 }} renderItem={({ item }) => (
+            <FlatList style={{ flexGrow: 0 }} 
+            renderItem={({ item }) => (
                 <TouchableOpacity >
                     <Avatar rounded={true} size={90} source={{ uri: item }} />
                 </TouchableOpacity>
-            )} horizontal={true} ItemSeparatorComponent={() => <View style={{ width: 5 }} />} showsHorizontalScrollIndicator={false} keyExtractor={(item, index) => index.toString()} data={CategoryImageUrls} />
+            )} 
+             horizontal={true}
+             ItemSeparatorComponent={() => <View style={{ width: 5 }} />} 
+             showsHorizontalScrollIndicator={false} 
+             keyExtractor={(item, index) => index.toString()} 
+             data={CategoryImageUrls} />
             {/* Support Local Seller */}
+            <View>
+
+            </View>
             {/* Support Local Seller Ends */}
             {/* Sale Bar */}
+            <FlatList
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) => (
+                    <TouchableOpacity >
+                        <Avatar rounded={true} size={85} source={{ uri: item }} />
+                    </TouchableOpacity>
+                )}
+                contentContainerStyle={{justifyContent:"space-between",columnGap:2,alignItems:"center",flex:1,padding:10}}
+                data={PriceRangeFilter}
+                style={{flexGrow:0}}
+                horizontal={true} />
             {/* Sale Bar Ends */}
         </View>
     )

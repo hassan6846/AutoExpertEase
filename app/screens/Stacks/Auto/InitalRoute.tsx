@@ -1,16 +1,12 @@
 import { View, StyleSheet, SafeAreaView } from "react-native"
 import { Text } from "@rneui/themed"
-import MapView, { Marker } from "react-native-maps"
+import { MapView } from "@rnmapbox/maps"
 
 const AutoFixInitalRoute = () => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <MapView initialRegion={{
-                latitude: 31.543812,
-                longitude: 74.295223,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-            }} style={Styles.map} >
+            <MapView
+                style={Styles.map} >
 
             </MapView>
         </SafeAreaView>

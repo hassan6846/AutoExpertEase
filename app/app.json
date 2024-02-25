@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -26,7 +24,6 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "blockedPermissions": [],
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
@@ -38,7 +35,12 @@
     },
     "plugins": [
       "expo-localization",
-      "expo-tracking-transparency"
-    ]
+      "expo-tracking-transparency",
+      "@rnmapbox/maps"
+    ],
+    "rnmapbox": {
+      "accessToken": "sk.eyJ1IjoiaGFzc2Fuc2hlcml5YXIiLCJhIjoiY2x0MjA2N2dsMWg2YTJxcDJmdGx6Nmh1MiJ9.SJQgUW8rxymfxe9UWKQtSA",
+      "RNMapboxMapsVersion": "11.0.0"
+    }
   }
 }

@@ -21,19 +21,21 @@ const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
 
 
-//TabsParentsRoots
+//TabsMain
 import Home from "./screens/BottomsTabs/HomeTab"
 import EcommerceTab from "./screens/BottomsTabs/EcommerceTab"
-// import ServiceTab from "./screens/BottomsTabs/ServiceTab"
+import ServiceTab from "./screens/BottomsTabs/ServiceTab"
 import ProfileTab from "./screens/BottomsTabs/ProfileTab"
 import ExploreTab from "./screens/BottomsTabs/ExploreTab"
-//OfflineScreen
+
+//Features
 import OfflinePage from "./screens/pages/OfflinePage/OfflinePage"
-//LoginScreen
-import LoginPage from "./screens/Authentication/LoginScreen"
-// Demo Providers Text
-import { NetworkInfo, Auth } from "./context/DemoContext"
 import Enrollment from "./screens/pages/Enrollment/Enrollment"
+import LoginPage from "./screens/Authentication/LoginScreen"
+// Context and Providers
+import { NetworkInfo, Auth } from "./context/DemoContext"
+
+
 
 
 //HomePage 
@@ -70,7 +72,7 @@ function HomePageActivity() {
 
       {/* Service Tabs */}
       <Tab.Screen name="Service"
-        component={LoginPage}
+        component={ServiceTab}
 
         options={{
           headerShown: false,

@@ -7,32 +7,32 @@
 //App Etc
 import { Icon } from "@rneui/themed"
 import ThemeProviderColors from "../provider/ThemeProvider"
-import { Pressable, StyleSheet } from "react-native"
+import { TouchableOpacity, StyleSheet, Pressable } from "react-native"
 //note use theme provided color only to manage a better code and ui ok not 😞
 const TabsConfigs = {
     // HomeScreen 
     Home: {
         Svg: ({ focused }: { focused: any }) => (
-            <Pressable android_ripple={{ color: '#CCD5D5', borderless: true, }}>
-                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-filled" type="material" />
-            </Pressable>
+
+            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-filled" type="material" />
+
         )
     },
     // ShopScreen
     Shop: {
 
         Svg: ({ focused }: { focused: any }) => (
-            <Pressable android_ripple={{ color: '#CCD5D5', borderless: true }}>
+           
                 <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="storefront" type="material" />
-            </Pressable>
+
         )
     },
     //Service
     Service: {
         Svg: ({ focused }: { focused: any }) => (
-            <Pressable android_ripple={{ color: '#CCD5D5', borderless: true }}>
+          
                 <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-repair-service" type="material" />
-            </Pressable>
+
         )
     },
     //Explore

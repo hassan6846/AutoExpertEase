@@ -1,9 +1,10 @@
 import { View } from "react-native"
 import { Icon } from "@rneui/themed"
-// Ecommerce PageStack Navigator
+// Navigation
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack"
-import StackNavigatorConfigs from "../../configs/StackNavigatorConfigs"
 const EcommerceStack = createStackNavigator()
+import StackNavigatorConfigs from "../../configs/StackNavigatorConfigs"
+
 // import other Child Component pages
 /**
  *  ---EcommerceTab
@@ -15,9 +16,9 @@ const EcommerceStack = createStackNavigator()
  *
  *  
  */
-// main Parent Component
+
+//Nested Child Components
 import ShopInitalRoute from "../Stacks/Shop/InitialRoute_Shop"
-// Child Components
 import CartPage from "../Stacks/Shop/nested/CartPage"
 import ShopCategory from "../Stacks/Shop/nested/ShopCategory"
 import Search from "../Stacks/Shop/nested/SearchPage"
@@ -25,6 +26,8 @@ import Search from "../Stacks/Shop/nested/SearchPage"
 const EcommerceTab = ({ navigation }: { navigation: any }) => {
   return (
     <EcommerceStack.Navigator initialRouteName="ShopContainer" >
+
+      {/* Inital Route */}
       <EcommerceStack.Screen name="ShopContainer"
         options={{
           title: StackNavigatorConfigs.ShopStack.title,
@@ -37,15 +40,16 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
           )
         }}
         component={ShopInitalRoute} />
+
       {/* SearchPage */}
-      <EcommerceStack.Screen
-        name="Search"
-        options={{ cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid }}
-        component={Search} />
+      <EcommerceStack.Screen name="Search" options={{ cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid }} component={Search} />
+
       {/*CartPage  */}
       <EcommerceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} name="Cart" component={CartPage} />
+
       {/* ShopCategory */}
       <EcommerceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} name="Category" component={ShopCategory} />
+
     </EcommerceStack.Navigator>
   )
 }

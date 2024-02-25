@@ -35,12 +35,9 @@
     },
     "plugins": [
       "expo-localization",
-      "expo-tracking-transparency",
-      "@rnmapbox/maps"
-    ],
-    "rnmapbox": {
-      "accessToken": "sk.eyJ1IjoiaGFzc2Fuc2hlcml5YXIiLCJhIjoiY2x0MjA2N2dsMWg2YTJxcDJmdGx6Nmh1MiJ9.SJQgUW8rxymfxe9UWKQtSA",
-      "RNMapboxMapsVersion": "11.0.0"
-    }
+      "expo-tracking-transparency"
+   
+    ]
+   
   }
 }

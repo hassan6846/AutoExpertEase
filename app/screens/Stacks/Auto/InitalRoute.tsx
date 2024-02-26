@@ -1,10 +1,10 @@
-import { View, StyleSheet, SafeAreaView } from "react-native"
+import { StyleSheet, SafeAreaView } from "react-native"
 
 
 const AutoFixInitalRoute = () => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
-
+           
         </SafeAreaView>
     )
 

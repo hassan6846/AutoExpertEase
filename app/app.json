@@ -11,12 +11,15 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your Camera.",
-        "NSMicrophoneUsageDescription": "$(PRODUCT_NAME) needs access to your Microphone."
+        "NSMicrophoneUsageDescription": "$(PRODUCT_NAME) needs access to your Microphone.",
+        "NSUserTrackingUsageDescription": "Allow this app to collect app-related data that can be used for tracking you or your device."
       }
     },
     "android": {
@@ -35,9 +38,20 @@
     },
     "plugins": [
       "expo-localization",
-      "expo-tracking-transparency"
-   
-    ]
-   
+      "expo-tracking-transparency",
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsVersion": "10.16.2",
+          "RNMapboxMapsImpl": "mapbox",
+          "RNMapboxMapsDownloadToken": "sk.eyJ1IjoiaGFzc2Fuc2hlcml5YXIiLCJhIjoiY2x0MmJwdTA1MWpoODJsbzV1OHUwaWp5byJ9.44NXW0WXoI55W98_sIGQIQ"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0acb402d-8d60-4fc8-b90a-d7b4ddf5b3c3"
+      }
+    }
   }
 }

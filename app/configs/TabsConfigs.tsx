@@ -38,17 +38,17 @@ const TabsConfigs = {
     //Explore
     Explore: {
         Svg: ({ focused }: { focused: any }) => (
-            <Pressable android_ripple={{ color: '#CCD5D5', borderless: true }}>
+          
                 <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="chat" type="material" />
-            </Pressable>
+ 
         )
     },
     //Profile
     Profile: {
         Svg: ({ focused }: { focused: any }) => (
-            <Pressable android_ripple={{ color: '#CCD5D5', borderless: true }}>
+        
                 <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="person" type="material" />
-            </Pressable>
+       
         )
     },
     //Dashboard

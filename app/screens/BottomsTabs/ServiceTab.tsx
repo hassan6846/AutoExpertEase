@@ -9,7 +9,7 @@ import AutoFixInitalRoute from "../Stacks/Auto/InitalRoute"
 
 
 // Main  Component
-const ServiceTab = ({ navigation }: { navigation: any }) => {
+const ServiceTab = () => {
     return (
         <ServiceStack.Navigator>
             {/* Inital Route */}

@@ -28,13 +28,18 @@ const ProfileInitial = () => {
             {/* 1 */}
 
 
-            <ListItem Component={TouchableOpacity} disabledStyle={{ opacity: 0.9 }} containerStyle={{ borderRadius: 5, marginBottom: 10 }} >
+            <Pressable  style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
+          },
+          Styles.ProfileList,
+        ]}>
                 <Icon name="person" type="material" color="#3E4958" />
                 <ListItem.Content>
                     <ListItem.Title>View Profile</ListItem.Title>
                 </ListItem.Content>
                 <ListItem.Chevron size={18} />
-            </ListItem>
+            </Pressable>
 
 
             {/* Shopping */}
@@ -145,7 +150,12 @@ const Styles = StyleSheet.create({
         justifyContent: "center"
     },
     // List items Style styles will only be applied through the ContainerStyleProp.
-
+    ProfileList:{
+     flex:1,
+     flexDirection:"row",
+     padding:15,
+     borderRadius:2,
+    }
 
 
 })

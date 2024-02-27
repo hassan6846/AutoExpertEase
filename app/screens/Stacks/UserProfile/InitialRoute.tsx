@@ -136,8 +136,8 @@ const Styles = StyleSheet.create({
         flex: 1,
         paddingTop: 10,
         paddingBottom: 10,
-        paddingRight: 8,
-        paddingLeft: 8,
+        paddingRight: 2,
+        paddingLeft: 2,
         backgroundColor: "#fff",
     },
     AvatarContainer: {

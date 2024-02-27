@@ -1,11 +1,12 @@
 import { ScrollView, StyleSheet, View, KeyboardAvoidingView, Pressable, TouchableHighlight, TouchableHighlightBase } from "react-native"
-import { Text, ListItem, Icon, Badge, Avatar, BottomSheet } from "@rneui/themed"
+import {useRef} from "react"
+import { Text, ListItem, Icon, Badge, Avatar } from "@rneui/themed"
 import CountryFlag from "react-native-country-flag"
-
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { AvatarSrc, DefaultImageSrc } from "../../../constants/ImagesConstants"
 
-
+//bottomSheet.
+import BottomSheet from '@gorhom/bottom-sheet';
 
 
 const ProfileInitial = () => {
@@ -34,7 +35,7 @@ const ProfileInitial = () => {
           },
           Styles.ProfileList,
         ]}>
-                <Icon name="person" type="material" color="#3E4958" />
+                <Icon style={{marginRight:7}} name="person" type="material" color="#3E4958" />
                 <ListItem.Content>
                     <ListItem.Title>View Profile</ListItem.Title>
                 </ListItem.Content>
@@ -124,6 +125,7 @@ const ProfileInitial = () => {
                     </ListItem.Content>
                 </ListItem>
             </View>
+            
         </ScrollView>
 
     )

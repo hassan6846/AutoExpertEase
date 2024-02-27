@@ -1,5 +1,14 @@
 const { app } = require("./app");
+const { ConnectMongodb } = require("./db/ConnectionDb");
 
-app.listen(3000, () => {
-    console.log("app Running")
+
+
+
+
+//Connection Database
+ConnectMongodb()
+//Listen
+const Port = process.env.PORT
+app.listen(Port, () => {
+    console.log(`App is Running on Port ${Port}`)
 })

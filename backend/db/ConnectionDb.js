@@ -1,19 +1,20 @@
-
-const mongoose = require('mongoose');
-const uri = "mongodb+srv://AliShan:<password>@atlascluster.l3n6m2d.mongodb.net/?retryWrites=true&w=majority";
-
-const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
-
- async function run() {
+const mongoose = require("mongoose");
+//main DBConnnect Function..
+async function ConnectMongodb() {
   try {
-    // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
-    await mongoose.connect(uri, clientOptions);
-    await mongoose.connection.db.admin().command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await mongoose.disconnect();
+    await mongoose.connect(process.env.CONNECTION_STRING_MONGO, {
+      // We'll Add database configs here in the future....
+
+
+    })
+      .then(() => {
+        console.log('DB connected');
+      })
+      .catch((err) => {
+        console.error('DB connection error:', err.message);
+      });
+  } catch (err) {
+    console.error('DB connection error:', err.message);
   }
 }
-run().catch(console.dir);
-module.exports={run}
+module.exports = { ConnectMongodb }

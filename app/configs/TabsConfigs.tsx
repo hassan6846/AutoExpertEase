@@ -13,7 +13,6 @@ const TabsConfigs = {
     // HomeScreen 
     Home: {
         Svg: ({ focused }: { focused: any }) => (
-
             <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-filled" type="material" />
 
         )
@@ -22,33 +21,33 @@ const TabsConfigs = {
     Shop: {
 
         Svg: ({ focused }: { focused: any }) => (
-           
-                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="storefront" type="material" />
+
+            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="storefront" type="material" />
 
         )
     },
     //Service
     Service: {
         Svg: ({ focused }: { focused: any }) => (
-          
-                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-repair-service" type="material" />
+
+            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-repair-service" type="material" />
 
         )
     },
     //Explore
     Explore: {
         Svg: ({ focused }: { focused: any }) => (
-          
-                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="chat" type="material" />
- 
+
+            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="chat" type="material" />
+
         )
     },
     //Profile
     Profile: {
         Svg: ({ focused }: { focused: any }) => (
-        
-                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="person" type="material" />
-       
+
+            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="person" type="material" />
+
         )
     },
     //Dashboard

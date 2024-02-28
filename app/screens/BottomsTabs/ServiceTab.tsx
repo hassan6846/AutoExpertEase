@@ -13,7 +13,7 @@ const ServiceTab = () => {
     return (
         <ServiceStack.Navigator>
             {/* Inital Route */}
-            <ServiceStack.Screen name="inital_service" component={AutoFixInitalRoute} />
+            <ServiceStack.Screen options={{ headerShown: false }} name="inital_service" component={AutoFixInitalRoute} />
         </ServiceStack.Navigator>
     )
 }

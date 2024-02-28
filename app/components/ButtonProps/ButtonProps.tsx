@@ -7,7 +7,8 @@ import { ReactElement, JSXElementConstructor } from "react"
 interface ButtonProps {
     title: string | ReactElement<{}, string | JSXElementConstructor<any>> | undefined;
     color?: string;
-    icon?: IconProps;
+    icon?: any;
+   BtnRadius ?: number,
 
     // ok these retinary operators said ke 
     //agar element props ko define nhi kia to error nhi dene
@@ -17,7 +18,12 @@ interface ButtonProps {
 //Main Prop
 const CustomButton = (props: ButtonProps) => {
     return (
-        <Button  icon={props.icon} color={props.color || "#E04E2F"} iconPosition="right" buttonStyle={Styles.ButtonPropsStyle} title={props.title} />
+        <Button
+            icon={props.icon}
+            color={props.color || "#E04E2F"}
+            iconPosition="right"
+            buttonStyle={{borderRadius:props.BtnRadius}}
+            title={props.title} />
     )
 }
 
@@ -26,8 +32,8 @@ const Styles = StyleSheet.create({
     ButtonPropsStyle: {
         padding: 12,
         zIndex: 999,
-        
-        borderRadius: 10,
+
+
     }
 })
 

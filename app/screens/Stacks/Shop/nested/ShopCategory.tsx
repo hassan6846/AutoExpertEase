@@ -1,10 +1,46 @@
-import { View } from "react-native"
-import { Text } from "@rneui/themed"
+import { View, FlatList, StyleSheet, } from "react-native"
+import { Text,Avatar } from "@rneui/themed"
 
-const ShopCategory = () => {
+const ShopCategory = ({ navigation }: { navigation: any }) => {
+    // CateogoryData
+    const CategoryApi = [
+        // Interior Collection
+        {
+            Title: "Interior Collection",
+            Items:[
+                {
+                    Image:"",
+                    Title:"Stearing Wheel"
+                },
+            ]
+        },
+        //Exterior Collection.
+        {
+            Title: "Exterior Collection",
+            Items:[]
+        },
+
+
+    ]
     return (
-        <View><Text>CartPage</Text></View>
+
+        <FlatList
+            style={Styles.CategoryContainer}
+            data={CategoryApi}
+            renderItem={({item})=>(
+                <>
+                <Text h4>{item.Title}</Text>
+          
+                </>
+            )}
+        />
+
     )
 }
-
+// Styles
+const Styles = StyleSheet.create({
+    CategoryContainer: {
+        flex: 1
+    }
+})
 export default ShopCategory

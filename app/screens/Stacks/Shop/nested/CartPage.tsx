@@ -6,7 +6,7 @@ import { View, Text, StyleSheet } from "react-native"
 
 const CartPage = () => {
     return (
-        <View><Text>SearchPage</Text></View>
+        <View><Text>CartPage</Text></View>
     )
 }
 

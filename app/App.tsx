@@ -34,6 +34,7 @@ import Enrollment from "./screens/pages/Enrollment/Enrollment"
 import LoginPage from "./screens/Authentication/LoginScreen"
 // Context and Providers
 import { NetworkInfo, Auth } from "./context/DemoContext"
+//Fonts
 
 
 

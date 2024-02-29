@@ -42,13 +42,22 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
         component={ShopInitalRoute} />
 
       {/* SearchPage */}
-      <EcommerceStack.Screen name="Search" options={{ cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid }} component={Search} />
+      <EcommerceStack.Screen
+        name="Search"
+        options={{ cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid }}
+        component={Search} />
 
       {/*CartPage  */}
-      <EcommerceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} name="Cart" component={CartPage} />
+      <EcommerceStack.Screen
+        name="Cart"
+        options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}
+        component={CartPage} />
 
       {/* ShopCategory */}
-      <EcommerceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} name="Category" component={ShopCategory} />
+      <EcommerceStack.Screen
+        name="Category"
+        options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}
+        component={ShopCategory} />
 
     </EcommerceStack.Navigator>
   )

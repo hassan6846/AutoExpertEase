@@ -8,12 +8,10 @@ const AutoFixInitalRoute = () => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <MapView
-
                 zoomControlEnabled
                 loadingEnabled
                 showsIndoors
                 userLocationCalloutEnabled
-
                 showsCompass={false}
                 showsUserLocation
                 showsPointsOfInterest

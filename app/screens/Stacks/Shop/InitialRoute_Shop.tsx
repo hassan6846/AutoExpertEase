@@ -62,10 +62,10 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                     <TouchableOpacity >
-                        <Avatar rounded={true} size={85} source={{ uri: item }} />
+                        <Avatar rounded={true} size={70} source={{ uri: item }} />
                     </TouchableOpacity>
                 )}
-                contentContainerStyle={{ justifyContent: "space-between", columnGap: 2, alignItems: "center", flex: 1, padding: 10 }}
+                contentContainerStyle={{ justifyContent: "space-evenly", columnGap: 2, alignItems: "center", flex: 1, padding: 10 }}
                 data={PriceRangeFilter}
                 style={{ flexGrow: 0 }}
                 horizontal={true} />

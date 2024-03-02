@@ -32,8 +32,10 @@ import ExploreTab from "./screens/BottomsTabs/ExploreTab"
 import OfflinePage from "./screens/pages/OfflinePage/OfflinePage"
 import Enrollment from "./screens/pages/Enrollment/Enrollment"
 import LoginPage from "./screens/Authentication/LoginScreen"
+import ViewProfileImage from "./screens/Stacks/UserProfile/-nested/ViewProfileImage"
 // Context and Providers
 import { NetworkInfo, Auth } from "./context/DemoContext"
+
 //Fonts
 
 
@@ -94,9 +96,11 @@ function HomePageActivity() {
       <Tab.Screen
         component={ProfileTab}
         name="Profile"
+
         options={{
           headerTitleAlign: "center",
           tabBarShowLabel: false,
+          headerShown: false,
           tabBarIcon: TabsConfigs.Profile.Svg,
         }}
       />
@@ -112,15 +116,24 @@ export default function App({ navigation }: { navigation: any }) {
     <NavigationContainer >
       <StatusBar style="auto" />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {NetworkInfo.isOnline ? (
-          Auth.isAuthenticated ? (
-            <Stack.Screen name="Main" component={HomePageActivity} />
 
-          ) : (
 
-            <Stack.Screen name="Login" options={{ headerShown: true, headerTitle: "GetStarted", headerTitleAlign: "center" }} component={LoginPage} />
-          )
-        ) : null}
+        <Stack.Screen name="Main" component={HomePageActivity} />
+        <Stack.Screen name="Login" options={{ headerShown: true, headerTitle: "GetStarted", headerTitleAlign: "center" }} component={LoginPage} />
+        <Stack.Screen name="ViewProfile"
+          options={{
+            headerShown: true,
+
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            headerStyle: {
+              backgroundColor: "black"
+            },
+            headerShadowVisible: false,
+            headerTransparent: true,
+            headerTintColor:"#97ADB6"
+
+          }}
+          component={ViewProfileImage} />
       </Stack.Navigator>
 
     </NavigationContainer>

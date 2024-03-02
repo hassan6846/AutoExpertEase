@@ -9,7 +9,7 @@ import { AvatarSrc, DefaultImageSrc } from "../../../constants/ImagesConstants"
 
 
 
-const ProfileInitial = () => {
+const ProfileInitial = ({ navigation }: { navigation: any }) => {
     const [isShowBottomSheet, SetisShowBottomSheet] = useState(false)
     interface ListItemProps {
         Component?: React.ComponentType<any>;
@@ -22,7 +22,7 @@ const ProfileInitial = () => {
             <ScrollView showsVerticalScrollIndicator={false} style={Styles.ProfileSettingContainer}>
                 {/* Avatar container bois to alignItems to the center */}
                 <View style={Styles.AvatarContainer} >
-                    <Avatar rounded size={100} source={{ uri: AvatarSrc || DefaultImageSrc }} ><Avatar.Accessory   onPress={() => SetisShowBottomSheet(true)}  size={25} /></Avatar>
+                    <Avatar onPress={()=>navigation.navigate("ViewProfile")} rounded size={100} source={{ uri: AvatarSrc || DefaultImageSrc }} ><Avatar.Accessory   onPress={() => SetisShowBottomSheet(true)}  size={25} /></Avatar>
                     <Text>Hi, <CountryFlag size={12} isoCode="pk" /></Text>
                 </View>
                 {/* List Items Will be map Below ok */}

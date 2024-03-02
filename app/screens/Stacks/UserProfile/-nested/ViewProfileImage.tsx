@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions,ScrollView } from 'react-native';
+import {PinchGesture} from "react-native-gesture-handler"
 import { Image } from "expo-image"; 
 import { AvatarSrc } from '../../../../constants/ImagesConstants';
 

@@ -130,7 +130,7 @@ export default function App({ navigation }: { navigation: any }) {
             },
             headerShadowVisible: false,
             headerTransparent: true,
-            headerTintColor:"#97ADB6"
+            headerTintColor: "#97ADB6"
 
           }}
           component={ViewProfileImage} />

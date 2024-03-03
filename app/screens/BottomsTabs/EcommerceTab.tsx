@@ -44,13 +44,13 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
       {/* SearchPage */}
       <EcommerceStack.Screen
         name="Search"
-        options={{ cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid }}
+        options={{ cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid, gestureEnabled: true }}
         component={Search} />
 
       {/*CartPage  */}
       <EcommerceStack.Screen
         name="Cart"
-        options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}
+        options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,gestureEnabled:true }}
         component={CartPage} />
 
       {/* ShopCategory */}

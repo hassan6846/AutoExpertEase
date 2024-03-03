@@ -28,9 +28,11 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
     <EcommerceStack.Navigator initialRouteName="ShopContainer" >
 
       {/* Inital Route */}
-      <EcommerceStack.Screen name="ShopContainer"
+      <EcommerceStack.Screen
+       name="ShopContainer"
         options={{
           title: StackNavigatorConfigs.ShopStack.title,
+          headerShadowVisible:false,
           headerRight: () => (
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", columnGap: 5, marginRight: 13 }}>
               <Icon onPress={() => navigation.navigate('Search')} size={25} color="#5F6368" name="search" type="material" />
@@ -39,7 +41,9 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
             </View>
           )
         }}
-        component={ShopInitalRoute} />
+        component={ShopInitalRoute}
+        
+        />
 
       {/* SearchPage */}
       <EcommerceStack.Screen

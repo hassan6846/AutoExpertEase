@@ -1,7 +1,8 @@
 import { View, StyleSheet, Pressable, FlatList } from "react-native"
-import { Text, Icon, Skeleton, Avatar } from "@rneui/themed"
+import { Text, Icon, Skeleton, Avatar, Image, ListItem } from "@rneui/themed"
 import ThemeProviderColors from "../../../provider/ThemeProvider"
 import { TouchableOpacity } from "react-native-gesture-handler"
+import { AvatarSrc } from "../../../constants/ImagesConstants"
 
 const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
     const CategoryImageUrls = [
@@ -18,9 +19,9 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
         }, {
             name: "Lightings",
             image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708888306/AutoExpertEase/Assets/Shop/CategoryList/jueqfuifkhydp7h0p7hb.png",
-        },{
+        }, {
             name: "Seatings",
-            image:"https://res.cloudinary.com/diml3oeaw/image/upload/v1708888306/AutoExpertEase/Assets/Shop/CategoryList/xb07fhjr9jpboisrldea.png"
+            image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708888306/AutoExpertEase/Assets/Shop/CategoryList/xb07fhjr9jpboisrldea.png"
 
         }
     ]
@@ -35,7 +36,7 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
             {/* Text  header*/}
             <View style={{ display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", elevation: 5 }}>
                 <Text h4>Categories</Text>
-                <Pressable onPress={()=>navigation.navigate("Category")} android_ripple={{ color: '#CCD5D5', borderless: true }} style={{ display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "center" }}><Text style={Styles.NavigateText}>See all </Text><Icon color={ThemeProviderColors.Light.Primary} name="navigate-next" type="material" /></Pressable>
+                <Pressable onPress={() => navigation.navigate("Category")} android_ripple={{ color: '#CCD5D5', borderless: true }} style={{ display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "center" }}><Text style={Styles.NavigateText}>See all </Text><Icon color={ThemeProviderColors.Light.Primary} name="navigate-next" type="material" /></Pressable>
             </View>
             {/* Flatlist Slider Cateogry Bar */}
             <FlatList style={{ flexGrow: 0 }}
@@ -53,9 +54,24 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
                 keyExtractor={(item, index) => index.toString()}
                 data={CategoryImageUrls} />
             {/* Support Local Seller */}
-            <View>
 
-            </View>
+            <Avatar
+                containerStyle={{ height: 120, width: "100%", marginTop: 6, display: "flex", justifyContent: "center", position: "relative" }}
+                overlayContainerStyle={{ borderRadius: 5 }}
+                source={{ uri: "https://res.cloudinary.com/diml3oeaw/image/upload/v1709488091/AutoExpertEase/Assets/Shop/cr4zkt0b78cflja4f4vp.png" }}
+            >
+                {/* Center the inner Avatar */}
+                <View style={{ alignSelf: 'center', position: "absolute", backgroundColor: "", width: "100%", height: "100%", flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",}}>
+                    <View style={{display:"flex",flexDirection:"column",height:"100%",justifyContent:"center",backgroundColor:""}}>
+                        <Text style={{fontSize:18,marginBottom:5,color:"white",fontWeight:"500"}}>Support Local Seller</Text>
+                        <Text style={{fontSize:12,color:"white"}}>Browse the Products Nearby You.</Text>
+                    </View>
+                    {/* Avatar */}
+                    <Avatar 
+                    overlayContainerStyle={{borderRadius:5}}
+                    size={100} source={{ uri: "https://res.cloudinary.com/diml3oeaw/image/upload/v1709489077/AutoExpertEase/Assets/Shop/e07e5faoebunxex7zfb5.png" }} />
+                </View>
+            </Avatar>
             {/* Support Local Seller Ends */}
             {/* Sale Bar */}
             <FlatList
@@ -84,6 +100,8 @@ const Styles = StyleSheet.create({
     NavigateText: {
         color: ThemeProviderColors.Light.Primary,
         fontWeight: "bold"
-    }
+    },
+    // Main
+
 })
 export default ShopInitalRoute

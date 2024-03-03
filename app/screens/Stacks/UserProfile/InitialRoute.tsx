@@ -1,9 +1,10 @@
 import { ScrollView, StyleSheet, View, KeyboardAvoidingView, Pressable, TouchableHighlight, TouchableHighlightBase, FlatList } from "react-native"
 import { useRef, useState } from "react"
-import { Text, ListItem, Icon, Badge, Avatar, BottomSheet, FAB, Button } from "@rneui/themed"
+import { Text, ListItem, Icon, Badge, Avatar, BottomSheet, FAB, Button, Overlay } from "@rneui/themed"
 import CountryFlag from "react-native-country-flag"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { AvatarSrc, DefaultImageSrc } from "../../../constants/ImagesConstants"
+import CustomButton from "../../../components/ButtonProps/ButtonProps"
 
 //bottomSheet.
 
@@ -11,6 +12,7 @@ import { AvatarSrc, DefaultImageSrc } from "../../../constants/ImagesConstants"
 
 const ProfileInitial = ({ navigation }: { navigation: any }) => {
     const [isShowBottomSheet, SetisShowBottomSheet] = useState(false)
+    const [OverlayVisable, setOverlayVisable] = useState(true)
     interface ListItemProps {
         Component?: React.ComponentType<any>;
     }
@@ -20,160 +22,165 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
     return (
         <>
             <ScrollView showsVerticalScrollIndicator={false} style={Styles.ProfileSettingContainer}>
+                <Overlay isVisible={OverlayVisable}>
+                    <Text h4>Logout</Text>
+                    <Text>Are you Sure you Want to Logout?</Text>
+                    <Button title="Cancel"/>
+                </Overlay>
                 {/* Avatar container bois to alignItems to the center */}
                 <View style={Styles.AvatarContainer} >
-                    <Avatar onPress={()=>navigation.navigate("ViewProfile")} rounded size={100} source={{ uri: AvatarSrc || DefaultImageSrc }} ><Avatar.Accessory   onPress={() => SetisShowBottomSheet(true)}  size={25} /></Avatar>
+                    <Avatar onPress={() => navigation.navigate("ViewProfile")} rounded size={100} source={{ uri: AvatarSrc || DefaultImageSrc }} ><Avatar.Accessory onPress={() => SetisShowBottomSheet(true)} size={25} /></Avatar>
                     <Text>Hi, <CountryFlag size={12} isoCode="pk" /></Text>
                 </View>
                 {/* List Items Will be map Below ok */}
-                    <>
-                {/* Account */}
-        
-                <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10, }}>Account</Text>
-                {/* 1 */}
+                <>
+                    {/* Account */}
 
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
-                    },
-                    Styles.ProfileList,
-                ]}>
-                    <Icon style={{ marginRight: 7 }} name="person" type="material" color="#3E4958" />
-                    <ListItem.Content>
-                        <ListItem.Title>View Profile</ListItem.Title>
-                    </ListItem.Content>
-                    <ListItem.Chevron size={18} />
-                </Pressable>
-                {/* Shopping */}
-                <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Shoppings</Text>
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
-                    },
-                    Styles.ProfileList,
-                ]}>
-                    <Icon style={{ marginRight: 7 }} name="shopping-cart" type="material" color="#3E4958" />
-                    <ListItem.Content>
-                        <ListItem.Title>Cart</ListItem.Title>
-                    </ListItem.Content>
-                    <ListItem.Chevron size={18} />
-                </Pressable>
-                {/*  */}
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
-                    },
-                    Styles.ProfileList,
-                ]}>
-                    <Icon style={{ marginRight: 7 }} name="local-shipping" type="material" color="#3E4958" />
-                    <ListItem.Content>
-                        <ListItem.Title>Orders</ListItem.Title>
-                    </ListItem.Content>
-                    <ListItem.Chevron size={18} />
-                </Pressable>
-                {/*  */}
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
-                    },
-                    Styles.ProfileList,
-                ]}>
-                    <Icon style={{ marginRight: 7 }} name="favorite" type="material" color="#3E4958" />
-                    <ListItem.Content>
-                        <ListItem.Title>Liked Items</ListItem.Title>
-                    </ListItem.Content>
-                    <ListItem.Chevron size={18} />
-                </Pressable>
-                {/*  */}
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
-                    },
-                    Styles.ProfileList,
-                ]}>
-                    <Icon style={{ marginRight: 7 }} name="list" type="material" color="#3E4958" />
-                    <ListItem.Content>
-                        <ListItem.Title>Wishlist</ListItem.Title>
-                    </ListItem.Content>
-                    <ListItem.Chevron size={18} />
-                </Pressable>
-                {/* Bookings Card */}
-                <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Bookings</Text>
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
-                    },
-                    Styles.ProfileList,
-                ]}>
-                    <Icon style={{ marginRight: 7 }} name="book" type="material" color="#3E4958" />
-                    <ListItem.Content>
-                        <ListItem.Title>Bookings</ListItem.Title>
-                    </ListItem.Content>
-                    <ListItem.Chevron size={18} />
-                </Pressable>
-                {/* Payment */}
-                <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Payment</Text>
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
-                    },
-                    Styles.ProfileList,
-                ]}>
-                    <Icon style={{ marginRight: 7 }} name="credit-card" type="material" color="#3E4958" />
-                    <ListItem.Content>
-                        <ListItem.Title>Add Credit Card</ListItem.Title>
-                    </ListItem.Content>
-                    <ListItem.Chevron size={18} />
-                </Pressable>
-                {/* ChatSupport */}
-                <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Help</Text>
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
-                    },
-                    Styles.ProfileList,
-                ]}>
-                    <Icon style={{ marginRight: 7 }} name="support-agent" type="material" color="#3E4958" />
-                    <ListItem.Content>
-                        <ListItem.Title>Help & Support</ListItem.Title>
-                    </ListItem.Content>
-                    <ListItem.Chevron size={18} />
-                </Pressable>
-                {/* More  */}
-                <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>More</Text>
-                {/* More Container */}
-                <View style={{ borderRadius: 5 ,marginBottom:10}}>
-                    {/* settings. */}
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
-                    },
-                    Styles.ProfileList,
-                ]}>
-                    <Icon style={{ marginRight: 7 }} name="settings" type="material" color="#3E4958" />
-                    <ListItem.Content>
-                        <ListItem.Title>Settings</ListItem.Title>
-                    </ListItem.Content>
-                    <ListItem.Chevron size={18} />
-                </Pressable>
-                {/* Logout */}
-                <Pressable style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
-                    },
-                    Styles.ProfileList,
-                ]}>
-                    <Icon style={{ marginRight: 7 }} name="logout" type="material" color="#3E4958" />
-                    <ListItem.Content>
-                        <ListItem.Title>Logout</ListItem.Title>
-                    </ListItem.Content>
-                    <ListItem.Chevron size={18} />
-                </Pressable>
-                </View>
+                    <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10, }}>Account</Text>
+                    {/* 1 */}
+
+                    <Pressable style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
+                        },
+                        Styles.ProfileList,
+                    ]}>
+                        <Icon style={{ marginRight: 7 }} name="person" type="material" color="#3E4958" />
+                        <ListItem.Content>
+                            <ListItem.Title>View Profile</ListItem.Title>
+                        </ListItem.Content>
+                        <ListItem.Chevron size={18} />
+                    </Pressable>
+                    {/* Shopping */}
+                    <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Shoppings</Text>
+                    <Pressable style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
+                        },
+                        Styles.ProfileList,
+                    ]}>
+                        <Icon style={{ marginRight: 7 }} name="shopping-cart" type="material" color="#3E4958" />
+                        <ListItem.Content>
+                            <ListItem.Title>Cart</ListItem.Title>
+                        </ListItem.Content>
+                        <ListItem.Chevron size={18} />
+                    </Pressable>
+                    {/*  */}
+                    <Pressable style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
+                        },
+                        Styles.ProfileList,
+                    ]}>
+                        <Icon style={{ marginRight: 7 }} name="local-shipping" type="material" color="#3E4958" />
+                        <ListItem.Content>
+                            <ListItem.Title>Orders</ListItem.Title>
+                        </ListItem.Content>
+                        <ListItem.Chevron size={18} />
+                    </Pressable>
+                    {/*  */}
+                    <Pressable style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
+                        },
+                        Styles.ProfileList,
+                    ]}>
+                        <Icon style={{ marginRight: 7 }} name="favorite" type="material" color="#3E4958" />
+                        <ListItem.Content>
+                            <ListItem.Title>Liked Items</ListItem.Title>
+                        </ListItem.Content>
+                        <ListItem.Chevron size={18} />
+                    </Pressable>
+                    {/*  */}
+                    <Pressable style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
+                        },
+                        Styles.ProfileList,
+                    ]}>
+                        <Icon style={{ marginRight: 7 }} name="list" type="material" color="#3E4958" />
+                        <ListItem.Content>
+                            <ListItem.Title>Wishlist</ListItem.Title>
+                        </ListItem.Content>
+                        <ListItem.Chevron size={18} />
+                    </Pressable>
+                    {/* Bookings Card */}
+                    <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Bookings</Text>
+                    <Pressable style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
+                        },
+                        Styles.ProfileList,
+                    ]}>
+                        <Icon style={{ marginRight: 7 }} name="book" type="material" color="#3E4958" />
+                        <ListItem.Content>
+                            <ListItem.Title>Bookings</ListItem.Title>
+                        </ListItem.Content>
+                        <ListItem.Chevron size={18} />
+                    </Pressable>
+                    {/* Payment */}
+                    <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Payment</Text>
+                    <Pressable style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
+                        },
+                        Styles.ProfileList,
+                    ]}>
+                        <Icon style={{ marginRight: 7 }} name="credit-card" type="material" color="#3E4958" />
+                        <ListItem.Content>
+                            <ListItem.Title>Add Credit Card</ListItem.Title>
+                        </ListItem.Content>
+                        <ListItem.Chevron size={18} />
+                    </Pressable>
+                    {/* ChatSupport */}
+                    <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Help</Text>
+                    <Pressable style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
+                        },
+                        Styles.ProfileList,
+                    ]}>
+                        <Icon style={{ marginRight: 7 }} name="support-agent" type="material" color="#3E4958" />
+                        <ListItem.Content>
+                            <ListItem.Title>Help & Support</ListItem.Title>
+                        </ListItem.Content>
+                        <ListItem.Chevron size={18} />
+                    </Pressable>
+                    {/* More  */}
+                    <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>More</Text>
+                    {/* More Container */}
+                    <View style={{ borderRadius: 5, marginBottom: 10 }}>
+                        {/* settings. */}
+                        <Pressable style={({ pressed }) => [
+                            {
+                                backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
+                            },
+                            Styles.ProfileList,
+                        ]}>
+                            <Icon style={{ marginRight: 7 }} name="settings" type="material" color="#3E4958" />
+                            <ListItem.Content>
+                                <ListItem.Title>Settings</ListItem.Title>
+                            </ListItem.Content>
+                            <ListItem.Chevron size={18} />
+                        </Pressable>
+                        {/* Logout */}
+                        <Pressable onPress={() => setOverlayVisable(false)} style={({ pressed }) => [
+                            {
+                                backgroundColor: pressed ? 'rgb(229,229,229)' : 'white',
+                            },
+                            Styles.ProfileList,
+                        ]}>
+                            <Icon style={{ marginRight: 7 }} name="logout" type="material" color="#3E4958" />
+                            <ListItem.Content>
+                                <ListItem.Title>Logout</ListItem.Title>
+                            </ListItem.Content>
+
+                        </Pressable>
+                    </View>
                 </>
                 <BottomSheet backdropStyle={{ backgroundColor: "rgba(59, 59, 59, 0.404)" }} onBackdropPress={() => SetisShowBottomSheet(false)} isVisible={isShowBottomSheet}>
                     <View style={{ backgroundColor: "#fff", height: 'auto', borderTopStartRadius: 10, borderTopRightRadius: 10 }}>
-                    
+
                         <Pressable style={({ pressed }) => [
                             {
                                 backgroundColor: pressed ? 'rgb(229,229,229)' : '#fff',
@@ -184,11 +191,11 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                             }
 
                         ]}>
-                            <Icon  reverse reverseColor="#3D3D3D" style={{ marginRight: 7 }} name="upload-file" type="material" color="rgb(229,229,229)" />
+                            <Icon reverse reverseColor="#3D3D3D" style={{ marginRight: 7 }} name="upload-file" type="material" color="rgb(229,229,229)" />
                             <ListItem.Content>
                                 <ListItem.Title>Upload Profile Image</ListItem.Title>
                             </ListItem.Content>
-                 
+
                         </Pressable>
                         <Pressable style={({ pressed }) => [
                             {
@@ -200,11 +207,11 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                             }
 
                         ]}>
-                            <Icon  reverse reverseColor="#3D3D3D" style={{ marginRight: 7 }} name="photo-camera" type="material" color="rgb(229,229,229)" />
+                            <Icon reverse reverseColor="#3D3D3D" style={{ marginRight: 7 }} name="photo-camera" type="material" color="rgb(229,229,229)" />
                             <ListItem.Content>
                                 <ListItem.Title>Open Camera</ListItem.Title>
                             </ListItem.Content>
-                  
+
                         </Pressable>
                     </View>
                 </BottomSheet>

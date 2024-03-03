@@ -35,6 +35,7 @@ import LoginPage from "./screens/Authentication/LoginScreen"
 import ViewProfileImage from "./screens/Stacks/UserProfile/-nested/ViewProfileImage"
 // Context and Providers
 import { NetworkInfo, Auth } from "./context/DemoContext"
+import ChatSupport from "./screens/Stacks/UserProfile/-nested/Help&Support/ChatSupport"
 
 //Fonts
 
@@ -134,6 +135,15 @@ export default function App({ navigation }: { navigation: any }) {
 
           }}
           component={ViewProfileImage} />
+        {/* Chat Support Ai Bot. */}
+        <Stack.Screen
+          name="Support"
+          options={{
+           headerShown: true,
+           cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS
+          }}
+          component={ChatSupport} />
+
       </Stack.Navigator>
 
     </NavigationContainer>

@@ -17,7 +17,6 @@ export default function ViewProfileImage() {
                 contentFit="cover"
                 allowDownscaling={true}
                 focusable={true}
-            
                 style={Styles.ViewImage}
                 source={{ uri: AvatarSrc }}
                 transition={1000}

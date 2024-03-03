@@ -29,32 +29,39 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
 
       {/* Inital Route */}
       <EcommerceStack.Screen
-       name="ShopContainer"
+        name="ShopContainer"
         options={{
           title: StackNavigatorConfigs.ShopStack.title,
-          headerShadowVisible:false,
+          headerShadowVisible: false,
           headerRight: () => (
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", columnGap: 5, marginRight: 13 }}>
               <Icon onPress={() => navigation.navigate('Search')} size={25} color="#5F6368" name="search" type="material" />
               <Icon size={25} color="#5F6368" name="notifications" type="material" />
-              <Icon onPress={() => navigation.navigate('Cart')} size={25} color="#5F6368" name="shopping-cart" type="material" />
+              <Icon  onPress={() => navigation.navigate('Cart')} size={25} color="#5F6368" name="shopping-cart" type="material" />
             </View>
           )
         }}
         component={ShopInitalRoute}
-        
-        />
+
+      />
 
       {/* SearchPage */}
       <EcommerceStack.Screen
         name="Search"
-        options={{ cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid, gestureEnabled: true }}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
+          gestureEnabled: true
+        }}
         component={Search} />
 
       {/*CartPage  */}
       <EcommerceStack.Screen
         name="Cart"
-        options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,gestureEnabled:true }}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          gestureEnabled: true,
+          headerShadowVisible: false
+        }}
         component={CartPage} />
 
       {/* ShopCategory */}

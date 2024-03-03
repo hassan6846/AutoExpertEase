@@ -4,7 +4,7 @@ const ThemeProviderColors = {
         Main: "#fff",
         Primary: "#E04E2F",
         FontHeading: "",
-        FontSubHeading: "",
+        FontSubHeading: "#97ADB6",
     },
     Dark: {
         Main: "#fff",

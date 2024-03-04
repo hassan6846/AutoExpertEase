@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const fileupload = require("express-fileupload")
+const cors=require("cors")
 require("dotenv").config()
 
 
@@ -14,7 +15,7 @@ app.use(cors({
 
 }));
 app.use(express.json())//server is json type.
-app.use()
+
 module.exports = { app }
 
 

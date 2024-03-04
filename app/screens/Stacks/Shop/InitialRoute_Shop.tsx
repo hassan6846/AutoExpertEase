@@ -1,4 +1,4 @@
-import { View, StyleSheet, Pressable, FlatList, Dimensions, VirtualizedList } from "react-native"
+import { View, StyleSheet, Pressable, FlatList, Dimensions, ScrollView } from "react-native"
 import { Text, Icon, Skeleton, Avatar, ButtonGroup, Button } from "@rneui/themed"
 import ThemeProviderColors from "../../../provider/ThemeProvider"
 import { TouchableOpacity } from "react-native-gesture-handler"
@@ -41,10 +41,10 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
             priceBefore: 204,
             image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
         },
-    
+
     ]
     return (
-        <View style={Styles.InitialShopContainer}>
+        <ScrollView style={Styles.InitialShopContainer}>
             {/* Text  header*/}
             <View style={{ display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", elevation: 5 }}>
                 <Text h4>Categories</Text>
@@ -88,7 +88,9 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
             {/* Sale Bar */}
             <FlatList
                 keyExtractor={(item, index) => index.toString()}
+                showsVerticalScrollIndicator={false}
                 renderItem={({ item }) => (
+                
                     <TouchableOpacity >
                         <Avatar rounded={true} size={GetWidth / 5} source={{ uri: item }} />
                     </TouchableOpacity>
@@ -108,7 +110,7 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
                 keyExtractor={(item, index) => index.toString()}
 
                 renderItem={({ item }) => (
-                    <View style={{ width: GetWidth * 0.34, display: "flex", flexDirection: "column",  }} >
+                    <View style={{ width: GetWidth * 0.34, display: "flex", flexDirection: "column", }} >
                         <Avatar containerStyle={{ width: "100%", height: 180, borderRadius: 3, }} avatarStyle={{ objectFit: "contain", width: '100%' }} source={{ uri: item.image }} />
                         <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                             <Text style={{ fontSize: 16, fontWeight: "900", marginTop: 4 }}>{item.price} {""}Rs</Text>
@@ -119,14 +121,14 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
                     </View>
                 )}
             />
-        </View>
+        </ScrollView>
     )
 }
 // StyleSheet
 const Styles = StyleSheet.create({
     InitialShopContainer: {
         padding: 20,
-        height: "100%",
+   
         flex: 1,
         backgroundColor: "#fff"
     },

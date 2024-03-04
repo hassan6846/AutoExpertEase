@@ -1,10 +1,16 @@
 import { StyleSheet, SafeAreaView, View } from "react-native"
-import MapView, { Polyline } from "react-native-maps"
+import MapView, { Polyline } from "react-native-maps" //mapview
+import * as Location from "expo-location" //location
+import { useEffect } from "react" //bare react.
 import { Text,Icon } from "@rneui/themed"
 import CustomButton from "../../../components/ButtonProps/ButtonProps"
 
 
+
 const AutoFixInitalRoute = () => {
+    useEffect(()=>{
+
+    },[])
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <MapView

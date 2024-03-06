@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const fileupload = require("express-fileupload")
-const cors=require("cors")
+const cors=require("cors");
+const { SendOtp } = require("./controllers/ServiceControllers");
 require("dotenv").config()
 
 
@@ -14,6 +15,7 @@ app.use(cors({
     origin: true //cors policy...
 
 }));
+SendOtp()
 app.use(express.json())//server is json type.
 
 module.exports = { app }

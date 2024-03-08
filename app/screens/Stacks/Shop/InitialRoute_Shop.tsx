@@ -3,8 +3,18 @@ import { Text, Icon, Skeleton, Avatar, ButtonGroup, Button } from "@rneui/themed
 import ThemeProviderColors from "../../../provider/ThemeProvider"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { AvatarSrc } from "../../../constants/ImagesConstants"
+import {useState} from "react"
 const GetWidth = Dimensions.get("screen").width
+const GetHeight=Dimensions.get("screen").height
 const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
+
+    // States
+      const [selectedBannerIndex,SetselectedBannerIndex]=useState(0)
+     //Handle Click Banner dispach
+     const handleImageClick = (index:any) => {
+        SetselectedBannerIndex(index);
+      };
+
     const CategoryImageUrls = [
         {
             name: "Rims",
@@ -43,8 +53,35 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
         },
 
     ]
+    // Banners Urls
+    const BannerUrls=[
+        "https://res.cloudinary.com/diml3oeaw/image/upload/v1709872959/omcjgurvprtsblfgt3hp.png",
+         AvatarSrc,
+         "https://res.cloudinary.com/diml3oeaw/image/upload/v1709872959/omcjgurvprtsblfgt3hp.png"
+    ]
     return (
         <ScrollView style={Styles.InitialShopContainer}>
+            {/* SaleBanner */}
+            <Avatar 
+            overlayContainerStyle={{borderRadius:5}}
+            containerStyle={{width:"100%",height:GetHeight/5}}
+            source={{uri:BannerUrls[selectedBannerIndex]}}
+            />
+            <View style={{width:"100%",height:30,display:"flex",justifyContent:"center",alignItems:'center',flexDirection:"row",columnGap:-5}}>
+            {BannerUrls.map((url, index) => (
+          <TouchableOpacity key={index} onPress={() => handleImageClick(index)}>
+            <View
+              style={{
+                width: index===selectedBannerIndex?15:7,
+                height: 7,
+                backgroundColor: index === selectedBannerIndex ? ThemeProviderColors.Light.Primary : 'lightgray',
+                borderRadius: 5,
+                marginHorizontal: 5,
+              }}
+            />
+          </TouchableOpacity>
+        ))}
+            </View>
             {/* Text  header*/}
             <View style={{ display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", elevation: 5 }}>
                 <Text h4>Categories</Text>

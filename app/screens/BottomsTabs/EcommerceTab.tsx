@@ -1,9 +1,11 @@
-import { View } from "react-native"
-import { Icon } from "@rneui/themed"
+import { Pressable, View } from "react-native"
+import { Icon, SearchBar, Text, Badge } from "@rneui/themed"
 // Navigation
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack"
 const EcommerceStack = createStackNavigator()
 import StackNavigatorConfigs from "../../configs/StackNavigatorConfigs"
+
+// Components
 
 // import other Child Component pages
 /**
@@ -22,6 +24,7 @@ import ShopInitalRoute from "../Stacks/Shop/InitialRoute_Shop"
 import CartPage from "../Stacks/Shop/nested/CartPage"
 import ShopCategory from "../Stacks/Shop/nested/ShopCategory"
 import Search from "../Stacks/Shop/nested/SearchPage"
+import { color } from "@rneui/base"
 
 const EcommerceTab = ({ navigation }: { navigation: any }) => {
   return (
@@ -35,9 +38,42 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
           headerShadowVisible: false,
           headerRight: () => (
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", columnGap: 5, marginRight: 13 }}>
-              <Icon onPress={() => navigation.navigate('Search')} size={25} color="#5F6368" name="search" type="material" />
-              <Icon size={25} color="#5F6368" name="notifications" type="material" />
-              <Icon  onPress={() => navigation.navigate('Cart')} size={25} color="#5F6368" name="shopping-cart" type="material" />
+              {/* SearchBar */}
+              <Pressable  style={({ pressed }) => [
+                { position: "relative", padding: 3, borderRadius: 20 },
+                {
+                  backgroundColor:pressed ?"#d9d9d9":'#fff'
+                }
+              ]} 
+              onPress={()=>navigation.navigate('Search')}
+              >
+                <Icon  size={25} color="#5F6368" name="search" type="material" />
+              </Pressable>
+
+              {/* Notification */}
+              <Pressable    style={({ pressed }) => [
+                { position: "relative", padding: 3, borderRadius: 20 },
+                {
+                  backgroundColor:pressed ?"#d9d9d9":'#fff'
+                }
+              ]}>
+                <Badge containerStyle={{ position: "absolute", right: 0, top: 0, left: 10, zIndex: 99 }} status="error" />
+                <Icon size={25} color="#5F6368" name="notifications" type="material" />
+              </Pressable>
+
+
+              {/* Cart */}
+              <Pressable onPress={() => navigation.navigate('Cart')} 
+              style={({ pressed }) => [
+                { position: "relative", padding: 3, borderRadius: 20 },
+                {
+                  backgroundColor:pressed ?"#d9d9d9":'#fff'
+                }
+              ]}>
+                <Badge containerStyle={{ position: "absolute", right: 0, top: -7, left: 10, zIndex: 99 }} value="5" status="error" />
+                <Icon size={25} color="#5F6368" name="shopping-cart" type="material" />
+              </Pressable>
+
             </View>
           )
         }}
@@ -48,11 +84,19 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
       {/* SearchPage */}
       <EcommerceStack.Screen
         name="Search"
+
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
-          gestureEnabled: true
+          gestureEnabled: true,
+
+
+
         }}
-        component={Search} />
+        component={Search}
+
+
+
+      />
 
       {/*CartPage  */}
       <EcommerceStack.Screen

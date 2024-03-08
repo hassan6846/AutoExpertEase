@@ -50,14 +50,15 @@ function HomePageActivity() {
       screenOptions={{
         tabBarStyle: {
           height: BottomNavigator_Height,
-        }
+        
+        },
+        tabBarShowLabel:false,
       }}
     >
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          tabBarShowLabel: false,
           tabBarIcon: TabsConfigs.Home.Svg
 
         }} />
@@ -67,7 +68,7 @@ function HomePageActivity() {
         component={EcommerceTab}
         options={{
           headerShown: false,
-          tabBarShowLabel: false,
+      
           tabBarIcon: TabsConfigs.Shop.Svg,
 
 
@@ -80,7 +81,6 @@ function HomePageActivity() {
 
         options={{
           headerShown: false,
-          tabBarShowLabel: false,
           tabBarIcon: TabsConfigs.Service.Svg
         }}
       />
@@ -89,7 +89,6 @@ function HomePageActivity() {
         component={ExploreTab}
         name="Explore"
         options={{
-          tabBarShowLabel: false,
           tabBarIcon: TabsConfigs.Explore.Svg
         }}
       />
@@ -97,10 +96,10 @@ function HomePageActivity() {
       <Tab.Screen
         component={ProfileTab}
         name="Profile"
-
+        
         options={{
           headerTitleAlign: "center",
-          tabBarShowLabel: false,
+          tabBarShowLabel:false,
           headerShown: false,
           tabBarIcon: TabsConfigs.Profile.Svg,
         }}

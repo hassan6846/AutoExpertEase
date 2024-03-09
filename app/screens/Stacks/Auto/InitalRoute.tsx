@@ -6,7 +6,7 @@ import { Text, Icon } from "@rneui/themed";
 import CustomButton from "../../../components/ButtonProps/ButtonProps";
 import GoogleMapDesign from "../../../utils/GoogleMapDesign";
 
-const AutoFixInitalRoute = () => {
+const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
     const [location, setLocation] = useState<any>(null);
     const [errorMsg, setErrorMsg] = useState<string | any>(null);
 
@@ -16,6 +16,8 @@ const AutoFixInitalRoute = () => {
             if (status !== "granted") {
                 setErrorMsg("Permission to access location was denied");
                 return;
+            }else{
+                ()=>navigation.navigate("Shop")
             }
 
             try {

@@ -27,7 +27,7 @@ const TabsConfigs = {
         Svg: ({ focused }: { focused: any }) => (
             <>
             <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="storefront" type="material" />
-            <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Home</Text>
+            <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Shop</Text>
             </>
         )
     },

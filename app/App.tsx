@@ -50,7 +50,7 @@ function HomePageActivity() {
       screenOptions={{
         tabBarStyle: {
           height: BottomNavigator_Height,
-        
+         
         },
         tabBarShowLabel:false,
       }}

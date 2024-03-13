@@ -1,5 +1,5 @@
 import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from "react-native"
-import { LinearProgress } from "@rneui/themed"
+
 import { useState, createRef } from "react"
 
 
@@ -17,14 +17,15 @@ const LoginPage = ({ navigation }: { navigation: any }) => {
             style={{ flex: 1 }}
             behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
-            <View style={{ display: "flex", justifyContent: "center", alignItems: 'center', backgroundColor: "#fff" }}><LinearProgress variant="determinate" color="#E04E2F" trackColor="#d9d9d9" style={{ width: "60%", height: 8, borderRadius: 5 }} /></View>
+            <View style={{ display: "flex", justifyContent: "center", alignItems: 'center', backgroundColor: "#fff" }}>
+            </View>
 
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.LoginContainer}>
                     <Text style={styles.LoginHeading} h3={true} >Enter Phone Number for Verification</Text>
                     <Text style={styles.LoginSub}>This number will be used for all ride-related communication. You shall receive an SMS with code for verification.</Text>
                     <Input inputContainerStyle={styles.LoginInputCont} rightIcon={<TouchableOpacity activeOpacity={0.7} ><Icon name="close" reverseColor="#66696D" reverse={true} color="#e3e3e3" iconStyle={{ fontSize: 15, fontWeight: "bold" }} type="evilicon" size={8} raised={true} /></TouchableOpacity>} placeholder="+92 399 3148142" errorMessage="Sorry! Rate Limit Exceded Please Try Later in 1hr." keyboardType="number-pad" />
-                    <Button buttonStyle={styles.LoginButton} color="#E04E2F" title="Send Otp" />
+                    <Button onPress={() => navigation.navigate("AuthOtp")} buttonStyle={styles.LoginButton} color="#E04E2F" title="Send Otp" />
                     <Text style={styles.LoginConsent}>By providing my phone number, I hereby agree and accept the <Text style={styles.LoginLink} onPress={() => navigation.push("privacypolicy")}>Terms of Service</Text> and <Text onPress={() => navigation.push("privacypolicy")} style={styles.LoginLink}>Privacy Policy</Text> in use of the  app.</Text>
                 </View>
             </ScrollView>

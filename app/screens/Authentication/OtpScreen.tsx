@@ -1,5 +1,5 @@
 //modules and Libarary
-import { SafeAreaView, View, StyleSheet } from "react-native"
+import { SafeAreaView, View, StyleSheet, Pressable } from "react-native"
 import React, { useEffect, useState, useRef, useMemo } from "react"
 import CustomButton from "../../components/ButtonProps/ButtonProps"
 import { } from "lottie-react-native"
@@ -20,7 +20,9 @@ const OtpPage = ({ navigation }: { navigation: any }) => {
             <View>
                 <Text style={Styles.otpSub}>A Code has been Send to <Text style={{ fontWeight: "bold" }}>+{maskedNumber}</Text>  {""}via Sms check messsage inbox </Text>
             </View>
-            <CustomButton title="Verify" />
+          
+            <CustomButton function={()=>navigation.navigate("AuthEmail")}  title="Verify" />
+   
         </View>
     )
 }

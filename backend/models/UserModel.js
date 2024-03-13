@@ -14,9 +14,8 @@ const UserSchema = new mongoose.Schema({
         unique: [true, "Email is already Linked to another account."],//prevent duplciate email
         validate: [validator.isEmail, "Please Enter a valid Email Format."],//Validating is Email.
     },
-    Password: {
+    password: {
         type: String,
-        required
     },
     avatar: {
         type: String,
@@ -100,7 +99,8 @@ const UserSchema = new mongoose.Schema({
             //    Device Type
             DeviceType: {},
             ModelName: {}
-        }
+        },
+        
 
     },
     //  Phone Number Field.
@@ -124,6 +124,10 @@ const UserSchema = new mongoose.Schema({
         type: Array,
         default: ["user"] //Push different roles but we have to make sure the possible roles as possible.
     },
+    //we ill set this after putting this
+    rolestatus:{
+        type:"pending",
+    },
 
     Locations: {
         // User TypeLocation
@@ -145,9 +149,25 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    OtpLogin:{
-        
+    OtpLogin: {
+        type: Number,
+        maxLength: [5, "otp cannot exceed 5 characters"],//setting max length
+        minLength: [4, "otp should have more than 4 characters"],//setting min length
+
+
     }
 })
-
+//hash password before saving it....
+UserSchema.pre("save", async function (next) {
+    if (this.isModified('password')) {
+        this.password = await bycrypt.hash(this.password, 10);
+    }
+    next();
+});
+// HASH COMPARE METHOD
+UserSchema.methods.comparePassword = async function (password) {
+    return await bycrypt.compare(password, this.password);
+};
+const User = mongoose.model("User", UserSchema);
+module.exports = User;
 //Making Model & Exporting It.

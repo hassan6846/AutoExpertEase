@@ -8,8 +8,8 @@ interface ButtonProps {
     title: string | ReactElement<{}, string | JSXElementConstructor<any>> | undefined;
     color?: string;
     icon?: any;
-   BtnRadius ?: number,
-
+    BtnRadius?: number,
+    function?: any
     // ok these retinary operators said ke 
     //agar element props ko define nhi kia to error nhi dene
     //required option h
@@ -19,10 +19,11 @@ interface ButtonProps {
 const CustomButton = (props: ButtonProps) => {
     return (
         <Button
+            onPress={props.function}
             icon={props.icon}
             color={props.color || "#E04E2F"}
             iconPosition="right"
-            buttonStyle={{borderRadius:props.BtnRadius}}
+            buttonStyle={{ borderRadius: props.BtnRadius }}
             title={props.title} />
     )
 }

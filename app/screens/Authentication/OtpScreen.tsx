@@ -2,8 +2,9 @@
 import { SafeAreaView, View, StyleSheet, Pressable } from "react-native"
 import React, { useEffect, useState, useRef, useMemo } from "react"
 import CustomButton from "../../components/ButtonProps/ButtonProps"
-import { } from "lottie-react-native"
+import OtpInput from "react-native-otp-textinput"
 import { Text } from "@rneui/themed"
+import ThemeProviderColors from "../../provider/ThemeProvider"
 //utils
 
 // OTP VERIFY COMPONENT...
@@ -14,15 +15,17 @@ const OtpPage = ({ navigation }: { navigation: any }) => {
     const maskedNumber = phoneNumber.slice(0, 4) + "****" + phoneNumber.slice(-4);
     // OTP FIELD STATES
 
-    
+
     return (
         <View style={Styles.OtpContainer}>
             <View>
-                <Text style={Styles.otpSub}>A Code has been Send to <Text style={{ fontWeight: "bold" }}>+{maskedNumber}</Text>  {""}via Sms check messsage inbox </Text>
+                <Text>An Otp Has Been Sent to your Email</Text>
+                <Text h3 style={Styles.otpSub}>A Code has been Send to <Text style={{ fontWeight: "bold" }}>+{maskedNumber}</Text>  {""}via Sms check messsage inbox </Text>
+                <OtpInput tintColor={ThemeProviderColors.Light.Primary} inputCount={4} />
             </View>
-          
-            <CustomButton function={()=>navigation.navigate("AuthEmail")}  title="Verify" />
-   
+
+            <CustomButton function={() => navigation.navigate("AuthEmail")} title="Verify" />
+
         </View>
     )
 }

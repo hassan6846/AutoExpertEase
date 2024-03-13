@@ -1,13 +1,27 @@
 import { View, StyleSheet, Dimensions } from 'react-native'
 const getHeight = Dimensions.get("screen").height
-
 import { Text } from "@rneui/themed"
 import LottieView from "lottie-react-native"
 import CustomButton from '../../components/ButtonProps/ButtonProps'
-
+import { Audio } from "expo-av"
+import { useEffect } from 'react'
 
 const AccountCreationSucess = () => {
-   
+    useEffect(() => {
+        const playSound = async () => {
+            const soundObject = new Audio.Sound();
+            try {
+                await soundObject.loadAsync(require("../../assets/sound/HailingSound.mp3"));
+                await soundObject.playAsync();
+            } catch (error) {
+                console.error('Failed to load sound', error);
+            }
+        };
+
+        playSound();
+        
+
+    })
 
 
     return (
@@ -16,7 +30,7 @@ const AccountCreationSucess = () => {
             {/* LottieFile Player */}
             <View style={{ width: "100%", alignItems: "center" }}>
                 <LottieView
-               
+
                     autoPlay
                     source={require('../../assets/lottie/success.json')}
 

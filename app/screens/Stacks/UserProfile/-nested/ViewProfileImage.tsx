@@ -24,6 +24,7 @@ export default function ViewProfileImage() {
   };
 
   return (
+    
     <PinchGestureHandler
       onGestureEvent={onPinchGestureEvent}
       onHandlerStateChange={onPinchHandlerStateChange}

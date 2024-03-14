@@ -148,7 +148,7 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
 
                 renderItem={({ item }) => (
                     <View style={{ width: GetWidth * 0.34, display: "flex", flexDirection: "column", }} >
-                        <Avatar containerStyle={{ width: "100%", height: 180, borderRadius: 3, }} avatarStyle={{ objectFit: "contain", width: '100%' }} source={{ uri: item.image }} />
+                        <Avatar onPress={()=>navigation.navigate("view")} containerStyle={{ width: "100%", height: 180, borderRadius: 3, }} avatarStyle={{ objectFit: "contain", width: '100%' }} source={{ uri: item.image }} />
                         <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                             <Text style={{ fontSize: 16, fontWeight: "900", marginTop: 4 }}>{item.price} {""}Rs</Text>
                             <Text style={{ textDecorationLine: "line-through", fontSize: 12, color: "red", marginLeft: 5 }}>{item.priceBefore}</Text>

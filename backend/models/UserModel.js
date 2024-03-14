@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const validator=require("validator")
 const bcrypt = require("bcrypt")
 const UserSchema = new mongoose.Schema({
     // userName
@@ -126,7 +127,8 @@ const UserSchema = new mongoose.Schema({
     },
     //we ill set this after putting this
     rolestatus:{
-        type:"pending",
+        type:String,
+        default:"Pending",
     },
 
     Locations: {

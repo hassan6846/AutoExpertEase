@@ -13,7 +13,9 @@ app.use(cors({
 
 app.use(express.json())//server is json type.
 //all Routes
-
+const user=require("./routes/UserRoutes")
+//endpoints middlewares
+app.use("/api/v1",user)//user api endpoint
 
 
 module.exports = { app }

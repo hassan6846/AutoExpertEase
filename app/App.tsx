@@ -89,8 +89,9 @@ function HomePageActivity() {
       {/* Explore More Tabs. */}
       <Tab.Screen
         component={ExploreTab}
-        name="Explore"
+        name="Inbox"
         options={{
+          headerShadowVisible:false,
           tabBarIcon: TabsConfigs.Explore.Svg
         }}
       />
@@ -114,7 +115,7 @@ function HomePageActivity() {
 
 //Main       
 export default function App({ navigation }: { navigation: any }) {
-  const [Auth, SetAuth] = useState(false)
+  const [Auth, SetAuth] = useState(true)
   return (
     <NavigationContainer >
       <StatusBar style="auto" />

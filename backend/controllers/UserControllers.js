@@ -6,36 +6,34 @@ const jwt = require("jsonwebtoken")//json web token
 const axios = require("axios")
 const { GenerateOtp } = require("../utils/GenerateOtp")
 // 1 User login/Signup Initial
-async function loginFunction  (req, res, next)  {
+const loginFunction = async (req, res, next) => {
     //destructure the request object.
-    const { phone, PhoneOtp, Email, EmailOtp, Password, name } = req.body;
+    const { name, password, phone, phoneotp, email, emailotp, deviceid, brand, devicename, devicetype, modelname } = req.body;
+    // Verify phone send otp to the user 
     try {
-
-        //perform initial validation..using pakistani local for number
-        if (!validator.isMobilePhone(phone, "en-PK")) {
-
-        }
-        //Find user through mobile Number or email provided..
-        let FindUser = await User.findOne({ $or: [{ phone }, { email: Email }] })
-        //If user Already a member or already registed..
-        if (FindUser) {
-            // User exists, handle login
-            // Implement login logic here
-        }
-        else {
-            //    Generate phone Number otp and send to the endpoint to user phone and verify the otp
-            const otp =  await GenerateOtp()// generate 4digit otp..
-             //send otp to user whatsapp number
-             const sendWhatsappOtp= await axios.get("https://reqres.in/api/users")
-            console.log(sendWhatsappOtp.data)
-             //    set otp field to phone otp...
-            //Verify email and send otp and verify that otp and save password...
-
-        }
-
+      
     } catch (err) {
-        console.log(err)
+
+    }
+}
+//update profile picture..
+const updatepicture = async (req, res, next) => {
+    const { ImageData } = req.body
+
+    //validate is the provided is b64..
+    //convert the b64 data to cloudinary and 
+    //find the user by object_id 
+    //update the user avatar field....
+
+    //validate the data...
+    if (!validator.isBase64(ImageData, { urlSafe: true })) {
+        return res.status(400).json({ error: 'Invalid base64 data' });
     }
 
+
 }
-module.exports={loginFunction}
+//Check if user is already Signup or Not...
+const FindUser = async (req, res, next) => {
+    const { phone } = req.body
+}
+module.exports = { updatepicture, loginFunction }

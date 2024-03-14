@@ -10,8 +10,8 @@ async function GenerateOtp(params) {
         otpString = "0" + otpString;
     }
 
-    console.log(otpString);
-    return otpString; 
+    console.log(`${otpString}`);
+    return otpString;
 }
 
 module.exports = { GenerateOtp };

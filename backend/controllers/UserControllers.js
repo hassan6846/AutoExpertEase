@@ -11,9 +11,9 @@ const loginFunction = async (req, res, next) => {
     const { name, password, phone, phoneotp, email, emailotp, deviceid, brand, devicename, devicetype, modelname } = req.body;
     // Verify phone send otp to the user 
     try {
-      
+        
     } catch (err) {
-
+        console.log(err)
     }
 }
 //update profile picture..

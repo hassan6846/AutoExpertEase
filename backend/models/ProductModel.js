@@ -93,6 +93,12 @@ const ProductSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    productStatus:{
+        type:String,
+        required:false,
+        default:"unactive"
+    }
+
 })
 
 //Making Model

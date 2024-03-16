@@ -1,4 +1,7 @@
 const express = require('express')
-const route = express.Router()
+const router = express.Router()
+const { CreateProductListing } = require("../controllers/ProductControllers")
+router.route('/product/create',CreateProductListing)
 
-route.route('/GetAllProducts',)
+// exporting all routes.
+module.exports = router;

@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const fileupload = require("express-fileupload")
-const cors=require("cors");
-const { loginFunction } = require("./controllers/UserControllers");
+const cors = require("cors");
+const { updatepicture } = require("./controllers/UserControllers");
 require("dotenv").config()
 //middlewares
 app.disable("x-powered-by")//hiding tech stack from Hacker..
@@ -14,12 +14,11 @@ app.use(cors({
 
 app.use(express.json())//server is json type.
 //all Routes
-
-app.post("/",loginFunction)
-
+const user = require("./routes/UserRoutes")
+const product = require('./routes/ProductRoutes')
 //endpoints middlewares
-
-
-module.exports = { app }
+app.use("/api/v1", user)
+app.use("/api/v1", product)
+module.exports = app
 
 

@@ -1,4 +1,4 @@
-const { app } = require("./app");
+const  app  = require("./app");
 const { ConnectMongodb } = require("./db/ConnectionDb");
 const { GenerateOtp } = require("./utils/GenerateOtp");
 

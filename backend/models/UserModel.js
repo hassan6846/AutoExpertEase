@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const validator=require("validator")
+const validator = require("validator")
 const bcrypt = require("bcrypt")
 const UserSchema = new mongoose.Schema({
     // userName
@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
         maxLength: [30, "Name cannot exceed 30 characters"],//setting max length
         minLength: [4, "Name should have more than 4 characters"],//setting min length
     },
-    Email: {
+    email: {
         type: String, //email type 
         required: [true, "Please Enter Your Email"],
         unique: [true, "Email is already Linked to another account."],//prevent duplciate email
@@ -50,18 +50,20 @@ const UserSchema = new mongoose.Schema({
                 type: String,
                 required: false,
             },
+                        // Image 
+
+            Image: {
+                type: String,
+                required: false,
+                default: null,
+           
+            },
             FacialFeatures: {
                 type: Array,
                 required: false,
                 default: null
             },
-            // Image 
-            Image: {
-                type: String,
-                required: false,
-                default: null,
-                validate: [validator.isBase64, "Please Enter a valid Email Format"]
-            }
+
 
         },
 
@@ -101,7 +103,7 @@ const UserSchema = new mongoose.Schema({
             DeviceType: {},
             ModelName: {}
         },
-        
+
 
     },
     //  Phone Number Field.
@@ -110,7 +112,7 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Kindly Enter the Contact Number"],
         validate: {
             validator: function (value) {
-                return String(value).length === 10;
+                return String(value).length === 11;
             },
             message: "Phone number must be exactly 10 digits",
         }
@@ -126,15 +128,16 @@ const UserSchema = new mongoose.Schema({
         default: ["user"] //Push different roles but we have to make sure the possible roles as possible.
     },
     //we ill set this after putting this
-    rolestatus:{
-        type:String,
-        default:"Pending",
+    rolestatus: {
+        type: String,
+        default: "Pending",
     },
 
     Locations: {
         // User TypeLocation
-        LastLocation: {
-
+        UserLocation: {
+          default:null,
+          type:String,
         },
         // Mutate location.
         BuisnessLocation: {},
@@ -142,7 +145,7 @@ const UserSchema = new mongoose.Schema({
         RealtimeLocation: {}
     },
     // Handle User Tokens For Sessions.
-    EmailOTP: {
+    emailotp: {
         type: Number,
         required: false
     },
@@ -151,18 +154,24 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    OtpLogin: {
+    otp: {
         type: Number,
         maxLength: [5, "otp cannot exceed 5 characters"],//setting max length
         minLength: [4, "otp should have more than 4 characters"],//setting min length
-
-
+       required:false,
+     
+   
+ 
     }
+   //timestamps true
+
 })
+//setting index
+
 //hash password before saving it....
 UserSchema.pre("save", async function (next) {
     if (this.isModified('password')) {
-        this.password = await bycrypt.hash(this.password, 10);
+        this.password = await bcrypt.hash(this.password, 10);
     }
     next();
 });

@@ -1,5 +1,5 @@
 import React from 'react'
-import { KeyboardAvoidingView, View, StyleSheet, Dimensions, Text } from 'react-native'
+import { KeyboardAvoidingView, View, StyleSheet, Dimensions, Text, ScrollView } from 'react-native'
 import MapView, { Callout } from "react-native-maps"
 import GoogleMapDesign from '../../../../utils/GoogleMapDesign'
 import { Button, Input } from "@rneui/themed"
@@ -8,28 +8,26 @@ import ThemeProviderColors from '../../../../provider/ThemeProvider'
 const Height = Dimensions.get("screen").height
 const TaskLocation = () => {
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }}>
+    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: "#fff" }}>
 
       {/* Input View Start */}
       <View style={Style.InputContainer}>
-        <Input 
-        
-        placeholder="Enter Your Location" />
+        <Input inputContainerStyle={Style.InputVoid} inputStyle={Style.InputMain} containerStyle={Style.InputCont} placeholder="Enter Your Location" />
         {/* Dropdown */}
 
       </View>
       {/* Input View Ends */}
       <MapView
         showsUserLocation={true}
-        showsMyLocationButton={true}
+
         customMapStyle={GoogleMapDesign}
         style={Style.MapStyle} />
       <Button color={ThemeProviderColors.Light.Primary} containerStyle={Style.BtncontainerStyle} title="Next" />
-{/* Dropdown Container */}
+      {/* Dropdown Container */}
       <View style={Style.DropdownContainer}>
-        <Text>This is the dropdown container</Text>
+       <View style={{width:'90%',backgroundColor:"red"}}><Text>Wale</Text></View>
       </View>
-{/* Dropdown Container */}
+      {/* Dropdown Container */}
     </KeyboardAvoidingView>
   )
 }
@@ -53,19 +51,33 @@ const Style = StyleSheet.create({
   // Styled
   InputContainer: {
     height: Height / 10,
-    backgroundColor: "red",
-    padding: 10,
-    borderRadius: 10,
-    marginBottom: 20,
+
     justifyContent: "center",
     alignItems: "center",
+
+
   },
   DropdownContainer: {
     position: "absolute",
     width: "100%",
-    top:Height/9,
+    top: Height / 10,
+    alignItems: "center",
     backgroundColor: "cyan",
     paddingHorizontal: 30,
+  },
+  InputCont: {
+    width: "80%",
+
+
+  },
+  InputMain: {
+    paddingLeft: 10,
+    fontSize: 14,
+  }, InputVoid: {
+    backgroundColor: "#e5e5e5",
+    borderBottomWidth: 0,
+    borderRadius: 5,
+    fontSize: 12,
   }
 })
 export default TaskLocation

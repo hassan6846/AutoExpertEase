@@ -11,7 +11,13 @@ const TaskLocation = () => {
     <KeyboardAvoidingView style={{ flex: 1 }}>
 
       {/* Input View Start */}
+      <View style={Style.InputContainer}>
+        <Input 
+        
+        placeholder="Enter Your Location" />
+        {/* Dropdown */}
 
+      </View>
       {/* Input View Ends */}
       <MapView
         showsUserLocation={true}
@@ -19,9 +25,11 @@ const TaskLocation = () => {
         customMapStyle={GoogleMapDesign}
         style={Style.MapStyle} />
       <Button color={ThemeProviderColors.Light.Primary} containerStyle={Style.BtncontainerStyle} title="Next" />
-
-
-
+{/* Dropdown Container */}
+      <View style={Style.DropdownContainer}>
+        <Text>This is the dropdown container</Text>
+      </View>
+{/* Dropdown Container */}
     </KeyboardAvoidingView>
   )
 }
@@ -41,6 +49,23 @@ const Style = StyleSheet.create({
     bottom: 20,
     paddingHorizontal: 30,
 
+  },
+  // Styled
+  InputContainer: {
+    height: Height / 10,
+    backgroundColor: "red",
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  DropdownContainer: {
+    position: "absolute",
+    width: "100%",
+    top:Height/9,
+    backgroundColor: "cyan",
+    paddingHorizontal: 30,
   }
 })
 export default TaskLocation

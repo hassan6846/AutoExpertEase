@@ -16,8 +16,8 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
             if (status !== "granted") {
                 setErrorMsg("Permission to access location was denied");
                 return;
-            }else{
-                ()=>navigation.navigate("Shop")
+            } else {
+                () => navigation.navigate("Shop")
             }
 
             try {
@@ -53,9 +53,10 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
                 zoomControlEnabled
                 loadingEnabled
                 showsIndoors
-                 provider={PROVIDER_GOOGLE}
-                customMapStyle={GoogleMapDesign}
-                
+               
+                provider={PROVIDER_GOOGLE}
+
+customMapStyle={GoogleMapDesign}
                 userLocationCalloutEnabled
                 showsCompass={false}
                 showsUserLocation

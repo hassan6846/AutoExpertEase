@@ -52,18 +52,24 @@ function HomePageActivity() {
       screenOptions={{
         tabBarStyle: {
           height: BottomNavigator_Height,
-
+        
         },
         tabBarShowLabel: false,
+        
       }}
     >
       <Tab.Screen
+    // postion absoulte styling
+
         name="Home"
         component={Home}
         options={{
+   
           tabBarIcon: TabsConfigs.Home.Svg
-
-        }} />
+          
+        }}
+      
+        />
 
       {/* ShopTab */}
       <Tab.Screen name="Shop"
@@ -74,12 +80,14 @@ function HomePageActivity() {
           tabBarIcon: TabsConfigs.Shop.Svg,
 
 
-        }}
+        }
+      }
       />
 
       {/* Service Tabs */}
       <Tab.Screen name="Service"
         component={ServiceTab}
+      
 
         options={{
           headerShown: false,

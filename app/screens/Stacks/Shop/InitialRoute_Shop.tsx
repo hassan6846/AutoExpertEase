@@ -156,6 +156,7 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
                         <Text style={{ fontSize: 14, fontWeight: "500", padding: 4 }}>{item.Title}</Text>
                         <Button titleStyle={{ fontSize: 12 }} buttonStyle={{ marginTop: 3, }} color={ThemeProviderColors.Light.Primary} title="Add to Cart" />
                     </View>
+               
                 )}
             />
         </ScrollView>
@@ -176,6 +177,7 @@ const Styles = StyleSheet.create({
     // Main
     ProductInfiniteScroll: {
         flex: 1,
+        marginBottom:GetHeight/20,
         display: "flex",
         width: "100%",
         height: "100%",

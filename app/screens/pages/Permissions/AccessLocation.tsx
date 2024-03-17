@@ -18,7 +18,7 @@ const AccessLocation = ({ navigation }: { navigation: any }) => {
                 color={ThemeProviderColors.Light.Primary}
             />
 
-            <Text>Not Yet </Text>
+           
         </View>
     )
 }

@@ -25,7 +25,7 @@ const TaskLocation = () => {
       <Button color={ThemeProviderColors.Light.Primary} containerStyle={Style.BtncontainerStyle} title="Next" />
       {/* Dropdown Container */}
       <View style={Style.DropdownContainer}>
-       <View style={{width:'90%',backgroundColor:"red"}}><Text>Wale</Text></View>
+       <ScrollView style={{width:'80%',backgroundColor:"red"}}><Text>Wale</Text></ScrollView>
       </View>
       {/* Dropdown Container */}
     </KeyboardAvoidingView>

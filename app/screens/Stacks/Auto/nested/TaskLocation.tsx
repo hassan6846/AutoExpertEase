@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native'
+import { View,StyleSheet } from 'react-native'
 import React from 'react'
-
+import MapView, { Callout } from "react-native-maps"
 const TaskLocation = () => {
   return (
-    <View>
-      <Text>TaskLocation</Text>
+    <View >
+     
     </View>
   )
 }

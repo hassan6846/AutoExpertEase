@@ -80,6 +80,7 @@ customMapStyle={GoogleMapDesign}
                     Anywhere
                 </Text>
                 <CustomButton
+                 function={()=>navigation.navigate("task_location")}
                     BtnRadius={20}
                     icon={<Icon name="add" color="white" type="material" />}
                     title="Post a Task"

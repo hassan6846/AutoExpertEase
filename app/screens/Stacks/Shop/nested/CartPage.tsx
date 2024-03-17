@@ -162,7 +162,7 @@ const CartPage = ({ navigation }: { navigation: any }) => {
                         {/* Text Details End  */}
                         {/* Button */}
                         <Button
-                            title="Checkout "
+                            title="Checkout  "
                             buttonStyle={{ marginTop: 5 }}
                             color={ThemeProviderColors.Light.Primary}
                         />

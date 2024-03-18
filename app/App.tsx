@@ -39,6 +39,7 @@ import ChatSupport from "./screens/Stacks/UserProfile/-nested/Help&Support/ChatS
 import { useState } from "react"
 import AuthStack from "./screens/Authentication/LoginStack"
 import Settings from "./screens/Stacks/UserProfile/-nested/Settings/Settings"
+import ExpertPanel from "./screens/ExpertTabs/ExpertTabMain"
 
 
 
@@ -173,7 +174,19 @@ export default function App({ navigation }: { navigation: any }) {
                 }}
                 
                   component={Settings}
-                  />
+                  /> 
+               {/* Expert TabView */}
+               <Stack.Screen
+                name="Expert"
+                options={{
+                  headerShown: true,
+                  cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+                }}
+                component={ExpertPanel}
+                />
+
+
+
 
             </>
           ) : (

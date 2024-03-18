@@ -50,13 +50,13 @@ const UserSchema = new mongoose.Schema({
                 type: String,
                 required: false,
             },
-                        // Image 
+            // Image 
 
             Image: {
                 type: String,
                 required: false,
                 default: null,
-           
+
             },
             FacialFeatures: {
                 type: Array,
@@ -124,8 +124,8 @@ const UserSchema = new mongoose.Schema({
     },
     // UserRoles.
     role: {
-        type: Array,
-        default: ["user"] //Push different roles but we have to make sure the possible roles as possible.
+        type: String,
+        enum: ['Admin', 'Seller', 'Worker']
     },
     //we ill set this after putting this
     rolestatus: {
@@ -136,8 +136,8 @@ const UserSchema = new mongoose.Schema({
     Locations: {
         // User TypeLocation
         UserLocation: {
-          default:null,
-          type:String,
+            default: null,
+            type: String,
         },
         // Mutate location.
         BuisnessLocation: {},
@@ -158,12 +158,12 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         maxLength: [5, "otp cannot exceed 5 characters"],//setting max length
         minLength: [4, "otp should have more than 4 characters"],//setting min length
-       required:false,
-     
-   
- 
+        required: false,
+
+
+
     }
-   //timestamps true
+    //timestamps true
 
 })
 //setting index

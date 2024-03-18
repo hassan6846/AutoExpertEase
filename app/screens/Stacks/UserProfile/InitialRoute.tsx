@@ -162,7 +162,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                     {/* More Container */}
                     <View style={{ borderRadius: 5, marginBottom: 10 }}>
                         {/* settings. */}
-                        <Pressable style={({ pressed }) => [
+                        <Pressable onPress={()=>navigation.navigate("settings")} style={({ pressed }) => [
                             {
                                 backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                             },

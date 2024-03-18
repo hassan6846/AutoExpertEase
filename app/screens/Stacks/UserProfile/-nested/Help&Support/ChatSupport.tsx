@@ -1,21 +1,23 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { GiftedChat, IMessage, User } from 'react-native-gifted-chat';
+import { GiftedChat, IMessage,} from 'react-native-gifted-chat';
+import { ChatbotAvatar } from '../../../../../constants/ImagesConstants';
 
-interface ChatSupportProps {}
 
- const ChatSupport: React.FC<ChatSupportProps> = () => {
+interface ChatSupportProps { }
+
+const ChatSupport: React.FC<ChatSupportProps> = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
 
   useEffect(() => {
     setMessages([
       {
         _id: 1,
-        text: 'Hello developer',
+        text: ' 👋 Hello How Can I help You',
         createdAt: new Date(),
         user: {
           _id: 2,
           name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
+          avatar: ChatbotAvatar,
         },
       },
     ]);
@@ -28,13 +30,19 @@ interface ChatSupportProps {}
   }, []);
 
   return (
+
     <GiftedChat
+      messagesContainerStyle={{ backgroundColor: "#fff" }}
+    
+      placeholder='Ask Any thing'
       messages={messages}
       onSend={newMessages => onSend(newMessages)}
       user={{
         _id: 1,
       }}
     />
+
   );
 };
+
 export default ChatSupport

@@ -1,4 +1,5 @@
-import { Pressable, View } from "react-native"
+import { Pressable, View,Dimensions } from "react-native"
+const height=Dimensions.get("screen").height
 import { Icon, SearchBar, Text, Badge } from "@rneui/themed"
 // Navigation
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack"
@@ -89,12 +90,16 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
           gestureEnabled: true,
-
+        header:()=>(
+          <View style={{backgroundColor:"red",height:height/12,justifyContent:"center",alignItems:"center"}}>
+          
+          </View>
+        )
 
 
         }}
         component={Search}
-
+    
 
 
       />

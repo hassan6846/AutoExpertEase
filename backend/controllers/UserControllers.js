@@ -3,79 +3,15 @@ const express = require("express") //expressjs posting methods etc
 const validator = require("validator")//validator for server side Valdiataion
 const User = require("../models/UserModel")
 const jwt = require("jsonwebtoken")//json web token
-const axios = require("axios")
+
 const { GenerateOtp } = require("../utils/GenerateOtp")
 const { SendOtpMail } = require("../utils/SendMail")
+
 const cloudinaryInstance = require("../utils/Cloudinary")
 // 1 User login/Signup Initial
 const loginFunction = async (req, res, next) => {
-    //destructure the request object.
-    const { name, password, phone, email,
-        // Device details further...
-        deviceid, brand, devicename, devicetype, modelname } = req.body;
-    //if posted empty field
-    if (!name || !password || !phone || !email || !deviceid || !brand || !devicename || !devicetype || !modelname) {
-        return res.status(400).json({
-            success: false,
-            msg: "Please fill all the fields.",
-        });
-    }
-
-    // Validate email format
-    if (!validator.isEmail(email)) {
-        return res.status(400).json({
-            success: false,
-            msg: "Invalid Email Format.",
-        });
-    }
-    //validate phone number format
-    else if (!validator.isMobilePhone(phone)) {
-        return res.status(400).json({
-            success: false,
-            msg: "Invalid Phone Number Format.",
-        });
-    }
-
-    // Verify phone send otp to the user 
+    const { phone, otp, password } = req.body
     try {
-        //send otp to both email and phone generate and set field to mogoose model..
-        const findUser = await User.findOne({ phone: phone, email: email })
-        //if we found already a user then dont save just send otp to both and verify the otp by sending the id..
-        //else  save the credientals just send otp to both end points thanks and verify otp by id thanks...
-
-        if (findUser) {
-            //generating otp for phone only /-
-            const otp = await GenerateOtp()
-            //update otp phone field only /-
-            await User.findOneAndUpdate({ phone: phone, email: email }, { otp: otp })
-            //Generate Otp for email field..
-            const setEmailOtp = await GenerateOtp()
-            await User.findOneAndUpdate({ phone: phone, email }, { emailotp: setEmailOtp })
-
-            //Last thing is Send Otp
-
-
-        }
-        ///else Save the credientials just send and set otp to email and phone otp fields
-        else {
-            const phoneOtp = GenerateOtp()//generate otp
-            await User.findOneAndUpdate({ phone: phone, email: email })
-            const user = new User({
-
-                name: name,
-                password: password,
-                phone: phone,
-                email: email,
-                deviceid: deviceid,
-                brand: brand,
-                devicename: devicename,
-                devicetype: devicetype,
-                modelname: modelname,
-            })
-            await user.save()
-        }
-        res.send("hello")
-
 
     } catch (err) {
         console.log(err)
@@ -83,6 +19,29 @@ const loginFunction = async (req, res, next) => {
     next()
 }
 
+const RegisterFunction = async (req, res, next) => {
+    //register functions
+    const { name, email, password, otp, Emailotp, deviceid, brand, devicename, devicetype, modelname } = req.body
+    
+    //fields are empty
+    if (!name || !password || !phone || !email || !deviceid || !brand || !devicename || !devicetype || !modelname, otp, Emailotp) {
+        return res.status(400).json({
+            success: false,
+            msg: "Please fill all the fields.",
+        });
+    }
+  // Validate email format
+
+//Validate phone format
+
+    try {
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+    next()
+}
 
 
 //update profile picture..
@@ -163,14 +122,7 @@ const FindUser = async (req, res, next) => {
 
 }
 //verify Otp
-const VerifyPhoneOtp = async (req, res, next) => {
-    const { phone, id, otp } = req.body
-}
-//verify Email Otp
-const VerifyEmailOtp = async (req, res, next) => {
-    const { id, otp, email } = req.body;
-}
 
 
 
-module.exports = { updatepicture, loginFunction, FindUser }
+module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture }

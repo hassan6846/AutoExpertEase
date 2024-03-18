@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer")
 // SendingOtpMail
-const SendOtpMail = async (req, res,otp,to) => {
+const SendOtpMail = async (otp,to) => {
     try {
         const transporter=nodemailer.createTransport({
          
@@ -23,7 +23,7 @@ const SendOtpMail = async (req, res,otp,to) => {
     res.status(200).json({message:`Emal sent sucessfull to ${to}`})
     } catch (error) {
         console.error("Error sending email:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+      
     }
 }
 module.exports={SendOtpMail}

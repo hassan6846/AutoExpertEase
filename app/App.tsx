@@ -38,6 +38,7 @@ import { NetworkInfo, Auth } from "./context/DemoContext"
 import ChatSupport from "./screens/Stacks/UserProfile/-nested/Help&Support/ChatSupport"
 import { useState } from "react"
 import AuthStack from "./screens/Authentication/LoginStack"
+import Settings from "./screens/Stacks/UserProfile/-nested/Settings/Settings"
 
 
 
@@ -163,6 +164,17 @@ export default function App({ navigation }: { navigation: any }) {
                   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
                 }}
                 component={ChatSupport} />
+                {/* Settings */}
+                <Stack.Screen
+                name="settings"
+                options={{
+                  headerShown: true,
+                  cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+                }}
+                
+                  component={Settings}
+                  />
+
             </>
           ) : (
             <Stack.Screen name="Login"

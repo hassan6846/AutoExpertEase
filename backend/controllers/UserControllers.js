@@ -30,9 +30,7 @@ const RegisterFunction = async (req, res, next) => {
             msg: "Please fill all the fields.",
         });
     }
-  // Validate email format
 
-//Validate phone format
 
     try {
 

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 
 // Defining Interface for props type for better typeCheck⭐
 interface NetworkState {
@@ -13,12 +13,9 @@ const initialState: NetworkState = {
 const NetworkSlice = createSlice({
     name: "netowork",
     initialState,
-    //think of reducers as a redux toolkit reducers to use State to
-    //Change Default State
     reducers: {
-        setOnlineStatus: (state, action: PayloadAction<boolean>) => {
-            //remember payload will change.. in selector and dispatch events.🙏
-            state.isOnline = action.payload
+        setOnlineStatus: (state, action) => {
+            state.isOnline = action.payload //we'll pass custom property from the app entry or any where if the network status changes..
         }
     }
 })

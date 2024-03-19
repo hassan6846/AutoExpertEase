@@ -3,14 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
-        items: [],
-        total: 0,
+        items: [],//map all cart items,
+        platformFee: 8, //platform fee to charge 
+        deliveryFee: null, //delivery fee
     },
-    //   
+
     reducers: {
-      
+
     }
 });
 
-export const { addItem, removeItem, incrementQuantity, decrementQuantity } = cartSlice.actions;
+
 export default cartSlice.reducer;

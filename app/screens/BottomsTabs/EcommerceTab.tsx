@@ -4,7 +4,7 @@ import { Icon, SearchBar, Text, Badge } from "@rneui/themed"
 // Navigation
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack"
 const EcommerceStack = createStackNavigator()
-import StackNavigatorConfigs from "../../configs/StackNavigatorConfigs"
+
 
 // Components
 
@@ -36,7 +36,7 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
       <EcommerceStack.Screen
         name="ShopContainer"
         options={{
-          title: StackNavigatorConfigs.ShopStack.title,
+         
           headerShadowVisible: false,
           headerRight: () => (
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", columnGap: 5, marginRight: 13 }}>

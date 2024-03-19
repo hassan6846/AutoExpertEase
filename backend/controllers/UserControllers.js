@@ -101,9 +101,9 @@ const updatepicture = async (req, res, next) => {
 //Check if user is already Signup or Not...
 //in sense of inital registration...
 const FindUser = async (req, res, next) => {
-    const { phone, email, } = req.body
+    const { phone } = req.body
     // we just have to send boolean to frontend to change state accordingly
-    const user = await User.findOne({ phone, email })
+    const user = await User.findOne({ phone })
     if (user) {
         return res.status(400).json({
             success: true,
@@ -119,8 +119,8 @@ const FindUser = async (req, res, next) => {
     next()
 
 }
-//verify Otp
 
 
 
-module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture }
+
+module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture,FindUser}

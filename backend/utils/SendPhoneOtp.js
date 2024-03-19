@@ -13,4 +13,4 @@ const SendPhoneOtp = async (phone, body) => {
         console.log(error)
     }
 }
-module.exports=SendPhoneOtp
+module.exports = SendPhoneOtp

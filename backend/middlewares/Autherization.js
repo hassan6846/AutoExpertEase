@@ -2,6 +2,7 @@ const jwt=require("jsonwebtoken")
 
 //middleware for authenticated user
 exports.isAuthenticated=async (req,res,next)=>{
+  //we'll check if the token is pass through the header or not
 
 }
 //Authorize roles
@@ -10,7 +11,7 @@ exports.authorizeRoles = (allowedRoles) => {
       if (!req.user) {
         return res.status(401).json({
           success: false,
-          message: "Authentication required to view this content",
+          message: "Youare not Autherized to  View this Source..",
         });
       }
   

@@ -24,15 +24,17 @@ async function SendOtpPhone(phone, otp) {
     try {
         // endpoint to send mail to the phone
         const Otp=await SendOtpPhone(phone,otp)
-        Otp()
+       console.log(otp)
+        return Otp
     } catch (err) {
         console.log(err)
     }
+    next()
 }
 //Pre
 otpSchema.pre("save",async function(next){
     console.log("New Document save to the Database")
-      // Only send an email when a new document is created
+      // Only send an email/message when a new document is created
       if(this.isNew){
         await SendOtpPhone(this.phone,this.otp)
       }

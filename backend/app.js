@@ -17,8 +17,8 @@ app.use(express.json())//server is json type.
 const user = require("./routes/UserRoutes")
 const product = require('./routes/ProductRoutes')
 //endpoints middlewares
-app.use("/api/v1", user)
-app.use("/api/v1", product)
+app.use("/api", user)
+app.use("/api", product)
 module.exports = app
 
 

@@ -114,10 +114,11 @@ function HomePageActivity() {
       {/* user ProfilePage */}
       <Tab.Screen
         component={ProfileTab}
-        name="Profile"
+        name="Profie"
 
         options={{
           headerTitleAlign: "center",
+       
           tabBarShowLabel: false,
           headerShown: false,
           tabBarIcon: TabsConfigs.Profile.Svg,
@@ -190,6 +191,9 @@ export default function App({ navigation }: { navigation: any }) {
 
             </>
           ) : (
+
+
+            
             <Stack.Screen name="Login"
               options={{
                 headerShown: true,

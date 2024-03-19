@@ -1,30 +1,41 @@
-import { ScrollView, StyleSheet, View, KeyboardAvoidingView, Pressable, TouchableHighlight, TouchableHighlightBase, FlatList } from "react-native"
 import { useRef, useState } from "react"
+import { ScrollView, StyleSheet, View, KeyboardAvoidingView, Pressable, TouchableHighlight, TouchableHighlightBase, FlatList } from "react-native"
 import { Text, ListItem, Icon, Badge, Avatar, BottomSheet, FAB, Button, Overlay } from "@rneui/themed"
 import CountryFlag from "react-native-country-flag"
-import { TouchableOpacity } from "react-native-gesture-handler"
 import { AvatarSrc, DefaultImageSrc } from "../../../constants/ImagesConstants"
-import CustomButton from "../../../components/ButtonProps/ButtonProps"
-import ThemeProviderColors from "../../../provider/ThemeProvider"
 
-//bottomSheet.
+//Image picker
+import * as ImagePicker from 'expo-image-picker';
 
+//Api
+import UpdateImg from "../../../api/User/UpdateProfileImg"
 
 
 const ProfileInitial = ({ navigation }: { navigation: any }) => {
+    //states
     const [isShowBottomSheet, SetisShowBottomSheet] = useState(false)
-    const [OverlayVisable, setOverlayVisable] = useState(false)
+    const [OverlayVisable, setOverlayVisable] = useState(false) //bottom SheetVisiblity
+    const [image,SetImage]=useState(null) //for setting and getting image
+   
+    //pick Image
+    const PickImage=async()=>{
+            // No permissions request is necessary for launching the image library
 
-    // Handle Click (Logout Overlay)
+    }
+
+
     const toggleOverlay = () => {
         setOverlayVisable(!OverlayVisable)
     }
     interface ListItemProps {
         Component?: React.ComponentType<any>;
     }
+
     const UserProfileSchema = [
 
     ]
+    //OpenGallary Function On press
+   
     return (
         <>
             <ScrollView showsVerticalScrollIndicator={false} style={Styles.ProfileSettingContainer}>

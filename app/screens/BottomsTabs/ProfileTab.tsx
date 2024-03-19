@@ -12,7 +12,7 @@ const ProfileTab = () => {
     return (
         <UserStack.Navigator>
             {/* Initial Route  */}
-            <UserStack.Screen name="profile" options={{ headerTitleAlign: "center" }} component={ProfileInitial} />
+            <UserStack.Screen name="profile" options={{ headerTitleAlign: "center" ,headerTitle:"Profile",headerShadowVisible:false}} component={ProfileInitial} />
             {/* Settings */}
 
 

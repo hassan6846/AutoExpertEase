@@ -22,7 +22,7 @@ const loginFunction = async (req, res, next) => {
 const RegisterFunction = async (req, res, next) => {
     //register functions
     const { name, email, password, otp, Emailotp, deviceid, brand, devicename, devicetype, modelname } = req.body
-    
+
     //fields are empty
     if (!name || !password || !phone || !email || !deviceid || !brand || !devicename || !devicetype || !modelname, otp, Emailotp) {
         return res.status(400).json({
@@ -122,5 +122,9 @@ const FindUser = async (req, res, next) => {
 
 
 
+//Logout
 
-module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture,FindUser}
+
+
+
+module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser }

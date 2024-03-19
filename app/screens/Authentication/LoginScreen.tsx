@@ -1,8 +1,5 @@
 import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from "react-native"
-
 import { useState, createRef } from "react"
-
-
 import { Button, Icon, Input, Text } from "@rneui/themed"
 
 

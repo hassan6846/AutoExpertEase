@@ -44,7 +44,7 @@ const RegisterFunction = async (req, res, next) => {
 
 //update profile picture..
 const updatepicture = async (req, res, next) => {
-    const { ImageData, email, phone } = req.body
+    const { ImageData, phone } = req.body
 
     //validate if the provided data is base64
     //convert the base64 data to Cloudinary and update the field

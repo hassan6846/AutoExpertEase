@@ -2,11 +2,21 @@
 import { configureStore } from "@reduxjs/toolkit"
 
 
-import NetworkSlice from "../slices/NetworkSlice"
+import NetworkSlice from "../slices/NetworkSlice"//network status
+import AuthSlice from "../slices/AuthSlice"//Authentication Status
+
+//root reducer
+
+
+
+
+
 
 const Store = configureStore({
+
     reducer: {
-        network: NetworkSlice
+        network: NetworkSlice,
+        auth: AuthSlice
     }
 })
 

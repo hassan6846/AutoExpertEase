@@ -3,12 +3,21 @@ import { useState, createRef } from "react"
 import { Button, Icon, Input, Text } from "@rneui/themed"
 
 
+
+
+//Redux
+import { useDispatch, useSelector } from "react-redux"
+
+//Api
+import FindUser from "../../api/Auth/FindUser"
+
+
 //Page
 const LoginPage = ({ navigation }: { navigation: any }) => {
     const InputRef = createRef()
-    const [Phone, SetPhone] = useState("")
-    //InputErrors
+    const [Phone, setPhone] = useState<number | null>(null);
 
+    //InputErrors
     return (
         <KeyboardAvoidingView
             style={{ flex: 1 }}

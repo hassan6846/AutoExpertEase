@@ -15,16 +15,49 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
     //states
     const [isShowBottomSheet, SetisShowBottomSheet] = useState(false)
     const [OverlayVisable, setOverlayVisable] = useState(false) //bottom SheetVisiblity
-    const [image,SetImage]=useState(null) //for setting and getting image
-   
+    const [imageUri, setImageUri] = useState<string | null>(null);
+
     //pick Image
-    const PickImage=async()=>{
-            // No permissions request is necessary for launching the image library
+    const PickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 0.5,
+
+
+        })
+        if (!result.canceled) {
+            setImageUri(result.assets[0].uri)
+        }
+        console.log(result)
+        console.warn(imageUri + "ImagePath")
 
     }
+    //Open Camera
+const openCamera=async()=>{
+
+        const result=await ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 1,
+        })
+        if(!result.canceled){
+            setImageUri(result.assets[0].uri)
+        }
+        console.log(result)
+        console.warn(imageUri + "ImagePath")
+
+  
+}
 
 
-    const toggleOverlay = () => {
+//Update Image
+
+    
+   const toggleOverlay = () => {
         setOverlayVisable(!OverlayVisable)
     }
     interface ListItemProps {
@@ -35,7 +68,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
 
     ]
     //OpenGallary Function On press
-   
+
     return (
         <>
             <ScrollView showsVerticalScrollIndicator={false} style={Styles.ProfileSettingContainer}>
@@ -203,7 +236,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                 <BottomSheet backdropStyle={{ backgroundColor: "rgba(59, 59, 59, 0.404)" }} onBackdropPress={() => SetisShowBottomSheet(false)} isVisible={isShowBottomSheet}>
                     <View style={{ backgroundColor: "#fff", height: 'auto', borderTopStartRadius: 10, borderTopRightRadius: 10 }}>
 
-                        <Pressable style={({ pressed }) => [
+                        <Pressable onPress={PickImage} style={({ pressed }) => [
                             {
                                 backgroundColor: pressed ? 'rgb(229,229,229)' : '#fff',
                             }, {
@@ -219,7 +252,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                             </ListItem.Content>
 
                         </Pressable>
-                        <Pressable style={({ pressed }) => [
+                        <Pressable onPress={openCamera} style={({ pressed }) => [
                             {
                                 backgroundColor: pressed ? 'rgb(229,229,229)' : '#fff',
                             }, {

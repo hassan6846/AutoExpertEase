@@ -2,7 +2,7 @@
 //User must be authenticated to use this request 
 
 
-const UpdateImg = async () => {
+const UpdateImg = async (phone:number,image:any) => {
     try {
 
 

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Text, Icon } from "@rneui/themed";
 import CustomButton from "../../../components/ButtonProps/ButtonProps";
 import GoogleMapDesign from "../../../utils/GoogleMapDesign";
-
+import LottieView  from "lottie-react-native"
 const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
     const [location, setLocation] = useState<any>(null);
     const [errorMsg, setErrorMsg] = useState<string | any>(null);
@@ -34,8 +34,16 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
     if (!location) {
         // Return a loading indicator or handle the case when location is not available
         return (
-            <View>
-                <Text>Loading...</Text>
+            <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+                <LottieView
+                autoPlay
+                    source={require("../../../assets/lottie/fadeCircle.json")}
+                    style={{
+                        width: 200,
+                        height: 200,
+                    }}
+                    />
+                    <Text style={{ textAlign: "center", fontSize: 15, fontWeight: "500", paddingHorizontal: 24 }}>Finding Experts Nearby</Text>
             </View>
         );
     }

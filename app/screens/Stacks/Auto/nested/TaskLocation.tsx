@@ -2,7 +2,7 @@ import React from 'react'
 import { KeyboardAvoidingView, View, StyleSheet, Dimensions, Text, ScrollView } from 'react-native'
 import MapView, { Callout } from "react-native-maps"
 import GoogleMapDesign from '../../../../utils/GoogleMapDesign'
-import { Button, Input,ListItem,Icon } from "@rneui/themed"
+import { Button, Input, ListItem, Icon } from "@rneui/themed"
 import CustomButton from '../../../../components/ButtonProps/ButtonProps'
 import ThemeProviderColors from '../../../../provider/ThemeProvider'
 const Height = Dimensions.get("screen").height
@@ -25,15 +25,22 @@ const TaskLocation = () => {
       <Button color={ThemeProviderColors.Light.Primary} containerStyle={Style.BtncontainerStyle} title="Next" />
       {/* Dropdown Container */}
       <View style={Style.DropdownContainer}>
-       <ScrollView style={{width:'80%',backgroundColor:"red"}}>
-        <ListItem>
-        <Icon  size={10} name="map-marker" type="material-community" color="grey" />
-        <ListItem.Content>
-      <ListItem.Title>Samanabad</ListItem.Title>
-      <ListItem.Subtitle>Lahore</ListItem.Subtitle>
-    </ListItem.Content>
-        </ListItem>
-       </ScrollView>
+        <ScrollView style={{ width: '80%', backgroundColor: "red" }}>
+          <ListItem>
+            <Icon size={10} name="map-marker" type="material-community" color="grey" />
+            <ListItem.Content>
+              <ListItem.Title>Samanabad</ListItem.Title>
+              <ListItem.Subtitle>Lahore</ListItem.Subtitle>
+            </ListItem.Content>
+          </ListItem>
+          <ListItem>
+            <Icon size={10} name="map-marker" type="material-community" color="grey" />
+            <ListItem.Content>
+              <ListItem.Title>Samanabad</ListItem.Title>
+              <ListItem.Subtitle>Lahore</ListItem.Subtitle>
+            </ListItem.Content>
+          </ListItem>
+        </ScrollView>
       </View>
       {/* Dropdown Container */}
     </KeyboardAvoidingView>

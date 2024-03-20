@@ -61,12 +61,15 @@ const ShopCategory = ({ navigation }: { navigation: any }) => {
             data={CategoryApi}
             renderItem={({ item }) => (
                 <>
-                    <Text h4>{item.Title}</Text>
-                    <View style={Styles.AvatarsContainers}>
-                        <View style={Styles.AvatarStartFlow}>
-                            <Avatar source={{uri:AvatarSrc}}/>
-                        </View>
-                    </View>
+             
+                   <View>
+                   <Avatar size={60} source={{uri:AvatarSrc}}/>
+
+                   </View>
+                  
+                            
+                   
+                   
 
                 </>
             )}
@@ -81,15 +84,7 @@ const Styles = StyleSheet.create({
         flex: 1,
         backgroundColor:"#fff"
     },
-    AvatarsContainers: {
-        flex: 1,
-        flexDirection: "row",
-        backgroundColor: "red",
-        justifyContent:"center"
-    },AvatarStartFlow:{
-        flexDirection:"row",
-        justifyContent:"flex-start"
-    }
+ 
 });
 
 

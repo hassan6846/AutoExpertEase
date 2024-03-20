@@ -1,13 +1,26 @@
-import { SafeAreaView, StyleSheet, Text } from "react-native"
+import { StyleSheet } from "react-native"
+import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
+const HomeStack = createStackNavigator()
 
-const Home = () => {
+//imports modules
+import {Avatar} from "@rneui/themed"
+import { AvatarSrc } from "../../constants/ImagesConstants"
+//nested childs
+import Home from "../Stacks/Home/InitialRoute"
+import { getHeight } from "../../utils/GetDimension"
+
+
+const HomeTab = () => {
 
   return (
-    <SafeAreaView ><Text>Home</Text></SafeAreaView>
+    <HomeStack.Navigator  initialRouteName="HomeInital" >
+      <HomeStack.Screen options={{headerRight:()=>(<Avatar  avatarStyle={{borderRadius:20}} containerStyle={{marginRight:12}} source={{uri:AvatarSrc}}/>),headerTitle:"Welcome",headerStyle:{height:getHeight/9}}} component={Home} name="HomeInital" />
+
+    </HomeStack.Navigator>
   )
 }
 // styleSheet
 const Styles = StyleSheet.create({
 
 })
-export default Home
+export default HomeTab

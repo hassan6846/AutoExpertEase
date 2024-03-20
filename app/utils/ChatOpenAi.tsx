@@ -1,5 +1,5 @@
 const OpenAI =require("openai")
-x
+
 // Initialize OpenAI instance with your API key
 const openai = new OpenAI({
   apiKey: process.env.asd,

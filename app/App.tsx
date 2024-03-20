@@ -22,7 +22,7 @@ const Stack = createStackNavigator()
 
 
 //TabsMain
-import Home from "./screens/BottomsTabs/HomeTab"
+
 import EcommerceTab from "./screens/BottomsTabs/EcommerceTab"
 import ServiceTab from "./screens/BottomsTabs/ServiceTab"
 import ProfileTab from "./screens/BottomsTabs/ProfileTab"
@@ -42,7 +42,6 @@ import ExpertPanel from "./screens/ExpertTabs/ExpertTabMain"
 import Store from "./store/Store"
 import { RootState } from "./interface/AuthInterface"
 
-
 /**
  * 
  * Async Storage To check if user visited first time or not. 
@@ -56,74 +55,20 @@ import { RootState } from "./interface/AuthInterface"
 //Always Add Pages Inside Only Contains Page After logged in or Authentication Ok👍
 function HomePageActivity() {
   return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: {
-          height: BottomNavigator_Height,
-
-        },
-        tabBarShowLabel: false,
-
-      }}
-    >
-      <Tab.Screen
-        // postion absoulte styling
-
-        name="Home"
-        component={Home}
-        options={{
-
-          tabBarIcon: TabsConfigs.Home.Svg
-
-        }}
-
-      />
+    <Tab.Navigator screenOptions={{tabBarStyle: {height: BottomNavigator_Height,},tabBarShowLabel: false,}} >
+      {/* Home */}
+      <Tab.Screen name="Home" component={HomeTab}options={{headerShown: false,tabBarIcon: TabsConfigs.Home.Svg,}}/>
 
       {/* ShopTab */}
-      <Tab.Screen name="Shop"
-        component={EcommerceTab}
-        options={{
-          headerShown: false,
-
-          tabBarIcon: TabsConfigs.Shop.Svg,
-
-
-        }
-        }
-      />
+      <Tab.Screen name="Shop"component={EcommerceTab}options={{headerShown: false,tabBarIcon: TabsConfigs.Shop.Svg,}}/>
 
       {/* Service Tabs */}
-      <Tab.Screen name="Service"
-        component={ServiceTab}
-
-
-        options={{
-          headerShown: false,
-          tabBarIcon: TabsConfigs.Service.Svg
-        }}
-      />
+      <Tab.Screen name="Service" component={ServiceTab} options={{headerShown: false,tabBarIcon: TabsConfigs.Service.Svg}} />
       {/* Explore More Tabs. */}
       <Tab.Screen
-        component={ExploreTab}
-        name="Inbox"
-        options={{
-          headerShadowVisible: false,
-          tabBarIcon: TabsConfigs.Explore.Svg
-        }}
-      />
+        component={ExploreTab} name="Inbox" options={{headerShadowVisible: false, tabBarIcon: TabsConfigs.Explore.Svg }}/>
       {/* user ProfilePage */}
-      <Tab.Screen
-        component={ProfileTab}
-        name="Profie"
-
-        options={{
-          headerTitleAlign: "center",
-
-          tabBarShowLabel: false,
-          headerShown: false,
-          tabBarIcon: TabsConfigs.Profile.Svg,
-        }}
-      />
+      <Tab.Screen component={ProfileTab}name="Profie"options={{headerTitleAlign: "center",tabBarShowLabel: false,headerShown: false,tabBarIcon: TabsConfigs.Profile.Svg,}}/>
     </Tab.Navigator>
   )
 }
@@ -131,13 +76,14 @@ function HomePageActivity() {
 import { Provider, useSelector } from "react-redux"
 import { Avatar } from "@rneui/base"
 import { ChatbotAvatar } from "./constants/ImagesConstants"
+import HomeTab from "./screens/BottomsTabs/HomeTab"
 
 
 
 const Main = () => {
   const [Auth, SetAuth] = useState(true)
   const progress = useSelector((state: RootState) => state.auth.Progress)
-  const activeColor=useSelector((state:RootState)=>state.auth.HeaderColor)//dynamic
+  const activeColor = useSelector((state: RootState) => state.auth.HeaderColor)//dynamic
   return (
     <NavigationContainer >
 
@@ -155,9 +101,9 @@ const Main = () => {
               <Stack.Screen name="ViewProfile" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={ViewProfileImage} />
 
               {/* Chat Support Ai Bot. */}
-              <Stack.Screen name="Support" options={{ headerShown: true ,headerTitle:()=>(<View style={{flexDirection:"row",alignItems:"center",columnGap:5}}><Avatar source={{uri:ChatbotAvatar}}/><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
+              <Stack.Screen name="Support" options={{ headerShown: true, headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
               {/* Settings */}
-              <Stack.Screen name="settings" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,headerTitle:"Settings",headerShadowVisible:false}} component={Settings} />
+              <Stack.Screen name="settings" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Settings", headerShadowVisible: false }} component={Settings} />
               {/* Expert TabView */}
               <Stack.Screen name="Expert" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ExpertPanel} />
 

@@ -41,7 +41,7 @@ const CartPage = ({ navigation }: { navigation: any }) => {
         )
             //   if not empty...
             : (
-                <ScrollView style={{ flex: 1, backgroundColor: "#fff", padding: 20, flexDirection: "column" }}>
+                <ScrollView style={{ flex: 1, backgroundColor: "#fff", padding: 20, flexDirection: "column",position:"relative" }}>
                     {/* BottomSheet  Payment Checkout*/}
                     <BottomSheet backdropStyle={{ backgroundColor: "rgba(59, 59, 59, 0.404)" }} onBackdropPress={() => SetshowPaymentMethod(false)} isVisible={showPaymentMethod}>
                         <View style={{ backgroundColor: "#fff", height: 'auto', borderTopStartRadius: 10, borderTopRightRadius: 10 }}>
@@ -129,7 +129,7 @@ const CartPage = ({ navigation }: { navigation: any }) => {
                     {/*Order Details  */}
 
                     {/* Order Details End */}
-                    <View style={{ flex: 1, marginBottom: 30, marginTop: 5, flexGrow: 5, flexDirection: "column", rowGap: 5 }}>
+                    <View style={{ flex: 1, marginBottom: 30, marginTop: 5, flexGrow: 5, flexDirection: "column", rowGap: 5,backgroundColor:"red",position:"absolute",bottom:0,right:0,left:0,width:"100%" }}>
                         {/* Delivery time */}
                         <View style={{ justifyContent: "flex-start", flexDirection: "row", alignItems: "center", padding: 5, borderRadius: 2 }}>
                             <Icon containerStyle={{ marginLeft: 10, marginRight: 15 }} size={30} type="material" name="local-shipping" />

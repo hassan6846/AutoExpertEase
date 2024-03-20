@@ -62,7 +62,7 @@ const ShopCategory = ({ navigation }: { navigation: any }) => {
             renderItem={({ item }) => (
                 <>
              
-                   <View>
+                   <View style={{backgroundColor:"red",flexWrap:"wrap",flexDirection:"row"}}>
                    <Avatar size={60} source={{uri:AvatarSrc}}/>
 
                    </View>

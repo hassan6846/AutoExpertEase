@@ -79,6 +79,7 @@ const ShopCategory = ({ navigation }: { navigation: any }) => {
 const Styles = StyleSheet.create({
     CategoryContainer: {
         flex: 1,
+        backgroundColor:"#fff"
     },
     AvatarsContainers: {
         flex: 1,

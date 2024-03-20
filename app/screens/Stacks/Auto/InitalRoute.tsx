@@ -39,11 +39,11 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
                 autoPlay
                     source={require("../../../assets/lottie/fadeCircle.json")}
                     style={{
-                        width: 200,
-                        height: 200,
+                        width: 400,
+                        height: 400,
                     }}
                     />
-                    <Text style={{ textAlign: "center", fontSize: 15, fontWeight: "500", paddingHorizontal: 24 }}>Finding Experts Nearby</Text>
+                    <Text style={{ textAlign: "center", fontSize: 15, fontWeight: "500", paddingHorizontal: 24 }}>Finding Experts Nearby You!</Text>
             </View>
         );
     }

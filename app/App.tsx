@@ -34,7 +34,6 @@ import Enrollment from "./screens/pages/Enrollment/Enrollment"
 import LoginPage from "./screens/Authentication/LoginScreen"
 import ViewProfileImage from "./screens/Stacks/UserProfile/-nested/ViewProfileImage"
 // Context and Providers
-import { NetworkInfo, Auth } from "./context/DemoContext"
 import ChatSupport from "./screens/Stacks/UserProfile/-nested/Help&Support/ChatSupport"
 import { useState } from "react"
 import AuthStack from "./screens/Authentication/LoginStack"
@@ -134,95 +133,63 @@ import { Provider, useSelector } from "react-redux"
 
 
 const Main = () => {
-  const [Auth, SetAuth] = useState(false)
+  const [Auth, SetAuth] = useState(true)
   const progress = useSelector((state: RootState) => state.auth.Progress)
+
   return (
     <NavigationContainer >
-    <StatusBar style="auto" />
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {
 
-        Auth ? (
-          <>
-            <Stack.Screen name="Main" component={HomePageActivity} />
-            {/* ProfileView */}
-            <Stack.Screen name="ViewProfile"
+      <StatusBar style="auto" />
+
+
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {
+
+          Auth ? (
+            <>
+              <Stack.Screen name="Main" component={HomePageActivity} />
+
+              {/* ProfileView */}
+              <Stack.Screen name="ViewProfile" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={ViewProfileImage} />
+
+              {/* Chat Support Ai Bot. */}
+              <Stack.Screen name="Support" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ChatSupport} />
+              {/* Settings */}
+              <Stack.Screen name="settings" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={Settings} />
+              {/* Expert TabView */}
+              <Stack.Screen name="Expert" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ExpertPanel} />
+
+
+
+
+            </>
+          ) : (
+
+
+
+            <Stack.Screen name="Login"
               options={{
+
                 headerShown: true,
 
-                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-                headerStyle: {
-                  backgroundColor: "black"
-                },
-                headerShadowVisible: false,
-                headerTransparent: true,
-                headerTintColor: "#97ADB6"
+                header: () => (
+                  <View style={{ width: "100%", height: getHeight / 10, justifyContent: "flex-end", alignItems: "center", backgroundColor: "#fff" }}>
+                    <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 12 }}>Get Started</Text>
+                    <LinearProgress variant="determinate" color="#E04E2F" value={progress} trackColor="#d9d9d9" style={{ width: "60%", height: 8, borderRadius: 5 }} />
+                  </View>
+                ),
+                headerShadowVisible: false, headerTitleAlign: "center",
+              }} component={AuthStack} />
 
-              }}
-              component={ViewProfileImage} />
-
-            {/* Chat Support Ai Bot. */}
-            <Stack.Screen
-              name="Support"
-              options={{
-                headerShown: true,
-                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-              }}
-              component={ChatSupport} />
-            {/* Settings */}
-            <Stack.Screen
-              name="settings"
-              options={{
-                headerShown: true,
-                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-              }}
-
-              component={Settings}
-            />
-            {/* Expert TabView */}
-            <Stack.Screen
-              name="Expert"
-              options={{
-                headerShown: true,
-                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-              }}
-              component={ExpertPanel}
-            />
-
-
-
-
-          </>
-        ) : (
-
-
-
-          <Stack.Screen name="Login"
-            options={{
-              headerShown: true,
-              header: () => (
-                <View style={{ width: "100%", height: getHeight / 10, justifyContent: "flex-end", alignItems: "center", backgroundColor: "#fff" }}>
-                  <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 12 }}>Get Started</Text>
-                  <LinearProgress variant="determinate" color="#E04E2F" value={progress} trackColor="#d9d9d9" style={{ width: "60%", height: 8, borderRadius: 5 }} />
-                </View>
-              ),
-              headerShadowVisible: false,
-              headerTitleAlign: "center",
-
-
-            }}
-
-            component={AuthStack} />
-
-        )
-      }
+          )
+        }
 
 
 
 
 
-    </Stack.Navigator>
-  </NavigationContainer>
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
@@ -231,10 +198,10 @@ const Main = () => {
 //Main       
 export default function App() {
 
- 
+
   return (
     <Provider store={Store}>
-     <Main/>
+      <Main />
     </Provider>
   );
 }

@@ -8,6 +8,7 @@ export interface RootState {
       AlreadyVisitedApp: boolean;
       Progress: number;
       RefreshTokenTime: number;
+      LoginEnded:false, //state for color to use
     };
 
   }

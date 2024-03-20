@@ -4,7 +4,7 @@
 //token if possible 
 
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../interface/AuthInterface"
+
 const AuthSlice = createSlice({
     name: "auth",
     initialState: {
@@ -13,7 +13,7 @@ const AuthSlice = createSlice({
         userToken: null,//Token 
         userinfo: null,//User info presisted version only...
         AlreadyVisitedApp: false,     //if app is opened first time or not
-        Progress: 0,//value for progressbar for 
+        Progress: 0.1,//value for progressbar for 
         RefreshTokenTime: 10000     //RefreshTokenTime 10min
     },
     reducers: {

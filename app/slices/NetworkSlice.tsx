@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-
+import * as Network from "expo-network"
 // Defining Interface for props type for better typeCheck⭐
 interface NetworkState {
     isOnline: boolean;

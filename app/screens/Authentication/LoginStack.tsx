@@ -10,7 +10,8 @@ const AuthStack = () => {
     return (
         <Auth.Navigator >
             {/* phone Auth */}
-            <Auth.Screen options={{headerShown:false,}}name="AuthPhone"  component={LoginPage} />
+            <Auth.Screen
+             options={{headerShown:false,}}name="AuthPhone"  component={LoginPage} />
 
 
              {/* Enter Otp */}

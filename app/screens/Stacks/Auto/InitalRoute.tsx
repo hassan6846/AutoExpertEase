@@ -34,7 +34,7 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
     if (!location) {
         // Return a loading indicator or handle the case when location is not available
         return (
-            <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+            <View style={{flex:1,justifyContent:"center",backgroundColor:"#fff",alignItems:"center"}}>
                 <LottieView
                 autoPlay
                     source={require("../../../assets/lottie/fadeCircle.json")}

@@ -5,7 +5,7 @@
 // iF you are reading this this took time me to learn .
 //Customize the Icon Focus styles here
 //App Etc
-import { Icon,Text,Avatar } from "@rneui/themed"
+import { Icon, Text, Avatar } from "@rneui/themed"
 import ThemeProviderColors from "../provider/ThemeProvider"
 import { TouchableOpacity, StyleSheet, Pressable } from "react-native"
 import { AvatarSrc } from "../constants/ImagesConstants"
@@ -14,9 +14,9 @@ const TabsConfigs = {
     // HomeScreen 
     Home: {
         Svg: ({ focused }: { focused: any }) => (
-           <>
-            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-filled" type="material" />
-            <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Home</Text>
+            <>
+                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-filled" type="material" />
+                <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Home</Text>
 
             </>
         )
@@ -26,8 +26,8 @@ const TabsConfigs = {
 
         Svg: ({ focused }: { focused: any }) => (
             <>
-            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="storefront" type="material" />
-            <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Shop</Text>
+                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="storefront" type="material" />
+                <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Shop</Text>
             </>
         )
     },
@@ -35,8 +35,8 @@ const TabsConfigs = {
     Service: {
         Svg: ({ focused }: { focused: any }) => (
             <>
-            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-repair-service" type="material" />
-            <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Experts</Text>
+                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="home-repair-service" type="material" />
+                <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Experts</Text>
             </>
         )
     },
@@ -44,8 +44,8 @@ const TabsConfigs = {
     Explore: {
         Svg: ({ focused }: { focused: any }) => (
             <>
-            <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="chat" type="material" />
-            <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Messages</Text>
+                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="chat" type="material" />
+                <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Messages</Text>
             </>
         )
     },
@@ -53,12 +53,44 @@ const TabsConfigs = {
     Profile: {
         Svg: ({ focused }: { focused: any }) => (
             <>
-            <Avatar  avatarStyle={{borderWidth:2,borderColor:focused?ThemeProviderColors.Light.Primary:"#5F6368"}} rounded  source={{uri:AvatarSrc}} size={25}/>
-            <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>You</Text>
+                <Avatar avatarStyle={{ borderWidth: 2, borderColor: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }} rounded source={{ uri: AvatarSrc }} size={25} />
+                <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>You</Text>
             </>
         )
     },
     //Dashboard
+    ExpertRequest: {
+        Svg: ({ focused }: { focused: any }) => (
+            <>
+                  <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="handyman" type="material" />
+                <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Requests</Text>
+            </>
+        )
+    },
+    Income: {
+        Svg: ({ focused }: { focused: any }) => (
+            <>
+                <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="payments" type="material" />
+                <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Income</Text>
+            </>
+        )
+    },
+    Ratings: {
+        Svg: ({ focused }: { focused: any }) => (
+            <>
+                  <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="star" type="material" />
+                <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Ratings</Text>
+            </>
+        )
+    },
+    Me:{
+        Svg: ({ focused }: { focused: any }) => (
+            <>
+                 <Icon size={25} color={focused ? ThemeProviderColors.Light.Primary : "#5F6368"} name="account-balance-wallet" type="material" />
+                <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>Me</Text>
+            </>
+        )
+    }
 
 }
 export default TabsConfigs

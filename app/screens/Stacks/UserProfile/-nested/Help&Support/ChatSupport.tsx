@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { GiftedChat, IMessage,} from 'react-native-gifted-chat';
-import { ChatbotAvatar } from '../../../../../constants/ImagesConstants';
+import { AvatarSrc, ChatbotAvatar } from '../../../../../constants/ImagesConstants';
 
 
 interface ChatSupportProps { }
@@ -39,6 +39,7 @@ const ChatSupport: React.FC<ChatSupportProps> = () => {
       onSend={newMessages => onSend(newMessages)}
       user={{
         _id: 1,
+        avatar:ChatbotAvatar
       }}
     />
 

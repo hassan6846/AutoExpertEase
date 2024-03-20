@@ -1,6 +1,7 @@
 // Define RootState interface
 export interface RootState {
     auth: {
+      Auth:boolean,
       loading: boolean;
       isAlreadyRegisted: boolean;
       userToken: string | null;
@@ -8,7 +9,7 @@ export interface RootState {
       AlreadyVisitedApp: boolean;
       Progress: number;
       RefreshTokenTime: number;
-      LoginEnded:false, //state for color to use
+      HeaderColor:string, //state for color to use
     };
 
   }

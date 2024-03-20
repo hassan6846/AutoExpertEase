@@ -1,13 +1,25 @@
-import { View, StyleSheet, Dimensions } from 'react-native'
-const getHeight = Dimensions.get("screen").height
-import { Text } from "@rneui/themed"
-import LottieView from "lottie-react-native"
-import CustomButton from '../../components/ButtonProps/ButtonProps'
-import { Audio } from "expo-av"
+import { View, StyleSheet } from 'react-native'
 import { useEffect } from 'react'
 
+import LottieView from "lottie-react-native"
+import { Audio } from "expo-av"
+import { Text } from "@rneui/themed"
+
+
+import CustomButton from '../../components/ButtonProps/ButtonProps'
+import { getHeight } from '../../utils/GetDimension'
+
+//states redux
+import { useDispatch } from 'react-redux'
+import { SetHeaderColor,SetProgressValueBar } from '../../slices/AuthSlice'
+
+
+
 const AccountCreationSucess = () => {
+    const dipatch=useDispatch()
     useEffect(() => {
+        dipatch(SetHeaderColor("#27AE60"))
+        dipatch(SetProgressValueBar(1))
         const playSound = async () => {
             const soundObject = new Audio.Sound();
             try {
@@ -21,7 +33,7 @@ const AccountCreationSucess = () => {
         playSound();
         
 
-    })
+    },[dipatch])
 
 
     return (

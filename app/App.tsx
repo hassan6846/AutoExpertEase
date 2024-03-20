@@ -135,7 +135,7 @@ import { Provider, useSelector } from "react-redux"
 const Main = () => {
   const [Auth, SetAuth] = useState(true)
   const progress = useSelector((state: RootState) => state.auth.Progress)
-
+  const activeColor=useSelector((state:RootState)=>state.auth.HeaderColor)//dynamic
   return (
     <NavigationContainer >
 
@@ -175,7 +175,7 @@ const Main = () => {
                 header: () => (
                   <View style={{ width: "100%", height: getHeight / 10, justifyContent: "flex-end", alignItems: "center", backgroundColor: "#fff" }}>
                     <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 12 }}>Get Started</Text>
-                    <LinearProgress variant="determinate" color="#E04E2F" value={progress} trackColor="#d9d9d9" style={{ width: "60%", height: 8, borderRadius: 5 }} />
+                    <LinearProgress variant="determinate" color={activeColor} value={progress} trackColor="#d9d9d9" style={{ width: "60%", height: 8, borderRadius: 5 }} />
                   </View>
                 ),
                 headerShadowVisible: false, headerTitleAlign: "center",

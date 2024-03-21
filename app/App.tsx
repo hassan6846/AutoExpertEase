@@ -4,8 +4,8 @@ const getHeight = Dimensions.get("screen").height
 
 import { StatusBar } from "expo-status-bar"
 import { LinearProgress, Text } from "@rneui/themed"
+import SplashScreen from "expo-splash-screen"
 
-//navigator
 //TabNavigator 
 import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -13,12 +13,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import TabsConfigs from "./configs/TabsConfigs"
 import { BottomNavigator_Height } from "./configs/TabNavigatorConfigs"
 //Stack Navigator
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
+
 import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
-// Tab Navigator
-const Tab = createBottomTabNavigator()
-//Stack Navigator
-const Stack = createStackNavigator()
+const Tab = createBottomTabNavigator()// Tab Navigator
+const Stack = createStackNavigator()//Stack Navigator
 
 
 //TabsMain
@@ -101,10 +99,6 @@ const Main = () => {
               <Stack.Screen name="language" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Change Language", headerShadowVisible: false }} component={SelectLanguage} />
               {/* Expert TabView */}
               <Stack.Screen name="Expert" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ExpertPanel} />
-
-
-
-
             </>
           ) : (
 

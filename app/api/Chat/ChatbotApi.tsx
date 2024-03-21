@@ -1,14 +1,14 @@
-const SendBotMessage = async () => {
+const SendBotMessage = async (prompt:any) => {
     try {
-        const response = await fetch(`https://api.openai.com/v1/threads/${process.env.OPEN_AI_THREADS_KEY}/messages`, {
+        const response = await fetch("http://localhost:4001/api/help/", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.OPEN_AI_TOKEN}`
+                
             },
             body: JSON.stringify(
                
-                { role: "user", content: "How to cook and egg" }
+                {  prompt: prompt }
             )
         });
 
@@ -28,4 +28,4 @@ const SendBotMessage = async () => {
     }
 };
 
-SendBotMessage()
+export default SendBotMessage

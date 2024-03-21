@@ -16,9 +16,11 @@ app.use(express.json())//server is json type.
 //all Routes
 const user = require("./routes/UserRoutes")
 const product = require('./routes/ProductRoutes')
+const chatbot=require('./routes/Chatbot')
 //endpoints middlewares
 app.use("/api", user)
 app.use("/api", product)
+app.use('/api',chatbot)
 module.exports = app
 
 

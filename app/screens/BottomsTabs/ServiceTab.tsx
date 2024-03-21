@@ -14,9 +14,9 @@ import HailingPage from "../Stacks/Auto/nested/HailingPage"
 // Main  Component
 const ServiceTab = () => {
     return (
-        <ServiceStack.Navigator>
+        <ServiceStack.Navigator >
             {/* Inital Route */}
-            <ServiceStack.Screen options={{ headerShown: false }} name="inital_service" component={AutoFixInitalRoute} />
+            <ServiceStack.Screen name="inital_service" component={AutoFixInitalRoute} />
             {/* Task Location */}
             <ServiceStack.Screen name="task_location"
                 options={{
@@ -26,10 +26,10 @@ const ServiceTab = () => {
 
                 component={TaskLocation} />
             {/* Task Description */}
-            <ServiceStack.Screen name="task_description" component={TaskDescription} />
+            <ServiceStack.Screen name="task_description" options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} component={TaskDescription} />
             {/* Simulator Page */}
             <ServiceStack.Screen name="simulator_page" component={SimulatorPage} />
-        
+
 
             {/* Hailing Page */}
             <ServiceStack.Screen name="hailing_page" component={HailingPage} />

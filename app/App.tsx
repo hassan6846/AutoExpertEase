@@ -31,7 +31,7 @@ import ExploreTab from "./screens/BottomsTabs/ExploreTab"
 //Features
 import OfflinePage from "./screens/pages/OfflinePage/OfflinePage"
 import Enrollment from "./screens/pages/Enrollment/Enrollment"
-import LoginPage from "./screens/Authentication/LoginScreen"
+
 import ViewProfileImage from "./screens/Stacks/UserProfile/-nested/ViewProfileImage"
 // Context and Providers
 import ChatSupport from "./screens/Stacks/UserProfile/-nested/Help&Support/ChatSupport"
@@ -41,14 +41,7 @@ import Settings from "./screens/Stacks/UserProfile/-nested/Settings/Settings"
 import ExpertPanel from "./screens/ExpertTabs/ExpertTabMain"
 import Store from "./store/Store"
 import { RootState } from "./interface/AuthInterface"
-
-/**
- * 
- * Async Storage To check if user visited first time or not. 
- */
-//storage
-
-
+import SelectLanguage from "./screens/pages/Localization/SelectLanguage"
 
 
 //HomePage 
@@ -104,6 +97,8 @@ const Main = () => {
               <Stack.Screen name="Support" options={{ headerShown: true, headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
               {/* Settings */}
               <Stack.Screen name="settings" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Settings", headerShadowVisible: false }} component={Settings} />
+              {/* Langauge */}
+              <Stack.Screen name="language" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Change Language", headerShadowVisible: false }} component={SelectLanguage} />
               {/* Expert TabView */}
               <Stack.Screen name="Expert" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ExpertPanel} />
 

@@ -1,3 +1,6 @@
+const User=require("../models/UserModel")
+
+
 //required controllers
 
 //create a listing for product //un approved
@@ -39,6 +42,11 @@ const CreateProductListing = async (req, res, next) => {
 
 
 }
+
+
+
+
+
 
 
 module.exports = { CreateProductListing }

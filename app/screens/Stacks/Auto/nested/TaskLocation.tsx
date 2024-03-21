@@ -6,7 +6,7 @@ import { Button, Input, ListItem, Icon } from "@rneui/themed"
 import CustomButton from '../../../../components/ButtonProps/ButtonProps'
 import ThemeProviderColors from '../../../../provider/ThemeProvider'
 const Height = Dimensions.get("screen").height
-const TaskLocation = () => {
+const TaskLocation = ({ navigation }: { navigation: any }) => {
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: "#fff" }}>
 
@@ -22,7 +22,7 @@ const TaskLocation = () => {
 
         customMapStyle={GoogleMapDesign}
         style={Style.MapStyle} />
-      <Button color={ThemeProviderColors.Light.Primary} containerStyle={Style.BtncontainerStyle} title="Next" />
+      <Button onPress={()=>navigation.navigate('task_description')} color={ThemeProviderColors.Light.Primary} containerStyle={Style.BtncontainerStyle} title="Next" />
       {/* Dropdown Container */}
       <View style={Style.DropdownContainer}>
         <ScrollView style={{ width: '80%', backgroundColor: "red" }}>

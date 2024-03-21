@@ -14,7 +14,7 @@ const Settings = ({ navigation }: { navigation: any }) => {
 
 
 
-<Pressable style={({ pressed }) => [ { backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',},Style.pressableContainer]}>
+<Pressable onPress={()=>navigation.navigate('language')} style={({ pressed }) => [ { backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',},Style.pressableContainer]}>
  
 
 

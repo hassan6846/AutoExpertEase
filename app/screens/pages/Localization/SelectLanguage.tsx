@@ -1,10 +1,11 @@
 // modules
-import { SafeAreaView, ScrollView, KeyboardAvoidingView, StyleSheet, View, TouchableOpacity } from "react-native";
+import { SafeAreaView, ScrollView, KeyboardAvoidingView, StyleSheet, View, Pressable } from "react-native";
 import { useState } from "react";
-import { Text } from "@rneui/themed";
-import CustomButton from "../../../components/ButtonProps/ButtonProps";
+import { Button, Text } from "@rneui/themed";
 import CountryFlag from "react-native-country-flag";
 import * as Localization from "expo-localization" //localization Library
+import { getHeight } from "../../../utils/GetDimension";
+import ThemeProviderColors from "../../../provider/ThemeProvider";
 
 // main void Function
 const SelectLanguage = ({ navigation }: { navigation: any }) => {
@@ -123,7 +124,7 @@ const SelectLanguage = ({ navigation }: { navigation: any }) => {
         <ScrollView >
           {/* Map Language Support Here */}
           {LanguageSupport.map((language, index) => (
-            <TouchableOpacity key={index} style={styles.languageItem}>
+            <Pressable key={index} style={styles.languageItem}>
               <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                 <CountryFlag
                   isoCode={language.iso}
@@ -133,12 +134,12 @@ const SelectLanguage = ({ navigation }: { navigation: any }) => {
                 <Text>{language.countryname}</Text>
               </View>
               <Text>{language.language}</Text>
-            </TouchableOpacity>
+            </Pressable>
           ))}
         </ScrollView>
-
+<Button containerStyle={{position:"absolute",bottom:getHeight/20,width:"100%",}} buttonStyle={{paddingVertical:10}} color={ThemeProviderColors.Light.Primary} title="Change Language"/>
       </SafeAreaView>
-      <CustomButton title="Select Language" />
+      
     </KeyboardAvoidingView>
   );
 };

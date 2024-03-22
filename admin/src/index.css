@@ -3,4 +3,6 @@
 *{
     font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
+  text-decoration: none;
+  list-style: none;
 }

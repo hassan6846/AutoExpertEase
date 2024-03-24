@@ -1,13 +1,30 @@
 import { View, Text, StyleSheet, Alert } from 'react-native'
 import React from 'react'
-import {useFocusEffect} from "@react-navigation/native"
+import {useFocusEffect, useNavigation} from "@react-navigation/native"
 import showAlert from '../../../utils/ShowAlert'
 
-const ExpertHailingPage = () => {
+const ExpertHailingPage = ({navigation}:{navigation:any}) => {
+  const navigator = useNavigation()
   useFocusEffect(
     React.useCallback(() => {
-  
-    }, [])
+
+      Alert.alert(
+        "Alert Title",
+        "Hello",
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              // Redirect to another page here
+              navigation.navigate('expertverify'); // Navigate to AnotherPage
+            }
+          }
+        ]
+      );
+
+
+
+    }, [navigator])
   );
   return (
     <View style={style.container}>

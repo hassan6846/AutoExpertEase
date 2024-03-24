@@ -68,6 +68,7 @@ import { Provider, useSelector } from "react-redux"
 import { Avatar } from "@rneui/base"
 import { ChatbotAvatar } from "./constants/ImagesConstants"
 import HomeTab from "./screens/BottomsTabs/HomeTab"
+import VerficationStack from "./screens/ExpertVerification/initalRoute"
 
 
 
@@ -92,13 +93,19 @@ const Main = () => {
               <Stack.Screen name="ViewProfile" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={ViewProfileImage} />
 
               {/* Chat Support Ai Bot. */}
-              <Stack.Screen name="Support" options={{ headerShown: true, headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
+              <Stack.Screen name="Support" options={{ headerShown: true, headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar overlayContainerStyle={{borderRadius:10}} source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
               {/* Settings */}
               <Stack.Screen name="settings" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Settings", headerShadowVisible: false }} component={Settings} />
               {/* Langauge */}
               <Stack.Screen name="language" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Change Language", headerShadowVisible: false }} component={SelectLanguage} />
               {/* Expert TabView */}
               <Stack.Screen name="Expert" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ExpertPanel} />
+            {/* Expert Verifcation Tab */}
+         
+            <Stack.Screen name="expertverify" options={{ headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={VerficationStack} />
+
+
+
             </>
           ) : (
 

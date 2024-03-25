@@ -11,11 +11,7 @@ import { Text } from "@rneui/themed"
 const ScanFace = () => {
     return (
         <View style={Styles.Container}>
-            <MaskedView
-                maskElement={<View style={Styles.masked} />}
-            >
-                <Text>Walter</Text>
-            </MaskedView>
+
         </View>
     )
 }

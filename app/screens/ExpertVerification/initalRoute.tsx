@@ -12,7 +12,7 @@ import AllDone from "./nested/AllDone"
 const VerficationStack = () => {
     return (
         <Verify.Navigator
-        initialRouteName="scanface"
+        initialRouteName="scancnic"
         screenOptions={{
             cardStyle: {
                 backgroundColor: "#fff",

@@ -31,7 +31,8 @@
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO",
         "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA"
       ],
       "package": "com.autoexpertease.app"
     },

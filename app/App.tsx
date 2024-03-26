@@ -1,7 +1,7 @@
 import "react-native-gesture-handler"
 import { View, Dimensions } from "react-native"
 const getHeight = Dimensions.get("screen").height
-
+import * as Network from "expo-network"
 import { StatusBar } from "expo-status-bar"
 import { LinearProgress, Text } from "@rneui/themed"
 import SplashScreen from "expo-splash-screen"
@@ -33,7 +33,7 @@ import Enrollment from "./screens/pages/Enrollment/Enrollment"
 import ViewProfileImage from "./screens/Stacks/UserProfile/-nested/ViewProfileImage"
 // Context and Providers
 import ChatSupport from "./screens/Stacks/UserProfile/-nested/Help&Support/ChatSupport"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import AuthStack from "./screens/Authentication/LoginStack"
 import Settings from "./screens/Stacks/UserProfile/-nested/Settings/Settings"
 import ExpertPanel from "./screens/ExpertTabs/ExpertTabMain"
@@ -46,20 +46,20 @@ import SelectLanguage from "./screens/pages/Localization/SelectLanguage"
 //Always Add Pages Inside Only Contains Page After logged in or Authentication Ok👍
 function HomePageActivity() {
   return (
-    <Tab.Navigator screenOptions={{tabBarStyle: {height: BottomNavigator_Height,},tabBarShowLabel: false,}} >
+    <Tab.Navigator screenOptions={{ tabBarStyle: { height: BottomNavigator_Height, }, tabBarShowLabel: false, }} >
       {/* Home */}
-      <Tab.Screen name="Home" component={HomeTab}options={{headerShown: false,tabBarIcon: TabsConfigs.Home.Svg,}}/>
+      <Tab.Screen name="Home" component={HomeTab} options={{ headerShown: false, tabBarIcon: TabsConfigs.Home.Svg, }} />
 
       {/* ShopTab */}
-      <Tab.Screen name="Shop"component={EcommerceTab}options={{headerShown: false,tabBarIcon: TabsConfigs.Shop.Svg,}}/>
+      <Tab.Screen name="Shop" component={EcommerceTab} options={{ headerShown: false, tabBarIcon: TabsConfigs.Shop.Svg, }} />
 
       {/* Service Tabs */}
-      <Tab.Screen name="Service" component={ServiceTab} options={{headerShown: false,tabBarIcon: TabsConfigs.Service.Svg}} />
+      <Tab.Screen name="Service" component={ServiceTab} options={{ headerShown: false, tabBarIcon: TabsConfigs.Service.Svg }} />
       {/* Explore More Tabs. */}
       <Tab.Screen
-        component={ExploreTab} name="Inbox" options={{headerShadowVisible: false, tabBarIcon: TabsConfigs.Explore.Svg }}/>
+        component={ExploreTab} name="Inbox" options={{ headerShadowVisible: false, tabBarIcon: TabsConfigs.Explore.Svg }} />
       {/* user ProfilePage */}
-      <Tab.Screen component={ProfileTab}name="Profie"options={{headerTitleAlign: "center",tabBarShowLabel: false,headerShown: false,tabBarIcon: TabsConfigs.Profile.Svg,}}/>
+      <Tab.Screen component={ProfileTab} name="Profie" options={{ headerTitleAlign: "center", tabBarShowLabel: false, headerShown: false, tabBarIcon: TabsConfigs.Profile.Svg, }} />
     </Tab.Navigator>
   )
 }
@@ -76,12 +76,12 @@ const Main = () => {
   const [Auth, SetAuth] = useState(true)
   const progress = useSelector((state: RootState) => state.auth.Progress)
   const activeColor = useSelector((state: RootState) => state.auth.HeaderColor)//dynamic
+  const [isConnected, setIsConnected] = useState<any | null>(false); // Initially, connection status is unknown
+  //check if connected to internet or not
+
   return (
     <NavigationContainer >
-
       <StatusBar style="auto" />
-
-
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {
 
@@ -93,16 +93,16 @@ const Main = () => {
               <Stack.Screen name="ViewProfile" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={ViewProfileImage} />
 
               {/* Chat Support Ai Bot. */}
-              <Stack.Screen name="Support" options={{ headerShown: true, headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar overlayContainerStyle={{borderRadius:10}} source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
+              <Stack.Screen name="Support" options={{ headerShown: true, headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar overlayContainerStyle={{ borderRadius: 10 }} source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
               {/* Settings */}
               <Stack.Screen name="settings" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Settings", headerShadowVisible: false }} component={Settings} />
               {/* Langauge */}
               <Stack.Screen name="language" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Change Language", headerShadowVisible: false }} component={SelectLanguage} />
               {/* Expert TabView */}
               <Stack.Screen name="Expert" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ExpertPanel} />
-            {/* Expert Verifcation Tab */}
-         
-            <Stack.Screen name="expertverify" options={{ headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={VerficationStack} />
+              {/* Expert Verifcation Tab */}
+
+              <Stack.Screen name="expertverify" options={{ headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={VerficationStack} />
 
 
 

@@ -1,4 +1,4 @@
-import { ScrollView,StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
 
 //utils libraries
@@ -6,12 +6,15 @@ import React from 'react'
 import { Text } from '@rneui/base'
 const Home = () => {
   return (
-    <ScrollView style={{flex:1,backgroundColor:"#fff"}}>
+    <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+
 
     </ScrollView>
   )
 }
-const Style=StyleSheet.create({
+const Style = StyleSheet.create({
+  container: {
 
+  }
 })
 export default Home

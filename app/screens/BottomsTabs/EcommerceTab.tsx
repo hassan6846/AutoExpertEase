@@ -121,8 +121,10 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
         component={ShopCategory} />
       {/* Single PRoduct View */}
       <EcommerceStack.Screen
-        name="view"
+      
+      name="view"
         options={{
+
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           headerTitle: "",
           headerShadowVisible: false,

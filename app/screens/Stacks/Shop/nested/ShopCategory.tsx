@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet, ScrollView } from 'react-native';
 import { Text, Avatar } from '@rneui/themed';
 import { AvatarSrc } from '../../../../constants/ImagesConstants';
 
@@ -56,35 +56,20 @@ const ShopCategory = ({ navigation }: { navigation: any }) => {
     ];
 
     return (
-        <FlatList
-            style={Styles.CategoryContainer}
-            data={CategoryApi}
-            renderItem={({ item }) => (
-                <>
-             
-                   <View style={{backgroundColor:"red",flexWrap:"wrap",flexDirection:"row"}}>
-                   <Avatar size={60} source={{uri:AvatarSrc}}/>
+        <ScrollView style={Styles.CategoryContainer}>
 
-                   </View>
-                  
-                            
-                   
-                   
+        </ScrollView>
 
-                </>
-            )}
-            keyExtractor={(item) => item.Title}
-        />
-    );
+    )
 };
 
 // Styles
 const Styles = StyleSheet.create({
     CategoryContainer: {
         flex: 1,
-        backgroundColor:"#fff"
+        backgroundColor: "#fff"
     },
- 
+
 });
 
 

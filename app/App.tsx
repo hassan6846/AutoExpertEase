@@ -69,6 +69,7 @@ import { Avatar } from "@rneui/base"
 import { ChatbotAvatar } from "./constants/ImagesConstants"
 import HomeTab from "./screens/BottomsTabs/HomeTab"
 import VerficationStack from "./screens/ExpertVerification/initalRoute"
+import SellerTabsNavigator from "./screens/SellerTabs/Inital"
 
 
 
@@ -103,6 +104,9 @@ const Main = () => {
               {/* Expert Verifcation Tab */}
 
               <Stack.Screen name="expertverify" options={{ headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={VerficationStack} />
+
+              {/* Seller Tab */}
+              <Stack.Screen name="seller" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={SellerTabsNavigator} />
 
 
 

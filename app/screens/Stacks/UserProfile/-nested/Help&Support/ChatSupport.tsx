@@ -43,7 +43,7 @@ const ChatSupport: React.FC<ChatSupportProps> = () => {
       }
 
       const data = await response.json();
-      const botReply = data.message;
+      const botReply = data.data;
 
       // Add bot's reply to the chat
       setMessages((prevMessages) =>

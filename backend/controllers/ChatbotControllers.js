@@ -2,7 +2,7 @@ const { OpenAI } = require("openai");
 
 const openai = new OpenAI({
     apiKey: process.env.API_KEY || "1RhWaXkJT4tMRGwkzpbUT3BlbkFJ8NnrKthDmAHKSRpvFk34",
-    organization: process.env.ORGANIZATION
+    organization: 'org-7lFdfyXdBpVv2AxrIm7ZWfuW'
 });
 
 const ChatBot = async (req, res, next) => {

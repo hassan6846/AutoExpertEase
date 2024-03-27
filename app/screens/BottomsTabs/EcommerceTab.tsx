@@ -90,12 +90,8 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
           gestureEnabled: true,
-        header:()=>(
-          <View style={{backgroundColor:"red",height:height/12,justifyContent:"center",alignItems:"center"}}>
-          
-          </View>
-        )
-
+          headerTitle:"Search Products",
+          headerTitleAlign:"center"
 
         }}
         component={Search}

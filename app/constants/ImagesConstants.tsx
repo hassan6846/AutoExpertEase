@@ -6,3 +6,5 @@ export const ChatbotAvatar:string="https://img.freepik.com/free-vector/chatbot-c
 export const JazzCash:string="https://i.ibb.co/cY5LVQv/new-jazz-seeklogo.png"
 export const easypaisa:string="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRmiSm3inMnKYdFVMmO3RMZ2vYJjXY-kvjbRlKy7jMsA&s"
 export const bike:string="https://i.pinimg.com/originals/4d/79/c0/4d79c026ce945b90bb5bc934ee857122.jpg"
+export const Sedan:string="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR50c7zJ6thwhrSfFySGSrz7NkltNaYRdGGcs5HxFQziA&s"
+export const truck:string='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Na4HzxrVmLH1aFojLMHcayu6Z1ung8uyvmeEMmidbA&s'

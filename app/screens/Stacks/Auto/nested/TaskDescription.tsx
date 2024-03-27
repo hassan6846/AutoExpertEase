@@ -6,7 +6,7 @@ import ThemeProviderColors from '../../../../provider/ThemeProvider'
 import { Avatar, Icon, } from '@rneui/base'
 import { bike,Sedan,truck } from '../../../../constants/ImagesConstants'
 
-const TaskDescription = () => {
+const TaskDescription = ({navigation}:{navigation:any}) => {
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
       <LinearProgress trackColor={ThemeProviderColors.Light.Primary} />
@@ -30,12 +30,12 @@ const TaskDescription = () => {
         {/* Upload Video */}
         <View style={{backgroundColor:"red",paddingHorizontal:10,height:getHeight/5,marginTop:10,marginBottom:12,justifyContent:"center",alignItems:"center"}}>
          <Text>Upload Media Image or Video</Text>
-        <Icon type='material' name='upload'/>
+        <Icon type='material' name='publish'/>
         </View>
         {/* Upload media Ends */}
         {/* Vehicle ended */}
         <Input labelStyle={{ marginBottom: 4 }} multiline inputContainerStyle={{ borderBottomWidth: 0, backgroundColor: "#e5e5e5", borderRadius: 5 }} inputStyle={Styles.input} label="Description" numberOfLines={10} />
-        <Button color={ThemeProviderColors.Light.Primary} title="Post Now" />
+        <Button onPress={navigation.navigate("hailing_page")} color={ThemeProviderColors.Light.Primary} title="Post Now" />
       </ScrollView>
     </KeyboardAvoidingView>
   )

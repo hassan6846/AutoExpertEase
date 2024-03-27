@@ -8,3 +8,8 @@ export const easypaisa:string="https://encrypted-tbn0.gstatic.com/images?q=tbn:A
 export const bike:string="https://i.pinimg.com/originals/4d/79/c0/4d79c026ce945b90bb5bc934ee857122.jpg"
 export const Sedan:string="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR50c7zJ6thwhrSfFySGSrz7NkltNaYRdGGcs5HxFQziA&s"
 export const truck:string='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Na4HzxrVmLH1aFojLMHcayu6Z1ung8uyvmeEMmidbA&s'
+
+// Text
+export const DrvingVideoImage:string="https://i.ytimg.com/vi/foG63Eo2cEc/maxresdefault.jpg"
+export const pakImage:string="https://i.ytimg.com/vi/y2P53AmsflI/maxresdefault.jpg"
+export const pakleasson:string="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6G-eAmlLoGNEtFHF6Qf-Qq6HPIRLJ0u0BX4YXQbZ4up_WSQPNn6OTRB1TgUK7ZwK2YQc&usqp=CAU"

@@ -26,13 +26,15 @@ const ServiceTab = () => {
 
                 component={TaskLocation} />
             {/* Task Description */}
-            <ServiceStack.Screen name="task_description" options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} component={TaskDescription} />
+            <ServiceStack.Screen name="task_description" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={TaskDescription} />
+
+            {/* Hailing Page */}
+            <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} name="hailing_page" component={HailingPage} />
             {/* Simulator Page */}
             <ServiceStack.Screen name="simulator_page" component={SimulatorPage} />
 
 
-            {/* Hailing Page */}
-            <ServiceStack.Screen name="hailing_page" component={HailingPage} />
+
 
         </ServiceStack.Navigator>
     )

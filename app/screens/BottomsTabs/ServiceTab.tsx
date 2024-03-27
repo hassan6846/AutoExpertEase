@@ -31,7 +31,7 @@ const ServiceTab = () => {
             {/* Hailing Page */}
             <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} name="hailing_page" component={HailingPage} />
             {/* Simulator Page */}
-            <ServiceStack.Screen name="simulator_page" component={SimulatorPage} />
+            <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }}  name="simulator_page" component={SimulatorPage} />
 
 
 

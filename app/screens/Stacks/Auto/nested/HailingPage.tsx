@@ -36,7 +36,7 @@ const HailingPage = ({ navigation }: { navigation: any }) => {
             {/* Buttons */}
             <View style={{ flexDirection: 'row' }}>
               <Button title="Decline" />
-              <Button color={ThemeProviderColors.Light.Primary} buttonStyle={{ marginLeft: 5 }} title="Accept" />
+              <Button onPress={()=>navigation.navigate('simulator_page')} color={ThemeProviderColors.Light.Primary} buttonStyle={{ marginLeft: 5 }} title="Accept" />
             </View>
             {/* Buttons */}
           </View>

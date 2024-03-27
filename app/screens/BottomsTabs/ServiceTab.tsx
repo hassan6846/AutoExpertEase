@@ -10,6 +10,7 @@ import TaskLocation from "../Stacks/Auto/nested/TaskLocation"
 import TaskDescription from "../Stacks/Auto/nested/TaskDescription"
 import SimulatorPage from "../Stacks/Auto/nested/SimulatorPage"
 import HailingPage from "../Stacks/Auto/nested/HailingPage"
+import ChatExpert from "../Stacks/Auto/nested/ChatExpert"
 
 // Main  Component
 const ServiceTab = () => {
@@ -33,6 +34,7 @@ const ServiceTab = () => {
             {/* Simulator Page */}
             <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }}  name="simulator_page" component={SimulatorPage} />
 
+            <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }}  name="chat_expert" component={ChatExpert} />
 
 
 

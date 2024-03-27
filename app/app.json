@@ -20,7 +20,8 @@
         "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your Camera.",
         "NSMicrophoneUsageDescription": "$(PRODUCT_NAME) needs access to your Microphone.",
         "NSUserTrackingUsageDescription": "Allow this app to collect app-related data that can be used for tracking you or your device."
-      }
+      },
+      "bundleIdentifier": "com.autoexpertease.app"
     },
     "android": {
       "adaptiveIcon": {

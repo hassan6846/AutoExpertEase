@@ -3,13 +3,13 @@ import React from 'react'
 import { getHeight } from '../../../../utils/GetDimension'
 import { Input, LinearProgress, Text, Button } from '@rneui/themed'
 import ThemeProviderColors from '../../../../provider/ThemeProvider'
-import { Avatar, } from '@rneui/base'
+import { Avatar, Icon, } from '@rneui/base'
 import { bike,Sedan,truck } from '../../../../constants/ImagesConstants'
 
 const TaskDescription = () => {
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
-      <LinearProgress />
+      <LinearProgress trackColor={ThemeProviderColors.Light.Primary} />
       <ScrollView style={Styles.container}>
 
         {/* Input */}
@@ -28,7 +28,10 @@ const TaskDescription = () => {
         </ScrollView>
 
         {/* Upload Video */}
-
+        <View style={{backgroundColor:"red",paddingHorizontal:10,height:getHeight/5,marginTop:10,marginBottom:12,justifyContent:"center",alignItems:"center"}}>
+         <Text>Upload Media Image or Video</Text>
+        <Icon type='material' name='upload'/>
+        </View>
         {/* Upload media Ends */}
         {/* Vehicle ended */}
         <Input labelStyle={{ marginBottom: 4 }} multiline inputContainerStyle={{ borderBottomWidth: 0, backgroundColor: "#e5e5e5", borderRadius: 5 }} inputStyle={Styles.input} label="Description" numberOfLines={10} />

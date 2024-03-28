@@ -1,5 +1,9 @@
 const mongoose = require("mongoose")
+
+
 const User = require("./UserModel")
+
+
 const ProductSchema = new mongoose.Schema({
 
     name: {
@@ -97,6 +101,9 @@ const ProductSchema = new mongoose.Schema({
         type:String,
         required:false,
         default:"unactive"
+    },
+    PostedBy:{
+        
     }
 
 })

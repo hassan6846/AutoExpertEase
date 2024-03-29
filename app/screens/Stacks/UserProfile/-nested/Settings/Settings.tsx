@@ -23,7 +23,25 @@ const Settings = ({ navigation }: { navigation: any }) => {
                 </ListItem.Content>
                 <ListItem.Chevron/>
                     </Pressable>
+                    <Pressable onPress={()=>navigation.navigate('language')} style={({ pressed }) => [ { backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',},Style.pressableContainer]}>
+ 
 
+
+ <ListItem.Content>
+     <ListItem.Title >Language</ListItem.Title>
+ </ListItem.Content>
+ <ListItem.Chevron/>
+     </Pressable>
+     
+     <Pressable onPress={()=>navigation.navigate('language')} style={({ pressed }) => [ { backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',},Style.pressableContainer]}>
+ 
+
+
+ <ListItem.Content>
+     <ListItem.Title >Language</ListItem.Title>
+ </ListItem.Content>
+ <ListItem.Chevron/>
+     </Pressable>
 
 {/* DarkTheme toggle */}
 <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',},Style.pressableContainer]}>
@@ -36,7 +54,10 @@ const Settings = ({ navigation }: { navigation: any }) => {
             <Switch/>
                     </Pressable>
 
+{/* Show The Expert Tab Navigation If user is a Expert Else not */}
 
+
+{/* Show The Shop Dashboard if he is vendor  */}
 
         </ScrollView>
     )

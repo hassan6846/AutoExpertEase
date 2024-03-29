@@ -1,7 +1,7 @@
 import { View, StyleSheet, Dimensions, ScrollView, Pressable } from "react-native";
 import { useState } from "react";
 import ThemeProviderColors from "../../../../provider/ThemeProvider"; // color provider
-import { Text, Button, Avatar, Icon, BottomSheet, ListItem } from "@rneui/themed";
+import { Text, Button, Avatar, Icon,} from "@rneui/themed";
 import { Image } from "expo-image";
 
 // Get width
@@ -50,7 +50,9 @@ const CartPage = ({ navigation }: { navigation: any }) => {
     <View style={{ flex: 1 }}>
       <ScrollView style={{backgroundColor:"#fff"}} contentContainerStyle={{ padding: 20,backgroundColor:"#fff"}}>
         
-{/* ALl Cards */}
+{/* ALl Cards  ScrollView Please Map All The cart from redux here*/}
+
+<ScrollView style={{flex:1,backgroundColor:"#fff"}}>
 
       <View style={{ paddingHorizontal: 10, flexDirection: "row", rowGap: 5, marginBottom: 5 }}>
                         <Avatar containerStyle={{ height: GetHeight / 8, width: getwidth / 3.5 }} overlayContainerStyle={{ borderRadius: 5 }} source={{ uri: "https://res.cloudinary.com/diml3oeaw/image/upload/v1709877092/AutoExpertEase/vfjk9tvvg4vlkvqzaqfc.webp" }} />
@@ -85,14 +87,15 @@ const CartPage = ({ navigation }: { navigation: any }) => {
                     </View>
                     
 
+                    </ScrollView>
 
             
 
 {/* ALl Cards */}
       </ScrollView>
       {/* Checkout Button */}
-<View style={{position: "absolute",bottom: 10,alignSelf: "center",width:"100%",justifyContent:"flex-end",backgroundColor:"#fff",paddingHorizontal:20,borderRadius:5,paddingVertical:10,elevation:5}}>
- 
+<View style={{alignSelf: "center",width:"100%",justifyContent:"flex-end",backgroundColor:"#fff",paddingHorizontal:20,paddingVertical:10,elevation:5}}>
+
 {/* Delivery TImeBanner */}
 <View style={{flexDirection:"row",alignItems:"center",paddingHorizontal:10,paddingVertical:20}}>
     <Icon size={30} type="material" name="local-shipping"/>
@@ -101,6 +104,7 @@ const CartPage = ({ navigation }: { navigation: any }) => {
 <Text h4 style={{marginLeft:5}}>Just 1 Working Day</Text>
 </View>
 </View>
+
 {/* Sub total Starts */}
     <View style={{flexDirection:"row",justifyContent:"space-between",marginBottom:10}}>
         <Text>SubTotal</Text>

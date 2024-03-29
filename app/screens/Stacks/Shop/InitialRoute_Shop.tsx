@@ -1,19 +1,19 @@
-import { View, StyleSheet, Pressable, FlatList, Dimensions, ScrollView } from "react-native"
+import { View, StyleSheet, Pressable, FlatList, Dimensions, ScrollView, SafeAreaView } from "react-native"
 import { Text, Icon, Skeleton, Avatar, ButtonGroup, Button } from "@rneui/themed"
 import ThemeProviderColors from "../../../provider/ThemeProvider"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { AvatarSrc } from "../../../constants/ImagesConstants"
-import {useState} from "react"
+import { useState } from "react"
 const GetWidth = Dimensions.get("screen").width
-const GetHeight=Dimensions.get("screen").height
+const GetHeight = Dimensions.get("screen").height
 const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
 
     // States
-      const [selectedBannerIndex,SetselectedBannerIndex]=useState(0)
-     //Handle Click Banner dispach
-     const handleImageClick = (index:any) => {
+    const [selectedBannerIndex, SetselectedBannerIndex] = useState(0)
+    //Handle Click Banner dispach
+    const handleImageClick = (index: any) => {
         SetselectedBannerIndex(index);
-      };
+    };
 
     const CategoryImageUrls = [
         {
@@ -54,119 +54,121 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
 
     ]
     // Banners Urls
-    const BannerUrls=[
+    const BannerUrls = [
         "https://res.cloudinary.com/diml3oeaw/image/upload/v1709872959/omcjgurvprtsblfgt3hp.png",
-         AvatarSrc,
-         "https://res.cloudinary.com/diml3oeaw/image/upload/v1709872959/omcjgurvprtsblfgt3hp.png"
+        AvatarSrc,
+        "https://res.cloudinary.com/diml3oeaw/image/upload/v1709872959/omcjgurvprtsblfgt3hp.png"
     ]
     return (
-        <ScrollView style={Styles.InitialShopContainer}>
-            {/* SaleBanner */}
-            <Avatar 
-            overlayContainerStyle={{borderRadius:5}}
-            containerStyle={{width:"100%",height:GetHeight/5}}
-            source={{uri:BannerUrls[selectedBannerIndex]}}
-            />
-            <View style={{width:"100%",height:30,display:"flex",justifyContent:"center",alignItems:'center',flexDirection:"row",columnGap:-5}}>
-            {BannerUrls.map((url, index) => (
-          <TouchableOpacity key={index} onPress={() => handleImageClick(index)}>
-            <View
-              style={{
-                width: index===selectedBannerIndex?15:7,
-                height: 7,
-                backgroundColor: index === selectedBannerIndex ? ThemeProviderColors.Light.Primary : 'lightgray',
-                borderRadius: 5,
-                marginHorizontal: 5,
-              }}
-            />
-          </TouchableOpacity>
-        ))}
-            </View>
-            {/* Text  header*/}
-            <View style={{ display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", elevation: 5 }}>
-                <Text h4>Categories</Text>
-                <Pressable onPress={() => navigation.navigate("Category")} style={{ display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "center" }}><Text style={Styles.NavigateText}>See all </Text><Icon color={ThemeProviderColors.Light.Primary} name="navigate-next" type="material" /></Pressable>
-            </View>
-            {/* Flatlist Slider Cateogry Bar */}
-            <FlatList style={{ flexGrow: 0 }}
-                renderItem={({ item }) => (
-                    <TouchableOpacity  >
-                        <View style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                            <Avatar rounded={true} size={90} source={{ uri: item.image }} />
-                            <Text>{item.name}</Text>
-                        </View>
-                    </TouchableOpacity>
-                )}
-                horizontal={true}
-                ItemSeparatorComponent={() => <View style={{ width: 5 }} />}
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={(item, index) => index.toString()}
-                data={CategoryImageUrls} />
-            {/* Support Local Seller */}
-
-            <Avatar
-                containerStyle={{ height: 120, width: "100%", marginTop: 6, display: "flex", justifyContent: "center", position: "relative" }}
-                overlayContainerStyle={{ borderRadius: 5 }}
-                source={{ uri: "https://res.cloudinary.com/diml3oeaw/image/upload/v1709488091/AutoExpertEase/Assets/Shop/cr4zkt0b78cflja4f4vp.png" }}
-            >
-                {/* Center the inner Avatar */}
-                <View style={{ alignSelf: 'center', position: "absolute", backgroundColor: "", width: "100%", height: "100%", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly", }}>
-                    <View style={{ display: "flex", flexDirection: "column", height: "100%", justifyContent: "center", backgroundColor: "" }}>
-                        <Text style={{ fontSize: 18, marginBottom: 5, color: "white", fontWeight: "500" }}>Support Local Seller</Text>
-                        <Text style={{ fontSize: 12, color: "white" }}>Browse the Products Nearby You.</Text>
-                    </View>
-                    {/* Avatar */}
-                    <Avatar
-                        overlayContainerStyle={{ borderRadius: 5 }}
-                        size={100} source={{ uri: "https://res.cloudinary.com/diml3oeaw/image/upload/v1709489077/AutoExpertEase/Assets/Shop/e07e5faoebunxex7zfb5.png" }} />
+        < >
+            <ScrollView style={Styles.InitialShopContainer}>
+                {/* SaleBanner */}
+                <Avatar
+                    overlayContainerStyle={{ borderRadius: 5 }}
+                    containerStyle={{ width: "100%", height: GetHeight / 5 }}
+                    source={{ uri: BannerUrls[selectedBannerIndex] }}
+                />
+                <View style={{ width: "100%", height: 30, display: "flex", justifyContent: "center", alignItems: 'center', flexDirection: "row", columnGap: -5 }}>
+                    {BannerUrls.map((url, index) => (
+                        <TouchableOpacity key={index} onPress={() => handleImageClick(index)}>
+                            <View
+                                style={{
+                                    width: index === selectedBannerIndex ? 15 : 7,
+                                    height: 7,
+                                    backgroundColor: index === selectedBannerIndex ? ThemeProviderColors.Light.Primary : 'lightgray',
+                                    borderRadius: 5,
+                                    marginHorizontal: 5,
+                                }}
+                            />
+                        </TouchableOpacity>
+                    ))}
                 </View>
-            </Avatar>
-            {/* Support Local Seller Ends */}
-            {/* Sale Bar */}
-            <FlatList
-                keyExtractor={(item, index) => index.toString()}
-                showsVerticalScrollIndicator={false}
-                renderItem={({ item }) => (
-                
-                    <TouchableOpacity >
-                        <Avatar rounded={true} size={GetWidth / 5} source={{ uri: item }} />
-                    </TouchableOpacity>
-                )}
-                contentContainerStyle={{ justifyContent: "space-between", columnGap: 2, alignItems: "center", flex: 1, padding: 10 }}
-                data={PriceRangeFilter}
-                style={{ flexGrow: 0 }}
-                horizontal={true} />
-            {/* Sale Bar Ends */}
-            {/* Product Infinite Scroll Element */}
-            <Text style={{ marginLeft: 14 }} h4>Browse Product</Text>
-            {/* FilterBar */}
-            <FlatList
-                style={Styles.ProductInfiniteScroll}
-                initialNumToRender={6}
-                data={Product}
-                keyExtractor={(item, index) => index.toString()}
+                {/* Text  header*/}
+                <View style={{ display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", elevation: 5 }}>
+                    <Text h4>Categories</Text>
+                    <Pressable onPress={() => navigation.navigate("Category")} style={{ display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "center" }}><Text style={Styles.NavigateText}>See all </Text><Icon color={ThemeProviderColors.Light.Primary} name="navigate-next" type="material" /></Pressable>
+                </View>
+                {/* Flatlist Slider Cateogry Bar */}
+                <FlatList style={{ flexGrow: 0 }}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity  >
+                            <View style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                <Avatar rounded={true} size={90} source={{ uri: item.image }} />
+                                <Text>{item.name}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
+                    horizontal={true}
+                    ItemSeparatorComponent={() => <View style={{ width: 5 }} />}
+                    showsHorizontalScrollIndicator={false}
+                    keyExtractor={(item, index) => index.toString()}
+                    data={CategoryImageUrls} />
+                {/* Support Local Seller */}
 
-                renderItem={({ item }) => (
-                    <View style={{ width: GetWidth * 0.34, display: "flex", flexDirection: "column", }} >
-                        <Avatar onPress={()=>navigation.navigate("view")} containerStyle={{ width: "100%", height: 180, borderRadius: 3, }} avatarStyle={{ objectFit: "contain", width: '100%' }} source={{ uri: item.image }} />
-                        <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                            <Text style={{ fontSize: 16, fontWeight: "900", marginTop: 4 }}>{item.price} {""}Rs</Text>
-                            <Text style={{ textDecorationLine: "line-through", fontSize: 12, color: "red", marginLeft: 5 }}>{item.priceBefore}</Text>
+                <Avatar
+                    containerStyle={{ height: 120, width: "100%", marginTop: 6, display: "flex", justifyContent: "center", position: "relative" }}
+                    overlayContainerStyle={{ borderRadius: 5 }}
+                    source={{ uri: "https://res.cloudinary.com/diml3oeaw/image/upload/v1709488091/AutoExpertEase/Assets/Shop/cr4zkt0b78cflja4f4vp.png" }}
+                >
+                    {/* Center the inner Avatar */}
+                    <View style={{ alignSelf: 'center', position: "absolute", backgroundColor: "", width: "100%", height: "100%", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly", }}>
+                        <View style={{ display: "flex", flexDirection: "column", height: "100%", justifyContent: "center", backgroundColor: "" }}>
+                            <Text style={{ fontSize: 18, marginBottom: 5, color: "white", fontWeight: "500" }}>Support Local Seller</Text>
+                            <Text style={{ fontSize: 12, color: "white" }}>Browse the Products Nearby You.</Text>
                         </View>
-                        <Text style={{ fontSize: 14, fontWeight: "500", padding: 4 }}>{item.Title}</Text>
-                        <Button titleStyle={{ fontSize: 12 }} buttonStyle={{ marginTop: 3, }} color={ThemeProviderColors.Light.Primary} title="Add to Cart" />
+                        {/* Avatar */}
+                        <Avatar
+                            overlayContainerStyle={{ borderRadius: 5 }}
+                            size={100} source={{ uri: "https://res.cloudinary.com/diml3oeaw/image/upload/v1709489077/AutoExpertEase/Assets/Shop/e07e5faoebunxex7zfb5.png" }} />
                     </View>
-               
-                )}
-            />
-        </ScrollView>
+                </Avatar>
+                {/* Support Local Seller Ends */}
+                {/* Sale Bar */}
+                <FlatList
+                    keyExtractor={(item, index) => index.toString()}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({ item }) => (
+
+                        <TouchableOpacity >
+                            <Avatar rounded={true} size={GetWidth / 5} source={{ uri: item }} />
+                        </TouchableOpacity>
+                    )}
+                    contentContainerStyle={{ justifyContent: "space-between", columnGap: 2, alignItems: "center", flex: 1, padding: 10 }}
+                    data={PriceRangeFilter}
+                    style={{ flexGrow: 0 }}
+                    horizontal={true} />
+                {/* Sale Bar Ends */}
+                {/* Product Infinite Scroll Element */}
+                <Text style={{ marginLeft: 14 }} h4>Browse Product</Text>
+                {/* FilterBar */}
+                <FlatList
+                    style={Styles.ProductInfiniteScroll}
+                    initialNumToRender={6}
+                    data={Product}
+                    keyExtractor={(item, index) => index.toString()}
+
+                    renderItem={({ item }) => (
+                        <View style={{ width: GetWidth * 0.34, display: "flex", flexDirection: "column", }} >
+                            <Avatar onPress={() => navigation.navigate("view")} containerStyle={{ width: "100%", height: 180, borderRadius: 3, }} avatarStyle={{ objectFit: "contain", width: '100%' }} source={{ uri: item.image }} />
+                            <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                                <Text style={{ fontSize: 16, fontWeight: "900", marginTop: 4 }}>{item.price} {""}Rs</Text>
+                                <Text style={{ textDecorationLine: "line-through", fontSize: 12, color: "red", marginLeft: 5 }}>{item.priceBefore}</Text>
+                            </View>
+                            <Text style={{ fontSize: 14, fontWeight: "500", padding: 4 }}>{item.Title}</Text>
+                            <Button titleStyle={{ fontSize: 12 }} buttonStyle={{ marginTop: 3, }} color={ThemeProviderColors.Light.Primary} title="Add to Cart" />
+                        </View>
+
+                    )}
+                />
+            </ScrollView>
+        </>
     )
 }
 // StyleSheet
 const Styles = StyleSheet.create({
     InitialShopContainer: {
         padding: 20,
-   
+
         flex: 1,
         backgroundColor: "#fff"
     },
@@ -177,10 +179,11 @@ const Styles = StyleSheet.create({
     // Main
     ProductInfiniteScroll: {
         flex: 1,
-        marginBottom:GetHeight/20,
+
         display: "flex",
         width: "100%",
         height: "100%",
+        marginBottom: GetHeight / 20,
 
 
     }

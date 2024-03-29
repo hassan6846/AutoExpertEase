@@ -88,6 +88,7 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
         name="Search"
 
         options={{
+          headerShown:false,
           cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
           gestureEnabled: true,
           headerTitle:"Search Products",

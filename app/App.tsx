@@ -89,10 +89,11 @@ const Main = () => {
   const progress = useSelector((state: RootState) => state.auth.Progress)
   const activeColor = useSelector((state: RootState) => state.auth.HeaderColor)//dynamic
   const [isConnected, setIsConnected] = useState<any | null>(false); // Initially, connection status is unknown
-  const navigate=useNavigation()
+
   //useEffect to CHeck on Appload
   useEffect(()=>{
 
+     
   })
 
   return (

@@ -8,39 +8,29 @@ const Search = ({ navigation }: { navigation: any }) => {
   const [searchTerm,setSearchTerm]=useState("")
   const [searchResults,setSearchResults]=useState([])
 
-const fetcSearchResults=async()=>{
-  try {
-    const response = await fetch(
-      `https://dummyjson.com/products/search?q=${searchTerm}`
-    );
-    const data = await response.json();
-    setSearchResults(data);
-  } catch (error) {
-    console.error("Error fetching search results:", error);
-  }
-}
 
-useFocusEffect(
-  React.useCallback(() => {
-    if (searchTerm.trim() !== "") {
-      fetcSearchResults();
-    }
-  }, [searchTerm])
-);
+
+
   const handleSearchTermChange = (text: string) => {
     setSearchTerm(text);
   };
+  
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "#fff", width: "100%" }}>
 
 
-      <View style={{ height: getHeight / 10, justifyContent:"flex-end",alignItems:"center"}}>
+      <View style={{ height:getHeight/10,flexDirection:"row",justifyContent:"center",alignItems:"flex-end",paddingHorizontal:20}}>
+   <Pressable onPress={()=>navigation.navigate("ShopContainer")} style={({pressed})=>[
+{    alignSelf:"center",padding:10,borderRadius:70,backgroundColor:pressed?'rgb(250, 250, 255)' : 'white'}
+   ]}>
+    <Icon name="arrow-back"/>
+   </Pressable>
         <Input onChangeText={handleSearchTermChange} value={searchTerm} inputContainerStyle={SearchStyles.InputVoid} inputStyle={SearchStyles.InputMain} containerStyle={SearchStyles.InputCont} placeholder="Search Anything" />
       </View>
 
-      {/* StartPressable */}
-{
-  searchResults.map((result,index)=>(
+
+
+  
     <Pressable style={({ pressed }) => [
       SearchStyles.SearchList,
       {
@@ -49,14 +39,14 @@ useFocusEffect(
     ]}>
       <View style={{ display: "flex", flexDirection: "row", alignItems: "center", }}>
         <Icon name="search" type="material" style={{ marginRight: 10 }} />
-        <Text>{result}</Text>
+        <Text>Product</Text>
       </View>
       <Icon size={14} name="north-west" type="material" />
 
     </Pressable>
 
-  ))
-}
+
+
 <Text>{searchResults}</Text>
       {/* End of pressable */}
     </ScrollView>

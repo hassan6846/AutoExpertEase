@@ -1,6 +1,6 @@
 import "react-native-gesture-handler"
 import { View, Dimensions } from "react-native"
-import { useState } from "react"
+import { useState,useEffect} from "react"
 ///sdks
 import * as Network from "expo-network"
 import { StatusBar } from "expo-status-bar"
@@ -14,7 +14,7 @@ import Store from "./store/Store"
 import { RootState } from "./interface/AuthInterface"
 import { ChatbotAvatar } from "./constants/ImagesConstants"
 //TabNavigator 
-import { NavigationContainer } from "@react-navigation/native"
+import { NavigationContainer, useNavigation } from "@react-navigation/native"
 import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
 const Stack = createStackNavigator()//Stack Navigator
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -89,7 +89,11 @@ const Main = () => {
   const progress = useSelector((state: RootState) => state.auth.Progress)
   const activeColor = useSelector((state: RootState) => state.auth.HeaderColor)//dynamic
   const [isConnected, setIsConnected] = useState<any | null>(false); // Initially, connection status is unknown
-  //check if connected to internet or not
+  const navigate=useNavigation()
+  //useEffect to CHeck on Appload
+  useEffect(()=>{
+
+  })
 
   return (
     <NavigationContainer >
@@ -156,7 +160,7 @@ const Main = () => {
 
 //Main       
 export default function App() {
-
+ 
 
   return (
     <Provider store={Store}>

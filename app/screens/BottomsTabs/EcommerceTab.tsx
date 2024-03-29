@@ -36,9 +36,9 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
       {/* Inital Route */}
       <EcommerceStack.Screen
         name="ShopContainer"
-      
+
         options={{
-headerTitle:"",
+          headerTitle: "",
           headerShadowVisible: false,
           headerRight: () => (
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", columnGap: 5, marginRight: 13 }}>
@@ -106,7 +106,7 @@ headerTitle:"",
       <EcommerceStack.Screen
         name="searchresults"
         options={{
-          headerShown:false,
+          headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
           gestureEnabled: true,
           headerShadowVisible: false

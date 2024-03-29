@@ -120,8 +120,9 @@ const openCamera=async()=>{
                         </ListItem.Content>
                         <ListItem.Chevron size={18} />
                     </Pressable>
+
                     {/*  */}
-                    <Pressable style={({ pressed }) => [
+                    <Pressable onPress={()=>navigation.navigate("orders")} style={({ pressed }) => [
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                         },
@@ -134,6 +135,7 @@ const openCamera=async()=>{
                         <ListItem.Chevron size={18} />
                     </Pressable>
                     {/*  */}
+
                     <Pressable style={({ pressed }) => [
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',

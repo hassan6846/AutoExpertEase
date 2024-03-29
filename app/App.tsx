@@ -1,6 +1,6 @@
 import "react-native-gesture-handler"
 import { View, Dimensions } from "react-native"
-import { useState,useEffect} from "react"
+import { useState, useEffect } from "react"
 ///sdks
 import * as Network from "expo-network"
 import { StatusBar } from "expo-status-bar"
@@ -8,7 +8,7 @@ import SplashScreen from "expo-splash-screen"
 import { Provider, useSelector } from "react-redux"
 
 //libraries /utils
-import { LinearProgress, Text,Avatar} from "@rneui/themed"
+import { LinearProgress, Text, Avatar } from "@rneui/themed"
 const getHeight = Dimensions.get("screen").height
 import Store from "./store/Store"
 import { RootState } from "./interface/AuthInterface"
@@ -51,13 +51,14 @@ import AuthStack from "./screens/Authentication/LoginStack"
 import ExpertPanel from "./screens/ExpertTabs/ExpertTabMain"
 import VerficationStack from "./screens/ExpertVerification/initalRoute"
 import SellerTabsNavigator from "./screens/SellerTabs/Inital"
+import TrackOrders from "./screens/pages/OrderTracking/TrackOrders"
 
 
 
 //HomePage 
 //Always Add Pages Inside Only Contains Page After logged in or Authentication Ok👍
 function HomePageActivity() {
-  
+
   return (
     <Tab.Navigator screenOptions={{ tabBarStyle: { height: BottomNavigator_Height, }, tabBarShowLabel: false, }} >
       {/* Home */}
@@ -91,9 +92,9 @@ const Main = () => {
   const [isConnected, setIsConnected] = useState<any | null>(false); // Initially, connection status is unknown
 
   //useEffect to CHeck on Appload
-  useEffect(()=>{
+  useEffect(() => {
 
-     
+
   })
 
   return (
@@ -108,9 +109,11 @@ const Main = () => {
 
               {/* ProfileView */}
               <Stack.Screen name="ViewProfile" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={ViewProfileImage} />
+              {/* TrackOrders */}
+              <Stack.Screen name="orders" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={TrackOrders} />
 
               {/* Chat Support Ai Bot. */}
-              <Stack.Screen name="Support" options={{ headerShown: true, headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar overlayContainerStyle={{ borderRadius: 10 }} source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
+              <Stack.Screen name="Support" options={{  headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar overlayContainerStyle={{ borderRadius: 10 }} source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
               {/* Settings */}
               <Stack.Screen name="settings" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Settings", headerShadowVisible: false }} component={Settings} />
               {/* Langauge */}
@@ -161,7 +164,7 @@ const Main = () => {
 
 //Main       
 export default function App() {
- 
+
 
   return (
     <Provider store={Store}>

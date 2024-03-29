@@ -1,7 +1,10 @@
 import { View, StyleSheet, Dimensions, ScrollView, Pressable } from "react-native";
 import { useState } from "react";
-import ThemeProviderColors from "../../../../provider/ThemeProvider"; // color provider
+
+// utils
+import ThemeProviderColors from "../../../../provider/ThemeProvider"; 
 import { Text, Button, Avatar, Icon,} from "@rneui/themed";
+//sdks
 import { Image } from "expo-image";
 
 // Get width

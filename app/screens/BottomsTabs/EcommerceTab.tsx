@@ -1,5 +1,5 @@
-import { Pressable, View,Dimensions } from "react-native"
-const height=Dimensions.get("screen").height
+import { Pressable, View, Dimensions } from "react-native"
+const height = Dimensions.get("screen").height
 import { Icon, SearchBar, Text, Badge } from "@rneui/themed"
 // Navigation
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack"
@@ -26,6 +26,7 @@ import CartPage from "../Stacks/Shop/nested/CartPage"
 import ShopCategory from "../Stacks/Shop/nested/ShopCategory"
 import Search from "../Stacks/Shop/nested/SearchPage"
 import ProductViewPage from "../Stacks/Shop/nested/ProductViewPage"
+import SearchResults from "../Stacks/Shop/nested/SearchResults"
 
 
 const EcommerceTab = ({ navigation }: { navigation: any }) => {
@@ -36,7 +37,7 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
       <EcommerceStack.Screen
         name="ShopContainer"
         options={{
-         
+
           headerShadowVisible: false,
           headerRight: () => (
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", columnGap: 5, marginRight: 13 }}>
@@ -88,18 +89,28 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
         name="Search"
 
         options={{
-          headerShown:false,
+          headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
           gestureEnabled: true,
-          headerTitle:"Search Products",
-          headerTitleAlign:"center"
+          headerTitle: "Search Products",
+          headerTitleAlign: "center"
 
         }}
         component={Search}
-    
+
 
 
       />
+      {/* Search Results */}
+      <EcommerceStack.Screen
+        name="searchresults"
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          gestureEnabled: true,
+          headerShadowVisible: false
+        }}
+
+        component={SearchResults} />
 
       {/*CartPage  */}
       <EcommerceStack.Screen
@@ -118,8 +129,8 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
         component={ShopCategory} />
       {/* Single PRoduct View */}
       <EcommerceStack.Screen
-      
-      name="view"
+
+        name="view"
         options={{
 
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,

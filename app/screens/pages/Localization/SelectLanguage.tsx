@@ -6,11 +6,14 @@ import CountryFlag from "react-native-country-flag";
 import * as Localization from "expo-localization" //localization Library
 import { getHeight } from "../../../utils/GetDimension";
 import ThemeProviderColors from "../../../provider/ThemeProvider";
+import { setLanguage } from "../../../slices/LanguageSlices";
 
 // main void Function
 const SelectLanguage = ({ navigation }: { navigation: any }) => {
   // ButtonState for Selecting Language
-  const [Language,SetLanguage]=useState<boolean>(false)
+  const [selectedLanguage, setSelectedLanguage] = useState<string>(''); // State to track selected language
+  const [isButtonDisabled, setIsDisabled] = useState<boolean>(true)
+
   // Language Support Array
   const LanguageSupport = [
     {
@@ -115,31 +118,42 @@ const SelectLanguage = ({ navigation }: { navigation: any }) => {
     },
     // Add more language support objects as needed
   ];
-
+  //HandleLanguageSelect
+  const handleLanguageSelect = (languageIso: string) => {
+    setSelectedLanguage(languageIso);
+    setIsDisabled(false); // Enable the button when a language is selected
+  };
+  //handle Language Select Confirm from button
+  const HandleLanguageCHange=()=>{
+    alert("You selected Lanuage "+selectedLanguage)
+  }
   return (
     <KeyboardAvoidingView style={styles.LanguageContainer} behavior="padding">
       <Text style={styles.SelectLangHead} h4={true}>Choose The Language</Text>
 
       <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView >
+        <ScrollView  style={{marginBottom:130}}>
           {/* Map Language Support Here */}
           {LanguageSupport.map((language, index) => (
-            <Pressable key={index} style={styles.languageItem}>
-              <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                <CountryFlag
-                  isoCode={language.iso}
-                  size={24}
-                  style={styles.flagIcon}
-                />
-                <Text>{language.countryname}</Text>
-              </View>
-              <Text>{language.language}</Text>
-            </Pressable>
+          <Pressable
+          key={index}
+          onPress={() => handleLanguageSelect(language.iso)}
+          style={({ pressed }) => [
+            styles.languageItem,
+            selectedLanguage === language.iso && { borderColor: ThemeProviderColors.Light.Primary, borderWidth: 2 },
+          ]}
+        >
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <CountryFlag isoCode={language.iso} size={24} style={styles.flagIcon} />
+            <Text>{language.countryname}</Text>
+          </View>
+          <Text>{language.language}</Text>
+        </Pressable>
           ))}
         </ScrollView>
-<Button containerStyle={{position:"absolute",bottom:getHeight/20,width:"100%",}} buttonStyle={{paddingVertical:10}} color={ThemeProviderColors.Light.Primary} title="Change Language"/>
+        <Button onPress={HandleLanguageCHange} disabled={isButtonDisabled} containerStyle={{ position: "absolute", bottom: getHeight / 20, width: "100%", }} buttonStyle={{ paddingVertical: 10 }} color={ThemeProviderColors.Light.Primary} title="Change Language" />
       </SafeAreaView>
-      
+
     </KeyboardAvoidingView>
   );
 };

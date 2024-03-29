@@ -185,7 +185,7 @@ const openCamera=async()=>{
                     ]}>
                         <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="credit-card" type="material" color="#3E4958" />
                         <ListItem.Content>
-                            <ListItem.Title style={{ marginLeft: 7 }}>Add Credit Card</ListItem.Title>
+                            <ListItem.Title style={{ marginLeft: 7 }}>Payment Methods.</ListItem.Title>
                         </ListItem.Content>
                         <ListItem.Chevron size={18} />
                     </Pressable>

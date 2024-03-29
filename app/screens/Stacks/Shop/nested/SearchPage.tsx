@@ -4,6 +4,7 @@ import { getHeight } from "../../../../utils/GetDimension"
 import { useState,useEffect } from "react"
 import { useFocusEffect } from "@react-navigation/native"
 import React from "react"
+
 const Search = ({ navigation }: { navigation: any }) => {
   const [searchTerm,setSearchTerm]=useState("")
   const [searchResults,setSearchResults]=useState([])
@@ -31,7 +32,7 @@ const Search = ({ navigation }: { navigation: any }) => {
 
 
   
-    <Pressable style={({ pressed }) => [
+    <Pressable onPress={()=>navigation.navigate("searchresults")} style={({ pressed }) => [
       SearchStyles.SearchList,
       {
         backgroundColor: pressed ? "#d9d9d9" : '#fff'

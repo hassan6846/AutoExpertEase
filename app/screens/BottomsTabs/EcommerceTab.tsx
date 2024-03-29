@@ -105,7 +105,7 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
       <EcommerceStack.Screen
         name="searchresults"
         options={{
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
           gestureEnabled: true,
           headerShadowVisible: false
         }}

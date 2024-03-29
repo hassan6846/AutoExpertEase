@@ -108,7 +108,7 @@ const openCamera=async()=>{
                     </Pressable>
                     {/* Shopping */}
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Shoppings</Text>
-                    <Pressable onPress={() => navigation.navigate({ screen: 'Cart' })} style={({ pressed }) => [
+                    <Pressable onPress={() => navigation.navigate("Shop",{screen:"Cart"})} style={({ pressed }) => [
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                         },
@@ -188,6 +188,31 @@ const openCamera=async()=>{
                         <ListItem.Chevron size={18} />
                     </Pressable>
                     {/* ChatSupport */}
+                    <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Join us</Text>
+                    <Pressable onPress={() => navigation.navigate("Support")} style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
+                        },
+                        Styles.ProfileList,
+                    ]}>
+                        <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="store" type="material" color="#3E4958" />
+                        <ListItem.Content>
+                            <ListItem.Title style={{ marginLeft: 7 }}>Signup for VendorShip</ListItem.Title>
+                        </ListItem.Content>
+                        <ListItem.Chevron size={18} />
+                    </Pressable>
+                    <Pressable onPress={() => navigation.navigate("Support")} style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
+                        },
+                        Styles.ProfileList,
+                    ]}>
+                        <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="engineering" type="material" color="#3E4958" />
+                        <ListItem.Content>
+                            <ListItem.Title style={{ marginLeft: 7 }}>Become a Expert</ListItem.Title>
+                        </ListItem.Content>
+                        <ListItem.Chevron size={18} />
+                    </Pressable>
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Help</Text>
                     <Pressable onPress={() => navigation.navigate("Support")} style={({ pressed }) => [
                         {
@@ -233,6 +258,7 @@ const openCamera=async()=>{
                         </Pressable>
                     </View>
                 </>
+
                 <BottomSheet backdropStyle={{ backgroundColor: "rgba(59, 59, 59, 0.404)" }} onBackdropPress={() => SetisShowBottomSheet(false)} isVisible={isShowBottomSheet}>
                     <View style={{ backgroundColor: "#fff", height: 'auto', borderTopStartRadius: 10, borderTopRightRadius: 10 }}>
 

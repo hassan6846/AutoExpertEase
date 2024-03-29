@@ -1,26 +1,38 @@
 import "react-native-gesture-handler"
 import { View, Dimensions } from "react-native"
-const getHeight = Dimensions.get("screen").height
+import { useState } from "react"
+///sdks
 import * as Network from "expo-network"
 import { StatusBar } from "expo-status-bar"
-import { LinearProgress, Text } from "@rneui/themed"
 import SplashScreen from "expo-splash-screen"
+import { Provider, useSelector } from "react-redux"
 
+//libraries /utils
+import { LinearProgress, Text,Avatar} from "@rneui/themed"
+const getHeight = Dimensions.get("screen").height
+import Store from "./store/Store"
+import { RootState } from "./interface/AuthInterface"
+import { ChatbotAvatar } from "./constants/ImagesConstants"
 //TabNavigator 
 import { NavigationContainer } from "@react-navigation/native"
+import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
+const Stack = createStackNavigator()//Stack Navigator
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+const Tab = createBottomTabNavigator()
+
 // tabs Configs
 import TabsConfigs from "./configs/TabsConfigs"
 import { BottomNavigator_Height } from "./configs/TabNavigatorConfigs"
 //Stack Navigator
 
-import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
-const Tab = createBottomTabNavigator()// Tab Navigator
-const Stack = createStackNavigator()//Stack Navigator
+
+
+
+
 
 
 //TabsMain
-
+import HomeTab from "./screens/BottomsTabs/HomeTab"
 import EcommerceTab from "./screens/BottomsTabs/EcommerceTab"
 import ServiceTab from "./screens/BottomsTabs/ServiceTab"
 import ProfileTab from "./screens/BottomsTabs/ProfileTab"
@@ -29,22 +41,23 @@ import ExploreTab from "./screens/BottomsTabs/ExploreTab"
 //Features
 import OfflinePage from "./screens/pages/OfflinePage/OfflinePage"
 import Enrollment from "./screens/pages/Enrollment/Enrollment"
-
 import ViewProfileImage from "./screens/Stacks/UserProfile/-nested/ViewProfileImage"
-// Context and Providers
 import ChatSupport from "./screens/Stacks/UserProfile/-nested/Help&Support/ChatSupport"
-import { useEffect, useState } from "react"
-import AuthStack from "./screens/Authentication/LoginStack"
 import Settings from "./screens/Stacks/UserProfile/-nested/Settings/Settings"
-import ExpertPanel from "./screens/ExpertTabs/ExpertTabMain"
-import Store from "./store/Store"
-import { RootState } from "./interface/AuthInterface"
 import SelectLanguage from "./screens/pages/Localization/SelectLanguage"
+
+//stacks and panels
+import AuthStack from "./screens/Authentication/LoginStack"
+import ExpertPanel from "./screens/ExpertTabs/ExpertTabMain"
+import VerficationStack from "./screens/ExpertVerification/initalRoute"
+import SellerTabsNavigator from "./screens/SellerTabs/Inital"
+
 
 
 //HomePage 
 //Always Add Pages Inside Only Contains Page After logged in or Authentication Ok👍
 function HomePageActivity() {
+  
   return (
     <Tab.Navigator screenOptions={{ tabBarStyle: { height: BottomNavigator_Height, }, tabBarShowLabel: false, }} >
       {/* Home */}
@@ -64,12 +77,10 @@ function HomePageActivity() {
   )
 }
 
-import { Provider, useSelector } from "react-redux"
-import { Avatar } from "@rneui/base"
-import { ChatbotAvatar } from "./constants/ImagesConstants"
-import HomeTab from "./screens/BottomsTabs/HomeTab"
-import VerficationStack from "./screens/ExpertVerification/initalRoute"
-import SellerTabsNavigator from "./screens/SellerTabs/Inital"
+
+
+
+
 
 
 

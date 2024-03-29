@@ -5,7 +5,7 @@ import React from 'react'
 
 import { Text, Avatar, Icon } from '@rneui/base'
 import { DrvingVideoImage,pakImage,pakleasson } from '../../../constants/ImagesConstants'
-const Home = () => {
+const Home = ({navigation}:{navigation:any}) => {
   return (
     <ScrollView style={Style.container}>
 
@@ -19,14 +19,13 @@ const Home = () => {
 
 
     <Pressable
+  
       style={{
      
         height: 160,
      
       }}
-      onPress={() => {
-        // Handle onPress event
-      }}
+      onPress={() =>navigation.navigate("viewvideo")}
     >
       <View
         style={{

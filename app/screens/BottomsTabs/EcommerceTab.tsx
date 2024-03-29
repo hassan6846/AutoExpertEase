@@ -36,8 +36,9 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
       {/* Inital Route */}
       <EcommerceStack.Screen
         name="ShopContainer"
+      
         options={{
-
+headerTitle:"",
           headerShadowVisible: false,
           headerRight: () => (
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", columnGap: 5, marginRight: 13 }}>

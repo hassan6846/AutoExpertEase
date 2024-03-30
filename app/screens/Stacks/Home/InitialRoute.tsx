@@ -5,6 +5,7 @@ import React from 'react'
 
 import { Text, Avatar, Icon } from '@rneui/base'
 import { DrvingVideoImage,pakImage,pakleasson } from '../../../constants/ImagesConstants'
+import ThemeProviderColors from '../../../provider/ThemeProvider'
 const Home = ({navigation}:{navigation:any}) => {
   return (
     <ScrollView style={Style.container}>
@@ -166,7 +167,12 @@ const Home = ({navigation}:{navigation:any}) => {
 
       </ScrollView>
       {/* End of the  Map Video Recomendations here */}
-
+     <View style={{flexDirection:"row",alignItems:"center",justifyContent:"space-between"}}>
+       <Text style={Style.headingText}>Browse Rental Vehicle</Text>
+       <Text  style={{fontSize:15,fontWeight:"bold",color:ThemeProviderColors.Light.Primary}}>See more</Text>
+       </View>
+{/* Horizontal Scroll */}
+      <ScrollView></ScrollView>
     </ScrollView>
   )
 }
@@ -177,6 +183,7 @@ const Style = StyleSheet.create({
     backgroundColor: "#fff"
   },
   headingText: {
+    marginTop:10,
     fontSize: 18, fontWeight: "bold",
     marginBottom:10,
   }

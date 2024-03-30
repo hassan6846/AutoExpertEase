@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const PostVideo = () => {
+const SearchResultVideo = () => {
   return (
     <View>
-      <Text>PostVideo</Text>
+      <Text>SearchResultVideo</Text>
     </View>
   )
 }
 
-export default PostVideo
+export default SearchResultVideo

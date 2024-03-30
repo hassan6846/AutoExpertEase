@@ -1,25 +1,47 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
 const HomeStack = createStackNavigator()
 
 //imports modules
-import { Avatar } from "@rneui/themed"
+import { Avatar, Text, Icon } from "@rneui/themed"
 import { AvatarSrc } from "../../constants/ImagesConstants"
+//utils
+
+import { getHeight } from "../../utils/GetDimension"
 //nested childs
 import Home from "../Stacks/Home/InitialRoute"
 import ViewVideos from "../Stacks/Home/nested/ViewVideos"
-import { getHeight } from "../../utils/GetDimension"
+import SearchVideoPage from "../Stacks/Home/nested/SearchVideoPage"
+import PostVideo from "../Stacks/Home/nested/PostVideo"
+import SearchResultVideo from "../Stacks/Home/nested/SearchResultVideo"
 
-
-
-const HomeTab = () => {
+const HomeTab = ({navigation}:{navigation:any}) => {
 
   return (
     <HomeStack.Navigator initialRouteName="HomeInital" >
       <HomeStack.Screen options={{ headerRight: () => (<Avatar avatarStyle={{ borderRadius: 20 }} containerStyle={{ marginRight: 12 }} source={{ uri: AvatarSrc }} />), headerTitle: "Welcome", headerStyle: { height: getHeight / 9 } }} component={Home} name="HomeInital" />
       <HomeStack.Screen options={{
-        cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS
+
+        headerTitle: "",
+        headerRight: () => (
+          <View style={{ flexDirection: "row" }}>
+
+            <Icon containerStyle={{ marginRight: 10 }} type="material" name="search" />
+
+            <Icon containerStyle={{ marginRight: 10 }} type="material" name="notifications" />
+            <Icon containerStyle={{ marginRight: 10 }} type="material" name="add" />
+
+          </View>
+        ),
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
       }} name="viewvideo" component={ViewVideos} />
+      {/* SearchPage */}
+      <HomeStack.Screen name="searchvideo" component={SearchVideoPage} />
+      <HomeStack.Screen name="postvideo" component={PostVideo} />
+      <HomeStack.Screen name="videoresults" component={SearchResultVideo} />
+
+
+
     </HomeStack.Navigator>
   )
 }

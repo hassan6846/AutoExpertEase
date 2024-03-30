@@ -36,28 +36,28 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
 
     }
     //Open Camera
-const openCamera=async()=>{
+    const openCamera = async () => {
 
-        const result=await ImagePicker.launchCameraAsync({
+        const result = await ImagePicker.launchCameraAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [1, 1],
             quality: 1,
         })
-        if(!result.canceled){
+        if (!result.canceled) {
             setImageUri(result.assets[0].uri)
         }
         console.log(result)
         console.warn(imageUri + "ImagePath")
 
-  
-}
+
+    }
 
 
-//Update Image
+    //Update Image
 
-    
-   const toggleOverlay = () => {
+
+    const toggleOverlay = () => {
         setOverlayVisable(!OverlayVisable)
     }
     interface ListItemProps {
@@ -108,7 +108,7 @@ const openCamera=async()=>{
                     </Pressable>
                     {/* Shopping */}
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Shoppings</Text>
-                    <Pressable onPress={() => navigation.navigate("Shop",{screen:"Cart"})} style={({ pressed }) => [
+                    <Pressable onPress={() => navigation.navigate("Shop", { screen: "Cart" })} style={({ pressed }) => [
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                         },
@@ -122,7 +122,7 @@ const openCamera=async()=>{
                     </Pressable>
 
                     {/*  */}
-                    <Pressable onPress={()=>navigation.navigate("orders")} style={({ pressed }) => [
+                    <Pressable onPress={() => navigation.navigate("orders")} style={({ pressed }) => [
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                         },

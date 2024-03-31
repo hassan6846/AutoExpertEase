@@ -45,6 +45,7 @@ import ViewProfileImage from "./screens/Stacks/UserProfile/-nested/ViewProfileIm
 import ChatSupport from "./screens/Stacks/UserProfile/-nested/Help&Support/ChatSupport"
 import Settings from "./screens/Stacks/UserProfile/-nested/Settings/Settings"
 import SelectLanguage from "./screens/pages/Localization/SelectLanguage"
+import PrivacyPolicy from "./screens/pages/PrivacyPolicy/PrivacyPolicy"
 
 //stacks and panels
 import AuthStack from "./screens/Authentication/AuthStack"
@@ -139,11 +140,11 @@ const Main = () => {
 
                   headerShown: false,
 
-                 
+
                   headerShadowVisible: false, headerTitleAlign: "center",
                 }} component={AuthStack} />
 
-
+              <Stack.Screen name="privacypolicy" component={PrivacyPolicy} />
             </>
 
           )

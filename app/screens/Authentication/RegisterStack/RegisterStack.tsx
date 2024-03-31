@@ -15,11 +15,11 @@ import AccountCreationSucess from "../AccountCreationSucess";
 const RegisterStack = () => {
   return (
     <Register.Navigator
-        
-    screenOptions={{
-      headerShown:true,
-      headerTitle:"Register"
-  }}
+
+      screenOptions={{
+        headerShown: true,
+        headerTitle: "Register"
+      }}
     >
       <Register.Screen name="setname" component={EnterName} />
       <Register.Screen name="setphone" component={EnterPhone} />

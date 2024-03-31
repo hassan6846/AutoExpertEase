@@ -19,39 +19,39 @@ const sidebarItems = [
   {
     title: 'Stats',
     icon: <BsFillMapFill />,
-    link: '/admin/stats',
+    link: '/stats',
   },
   {
     title: 'All Products',
     icon: <BsBox2 />,
-    link: '/admin/products',
+    link: '/products',
   },
   {
     title: 'Product Requests',
     icon: <AiOutlineAppstoreAdd />,
-    link: '/admin/products/add',
+    link: '/products/add',
   },
 
   {
     title: 'Users Manegment',
     icon: <BiSolidUser />,
-    link: '/admin/users',
+    link: '/users',
   },
 
   {
     title: 'Vendor Requests',
     icon: <FaHandsHelping />,
-    link: '/admin/messages/vendorrequest',
+    link: '/vendorrequest',
   },
   {
     title: 'Expert Requests',
     icon: <FaHandsHelping />,
-    link: '/admin/messages/vendorrequest',
+    link: '/expertrequests',
   },
   {
     title: 'Logout',
     icon: <BiLogOutCircle />,
-    link: '/admin/logout',
+    link: '/logout',
   },
 ];
 

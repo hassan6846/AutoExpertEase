@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
-import { MDBInput, MDBBtn } from "mdb-react-ui-kit";
+import { MDBInput,  } from "mdb-react-ui-kit";
+import { Button as MDBBtn } from '@mui/material';
+
 import toast, { Toaster } from "react-hot-toast";
 // Css
 import "./Login.css";
@@ -85,8 +87,7 @@ const Login = () => {
         </div>
         <div className="login-container">
           <h1 className="login-heading">Login account</h1>
-          <MDBBtn title="Login" />
-          <p className="orline_login">OR CONTINUE WITH</p>
+       
           <form onSubmit={formik.handleSubmit} className="login-form">
             <MDBInput
               {...formik.getFieldProps("email")}
@@ -119,7 +120,7 @@ const Login = () => {
               className="otp-submit"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Logging in..." : "Login"}
+Login
             </MDBBtn>
           </form>
           <div className="login_flex">

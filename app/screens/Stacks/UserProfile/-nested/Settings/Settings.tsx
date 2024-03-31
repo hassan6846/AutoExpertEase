@@ -6,7 +6,7 @@ import ThemeProviderColors from '../../../../../provider/ThemeProvider'
 
 
 const Settings = ({ navigation }: { navigation: any }) => {
-    const [open,setOpen]=React.useState(false)
+    const [open, setOpen] = React.useState(false)
     return (
         <ScrollView style={Style.container}>
 
@@ -51,7 +51,7 @@ const Settings = ({ navigation }: { navigation: any }) => {
                 <ListItem.Content>
                     <ListItem.Title >Dark Mode</ListItem.Title>
                 </ListItem.Content>
-                <Switch color={ThemeProviderColors.Light.Primary}  onValueChange={setOpen} value={open}/>
+                <Switch color={ThemeProviderColors.Light.Primary} onValueChange={setOpen} value={open} />
             </Pressable>
 
         </ScrollView>

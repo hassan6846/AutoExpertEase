@@ -7,14 +7,15 @@ import { Button, Icon, Input, Text } from "@rneui/themed"
 
 //Redux
 import { useDispatch } from "react-redux"
-import FindUser from "../../api/Auth/FindUser"
 import { current } from "@reduxjs/toolkit"
-import { SetProgressValueBar } from "../../slices/AuthSlice"
-import ThemeProviderColors from "../../provider/ThemeProvider"
+import ThemeProviderColors from "../../../../provider/ThemeProvider"
+import { SetProgressValueBar } from "../../../../slices/AuthSlice"
+import FindUser from "../../../../api/Auth/FindUser"
+
 
 
 //Page
-const LoginPage = ({ navigation }: { navigation: any }) => {
+const PhoneLogin = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch()
 
     const InputRef = createRef<any>(); // Create a ref using useRef
@@ -56,11 +57,11 @@ const LoginPage = ({ navigation }: { navigation: any }) => {
 
                         navigation.navigate("AuthOtp")
                         handleSubmit()
-                    }} buttonStyle={styles.LoginButton} color="#E04E2F" title="Send Otp" />
+                    }} buttonStyle={styles.LoginButton} color="#E04E2F" title="Next" />
                     <Text style={styles.LoginConsent}>By providing my phone number, I hereby agree and accept the <Text style={styles.LoginLink} onPress={() => navigation.push("privacypolicy")}>Terms of Service</Text> and <Text onPress={() => navigation.push("privacypolicy")} style={styles.LoginLink}>Privacy Policy</Text> in use of the  app.</Text>
-                    <View style={{flex:1,justifyContent:"flex-end"}}>
+                    <View style={{ flex: 1, justifyContent: "flex-end" }}>
                         <Text style={styles.LoginConsent}>Dont have Account</Text>
-                        <Button buttonStyle={{borderRadius:30,paddingHorizontal:6,paddingVertical:10,}} color={ThemeProviderColors.Light.Primary}  containerStyle={{paddingHorizontal:60}} title="Register" />
+                        <Button onPress={() => navigation.navigate("RegisterStack")} buttonStyle={{ borderRadius: 30, paddingHorizontal: 6, paddingVertical: 10, }} color={ThemeProviderColors.Light.Primary} containerStyle={{ paddingHorizontal: 60 }} title="Register" />
                     </View>
                 </View>
 
@@ -120,4 +121,4 @@ const styles = StyleSheet.create({
     }
 
 })
-export default LoginPage;
+export default PhoneLogin;

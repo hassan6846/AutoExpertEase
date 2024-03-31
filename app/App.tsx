@@ -47,7 +47,7 @@ import Settings from "./screens/Stacks/UserProfile/-nested/Settings/Settings"
 import SelectLanguage from "./screens/pages/Localization/SelectLanguage"
 
 //stacks and panels
-import AuthStack from "./screens/Authentication/LoginStack"
+import AuthStack from "./screens/Authentication/AuthStack"
 import ExpertPanel from "./screens/ExpertTabs/ExpertTabMain"
 import VerficationStack from "./screens/ExpertVerification/initalRoute"
 import SellerTabsNavigator from "./screens/SellerTabs/Inital"
@@ -86,7 +86,7 @@ function HomePageActivity() {
 
 
 const Main = () => {
-  const [Auth, SetAuth] = useState(true)
+  const [Auth, SetAuth] = useState(false)
   const progress = useSelector((state: RootState) => state.auth.Progress)
   const activeColor = useSelector((state: RootState) => state.auth.HeaderColor)//dynamic
   const [isConnected, setIsConnected] = useState<any | null>(false); // Initially, connection status is unknown
@@ -113,7 +113,7 @@ const Main = () => {
               <Stack.Screen name="orders" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={TrackOrders} />
 
               {/* Chat Support Ai Bot. */}
-              <Stack.Screen name="Support" options={{  headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar overlayContainerStyle={{ borderRadius: 10 }} source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
+              <Stack.Screen name="Support" options={{ headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar overlayContainerStyle={{ borderRadius: 10 }} source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
               {/* Settings */}
               <Stack.Screen name="settings" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Settings", headerShadowVisible: false }} component={Settings} />
               {/* Langauge */}
@@ -132,22 +132,19 @@ const Main = () => {
             </>
           ) : (
 
+            <>
+
+              <Stack.Screen name="Auth"
+                options={{
+
+                  headerShown: false,
+
+                 
+                  headerShadowVisible: false, headerTitleAlign: "center",
+                }} component={AuthStack} />
 
 
-            <Stack.Screen name="Login"
-              options={{
-
-                headerShown: true,
-
-                header: () => (
-                  <View style={{ width: "100%", height: getHeight / 10, justifyContent: "flex-end", alignItems: "center", backgroundColor: "#fff" }}>
-                    <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 12 }}>Get Started</Text>
-                    <LinearProgress variant="determinate" color={activeColor} value={progress} trackColor="#d9d9d9" style={{ width: "60%", height: 8, borderRadius: 5 }} />
-                  </View>
-                ),
-                headerShadowVisible: false, headerTitleAlign: "center",
-              }} component={AuthStack} />
-
+            </>
 
           )
         }

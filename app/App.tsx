@@ -148,6 +148,7 @@ const Main = () => {
                 headerShadowVisible: false, headerTitleAlign: "center",
               }} component={AuthStack} />
 
+
           )
         }
 

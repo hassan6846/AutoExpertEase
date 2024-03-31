@@ -1,12 +1,12 @@
-import { Pressable, ScrollView, StyleSheet,View } from 'react-native'
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native'
 import React from 'react'
 
 //utils libraries
 
 import { Text, Avatar, Icon } from '@rneui/base'
-import { DrvingVideoImage,pakImage,pakleasson } from '../../../constants/ImagesConstants'
+import { DrvingVideoImage, pakImage, pakleasson } from '../../../constants/ImagesConstants'
 import ThemeProviderColors from '../../../provider/ThemeProvider'
-const Home = ({navigation}:{navigation:any}) => {
+const Home = ({ navigation }: { navigation: any }) => {
   return (
     <ScrollView style={Style.container}>
 
@@ -15,163 +15,163 @@ const Home = ({navigation}:{navigation:any}) => {
 
       <Text style={Style.headingText}>Driving School</Text>
       {/* Map Video Recomendations here */}
-      <ScrollView contentContainerStyle={{columnGap:10}} horizontal={true}>
+      <ScrollView contentContainerStyle={{ columnGap: 10 }} horizontal={true}>
 
 
 
-    <Pressable
-  
-      style={{
-     
-        height: 160,
-     
-      }}
-      onPress={() =>navigation.navigate("viewvideo")}
-    >
-      <View
-        style={{
-          width: '100%',
-          position: 'relative',
-          height: '100%',
-        
-        }}
-      >
-        <Avatar
-          containerStyle={{
-            width: '100%',
-            position: 'relative',
-            height: '100%',
-           
-          }}
-          avatarStyle={{
-            objectFit: 'cover',
-          aspectRatio:2,
-          borderRadius:5
-          }}
-          source={{ uri: DrvingVideoImage }}
-        />
-        {/* Icon positioned above the Avatar */}
-        <Icon
-          containerStyle={{
-            position: 'absolute',
-            top: '30%',
-            left: '40%',
-            transform: [{ translateX: -15 }, { translateY: -15 }],
-          }}
-          name='play-arrow'
-          type='material'
-          size={90}
-          color='white' // Example color for the icon
-          
-        />
-      </View>
-    </Pressable>
+        <Pressable
 
-    <Pressable
-      style={{
-     
-        height: 160,
-     
-      }}
-      onPress={() => {
-        // Handle onPress event
-      }}
-    >
-      <View
-        style={{
-          width: '100%',
-          position: 'relative',
-          height: '100%',
-        
-        }}
-      >
-        <Avatar
-          containerStyle={{
-            width: '100%',
-            position: 'relative',
-            height: '100%',
-           
-          }}
-          avatarStyle={{
-            objectFit: 'cover',
-          aspectRatio:2,
-          borderRadius:5
-          }}
-          source={{ uri: pakImage }}
-        />
-        {/* Icon positioned above the Avatar */}
-        <Icon
-          containerStyle={{
-            position: 'absolute',
-            top: '30%',
-            left: '40%',
-            transform: [{ translateX: -15 }, { translateY: -15 }],
-          }}
-          name='play-arrow'
-          type='material'
-          size={90}
-          color='white' // Example color for the icon
-          
-        />
-      </View>
-    </Pressable>
+          style={{
 
-      <Pressable
-      style={{
-     
-        height: 160,
-     
-      }}
-      onPress={() => {
-        // Handle onPress event
-      }}
-    >
-      <View
-        style={{
-          width: '100%',
-          position: 'relative',
-          height: '100%',
-        
-        }}
-      >
-        <Avatar
-          containerStyle={{
-            width: '100%',
-            position: 'relative',
-            height: '100%',
-           
+            height: 160,
+
           }}
-          avatarStyle={{
-            objectFit: 'cover',
-          aspectRatio:2,
-          borderRadius:5
+          onPress={() => navigation.navigate("viewvideo")}
+        >
+          <View
+            style={{
+              width: '100%',
+              position: 'relative',
+              height: '100%',
+
+            }}
+          >
+            <Avatar
+              containerStyle={{
+                width: '100%',
+                position: 'relative',
+                height: '100%',
+
+              }}
+              avatarStyle={{
+                objectFit: 'cover',
+                aspectRatio: 2,
+                borderRadius: 5
+              }}
+              source={{ uri: DrvingVideoImage }}
+            />
+            {/* Icon positioned above the Avatar */}
+            <Icon
+              containerStyle={{
+                position: 'absolute',
+                top: '30%',
+                left: '40%',
+                transform: [{ translateX: -15 }, { translateY: -15 }],
+              }}
+              name='play-arrow'
+              type='material'
+              size={90}
+              color='white' // Example color for the icon
+
+            />
+          </View>
+        </Pressable>
+
+        <Pressable
+          style={{
+
+            height: 160,
+
           }}
-          source={{ uri: pakleasson }}
-        />
-        {/* Icon positioned above the Avatar */}
-        <Icon
-          containerStyle={{
-            position: 'absolute',
-            top: '30%',
-            left: '40%',
-            transform: [{ translateX: -15 }, { translateY: -15 }],
+          onPress={() => {
+            // Handle onPress event
           }}
-          name='play-arrow'
-          type='material'
-          size={90}
-          color='white' // Example color for the icon
-          
-        />
-      </View>
-    </Pressable>
+        >
+          <View
+            style={{
+              width: '100%',
+              position: 'relative',
+              height: '100%',
+
+            }}
+          >
+            <Avatar
+              containerStyle={{
+                width: '100%',
+                position: 'relative',
+                height: '100%',
+
+              }}
+              avatarStyle={{
+                objectFit: 'cover',
+                aspectRatio: 2,
+                borderRadius: 5
+              }}
+              source={{ uri: pakImage }}
+            />
+            {/* Icon positioned above the Avatar */}
+            <Icon
+              containerStyle={{
+                position: 'absolute',
+                top: '30%',
+                left: '40%',
+                transform: [{ translateX: -15 }, { translateY: -15 }],
+              }}
+              name='play-arrow'
+              type='material'
+              size={90}
+              color='white' // Example color for the icon
+
+            />
+          </View>
+        </Pressable>
+
+        <Pressable
+          style={{
+
+            height: 160,
+
+          }}
+          onPress={() => {
+            // Handle onPress event
+          }}
+        >
+          <View
+            style={{
+              width: '100%',
+              position: 'relative',
+              height: '100%',
+
+            }}
+          >
+            <Avatar
+              containerStyle={{
+                width: '100%',
+                position: 'relative',
+                height: '100%',
+
+              }}
+              avatarStyle={{
+                objectFit: 'cover',
+                aspectRatio: 2,
+                borderRadius: 5
+              }}
+              source={{ uri: pakleasson }}
+            />
+            {/* Icon positioned above the Avatar */}
+            <Icon
+              containerStyle={{
+                position: 'absolute',
+                top: '30%',
+                left: '40%',
+                transform: [{ translateX: -15 }, { translateY: -15 }],
+              }}
+              name='play-arrow'
+              type='material'
+              size={90}
+              color='white' // Example color for the icon
+
+            />
+          </View>
+        </Pressable>
 
       </ScrollView>
       {/* End of the  Map Video Recomendations here */}
-     <View style={{flexDirection:"row",alignItems:"center",justifyContent:"space-between"}}>
-       <Text style={Style.headingText}>Browse Rental Vehicle</Text>
-       <Text  style={{fontSize:15,fontWeight:"bold",color:ThemeProviderColors.Light.Primary}}>See more</Text>
-       </View>
-{/* Horizontal Scroll */}
+      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+        <Text style={Style.headingText}>Browse Rental Vehicle</Text>
+        <Text style={{ fontSize: 15, fontWeight: "bold", color: ThemeProviderColors.Light.Primary }}>See more</Text>
+      </View>
+      {/* Horizontal Scroll */}
       <ScrollView></ScrollView>
     </ScrollView>
   )
@@ -183,9 +183,9 @@ const Style = StyleSheet.create({
     backgroundColor: "#fff"
   },
   headingText: {
-    marginTop:10,
+    marginTop: 10,
     fontSize: 18, fontWeight: "bold",
-    marginBottom:10,
+    marginBottom: 10,
   }
 
 })

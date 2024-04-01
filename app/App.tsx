@@ -144,7 +144,7 @@ const Main = () => {
                   headerShadowVisible: false, headerTitleAlign: "center",
                 }} component={AuthStack} />
 
-              <Stack.Screen name="privacypolicy" component={PrivacyPolicy} />
+              <Stack.Screen name="privacypolicy" options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} component={PrivacyPolicy} />
             </>
 
           )

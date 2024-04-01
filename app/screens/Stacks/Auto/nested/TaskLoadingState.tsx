@@ -10,10 +10,10 @@ const TaskLoadingState = () => {
     )
 }
 //style
-const Styles=StyleSheet.create({
-    MainViewer:{
-        flex:1,
-    
+const Styles = StyleSheet.create({
+    MainViewer: {
+        flex: 1,
+
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: "#fff"

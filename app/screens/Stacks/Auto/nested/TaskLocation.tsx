@@ -5,14 +5,15 @@ import MapView, { Callout } from "react-native-maps"
 import GoogleMapDesign from '../../../../utils/GoogleMapDesign'
 import { Button, Input, ListItem, Icon } from "@rneui/themed"
 import ThemeProviderColors from '../../../../provider/ThemeProvider'
-const Height = Dimensions.get("screen").height
+import { getHeight as Height } from '../../../../utils/GetDimension'
+
 const TaskLocation = ({ navigation }: { navigation: any }) => {
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: "#fff" }}>
 
       {/* Input View Start */}
       <View style={Style.InputContainer}>
-        <Input disabled inputContainerStyle={Style.InputVoid} inputStyle={Style.InputMain} containerStyle={Style.InputCont} placeholder="Enter Your Location" />
+        <Input  onFocus={()=>navigation.navigate('querylocation')}  inputContainerStyle={Style.InputVoid} inputStyle={Style.InputMain} containerStyle={Style.InputCont} placeholder="Enter Your Location" />
         {/* Dropdown */}
 
       </View>
@@ -22,9 +23,9 @@ const TaskLocation = ({ navigation }: { navigation: any }) => {
 
         customMapStyle={GoogleMapDesign}
         style={Style.MapStyle} />
-      <Button onPress={()=>navigation.navigate('task_description')} color={ThemeProviderColors.Light.Primary} containerStyle={Style.BtncontainerStyle} title="Next" />
+      <Button onPress={() => navigation.navigate('task_description')} color={ThemeProviderColors.Light.Primary} containerStyle={Style.BtncontainerStyle} title="Next" />
       {/* Dropdown Container */}
- 
+
       {/* Dropdown Container */}
     </KeyboardAvoidingView>
   )

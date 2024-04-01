@@ -11,6 +11,7 @@ import TaskDescription from "../Stacks/Auto/nested/TaskDescription"
 import SimulatorPage from "../Stacks/Auto/nested/SimulatorPage"
 import HailingPage from "../Stacks/Auto/nested/HailingPage"
 import ChatExpert from "../Stacks/Auto/nested/ChatExpert"
+import LocationSearch from "../Stacks/Auto/nested/LocationSearch"
 
 // Main  Component
 const ServiceTab = () => {
@@ -26,6 +27,8 @@ const ServiceTab = () => {
                 }}
 
                 component={TaskLocation} />
+                {/* Location Seach from api */}
+                <ServiceStack.Screen name="querylocation" options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} component={LocationSearch}/>
             {/* Task Description */}
             <ServiceStack.Screen name="task_description" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={TaskDescription} />
 

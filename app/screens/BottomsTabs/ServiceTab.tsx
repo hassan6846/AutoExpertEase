@@ -20,24 +20,18 @@ const ServiceTab = () => {
             {/* Inital Route */}
             <ServiceStack.Screen name="inital_service" component={AutoFixInitalRoute} />
             {/* Task Location */}
-            <ServiceStack.Screen name="task_location"
-                options={{
-                    headerShadowVisible: false,
-                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-                }}
-
-                component={TaskLocation} />
-                {/* Location Seach from api */}
-                <ServiceStack.Screen name="querylocation" options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} component={LocationSearch}/>
+            <ServiceStack.Screen name="task_location" options={{headerShadowVisible: false,cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS}}component={TaskLocation} />
+            {/* Location Seach from api */}
+            <ServiceStack.Screen name="querylocation" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={LocationSearch} />
             {/* Task Description */}
             <ServiceStack.Screen name="task_description" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={TaskDescription} />
 
             {/* Hailing Page */}
             <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} name="hailing_page" component={HailingPage} />
             {/* Simulator Page */}
-            <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }}  name="simulator_page" component={SimulatorPage} />
+            <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} name="simulator_page" component={SimulatorPage} />
 
-            <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }}  name="chat_expert" component={ChatExpert} />
+            <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} name="chat_expert" component={ChatExpert} />
 
 
 

@@ -3,9 +3,10 @@ import React from 'react'
 
 //utils libraries
 
-import { Text, Avatar, Icon } from '@rneui/base'
-import { DrvingVideoImage, pakImage, pakleasson } from '../../../constants/ImagesConstants'
+import { Text, Avatar, Icon } from '@rneui/themed'
+import { DrvingVideoImage, pakImage, pakleasson, Sedan } from '../../../constants/ImagesConstants'
 import ThemeProviderColors from '../../../provider/ThemeProvider'
+import { getHeight, getWidth } from '../../../utils/GetDimension'
 const Home = ({ navigation }: { navigation: any }) => {
   return (
     <ScrollView style={Style.container}>
@@ -169,10 +170,41 @@ const Home = ({ navigation }: { navigation: any }) => {
       {/* End of the  Map Video Recomendations here */}
       <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
         <Text style={Style.headingText}>Browse Rental Vehicle</Text>
-        <Text style={{ fontSize: 15, fontWeight: "bold", color: ThemeProviderColors.Light.Primary }}>See more</Text>
+        <Text onPress={() => navigation.navigate('rentalcars')} style={{ fontSize: 15, fontWeight: "bold", color: ThemeProviderColors.Light.Primary }}>See more</Text>
       </View>
-      {/* Horizontal Scroll */}
-      <ScrollView></ScrollView>
+      {/* Horizontal Scroll map some vechiles here */}
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ columnGap: 10 }} showsHorizontalScrollIndicator={false} horizontal={true}>
+        {/* car Card */}
+        <View style={Style.BookingWrapper}>
+          <Avatar containerStyle={{ width: "100%", height: 120, borderRadius: 5 }} avatarStyle={{ objectFit: "contain", width: 170 }} source={{ uri: Sedan }} />
+          {/* Feature Container */}
+          <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: "space-between", paddingHorizontal: 2 }}>
+            <Text style={{ fontWeight: "bold", marginLeft: 5, fontSize: 12 }}>Toyota Yaris</Text>
+            <Text style={{ fontSize: 14, fontWeight: "bold", marginLeft: 5 }}>Rs 5600/<Text style={{ color: "#97ADB6", fontSize: 10, alignSelf: 'center' }}>day</Text></Text>
+
+          </View>
+          <Text style={{ fontSize: 11, fontWeight: "300", color: "#97ADB6", marginLeft: 5 }}>Without Driver</Text>
+          {/* Properties */}
+          <View style={{ flex: 1, marginTop: 5, justifyContent: "flex-start", flexDirection: 'row', columnGap: 5 }}>
+            <View style={{ borderRadius: 3, flexDirection: "row", alignItems: "center", backgroundColor: ThemeProviderColors.Light.Primary, paddingHorizontal: 2, paddingVertical: 2 }}>
+              <Icon color="#fff" size={17} name='airline-seat-recline-normal' type='material' />
+              <Text style={{ fontSize: 10, color: "#fff" }}>4</Text>
+            </View>
+
+            <View style={{ borderRadius: 3, flexDirection: "row", alignItems: "center", backgroundColor: ThemeProviderColors.Light.Primary, paddingHorizontal: 2, paddingVertical: 2 }}>
+              <Icon color="#fff" size={17} name='ac-unit' type='material' />
+              <Text style={{ fontSize: 10, color: "#fff" }}>Yes</Text>
+            </View>
+
+
+
+          </View>
+        </View>
+
+
+
+        {/* car Card */}
+      </ScrollView>
     </ScrollView>
   )
 }
@@ -186,7 +218,12 @@ const Style = StyleSheet.create({
     marginTop: 10,
     fontSize: 18, fontWeight: "bold",
     marginBottom: 10,
-  }
+  },
+  // Booking card
+  BookingWrapper: {
+    borderRadius: 5,
+    backgroundColor: "#F8FAFC",
 
+  }
 })
 export default Home

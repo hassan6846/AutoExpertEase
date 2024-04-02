@@ -14,8 +14,8 @@ import ViewVideos from "../Stacks/Home/nested/ViewVideos"
 import SearchVideoPage from "../Stacks/Home/nested/SearchVideoPage"
 import PostVideo from "../Stacks/Home/nested/PostVideo"
 import SearchResultVideo from "../Stacks/Home/nested/SearchResultVideo"
-
-const HomeTab = ({navigation}:{navigation:any}) => {
+import RentalCar from "../Stacks/Home/nested/RentalCar"
+const HomeTab = () => {
 
   return (
     <HomeStack.Navigator initialRouteName="HomeInital" >
@@ -30,16 +30,13 @@ const HomeTab = ({navigation}:{navigation:any}) => {
 
             <Icon containerStyle={{ marginRight: 10 }} type="material" name="notifications" />
             <Icon containerStyle={{ marginRight: 10 }} type="material" name="add" />
-
-          </View>
-        ),
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-      }} name="viewvideo" component={ViewVideos} />
+</View>),
+cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} name="viewvideo" component={ViewVideos} />
       {/* SearchPage */}
       <HomeStack.Screen name="searchvideo" component={SearchVideoPage} />
       <HomeStack.Screen name="postvideo" component={PostVideo} />
       <HomeStack.Screen name="videoresults" component={SearchResultVideo} />
-
+      <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} name="rentalcars" component={RentalCar}/>
 
 
     </HomeStack.Navigator>

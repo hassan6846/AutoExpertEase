@@ -169,7 +169,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                         },
                         Styles.ProfileList,
                     ]}>
-                        <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="book" type="material" color="#3E4958" />
+                        <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="car-rental" type="material" color="#3E4958" />
                         <ListItem.Content>
                             <ListItem.Title style={{ marginLeft: 7 }}>Bookings</ListItem.Title>
                         </ListItem.Content>

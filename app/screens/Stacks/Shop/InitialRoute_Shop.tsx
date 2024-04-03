@@ -51,6 +51,31 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
             priceBefore: 204,
             image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
         },
+        {
+            Title: "Jallraven - Foldsack No. 1 Bagpack",
+            price: 109.95,
+            priceBefore: 204,
+            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+        },
+        {
+            Title: "Jallraven - Foldsack No. 1 Bagpack",
+            price: 109.95,
+            priceBefore: 204,
+            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+        },
+        {
+            Title: "Jallraven - Foldsack No. 1 Bagpack",
+            price: 109.95,
+            priceBefore: 204,
+            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+        },
+        {
+            Title: "Jallraven - Foldsack No. 1 Bagpack",
+            price: 109.95,
+            priceBefore: 204,
+            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+        },
+
 
     ]
     // Banners Urls
@@ -141,25 +166,25 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
                 {/* Product Infinite Scroll Element */}
                 <Text style={{ marginLeft: 14 }} h4>Browse Product</Text>
                 {/* FilterBar */}
-                <FlatList
-                    style={Styles.ProductInfiniteScroll}
-                    initialNumToRender={6}
-                    data={Product}
-                    keyExtractor={(item, index) => index.toString()}
 
-                    renderItem={({ item }) => (
-                        <View style={{ width: GetWidth * 0.34, display: "flex", flexDirection: "column", }} >
-                            <Avatar onPress={() => navigation.navigate("view")} containerStyle={{ width: "100%", height: 180, borderRadius: 3, }} avatarStyle={{ objectFit: "contain", width: '100%' }} source={{ uri: item.image }} />
-                            <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                                <Text style={{ fontSize: 16, fontWeight: "900", marginTop: 4 }}>{item.price} {""}Rs</Text>
-                                <Text style={{ textDecorationLine: "line-through", fontSize: 12, color: "red", marginLeft: 5 }}>{item.priceBefore}</Text>
+                <ScrollView
+                style={{paddingHorizontal:20,marginBottom:20}}
+                contentContainerStyle={{flex:1,backgroundColor:'#fff',flexWrap:'wrap',flexDirection:'row',alignSelf:'center',rowGap:10,justifyContent:"space-between",paddingHorizontal:8,marginTop:10}} >
+                       {
+                        Product.map((index,key)=>(
+                            <View key={key} style={{ width: GetWidth * 0.3, margin: 5, }}>
+                            <Avatar onPress={() => navigation.navigate("view")} containerStyle={{ width: "100%", height: 180, borderRadius: 3 }} avatarStyle={{ resizeMode: "contain", width: '100%', height: '100%' }} source={{ uri: index.image }} />
+                            <View style={{ flexDirection: "row", alignItems: "center" }}>
+                                <Text style={{ fontSize: 16, fontWeight: "900", marginTop: 4 }}>{index.price} {""}Rs</Text>
+                                <Text style={{ textDecorationLine: "line-through", fontSize: 12, color: "red", marginLeft: 5 }}>{index.priceBefore}</Text>
                             </View>
-                            <Text style={{ fontSize: 14, fontWeight: "500", padding: 4 }}>{item.Title}</Text>
-                            <Button titleStyle={{ fontSize: 12 }} buttonStyle={{ marginTop: 3, }} color={ThemeProviderColors.Light.Primary} title="Add to Cart" />
+                            <Text style={{ fontSize: 10, fontWeight: "500", padding: 4, color: ThemeProviderColors.Light.FontSubHeading }}>{index.Title}</Text>
+                            <Button titleStyle={{ fontSize: 12 }} buttonStyle={{ marginTop: 3 }} color={ThemeProviderColors.Light.Primary} title="Add to Cart" />
                         </View>
+                        ))
+                       }
+                </ScrollView>
 
-                    )}
-                />
             </ScrollView>
         </>
     )

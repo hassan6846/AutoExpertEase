@@ -94,7 +94,8 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10, }}>Account</Text>
                     {/* 1 */}
 
-                    <Pressable style={({ pressed }) => [
+                    <Pressable onPress={()=>navigation.navigate("viewAccount")} style={({ pressed }) => [
+                        
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                         },

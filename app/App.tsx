@@ -53,6 +53,7 @@ import ExpertPanel from "./screens/ExpertTabs/ExpertTabMain"
 import VerficationStack from "./screens/ExpertVerification/initalRoute"
 import SellerTabsNavigator from "./screens/SellerTabs/Inital"
 import TrackOrders from "./screens/pages/OrderTracking/TrackOrders"
+import ProfilePage from "./screens/pages/ProfilePage/ProfilePage"
 
 
 
@@ -75,6 +76,7 @@ function HomePageActivity() {
         component={ExploreTab} name="Inbox" options={{ headerShadowVisible: false, tabBarIcon: TabsConfigs.Explore.Svg }} />
       {/* user ProfilePage */}
       <Tab.Screen component={ProfileTab} name="Profie" options={{ headerTitleAlign: "center", tabBarShowLabel: false, headerShown: false, tabBarIcon: TabsConfigs.Profile.Svg, }} />
+
     </Tab.Navigator>
   )
 }
@@ -127,7 +129,7 @@ const Main = () => {
 
               {/* Seller Tab */}
               <Stack.Screen name="seller" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={SellerTabsNavigator} />
-
+              <Stack.Screen name="viewAccount" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ProfilePage} />
 
 
             </>

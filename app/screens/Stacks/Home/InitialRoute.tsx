@@ -12,8 +12,31 @@ const Home = ({ navigation }: { navigation: any }) => {
     <ScrollView style={Style.container}>
 
 
+      <Text style={Style.headingText}>Expolore Services</Text>
+      <View style={Style.ServiceContainer}>
+
+        <View style={{ backgroundColor: "#fff", flexDirection: "column", alignItems: "center", justifyContent: "center",paddingVertical:10,paddingHorizontal:5,borderRadius:5 ,elevation:2 }}>
+          <Icon name='car-rental' type='material' />
+          <Text style={{ fontSize: 9 }}>Rent Cars</Text>
+        </View>
+
+        <View style={{ backgroundColor: "#fff", flexDirection: "column", alignItems: "center", justifyContent: "center",paddingVertical:10,paddingHorizontal:5,borderRadius:5 ,elevation:2 }}>
+          <Icon name='electric-car' type='material' />
+          <Text style={{ fontSize: 9 }}>AutoHelp</Text>
+        </View>
+
+        <View style={{ backgroundColor: "#fff", flexDirection: "column", alignItems: "center", justifyContent: "center" ,paddingVertical:10,paddingHorizontal:5,borderRadius:5 ,elevation:2}}>
+          <Icon name='car-repair' type='material' />
+          <Text style={{ fontSize: 9 }}>Auto Repair</Text>
+        </View>
+
+        <View style={{ backgroundColor: "#fff", flexDirection: "column", alignItems: "center",paddingVertical:10,paddingHorizontal:5 ,borderRadius:5,elevation:2}}>
+          <Icon name='school' type='material' />
+          <Text style={{ fontSize: 9 }}>Learn Drive</Text>
+        </View>
 
 
+      </View>
       <Text style={Style.headingText}>Driving School</Text>
       {/* Map Video Recomendations here */}
       <ScrollView contentContainerStyle={{ columnGap: 10 }} horizontal={true}>
@@ -173,7 +196,7 @@ const Home = ({ navigation }: { navigation: any }) => {
         <Text onPress={() => navigation.navigate('rentalcars')} style={{ fontSize: 15, fontWeight: "bold", color: ThemeProviderColors.Light.Primary }}>See more</Text>
       </View>
       {/* Horizontal Scroll map some vechiles here */}
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ columnGap: 10 }} showsHorizontalScrollIndicator={false} horizontal={true}>
+      <ScrollView style={{ flex: 1, marginBottom: 50 }} contentContainerStyle={{ columnGap: 10 }} showsHorizontalScrollIndicator={false} horizontal={true}>
         {/* car Card */}
         <View style={Style.BookingWrapper}>
           <Avatar containerStyle={{ width: "100%", height: 120, borderRadius: 5 }} avatarStyle={{ objectFit: "contain", width: 170 }} source={{ uri: Sedan }} />
@@ -205,6 +228,7 @@ const Home = ({ navigation }: { navigation: any }) => {
 
         {/* car Card */}
       </ScrollView>
+
     </ScrollView>
   )
 }
@@ -212,7 +236,9 @@ const Style = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+
+
   },
   headingText: {
     marginTop: 10,
@@ -224,6 +250,17 @@ const Style = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "#F8FAFC",
 
+  }, ServiceContainer: {
+borderRadius:5,
+elevation:5,
+    backgroundColor: "#fff",
+    width: "100%",
+    flexWrap: "wrap",
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    justifyContent: "space-around",
+    alignItems: 'center',
+    flexDirection: 'row'
   }
 })
 export default Home

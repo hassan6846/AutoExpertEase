@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Pressable } from 'react-native';
+import { ScrollView, StyleSheet, Pressable, View } from 'react-native';
 import { Text } from "@rneui/themed";
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
+import CarCard from '../../../../components/CarCard/CarCard';
 
 const RentalCar = () => {
     const carTypes = [
@@ -22,8 +23,8 @@ const RentalCar = () => {
     };
 
     return (
-        <ScrollView style={Style.rentalContainer}>
-
+        <ScrollView  style={Style.rentalContainer}>
+   <Text style={Style.Heading}>Categories</Text>
             <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                 {carTypes.map((carType, index) => (
                     <Pressable
@@ -31,7 +32,7 @@ const RentalCar = () => {
                         onPress={() => handlePress(index)}
                         style={({ pressed }) => [
                             {
-                                backgroundColor: activeIndex === index ? ThemeProviderColors.Light.Primary : "#e5e5e5",
+                                backgroundColor: activeIndex === index ? ThemeProviderColors.Light.Primary : "#f8f8f8",
                                 borderRadius: 5,
                                 paddingHorizontal: 10,
                                 paddingVertical: 6,
@@ -39,11 +40,27 @@ const RentalCar = () => {
                             },
                         ]}
                     >
-                        <Text style={{ color: activeIndex === index ? "#fff" : "#000", fontSize: 13 }}>{carType.label}</Text>
+                        <Text style={{ color: activeIndex === index ? "#fff" : "#D1D0D4", fontSize: 13 }}>{carType.label}</Text>
                     </Pressable>
                 ))}
             </ScrollView>
-            {/* Car listing below infinte scroll */}
+            <Text style={Style.Heading}>Best Rental Cars</Text>
+           <View style={{flex:1,backgroundColor:'#fff',flexWrap:'wrap',flexDirection:'row',alignSelf:'center',rowGap:10,justifyContent:"space-between",paddingHorizontal:8,marginTop:10}}>
+          
+           <CarCard/>
+           <CarCard/>
+           <CarCard/>
+           <CarCard/>
+           <CarCard/>
+           <CarCard/>
+           <CarCard/>
+           <CarCard/>
+           <CarCard/>
+           <CarCard/>
+           <CarCard/>
+           <CarCard/>
+           <CarCard/>
+           </View>
         </ScrollView>
     );
 };
@@ -53,6 +70,12 @@ const Style = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
     },
+    Heading:{
+        marginTop: 10,
+        fontSize: 18, fontWeight: "bold",
+        marginBottom: 10,
+        marginLeft:10,
+    }
 });
 
 export default RentalCar;

@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native'
+import { Pressable, ScrollView, StyleSheet, View, } from 'react-native'
 import React from 'react'
 
 //utils libraries
@@ -6,37 +6,53 @@ import React from 'react'
 import { Text, Avatar, Icon } from '@rneui/themed'
 import { DrvingVideoImage, pakImage, pakleasson, Sedan } from '../../../constants/ImagesConstants'
 import ThemeProviderColors from '../../../provider/ThemeProvider'
-import { getHeight, getWidth } from '../../../utils/GetDimension'
+
 const Home = ({ navigation }: { navigation: any }) => {
+
+  const serviceArray = [
+    {
+      title: "Rent Cars",
+      icon: "car-rental",
+      route: "rentalcars"
+    },
+    {
+      title: "AutoHelp",
+      icon: "electric-car",
+      route: "Support"
+    }, {
+      title: "Auto Repair",
+      icon: "electric-car",
+      route: "Service"
+    },{
+      title: "Learn Drive",
+      icon: "school",
+      route: "viewvideo"
+    }
+  ]
+
   return (
     <ScrollView style={Style.container}>
 
 
       <Text style={Style.headingText}>Expolore Services</Text>
+
       <View style={Style.ServiceContainer}>
 
-        <View style={{ backgroundColor: "#fff", flexDirection: "column", alignItems: "center", justifyContent: "center",paddingVertical:10,paddingHorizontal:5,borderRadius:5 ,elevation:2 }}>
-          <Icon name='car-rental' type='material' />
-          <Text style={{ fontSize: 9 }}>Rent Cars</Text>
-        </View>
+       {
+        serviceArray.map((index,key)=>(
+          
+        <Pressable onPress={()=>navigation.navigate(index.route)} key={key} style={{ backgroundColor: "#fff", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingVertical: 10, paddingHorizontal: 5, borderRadius: 5, elevation: 2 }}>
+        <Icon name={index.icon} type='material' />
+        <Text style={{ fontSize: 9 }}>{index.title}</Text>
+      </Pressable>
 
-        <View style={{ backgroundColor: "#fff", flexDirection: "column", alignItems: "center", justifyContent: "center",paddingVertical:10,paddingHorizontal:5,borderRadius:5 ,elevation:2 }}>
-          <Icon name='electric-car' type='material' />
-          <Text style={{ fontSize: 9 }}>AutoHelp</Text>
-        </View>
+        ))
+       }
 
-        <View style={{ backgroundColor: "#fff", flexDirection: "column", alignItems: "center", justifyContent: "center" ,paddingVertical:10,paddingHorizontal:5,borderRadius:5 ,elevation:2}}>
-          <Icon name='car-repair' type='material' />
-          <Text style={{ fontSize: 9 }}>Auto Repair</Text>
-        </View>
-
-        <View style={{ backgroundColor: "#fff", flexDirection: "column", alignItems: "center",paddingVertical:10,paddingHorizontal:5 ,borderRadius:5,elevation:2}}>
-          <Icon name='school' type='material' />
-          <Text style={{ fontSize: 9 }}>Learn Drive</Text>
-        </View>
 
 
       </View>
+
       <Text style={Style.headingText}>Driving School</Text>
       {/* Map Video Recomendations here */}
       <ScrollView contentContainerStyle={{ columnGap: 10 }} horizontal={true}>
@@ -251,8 +267,8 @@ const Style = StyleSheet.create({
     backgroundColor: "#F8FAFC",
 
   }, ServiceContainer: {
-borderRadius:5,
-elevation:5,
+    borderRadius: 5,
+    elevation: 5,
     backgroundColor: "#fff",
     width: "100%",
     flexWrap: "wrap",

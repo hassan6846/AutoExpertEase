@@ -15,6 +15,7 @@ import SearchVideoPage from "../Stacks/Home/nested/SearchVideoPage"
 import PostVideo from "../Stacks/Home/nested/PostVideo"
 import SearchResultVideo from "../Stacks/Home/nested/SearchResultVideo"
 import RentalCar from "../Stacks/Home/nested/RentalCar"
+import ThemeProviderColors from "../../provider/ThemeProvider"
 const HomeTab = () => {
 
   return (
@@ -30,13 +31,31 @@ const HomeTab = () => {
 
             <Icon containerStyle={{ marginRight: 10 }} type="material" name="notifications" />
             <Icon containerStyle={{ marginRight: 10 }} type="material" name="add" />
-</View>),
-cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} name="viewvideo" component={ViewVideos} />
+          </View>),
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+      }} name="viewvideo" component={ViewVideos} />
       {/* SearchPage */}
       <HomeStack.Screen name="searchvideo" component={SearchVideoPage} />
       <HomeStack.Screen name="postvideo" component={PostVideo} />
       <HomeStack.Screen name="videoresults" component={SearchResultVideo} />
-      <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} name="rentalcars" component={RentalCar}/>
+      <HomeStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      headerTitle:()=>(
+        <View>
+          <Text style={{fontWeight:"bold",color:ThemeProviderColors.Light.FontHeading}}>Your Location</Text>
+          <Text style={{fontSize:10,color:ThemeProviderColors.Light.FontSubHeading}}>135-c johar town lahore</Text>
+        </View>
+      ),
+      headerLeft:()=>(
+   
+          <Icon type="material" size={20} name="location-on"   raised={true}/>
+      
+      ),
+      headerRight:()=>(
+        <Avatar source={{uri:AvatarSrc}} size={40}  containerStyle={{marginRight:10,borderRadius:60}} avatarStyle={{borderRadius:60}}/>
+      ) }} name="rentalcars"
+       component={RentalCar} 
+      
+       />
 
 
     </HomeStack.Navigator>

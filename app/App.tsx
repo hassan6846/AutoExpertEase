@@ -100,7 +100,7 @@ const Main = () => {
 
   return (
     <NavigationContainer >
-      <StatusBar style="auto" />
+     
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {
 
@@ -167,6 +167,7 @@ export default function App() {
 
   return (
     <Provider store={Store}>
+   <StatusBar style="auto" />
       <Main />
     </Provider>
   );

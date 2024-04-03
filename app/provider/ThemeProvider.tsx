@@ -3,7 +3,7 @@ const ThemeProviderColors = {
     Light: {
         Main: "#fff",
         Primary: "#E04E2F",
-        FontHeading: "",
+        FontHeading: "#302F33",
         FontSubHeading: "#97ADB6",
     },
     Dark: {

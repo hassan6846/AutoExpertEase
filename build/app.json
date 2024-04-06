@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "build",
+    "slug": "build",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.mrhassan.build"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsDownloadToken": "sk.eyJ1IjoiaGFzc2Fuc2hlcml5YXIiLCJhIjoiY2x1bTc2NmtnMTNkazJrbGl6eHFpMzNndiJ9.he7qDrwjd7QG5NbH3UWvHA"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "9760eb8d-db1e-492a-9419-6265f0316fea"
+      }
+    }
+  }
+}

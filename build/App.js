@@ -1,8 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
 import "expo-dev-client"
-import { StyleSheet, Text, View } from 'react-native';
+
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View,Text} from 'react-native';
 import Mapbox from "@rnmapbox/maps"
 Mapbox.setAccessToken('pk.eyJ1IjoiaGFzc2Fuc2hlcml5YXIiLCJhIjoiY2xybnIxam00MTg0djJscXI1bXVxNTR3aCJ9.4r9apA2hHuxU3tOoGDVZbQ')
+
+
+
 
 export default function App() {
   return (
@@ -11,6 +15,7 @@ export default function App() {
     localizeLabels={true}
     logoEnabled={false}
       style={styles.map}/>
+      <Text>Walter</Text>
     </View>
   );
 }

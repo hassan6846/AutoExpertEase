@@ -33,7 +33,8 @@
         {
           "RNMapboxMapsDownloadToken": "sk.eyJ1IjoiaGFzc2Fuc2hlcml5YXIiLCJhIjoiY2x1bTc2NmtnMTNkazJrbGl6eHFpMzNndiJ9.he7qDrwjd7QG5NbH3UWvHA"
         }
-      ]
+      ],
+      "expo-router"
     ],
     "extra": {
       "eas": {

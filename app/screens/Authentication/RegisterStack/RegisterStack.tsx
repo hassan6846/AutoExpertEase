@@ -8,7 +8,7 @@ import EnterName from "./nested/EnterName";
 
 import VerifyOtp from "./nested/VerifyOtp";
 import VerifyEmailOtp from "./nested/VerifyEmailOtp";
-import AccountCreationSucess from "./AccountCreationSucess";
+
 //library
 import { LinearProgress } from '@rneui/themed'
 //utils
@@ -29,10 +29,8 @@ const RegisterStack = () => {
       }}
     >
       <Register.Screen name="setname" component={EnterName} />
-
       <Register.Screen name="verifyotp" component={VerifyOtp} />
       <Register.Screen name="verifyemailotp" component={VerifyEmailOtp} />
-
     </Register.Navigator>
   )
 }

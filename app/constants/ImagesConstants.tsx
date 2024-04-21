@@ -13,3 +13,6 @@ export const truck:string='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9G
 export const DrvingVideoImage:string="https://i.ytimg.com/vi/foG63Eo2cEc/maxresdefault.jpg"
 export const pakImage:string="https://i.ytimg.com/vi/y2P53AmsflI/maxresdefault.jpg"
 export const pakleasson:string="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6G-eAmlLoGNEtFHF6Qf-Qq6HPIRLJ0u0BX4YXQbZ4up_WSQPNn6OTRB1TgUK7ZwK2YQc&usqp=CAU"
+//Login
+export const OtpImage:string="https://res.cloudinary.com/diml3oeaw/image/upload/v1713702757/AutoExpertEase/Assets/Shop/xwzwdlbl2ejyx8i9mvp5.png"
+export const EmailOtp:string="https://res.cloudinary.com/diml3oeaw/image/upload/v1713703558/AutoExpertEase/Assets/Shop/nd53tij2jak2ry0injx4.png"

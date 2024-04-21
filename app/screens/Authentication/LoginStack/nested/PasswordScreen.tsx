@@ -20,7 +20,7 @@ const PasswordScreen = () => {
 
       </View>
       {/* Input */}
-      <Button containerStyle={{ paddingHorizontal: 40, }} color={ThemeProviderColors.Light.Primary} title="Verify" />
+      <Button containerStyle={{ paddingHorizontal: 40, }} color={ThemeProviderColors.Light.Primary} title="Login" />
       {/* Resend OTp view */}
       <View style={Styles.ResendOtpContainer}>
         <Text style={{ color: "#97ADB6" }}>Didn't Remember Password?</Text>

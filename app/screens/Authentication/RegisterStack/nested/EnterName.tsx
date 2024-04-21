@@ -9,9 +9,13 @@ import { getHeight } from '../../../../utils/GetDimension'
 const EnterName = ({ navigation }: { navigation: any }) => {
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: "#fff",padding:20 }}>
+      {/* Profile View */}
+      <View style={Styles.ProfileIcon}>
+      <Icon size={40} type='material' name='person' raised={true}/>
+      </View>
+      {/* Profile View */}
       <Text style={Styles.Heading} h4>Create Your Account</Text>
       <Text style={Styles.subheading} >Please Enter Info to Create your Account</Text>
-
      <ScrollView contentContainerStyle={{justifyContent:"center"}} style={{flex:1,marginTop:10}}>
 
      <View style={Styles.InputContainer}>
@@ -66,6 +70,9 @@ const Styles = StyleSheet.create({
     fontSize: 14,
   }, InputCont: {
     width: "100%",
+  },
+  ProfileIcon:{
+    alignItems:"center"
   }
 })
 export default EnterName

@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
 import { ChatbotAvatar } from '../../../../../constants/ImagesConstants';
-
+import {Icon} from "@rneui/themed"
 interface ChatSupportProps {}
 
 const ChatSupport: React.FC<ChatSupportProps> = () => {
@@ -71,6 +71,9 @@ const ChatSupport: React.FC<ChatSupportProps> = () => {
       messagesContainerStyle={{ backgroundColor: '#fff' }}
       placeholder='Ask anything...'
       messages={messages}
+      renderSend={()=>(
+        <Icon name='send' containerStyle={{alignSelf:'center',marginRight:10}} type='material'/>
+      )}
       onSend={(newMessages) => onSend(newMessages)}
       user={{
         _id: 1,

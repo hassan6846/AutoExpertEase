@@ -89,7 +89,7 @@ function HomePageActivity() {
 
 
 const Main = () => {
-  const [Auth, SetAuth] = useState(true)
+  const [Auth, SetAuth] = useState(false)
   const progress = useSelector((state: RootState) => state.auth.Progress)
   const activeColor = useSelector((state: RootState) => state.auth.HeaderColor)//dynamic
   const [isConnected, setIsConnected] = useState<any | null>(false); // Initially, connection status is unknown
@@ -102,7 +102,7 @@ const Main = () => {
 
   return (
     <NavigationContainer >
-     
+
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {
 
@@ -169,7 +169,7 @@ export default function App() {
 
   return (
     <Provider store={Store}>
-   <StatusBar style="auto" />
+      <StatusBar style="auto" />
       <Main />
     </Provider>
   );

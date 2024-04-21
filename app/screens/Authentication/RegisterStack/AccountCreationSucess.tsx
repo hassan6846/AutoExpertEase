@@ -6,17 +6,17 @@ import { Audio } from "expo-av"
 import { Text } from "@rneui/themed"
 
 
-import CustomButton from '../../components/ButtonProps/ButtonProps'
-import { getHeight } from '../../utils/GetDimension'
+import CustomButton from '../../../components/ButtonProps/ButtonProps'
+import { getHeight } from '../../../utils/GetDimension'
 
 //states redux
 import { useDispatch } from 'react-redux'
-import { SetHeaderColor,SetProgressValueBar } from '../../slices/AuthSlice'
+import { SetHeaderColor, SetProgressValueBar } from '../../../slices/AuthSlice'
 
 
 
 const AccountCreationSucess = () => {
-    const dipatch=useDispatch()
+    const dipatch = useDispatch()
     useEffect(() => {
         dipatch(SetHeaderColor("#27AE60"))
         dipatch(SetProgressValueBar(1))
@@ -31,9 +31,9 @@ const AccountCreationSucess = () => {
         };
 
         playSound();
-        
 
-    },[dipatch])
+
+    }, [dipatch])
 
 
     return (

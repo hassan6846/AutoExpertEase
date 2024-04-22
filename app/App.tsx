@@ -52,8 +52,9 @@ import AuthStack from "./screens/Authentication/AuthStack"
 import ExpertPanel from "./screens/ExpertTabs/ExpertTabMain"
 import VerficationStack from "./screens/ExpertVerification/initalRoute"
 import SellerTabsNavigator from "./screens/SellerTabs/Inital"
-import TrackOrders from "./screens/pages/OrderTracking/TrackOrders"
+
 import ProfilePage from "./screens/pages/ProfilePage/ProfilePage"
+import InitalOrders from "./screens/pages/OrderTracking/initial"
 
 
 
@@ -113,7 +114,7 @@ const Main = () => {
               {/* ProfileView */}
               <Stack.Screen name="ViewProfile" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={ViewProfileImage} />
               {/* TrackOrders */}
-              <Stack.Screen name="orders" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={TrackOrders} />
+              <Stack.Screen name="orders" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShadowVisible: false,title:"Orders Detail"}} component={InitalOrders} />
 
               {/* Chat Support Ai Bot. */}
               <Stack.Screen name="Support" options={{ headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar overlayContainerStyle={{ borderRadius: 10 }} source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />

@@ -71,9 +71,6 @@ const ChatSupport: React.FC<ChatSupportProps> = () => {
       messagesContainerStyle={{ backgroundColor: '#fff' }}
       placeholder='Ask anything...'
       messages={messages}
-      renderSend={()=>(
-        <Icon name='send' containerStyle={{alignSelf:'center',marginRight:10}} type='material'/>
-      )}
       onSend={(newMessages) => onSend(newMessages)}
       user={{
         _id: 1,

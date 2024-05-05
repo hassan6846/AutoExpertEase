@@ -10,7 +10,7 @@ const ChatBot = async (req, res, next) => {
     try {
         const stream = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
-            max_tokens:20,
+            max_tokens: 20,
             messages: [{ role: "user", content: prompt }],
             stream: true,
         });

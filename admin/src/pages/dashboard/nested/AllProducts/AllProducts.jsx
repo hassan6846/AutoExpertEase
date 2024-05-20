@@ -15,14 +15,6 @@ const AllProducts = () => {
       {/* The product wrapper for Alliginig products Should be wrap in flex */}
       <p style={{ fontSize: 20 }}>Products</p>
 
-
-
-
-
-
-
-
-
       <div style={{ height: "100%", position:"relative",backgroundColor: "#fff", width: "240px",borderRadius:5,cursor:"pointer"}}>
   {/* Start Card */}
         <div style={{ height: "100%", position:"relative",backgroundColor: "#fff", width: "240px",borderRadius:5,cursor:"pointer",boxShadow:"rgba(149, 157, 165, 0.2) 0px 8px 24px",padding:10}}>

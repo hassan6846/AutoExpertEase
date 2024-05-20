@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BiUpload, BiLogOutCircle } from 'react-icons/bi';
-import { BsBox2, BsFillCartFill, BsFillMapFill } from 'react-icons/bs';
-import { BiSolidUser, BiSolidMessageSquareDetail } from 'react-icons/bi';
+import { BsBox2, BsFillMapFill,BsListTask,BsBookmarkCheck} from 'react-icons/bs';
+import { BiSolidUser,BiCar, BiAddToQueue,} from 'react-icons/bi';
 import { TfiStatsUp } from 'react-icons/tfi';
 import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
@@ -21,10 +21,38 @@ const sidebarItems = [
     icon: <BsFillMapFill />,
     link: '/stats',
   },
+  ,
+    {
+    title: 'All Tasks',
+    icon: <BsListTask />,
+    link: '/tasks',
+  },
+    {
+    title: 'Active Tasks',
+    icon: <BsListTask />,
+    link: '/tasks',
+  },
+
   {
     title: 'All Products',
     icon: <BsBox2 />,
     link: '/products',
+  },
+  {
+    title: 'All Cars',
+    icon: <BiCar />,
+    link: '/cars',
+  },
+  {
+    title: 'Approve Cars.',
+    icon: <BiAddToQueue />,
+    link: '/cars',
+  },
+  {
+    title: 'Car Bookings',
+    icon: <BsBookmarkCheck />,
+    link: '/cars',
+    
   },
   {
     title: 'Product Requests',
@@ -40,6 +68,11 @@ const sidebarItems = [
 
   {
     title: 'Vendor Requests',
+    icon: <FaHandsHelping />,
+    link: '/vendorrequest',
+  },
+  {
+    title: 'Orders',
     icon: <FaHandsHelping />,
     link: '/vendorrequest',
   },

@@ -30,7 +30,7 @@ const sidebarItems = [
     {
     title: 'Active Tasks',
     icon: <BsListTask />,
-    link: '/tasks',
+    link: '/activetasks',
   },
 
   {
@@ -46,7 +46,7 @@ const sidebarItems = [
   {
     title: 'Approve Cars.',
     icon: <BiAddToQueue />,
-    link: '/cars',
+    link: '/carapproval',
   },
   {
     title: 'Car Bookings',

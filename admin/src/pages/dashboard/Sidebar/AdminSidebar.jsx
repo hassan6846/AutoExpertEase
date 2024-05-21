@@ -51,7 +51,7 @@ const sidebarItems = [
   {
     title: 'Car Bookings',
     icon: <BsBookmarkCheck />,
-    link: '/cars',
+    link: '/bookings',
     
   },
   {
@@ -74,7 +74,7 @@ const sidebarItems = [
   {
     title: 'Orders',
     icon: <FaHandsHelping />,
-    link: '/vendorrequest',
+    link: '/orders',
   },
   {
     title: 'Expert Requests',

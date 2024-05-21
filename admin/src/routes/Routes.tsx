@@ -18,6 +18,8 @@ import UserManegment from "../pages/dashboard/nested/UserManegment/UserManegment
 import VendorRequest from "../pages/dashboard/nested/VendorRequest/VendorRequest"
 import ExpertRequests from "../pages/dashboard/nested/ExpertRequests/ExpertRequests"
 import Logout from "../pages/dashboard/nested/Logout/Logout"
+import Orders from "../pages/dashboard/nested/Orders/Orders"
+import CarBookings from "../pages/dashboard/nested/CarBookings/CarBookings"
 
 const Routing = () => {
     return (
@@ -28,10 +30,13 @@ const Routing = () => {
                     <Route path="/admin" element={<Overview/>}/>
                    <Route path="/stats" element={<Stats/>}/>
                    <Route path="/products" element={<AllProducts/>}/>
+                   <Route path="/bookings" element={<CarBookings/>}/>
                    <Route path="/products/add" element={<ProductRequests/>}/>
-
+                 
                    <Route path="/users" element={<UserManegment/>}/>
                    <Route path="/vendorrequest" element={<VendorRequest/>}/>
+
+                   <Route path="/orders" element={<Orders/>}/>
                    <Route path="/expertrequests" element={<ExpertRequests/>}/>
                    <Route path="/logout" element={<Logout/>}/>
                    <Route path="*" element={<ErrorPage/>}/>

@@ -15,7 +15,7 @@ const VendorRequest = () => {
         <div className='RequestCard'>
 
           <div className='TextContainerRequests'>
-          <Avatar src={defaultUserImg} />
+          <Avatar  style={{marginRight:'5px'}} src={defaultUserImg} />
           <div>  <p><span style={{ fontWeight: "bold", marginBottom: 0 }}>Hassan Shehriyar </span>applied for vendorShip on the app</p>
             <p style={{ fontSize: '10px', marginTop: 0, marginBottom: 0 }}>2hrs Ago</p></div>
           </div>

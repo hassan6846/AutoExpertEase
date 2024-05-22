@@ -1,15 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../../../components/Header/Header'
 import { AiOutlineUser, AiOutlineUserAdd, } from 'react-icons/ai';
 import { BsBox2, BsShop, BsPersonGear } from 'react-icons/bs';
 import { LineChart } from "@mui/x-charts/LineChart"
 import Avatar from '@mui/material/Avatar';
+import axios from "axios"
 
 import "./Stats.css"
 import { defaultUserImg } from '../../../../constants/ImageConstants';
+
 const Stats = () => {
   const xLabels = ["Sat", "Sun", "Monday", "Tuesday", "Wednesday", "Friday", "Saturday", "Sunday"];
+  const [userCount, SetuserCount] = useState(0)
+  const [productCount, SetproductCount] = useState(0)
+  //fetch data using useEffect
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [userResponse, productResponse] = await Promise.all([
+          axios.get('http://localhost:4001/api/admin/usercount'),
+          axios.get('http://localhost:4001/api/admin/productscount')
+        ]);
 
+        SetuserCount(userResponse.data.count);
+        SetproductCount(productResponse.data.count);
+        console.log(productResponse)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <div style={{ flex: 1, backgroundColor: "#fff" }}>
       <Header title="Statistics" />
@@ -22,7 +44,7 @@ const Stats = () => {
           {/* Card */}
           <div className='StatsCard'>
             <AiOutlineUser size={30} />
-            <h1 style={{ marginTop: 10, marginBottom: 0 }}>50 </h1>
+            <h1 style={{ marginTop: 10, marginBottom: 0 }}>{userCount}</h1>
             <p style={{ marginTop: 5, marginBottom: 0, fontSize: '14px' }}>All Users</p>
           </div>
 
@@ -34,7 +56,7 @@ const Stats = () => {
           </div>
           <div className='StatsCard'>
             <BsBox2 size={30} />
-            <h1 style={{ marginTop: 10, marginBottom: 0 }}>5000 </h1>
+            <h1 style={{ marginTop: 10, marginBottom: 0 }}>{productCount} </h1>
             <p style={{ marginTop: 5, marginBottom: 0, fontSize: '14px' }}>Total Approved Products Listed. </p>
           </div>
           <div className='StatsCard'>
@@ -77,7 +99,7 @@ const Stats = () => {
             <h3 style={{ marginBottom: 0, marginTop: 20 }}>Recent Signups.</h3>
             <p style={{ marginBottom: 0, marginTop: 0, fontSize: 12 }}>See Users Who just signed up.</p>
             {/* Scrollable */}
-            <div style={{display:'flex',flexDirection:"column",rowGap:10,marginTop:10}}>
+            <div style={{ display: 'flex', flexDirection: "column", rowGap: 10, marginTop: 10 }}>
               {/* User Card */}
               <div style={{ backgroundColor: 'gray', padding: 10, borderRadius: 10, display: 'flex', alignItems: 'center' }}>
                 <Avatar style={{ marginRight: 5 }} src={defaultUserImg} />

@@ -8,3 +8,15 @@ const LoginRequestLimits = RateLimit({
     legacyHeaders: false,
     message: { message: 'Too many Requests from this IP, please try again after an hour, Kindly Dont Spam Server' }
 })
+
+
+//Admin Login Request
+const AdminLoginLimit=RateLimit.rateLimit({
+    windowMs: 60 * 60 * 1000, // 1hrs
+    limit:3,
+    standardHeaders: 'draft-7', // Set `RateLimit` and `RateLimit-Policy` headers
+    legacyHeaders: false,
+    message: { message: 'Too many Requests from this IP, please try again after an hour, Kindly Dont Spam Server' }
+})
+
+module.exports={AdminLoginLimit,LoginRequestLimits}

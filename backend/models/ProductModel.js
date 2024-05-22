@@ -99,8 +99,7 @@ const ProductSchema = new mongoose.Schema({
     },
     productStatus:{
         type:String,
-        required:false,
-        default:"unactive"
+        default:false,
     },
     PostedBy:{
         

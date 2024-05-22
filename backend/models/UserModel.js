@@ -94,14 +94,24 @@ const UserSchema = new mongoose.Schema({
         //about suspecius activity.
         DeviceInfo: {
             // Device ID
-            DeviceId: {},
+            DeviceId: {
+             
+            },
             // Brand
-            Brand: {},
+            Brand: {
+             
+            },
             //DeviceName.
-            DeviceName: {},
+            DeviceName: {
+                
+            },
             //    Device Type
-            DeviceType: {},
-            ModelName: {}
+            DeviceType: {
+              
+            },
+            ModelName: {
+            
+            }
         },
 
 
@@ -125,7 +135,7 @@ const UserSchema = new mongoose.Schema({
     // UserRoles.
     role: {
         type: String,
-        enum: ['Admin', 'Seller', 'Worker']
+        enum: ['admin', 'vendor', 'expert','none']
     },
     //we ill set this after putting this
     rolestatus: {

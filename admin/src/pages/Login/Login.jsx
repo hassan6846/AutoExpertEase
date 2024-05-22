@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
-import { MDBInput,  } from "mdb-react-ui-kit";
+import { MDBInput, } from "mdb-react-ui-kit";
 import { Button as MDBBtn } from '@mui/material';
 
 import toast, { Toaster } from "react-hot-toast";
@@ -76,7 +76,7 @@ const Login = () => {
   });
 
   useEffect(() => {
-    sessionStorage.clear();
+    sessionStorage.clear();//clear storage to make sure no added previous or old cookies 
   }, []);
 
   return (
@@ -87,7 +87,7 @@ const Login = () => {
         </div>
         <div className="login-container">
           <h1 className="login-heading">Login account</h1>
-       
+
           <form onSubmit={formik.handleSubmit} className="login-form">
             <MDBInput
               {...formik.getFieldProps("email")}
@@ -111,8 +111,8 @@ const Login = () => {
             {formik.touched.password && formik.errors.password && (
               <div className="error">{formik.errors.password}</div>
             )}
-            <Link className="forgot-link" to="/password/forgot">
-              Forgot Password?
+            <Link className="forgot-link" to="#">
+        (contact Adminstrations)
             </Link>
             <MDBBtn
               type="submit"
@@ -120,13 +120,13 @@ const Login = () => {
               className="otp-submit"
               disabled={isSubmitting}
             >
-Login
+              Login
             </MDBBtn>
           </form>
           <div className="login_flex">
             <p className="login_page_tag_line">DON'T HAVE ACCOUNT?</p>
-            <Link to="/signup" className="register">
-              Create Account Instead
+            <Link to="#" className="register">
+              Contact Your Admin's
             </Link>
           </div>
         </div>

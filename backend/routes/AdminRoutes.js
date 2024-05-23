@@ -9,5 +9,5 @@ const { AdminLoginFunction,GetUsersNo,GetProductNo } = require("../controllers/A
 
 router.route("/admin/login").get(AdminLoginLimit,AdminLoginFunction) //admin login
 router.route('/admin/usercount').get(GetUsersNo) //User Counts All Time
-router.route('/admin/productscount').get(GetProductNo)
+router.route('/admin/productscount').get(GetProductNo) //count all products
 module.exports=router

@@ -3,17 +3,45 @@ const express = require("express") //expressjs posting methods etc
 const validator = require("validator")//validator for server side Valdiataion
 const User = require("../models/UserModel")
 const jwt = require("jsonwebtoken")//json web token
-
+const bcrypt=require("bcrypt")
 const { GenerateOtp } = require("../utils/GenerateOtp")
 const { SendOtpMail } = require("../utils/SendMail")
 
 const cloudinaryInstance = require("../utils/Cloudinary")
 // 1 User login/Signup Initial
 const loginFunction = async (req, res, next) => {
-    const { phone, otp, password } = req.body
+    const { phone, password } = req.body
+    //if fields are not filled
+    if(!phone||!password){
+        return res.status(400).json({
+            success: false,
+            msg: "Please fill all the fields.",
+        });
+    }
     try {
-
-    } catch (err) {
+    //find if he is already a user
+    //if not then send error to register 
+    //else Try Registration
+    const FindUserByPhone=await User.findOne({phone});
+    //if he is not the user
+    if(!FindUserByPhone){
+        return res.status(404).json({
+            success: false,
+            msg: "Invalid Credientials", //for preventing attacks not to send invalid or other unsecure message
+        });
+    }
+    //if we found users then we have to compare password is correct or not
+    const comparePassword=await bcrypt.compare(password,FindUserByPhone.password)
+    
+    if(!comparePassword){
+        return res.status(401).json({
+            success: false,
+            msg: "Invalid Credientials", //for preventing attacks not to send invalid or other unsecure message
+        });
+    }
+    } 
+    
+    catch (err) {
         console.log(err)
     }
     next()

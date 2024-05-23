@@ -30,7 +30,7 @@ const ChatSupport: React.FC<ChatSupportProps> = () => {
     const userMessage = newMessages[0].text;
 
     try {
-      const response = await fetch('https://backend-autoexpertease-production.up.railway.app/api/help', {
+      const response = await fetch('http://10.0.2.2:4001/api/help', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

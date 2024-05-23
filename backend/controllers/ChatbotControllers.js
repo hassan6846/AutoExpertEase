@@ -1,16 +1,20 @@
-const { OpenAI } = require("openai");
+const { OpenAI, } = require("openai");
 
+
+//config open ai
 const openai = new OpenAI({
-    apiKey:  "1RhWaXkJT4tMRGwkzpbUT3BlbkFJ8NnrKthDmAHKSRpvFk34",
-    organization: process.env.ORGANIZATION
+    apiKey:"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",
+
+
 });
 
+//Chatbot msg
 const ChatBot = async (req, res, next) => {
     const { prompt } = req.body;
     try {
         const stream = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
-            max_tokens: 20,
+            max_tokens:1000,
             messages: [{ role: "user", content: prompt }],
             stream: true,
         });

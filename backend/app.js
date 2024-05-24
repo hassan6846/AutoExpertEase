@@ -15,7 +15,7 @@ app.use(cors({
 app.use(express.json())//server is json type.
 //all Routes
 const user = require("./routes/UserRoutes")
-// const product = require('./routes/ProductRoutes')
+const product = require('./routes/ProductRoutes')
 const chatbot=require('./routes/Chatbot')
 const admin=require('./routes/AdminRoutes')
 //endpoints middlewares

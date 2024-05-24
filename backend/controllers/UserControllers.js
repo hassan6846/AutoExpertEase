@@ -58,8 +58,19 @@ const RegisterFunction = async (req, res, next) => {
             msg: "Please fill all the fields.",
         });
     }
+    //find if the Phone is already registered or not
+    //Find if email is already register or not then redirect or tell him to login
+    //hash password 
     try {
-    
+      res.status(200).json({
+        FName:firstname,
+        LName:lastname,
+        password:password,
+        email:email,
+        deviceid:deviceid,
+        brand:brand,
+        
+      })
 
     } catch (error) {
         console.log(error)

@@ -103,10 +103,8 @@ const Main = () => {
 
   return (
     <NavigationContainer >
-
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {
-
           Auth ? (
             <>
               <Stack.Screen name="Main" component={HomePageActivity} />
@@ -140,10 +138,7 @@ const Main = () => {
 
               <Stack.Screen name="Auth"
                 options={{
-
                   headerShown: false,
-
-
                   headerShadowVisible: false, headerTitleAlign: "center",
                 }} component={AuthStack} />
 

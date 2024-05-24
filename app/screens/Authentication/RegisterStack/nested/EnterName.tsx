@@ -16,7 +16,7 @@ const EnterName = ({ navigation }: { navigation: any }) => {
       {/* Profile View */}
       <Text style={Styles.Heading} h4>Create Your Account</Text>
       <Text style={Styles.subheading} >Please Enter Info to Create your Account</Text>
-     <ScrollView contentContainerStyle={{justifyContent:"center"}} style={{flex:1,marginTop:10}}>
+     <ScrollView contentContainerStyle={{justifyContent:"center"}} style={{flex:1,marginTop:20}}>
 
      <View style={Styles.InputContainer}>
         <Input inputContainerStyle={Styles.InputVoid} labelStyle={{fontSize:13,marginBottom:5,marginTop:20}} inputStyle={Styles.InputMain} containerStyle={Styles.InputCont} label="First Name" placeholder="First Name" />
@@ -55,6 +55,7 @@ const Styles = StyleSheet.create({
     textAlign: "center"
   },
   InputContainer: {
+    marginTop:20,
     height: getHeight / 12,
 
     justifyContent: "center",

@@ -10,11 +10,11 @@ import ThemeProviderColors from '../../../../provider/ThemeProvider'
 const VerifyOtp = ({ navigation }: { navigation: any }) => {
   return (
     <KeyboardAvoidingView style={Styles.OtpContainer}>
-      <ScrollView>
-        <View style={{ marginTop: 50 }}>
+      <ScrollView style={{flex:1}}>
+        <View style={{ marginTop: 20 }}>
           <Image style={{ height: 240, objectFit: "contain" }} source={{ uri: OtpImage }} />
         </View>
-        <Text h3 style={{ textAlign: "center", marginTop: 50 }}>Verify Phone</Text>
+        <Text h3 style={{ textAlign: "center", marginTop: 10 }}>Verify Phone</Text>
         <Text style={Styles.Subheading}>Enter the One-Time-Password (OTP) Being Send to The +923332738198</Text>
         <OtpInput containerStyle={{ paddingHorizontal: 50, marginTop: 10 }} inputCount={4} tintColor={ThemeProviderColors.Light.Primary} />
         <Button onPress={()=>navigation.navigate('verifyemailotp')} containerStyle={{ paddingHorizontal: 40, marginTop: 30 }} color={ThemeProviderColors.Light.Primary} title="Verify" />
@@ -43,11 +43,13 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     columnGap: 5,
     justifyContent: "center",
-    marginTop: 5,
+    marginTop: 12,
+
 
 
   },
   ResendLink: {
+    fontSize:12,
     fontWeight: "800",
     color: ThemeProviderColors.Light.Primary
   }

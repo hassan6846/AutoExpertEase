@@ -43,14 +43,7 @@
     "plugins": [
       "expo-localization",
       "expo-tracking-transparency",
-      [
-        "@rnmapbox/maps",
-        {
-          "RNMapboxMapsVersion": "10.16.2",
-          "RNMapboxMapsImpl": "mapbox",
-          "RNMapboxMapsDownloadToken": "sk.eyJ1IjoiaGFzc2Fuc2hlcml5YXIiLCJhIjoiY2x0MmJwdTA1MWpoODJsbzV1OHUwaWp5byJ9.44NXW0WXoI55W98_sIGQIQ"
-        }
-      ],
+
       [
         "expo-dev-launcher",
         {

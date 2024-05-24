@@ -18,7 +18,7 @@
     "@react-navigation/native-stack": "^6.9.17",
     "@react-navigation/stack": "^6.3.20",
     "@reduxjs/toolkit": "^2.0.1",
-    "@rneui/base": "^4.0.0-rc.8",
+    "@rneui/base": "^4.0.0-rc.7",
     "@rneui/themed": "^4.0.0-rc.8",
     "@rnmapbox/maps": "^10.1.15",
     "expo": "~49.0.15",
@@ -53,7 +53,8 @@
     "react-native-svg": "^15.1.0",
     "react-native-tab-view": "^3.5.2",
     "react-redux": "^9.1.0",
-    "socket.io-client": "^4.7.5"
+    "socket.io-client": "^4.7.5",
+    "expo-device": "~5.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

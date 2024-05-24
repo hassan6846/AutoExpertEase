@@ -1,7 +1,6 @@
 const mongoose = require("mongoose")
 
 
-const User = require("./UserModel")
 
 
 const ProductSchema = new mongoose.Schema({
@@ -102,7 +101,9 @@ const ProductSchema = new mongoose.Schema({
         default:false,
     },
     PostedBy:{
-        
+        type: mongoose.Schema.ObjectId,
+        ref: "Vendor",
+        required: true,
     }
 
 })

@@ -49,18 +49,17 @@ const loginFunction = async (req, res, next) => {
 
 const RegisterFunction = async (req, res, next) => {
     //register functions
-    const { name, email, password, otp, Emailotp, deviceid, brand, devicename, devicetype, modelname } = req.body
+    const { firstname,lastname, email, password, otp, Emailotp, deviceid, brand, devicename, devicetype, modelname } = req.body
 
     //fields are empty
-    if (!name || !password || !phone || !email || !deviceid || !brand || !devicename || !devicetype || !modelname, otp, Emailotp) {
+    if (!firstname || !lastname || !password || !phone || !email || !deviceid || !brand || !devicename || !devicetype || !modelname, otp, Emailotp) {
         return res.status(400).json({
             success: false,
             msg: "Please fill all the fields.",
         });
     }
-
-
     try {
+
 
     } catch (error) {
         console.log(error)

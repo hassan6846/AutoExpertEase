@@ -2,9 +2,19 @@ const mongoose = require("mongoose")
 const validator = require("validator")
 const bcrypt = require("bcrypt")
 const UserSchema = new mongoose.Schema({
-    // userName
+    // userName (for Kyc purposes E.g Real Cnic Name )
     username: {
         type: String,
+        require: [true, "Kindly Enter your Name"],
+        maxLength: [30, "Name cannot exceed 30 characters"],//setting max length
+        minLength: [4, "Name should have more than 4 characters"],//setting min length
+    },
+    firstName:{
+        require: [true, "Kindly Enter your Name"],
+        maxLength: [30, "Name cannot exceed 30 characters"],//setting max length
+        minLength: [4, "Name should have more than 4 characters"],//setting min length
+    },
+    SecondName:{
         require: [true, "Kindly Enter your Name"],
         maxLength: [30, "Name cannot exceed 30 characters"],//setting max length
         minLength: [4, "Name should have more than 4 characters"],//setting min length

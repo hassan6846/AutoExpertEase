@@ -20,7 +20,7 @@ const chatbot=require('./routes/Chatbot')
 const admin=require('./routes/AdminRoutes')
 //endpoints middlewares
 app.use("/api", user)
-// app.use("/api", product)
+app.use("/api", product)
 app.use('/api',chatbot)
 app.use('/api',admin)
 module.exports = app

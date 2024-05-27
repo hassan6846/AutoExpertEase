@@ -4,14 +4,16 @@ import { Avatar,Chip } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { defaultUserImg } from '../../../../constants/ImageConstants'
 import ProductCard from '../../../../components/ProductCard/ProductCard';
-
+import Header from '../../../../components/Header/Header';
+Header
 const AllProducts = () => {
   return (
     <div style={{ flex: 1, backgroundColor: "#fff" }}>
       {/* searhbar etc */}
-      <div style={{ backgroundColor: '#e5e5e5', height: "10vh", borderRadius: 10 }}>
 
-      </div>
+      <Header title="All Listed Products."/>
+
+ 
       {/* The product wrapper for Alliginig products Should be wrap in flex */}
       <p style={{ fontSize: 20 }}>Products</p>
 

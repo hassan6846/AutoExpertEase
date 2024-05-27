@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from '../../../../components/Header/Header'
 
 const CarBookings = () => {
   return (
-    <div>CarBookings</div>
+    <div>
+      <Header title="Car Bookings"/>
+    </div>
   )
 }
 

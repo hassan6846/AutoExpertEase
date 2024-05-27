@@ -1,8 +1,13 @@
 import React from 'react'
+import "./AllCars.css"
+import Header from '../../../../components/Header/Header'
+// Header
 
 const AllCars = () => {
   return (
-    <div>AllCars</div>
+    <div>
+<Header title="Listed Cars"/>
+    </div>
   )
 }
 

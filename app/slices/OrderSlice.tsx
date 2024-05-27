@@ -1,8 +1,3 @@
-//this Slice only contain 
-//user role
-//AuthStatus.
-//token if possible 
-
 import { createSlice } from "@reduxjs/toolkit";
 
 const AuthSlice = createSlice({
@@ -18,16 +13,7 @@ const AuthSlice = createSlice({
         HeaderColor:"#E04E2F",
         Auth:false,
         currentRouteName:"",
-        phone:"",
-        password:"",
-        firstName:"",
-        lastName:"",
-        Email:"",
-        token:null,
-        deviceName:"",
-        DeviceType:"",
-        DeviceYearofManufactuing:"",
-
+        
     },
     reducers: {
         //SetProgressValueBar

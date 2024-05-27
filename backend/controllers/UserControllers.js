@@ -2,45 +2,45 @@
 const express = require("express") //expressjs posting methods etc
 const validator = require("validator")//validator for server side Valdiataion
 const User = require("../models/UserModel")
+const OTP = require("../models/EmailOtpModel")
 const jwt = require("jsonwebtoken")//json web token
-const bcrypt=require("bcrypt")
-const { GenerateOtp } = require("../utils/GenerateOtp")
-const { SendOtpMail } = require("../utils/SendMail")
-
+const bcrypt = require("bcrypt")
 const cloudinaryInstance = require("../utils/Cloudinary")
+const { GenerateOtp } = require("../utils/GenerateOtp")
+
 // 1 User login/Signup Initial
 const loginFunction = async (req, res, next) => {
     const { phone, password } = req.body
     //if fields are not filled
-    if(!phone||!password){
+    if (!phone || !password) {
         return res.status(400).json({
             success: false,
             msg: "Please fill all the fields.",
         });
     }
     try {
-    //find if he is already a user
-    //if not then send error to register 
-    //else Try Registration
-    const FindUserByPhone=await User.findOne({phone});
-    //if he is not the user
-    if(!FindUserByPhone){
-        return res.status(404).json({
-            success: false,
-            msg: "Invalid Credientials", //for preventing attacks not to send invalid or other unsecure message
-        });
+        //find if he is already a user
+        //if not then send error to register 
+        //else Try Registration
+        const FindUserByPhone = await User.findOne({ phone });
+        //if he is not the user
+        if (!FindUserByPhone) {
+            return res.status(404).json({
+                success: false,
+                msg: "Invalid Credientials", //for preventing attacks not to send invalid or other unsecure message
+            });
+        }
+        //if we found users then we have to compare password is correct or not
+        const comparePassword = await bcrypt.compare(password, FindUserByPhone.password)
+
+        if (!comparePassword) {
+            return res.status(401).json({
+                success: false,
+                msg: "Invalid Credientials", //for preventing attacks not to send invalid or other unsecure message
+            });
+        }
     }
-    //if we found users then we have to compare password is correct or not
-    const comparePassword=await bcrypt.compare(password,FindUserByPhone.password)
-    
-    if(!comparePassword){
-        return res.status(401).json({
-            success: false,
-            msg: "Invalid Credientials", //for preventing attacks not to send invalid or other unsecure message
-        });
-    }
-    } 
-    
+
     catch (err) {
         console.log(err)
     }
@@ -49,10 +49,10 @@ const loginFunction = async (req, res, next) => {
 
 const RegisterFunction = async (req, res, next) => {
     //register functions
-    const { firstname,lastname, email, password, otp, Emailotp, deviceid, brand, devicename, devicetype, modelname } = req.body
+    const { firstname, lastname, email, password, otp, Emailotp, deviceid, brand, devicename, devicetype } = req.body
 
     //fields are empty
-    if (!firstname || !lastname || !password || !phone || !email || !deviceid || !brand || !devicename || !devicetype || !modelname, otp, Emailotp) {
+    if (!firstname || !lastname || !password || !phone || !email || !deviceid || !brand || !devicename || !devicetype || !otp || !Emailotp) {
         return res.status(400).json({
             success: false,
             msg: "Please fill all the fields.",
@@ -62,16 +62,28 @@ const RegisterFunction = async (req, res, next) => {
     //Find if email is already register or not then redirect or tell him to login
     //hash password 
     try {
-      res.status(200).json({
-        FName:firstname,
-        LName:lastname,
-        password:password,
-        email:email,
-        deviceid:deviceid,
-        brand:brand,
-        
-      })
-
+        const FindUser = await User.findOne({ phone })
+        //IF we find User Then ASked them or alert them that This Phone is already Registed please Try Latter.
+        if (FindUser) {
+            return res.status(409).json({ message: 'This phone number is already registered. Please try again later.' });
+        }
+        //Send Otp To Phone And Then Send OTP TO Email
+        const response = await OTP.findOne({ email }).sort({ createdAt: -1 }).limit(1)
+        console.log(response)
+        //Find the Length is not found
+        if (response.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: "The OTP is not valid"
+            })
+        }
+        else if (otp !== response[0].otp) {
+			// Invalid OTP
+			return res.status(400).json({
+				success: false,
+				message: "The OTP is not valid",
+			});
+		}
     } catch (error) {
         console.log(error)
         res.status(500).json({ error: "Internal Server Error" });

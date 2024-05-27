@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer")
 // SendingOtpMail
-const SendOtpMail = async (otp,to) => {
+const SendOtpMail = async (email,title,body) => {
     try {
         const transporter=nodemailer.createTransport({
          
@@ -15,12 +15,12 @@ const SendOtpMail = async (otp,to) => {
         //mailoption
     const mailOptions={
         from:'violette.wolff@ethereal.email',
-        to:`Subject ${to}`,
-        subject:"Email Otp",
-        text:`The otp for your login/signup email is ${otp}`
+        to:` ${email}`,
+        subject:`${title}`,
+        text:`${body}`
     }
     await transporter.sendMail(mailOptions)
-    res.status(200).json({message:`Emal sent sucessfull to ${to}`})
+    res.status(200).json({message:`Emal sent sucessfull to ${email}`})
     } catch (error) {
         console.error("Error sending email:", error);
       

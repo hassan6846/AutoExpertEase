@@ -20,7 +20,7 @@ const LoginStack = () => {
                 headerTitle: "Login",
                 header: () => (
                     <View style={{ height: getHeight / 12, justifyContent: "flex-end", alignItems: "center", backgroundColor: "#fff" }}>
-                        <LinearProgress color="#E04E2F" value={0.5} trackColor="#D9D9D9" variant="determinate" style={{ width: '60%', height: 7, borderRadius: 5 }} />
+                        <LinearProgress color="#E04E2F" value={0.3} trackColor="#D9D9D9" variant="determinate" style={{ width: '60%', height: 7, borderRadius: 5 }} />
                     </View>
                 )
             }}

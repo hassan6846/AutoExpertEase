@@ -131,6 +131,10 @@ const CarSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    IsApproved:{
+        type:Boolean,
+        default:false,
+    }
 });
 
 // Create the model from the schema

@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken")
 //models
 const User = require("../models/UserModel")
 const Product=require("../models/ProductModel")
-
+const Car = require("../models/CarModal")
 
 //Admin Login function
 const AdminLoginFunction = async (req, res, next) => {
@@ -50,4 +50,26 @@ const GetProductNo=async(req,res,next)=>{
         res.status(500).json({ error: "Internal server error" });
     }
 }
-module.exports={AdminLoginFunction,GetUsersNo,GetProductNo}
+//Get All USer Documents
+const GetAllUsers=async(req,res,next)=>{
+try {
+        // Fetch all users from the database
+        const users = await User.find();
+        res.status(200).json(users);
+} catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+}
+}
+//Get All Cars
+const GetAllCars=async(req,res,next)=>{
+    try {
+            // Fetch all users from the database
+            const cars = await Car.find();
+            res.status(200).json(cars);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+    }
+module.exports={AdminLoginFunction,GetUsersNo,GetProductNo,GetAllUsers,GetAllCars}

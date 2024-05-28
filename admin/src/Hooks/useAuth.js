@@ -6,15 +6,19 @@ const useAuth = () => {
 
     useEffect(() => {
         const token = Cookies.get('token');
-        if (token) {
-            setIsAuthenticated(true);
-        } else if (!token && window.location.pathname !== '/login') {
-            // Redirect to login page only if not already on the login page
+        setIsAuthenticated(!!token); // Set isAuthenticated based on whether token exists
+        
+        // Redirect to login page only if not authenticated and not already on the login page
+        if (!token && window.location.pathname !== '/login') {
             window.location.href = '/login';
         }
     }, []); // Empty dependency array to ensure this effect runs only once
 
-    return isAuthenticated;
+    const setAuth = (value) => {
+        setIsAuthenticated(value);
+    };
+
+    return { isAuthenticated, setAuth };
 }
 
 export default useAuth;

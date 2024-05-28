@@ -6,9 +6,13 @@ import { Button as MDBBtn } from '@mui/material';
 import toast, { Toaster } from "react-hot-toast";
 
 import "./Login.css";
+import useAuth from "../../Hooks/useAuth";
+import ApiInstance from "../../../Instance/AxiosInstance";
 
 const Login = () => {
+  const {setAuth}=useAuth()
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -16,22 +20,24 @@ const Login = () => {
     },
     onSubmit: async (values) => {
       setIsSubmitting(true);
+      
 
       try {
-        const response = await fetch("http://localhost:4001/api/admin/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(values)
+        const response = await ApiInstance.post('/admin/login', {
+          email: values.email,
+          password: values.password
+
         });
 
-        if (response.ok) {
+        if (response.status===200) {
           // Handle successful login
           toast.success("Successfully logged in");
+          setAuth(true)
+          console.log(response)
         } else {
           const data = await response.json();
-          toast.error(data.msg || "Error while logging in");
+          toast.error(data.msg)
+          console.log(response)
         }
       } catch (error) {
         console.log(error);

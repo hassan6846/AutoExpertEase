@@ -44,17 +44,16 @@ const AdminLoginFunction = async (req, res, next) => {
             expiresIn: process.env.JWT_EXPIRES_IN,
         });
 
-        res.cookie('token',token,{
-            httpOnly: true,
-            secure: false, // Set to false in development
-            sameSite: 'lax', // 'lax' or 'none' in development
-        })
+   
         // Send success response
         res.status(200).json({
             success: true,
             msg: "Logged in successfully.",
             token: token, // Optionally, you can send the token in the response body as well
         });
+
+        res.cookie("token",token)
+
     } 
 
     catch (error) {

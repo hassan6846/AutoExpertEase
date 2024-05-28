@@ -29,7 +29,7 @@ import useAuth from "../Hooks/useAuth"
 
 const Routing = () => {
 
-    const isAuthenticated = useAuth()
+    const {isAuthenticated} = useAuth()
     return (
         <Router>
             <Routes>

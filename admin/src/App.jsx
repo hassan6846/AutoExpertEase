@@ -8,7 +8,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   setTimeout(() => {
     setLoading(false);
-  }, 1000);
+  }, 0);
 
   return (
     <div style={{ height: "100vh", justifyContent: "center", alignItems: "center", width: "100%", display: "flex" }}>

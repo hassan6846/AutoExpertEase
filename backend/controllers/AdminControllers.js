@@ -126,8 +126,8 @@ const RecentSignups = async (req, res, next) => {
 //Delete User By ID
 const DeleteUser = async (req, res, next) => {
     try {
-        const userId = req.params.id;
-        const deleteUser = await User.findByIdAndDelete(userId);
+        const {id} = req.params;
+        const deleteUser = await User.findByIdAndDelete(id);
         //If User is not found (Maybe its already deleted from our side or may be void)
         if (!deleteUser) {
             return res.status(404).json({ message: 'User not found' })

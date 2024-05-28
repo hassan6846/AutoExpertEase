@@ -7,10 +7,9 @@ import { Button, Icon, Input, Text } from "@rneui/themed"
 
 //Redux
 import { useDispatch } from "react-redux"
-import { current } from "@reduxjs/toolkit"
 import ThemeProviderColors from "../../../../provider/ThemeProvider"
-import { SetProgressValueBar } from "../../../../slices/AuthSlice"
-import FindUser from "../../../../api/Auth/FindUser"
+import { SetProgressValueBar, } from "../../../../slices/AuthSlice"
+
 
 
 
@@ -48,7 +47,7 @@ const PhoneLogin = ({ navigation }: { navigation: any }) => {
             <View style={{ display: "flex", justifyContent: "center", alignItems: 'center', backgroundColor: "#fff" }}>
             </View>
 
-            <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <ScrollView style={{flex:1}} contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.LoginContainer}>
                     <Text style={styles.LoginHeading} h3={true} >Enter Phone Number for Verification</Text>
                     <Text style={styles.LoginSub}>This number will be used for all ride-related communication. You shall receive an SMS with code for verification.</Text>
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
     },
     // ScrollView
     scrollContainer: {
-        flexGrow: 1,
+  height:"100%"
     },
     LoginHeading: {
         marginTop: 10,

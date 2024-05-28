@@ -14,19 +14,19 @@ const AuthSlice = createSlice({
         userinfo: null,//User info presisted version only...
         AlreadyVisitedApp: false,     //if app is opened first time or not
         Progress: 0.1,//value for progressbar for 
-        RefreshTokenTime: 10000 ,    //RefreshTokenTime 10min
-        HeaderColor:"#E04E2F",
-        Auth:false,
-        currentRouteName:"",
-        phone:"",
-        password:"",
-        firstName:"",
-        lastName:"",
-        Email:"",
-        token:null,
-        deviceName:"",
-        DeviceType:"",
-        DeviceYearofManufactuing:"",
+        RefreshTokenTime: 10000,    //RefreshTokenTime 10min
+        HeaderColor: "#E04E2F",
+        Auth: false,
+        currentRouteName: "",
+        phone: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        Email: "",
+        token: null,
+        deviceName: "",
+        DeviceType: "",
+        DeviceYearofManufactuing: "",
 
     },
     reducers: {
@@ -43,13 +43,20 @@ const AuthSlice = createSlice({
             state.isAlreadyRegisted = action.payload
         },
         //SetHeaderColor
-        SetHeaderColor:(state,action)=>{
-            state.HeaderColor=action.payload
+        SetHeaderColor: (state, action) => {
+            state.HeaderColor = action.payload
+        },
+        //SetPhone
+        SetPhone: (state, action) => {
+            state.phone = action.payload
+        },//SetPassword
+        SetPassword: (state, action) => {
+            state.phone = action.payload
         }
 
     }
 })
 
-export const { SetAlreadyVisitedApp, SetProgressValueBar, SetIsAlreadyRegisted,SetHeaderColor } = AuthSlice.actions
+export const { SetAlreadyVisitedApp, SetProgressValueBar, SetIsAlreadyRegisted, SetHeaderColor } = AuthSlice.actions
 
 export default AuthSlice.reducer

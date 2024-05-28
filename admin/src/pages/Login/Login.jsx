@@ -1,82 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-import axios from "axios";
-import { MDBInput, } from "mdb-react-ui-kit";
+import { MDBInput } from "mdb-react-ui-kit";
 import { Button as MDBBtn } from '@mui/material';
-
 import toast, { Toaster } from "react-hot-toast";
-// Css
+
 import "./Login.css";
-// components and Library.
-
-
 
 const Login = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false); // Track login submission
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validateOnBlur: true,
-    validateOnChange: true,
-    validate: (values) => {
-      const errors = {};
-
-      if (!values.email) {
-        errors.email = "Please fill the email field";
-      }
-
-      if (!values.password) {
-        errors.password = "Please fill the password field";
-      }
-
-      if (values.password.length < 7) {
-        errors.password = "Please valid Password You might be joking";
-      }
-
-      return errors;
-    },
     onSubmit: async (values) => {
-      if (!formik.isValid) {
-        return;
-      }
-
-      setIsSubmitting(true); // Start login submission
-
-      const api = axios.create({
-        baseURL: "http://localhost:3001",
-      });
+      setIsSubmitting(true);
 
       try {
-        const stringedVal = JSON.stringify(values);
-        console.log(JSON.parse(stringedVal));
-        await api.post("/api/v1/login", {
-          email: values.email,
-          password: values.password,
+        const response = await fetch("http://localhost:4001/api/admin/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(values)
         });
 
-        // Handle successful login
-        toast.success("Successfully logged in");
+        if (response.ok) {
+          // Handle successful login
+          toast.success("Successfully logged in");
+        } else {
+          const data = await response.json();
+          toast.error(data.msg || "Error while logging in");
+        }
       } catch (error) {
         console.log(error);
-
-        if (error.response && error.response.data && error.response.data.msg) {
-          toast.error(error.response.data.msg);
-        } else if (error.message) {
-          toast.error(error.response.data.Msg);
-        } else {
-          toast.error("Error when logging in");
-        }
+        toast.error("Error while logging in");
       } finally {
-        setIsSubmitting(false); // End login submission
+        setIsSubmitting(false);
       }
     },
   });
 
   useEffect(() => {
-    sessionStorage.clear();//clear storage to make sure no added previous or old cookies 
+    sessionStorage.clear();
   }, []);
 
   return (
@@ -112,15 +79,15 @@ const Login = () => {
               <div className="error">{formik.errors.password}</div>
             )}
             <Link className="forgot-link" to="#">
-        (contact Adminstrations)
+              (contact Administrations)
             </Link>
             <MDBBtn
               type="submit"
-              style={{ backgroundColor: "#4BB497", border: "0px" }}
+              style={{ backgroundColor: "#4BB497", border: "0px", color: "#ffff" }}
               className="otp-submit"
               disabled={isSubmitting}
             >
-              Login
+              {isSubmitting ? "Logging in..." : "Login"}
             </MDBBtn>
           </form>
           <div className="login_flex">

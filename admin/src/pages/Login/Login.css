@@ -94,7 +94,9 @@
   }
   
   .login-input {
+    border-radius: 10px;
     width: 100%;
+    border: 1px solid #848484;
     height: 2.9rem;
     padding: 0.4rem 1rem;
   }

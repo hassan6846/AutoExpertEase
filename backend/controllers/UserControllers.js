@@ -172,9 +172,15 @@ const FindUser = async (req, res, next) => {
 
 
 
-//Logout
-
-
+//Send EmailOTP
+const SendEmailOTP=async(req,res)=>{
+    try {
+        const {email}=req.body;
+        const otp=await GenerateOtp
+    } catch (error) {
+        
+    }
+}
 
 
 module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser }

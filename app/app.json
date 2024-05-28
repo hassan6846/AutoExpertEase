@@ -49,6 +49,13 @@
         {
           "launchModeExperimental": "most-recent"
         }
+      ],
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "",
+          "enableGooglePay": false
+        }
       ]
     ],
     "extra": {

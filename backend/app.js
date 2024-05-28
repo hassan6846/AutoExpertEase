@@ -2,7 +2,12 @@ const express = require("express");
 const app = express();
 const fileupload = require("express-fileupload")
 const cors = require("cors");
-const { updatepicture } = require("./controllers/UserControllers");
+// Initializing App
+const http=require("http")
+const {Server}=require("socket.io")
+const server=http.createServer(app)
+const io=new Server(server)
+//END OF INITIALIZATION...
 require("dotenv").config()
 //middlewares
 app.disable("x-powered-by")//hiding tech stack from Hacker..

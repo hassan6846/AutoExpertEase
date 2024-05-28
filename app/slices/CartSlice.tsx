@@ -6,6 +6,8 @@ const cartSlice = createSlice({
         items: [],//map all cart items,
         platformFee: 8, //platform fee to charge 
         deliveryFee: null, //delivery fee
+        deliverychargers:250 //
+        
     },
 
     reducers: {

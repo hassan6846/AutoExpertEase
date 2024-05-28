@@ -6,15 +6,16 @@ import { Button, Icon, Input, Text } from "@rneui/themed"
 
 
 //Redux
-import { useDispatch } from "react-redux"
+import { useDispatch,useSelector } from "react-redux"
 import ThemeProviderColors from "../../../../provider/ThemeProvider"
 import { SetProgressValueBar, } from "../../../../slices/AuthSlice"
-
-
+import {RootState} from "../../../../store/Store"
 
 
 //Page
 const PhoneLogin = ({ navigation }: { navigation: any }) => {
+    const progress = useSelector((state: RootState) => state.auth.Progress);
+
     const dispatch = useDispatch()
 
     const InputRef = createRef<any>(); // Create a ref using useRef
@@ -50,7 +51,7 @@ const PhoneLogin = ({ navigation }: { navigation: any }) => {
             <ScrollView style={{flex:1}} contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.LoginContainer}>
                     <Text style={styles.LoginHeading} h3={true} >Enter Phone Number for Verification</Text>
-                    <Text style={styles.LoginSub}>This number will be used for all ride-related communication. You shall receive an SMS with code for verification.</Text>
+                    <Text style={styles.LoginSub}>This number  will be used for all ride-related communication. You shall receive an SMS with code for verification.</Text>
                     <Input ref={InputRef} onChangeText={handleInputChange} labelStyle={{ marginBottom: 5, fontSize: 10 }} label="Phone" inputContainerStyle={styles.LoginInputCont} rightIcon={<TouchableOpacity activeOpacity={0.7} ><Icon name="close" reverseColor="#66696D" reverse={true} color="#e3e3e3" iconStyle={{ fontSize: 15, fontWeight: "bold" }} type="evilicon" size={8} raised={true} /></TouchableOpacity>} placeholder="923332739790" errorMessage="Sorry! Rate Limit Exceded Please Try Later in 1hr." keyboardType="number-pad" />
                     <Button onPress={() => {
 

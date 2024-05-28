@@ -12,6 +12,7 @@ import { getHeight } from "../../../utils/GetDimension";
 import { LinearProgress } from "@rneui/themed"
 
 const LoginStack = () => {
+
     return (
         <Login.Navigator
 

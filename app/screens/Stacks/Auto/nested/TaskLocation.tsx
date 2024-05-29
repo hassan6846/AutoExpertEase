@@ -13,7 +13,7 @@ const TaskLocation = ({ navigation }: { navigation: any }) => {
 
       {/* Input View Start */}
       <View style={Style.InputContainer}>
-        <Input  onFocus={()=>navigation.navigate('querylocation')}  inputContainerStyle={Style.InputVoid} inputStyle={Style.InputMain} containerStyle={Style.InputCont} placeholder="Enter Your Location" />
+        <Input onFocus={() => navigation.navigate('querylocation')} inputContainerStyle={Style.InputVoid} inputStyle={Style.InputMain} containerStyle={Style.InputCont} placeholder="Enter Your Location" />
         {/* Dropdown */}
 
       </View>

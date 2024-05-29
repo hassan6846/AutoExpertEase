@@ -137,31 +137,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                     </Pressable>
                     {/*  */}
 
-                    <Pressable style={({ pressed }) => [
-                        {
-                            backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
-                        },
-                        Styles.ProfileList,
-                    ]}>
-                        <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="favorite" type="material" color="#3E4958" />
-                        <ListItem.Content>
-                            <ListItem.Title style={{ marginLeft: 7 }}>Liked Items</ListItem.Title>
-                        </ListItem.Content>
-                        <ListItem.Chevron size={18} />
-                    </Pressable>
-                    {/*  */}
-                    <Pressable style={({ pressed }) => [
-                        {
-                            backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
-                        },
-                        Styles.ProfileList,
-                    ]}>
-                        <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="list" type="material" color="#3E4958" />
-                        <ListItem.Content>
-                            <ListItem.Title style={{ marginLeft: 7 }}>Wishlist</ListItem.Title>
-                        </ListItem.Content>
-                        <ListItem.Chevron size={18} />
-                    </Pressable>
+
                     {/* Bookings Card */}
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Bookings</Text>
                     <Pressable onPress={() => navigation.navigate('Expert')} style={({ pressed }) => [

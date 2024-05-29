@@ -27,7 +27,7 @@ import Search from "../Stacks/Shop/nested/SearchPage"
 import ProductViewPage from "../Stacks/Shop/nested/ProductViewPage"
 import SearchResults from "../Stacks/Shop/nested/SearchResults"
 import CategoryTabs from "../Stacks/Shop/nested/AllCategory/initialRoute"
-
+import Wallet from "../Stacks/Shop/nested/Wallet"
 const EcommerceTab = ({ navigation }: { navigation: any }) => {
   return (
     <EcommerceStack.Navigator initialRouteName="ShopContainer" >
@@ -174,12 +174,19 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
 
         component={ProductViewPage} />
 
-        <EcommerceStack.Screen options={{
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-          cardShadowEnabled:false,
-          headerShadowVisible:false,
-          title:"All Category"
-        }} name="allcategory" component={CategoryTabs}/>
+      <EcommerceStack.Screen options={{
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        cardShadowEnabled: false,
+        headerShadowVisible: false,
+        title: "All Category"
+      }} name="allcategory" component={CategoryTabs} />
+
+      <EcommerceStack.Screen options={{
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        cardShadowEnabled: false,
+        headerShadowVisible: false,
+        title: "Wallet"
+      }} name="wallet" component={Wallet} />
     </EcommerceStack.Navigator>
   )
 }

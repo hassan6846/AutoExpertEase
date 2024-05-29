@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const TrackInfo = () => {
+const ViewCarDetails = () => {
   return (
     <View>
-      <Text>TrackInfo</Text>
+      <Text>ViewCarDetails</Text>
     </View>
   )
 }
 
-export default TrackInfo
+export default ViewCarDetails

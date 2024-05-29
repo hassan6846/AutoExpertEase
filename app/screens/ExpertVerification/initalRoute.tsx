@@ -3,28 +3,17 @@ import { createStackNavigator } from "@react-navigation/stack"
 const Verify = createStackNavigator()
 
 //childScreens
-import TrackInfo from "./nested/TrackInfo"
-import ScanFace from "./nested/ScanFace"
-import ScanCnic from "./nested/ScanCnic"
-import EnterInformation from "./nested/EnterInformation"
-import AllDone from "./nested/AllDone"
+
+import SelectRole from "./nested/SelectRole"
 
 const VerficationStack = () => {
     return (
         <Verify.Navigator
-        initialRouteName="scanface"
-        screenOptions={{
-            cardStyle: {
-                backgroundColor: "#fff",
-            },
-            
-        }}
+            initialRouteName="selectrole"
+
         >
-            <Verify.Screen name="trackinfo" component={TrackInfo} />
-            <Verify.Screen name="scanface" component={ScanFace} />
-            <Verify.Screen name="scancnic" component={ScanCnic} />
-            <Verify.Screen name="enterinformation" component={EnterInformation} />
-            <Verify.Screen name="alldone" component={AllDone} />
+            <Verify.Screen options={{ title: "Verification", headerTitleAlign: "center", headerLeft: () => (<></>) }} name="selectrole" component={SelectRole} />
+
         </Verify.Navigator>
     )
 }

@@ -94,8 +94,8 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10, }}>Account</Text>
                     {/* 1 */}
 
-                    <Pressable onPress={()=>navigation.navigate("viewAccount")} style={({ pressed }) => [
-                        
+                    <Pressable onPress={() => navigation.navigate("viewAccount")} style={({ pressed }) => [
+
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                         },
@@ -154,7 +154,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                     </Pressable>
                     {/* Payment */}
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Wallet</Text>
-                    <Pressable style={({ pressed }) => [
+                    <Pressable onPress={() => navigation.navigate("Shop", { screen: "wallet" })} style={({ pressed }) => [
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                         },
@@ -168,19 +168,8 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                     </Pressable>
                     {/* ChatSupport */}
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Join us</Text>
-                    <Pressable onPress={() => navigation.navigate("Support")} style={({ pressed }) => [
-                        {
-                            backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
-                        },
-                        Styles.ProfileList,
-                    ]}>
-                        <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="store" type="material" color="#3E4958" />
-                        <ListItem.Content>
-                            <ListItem.Title style={{ marginLeft: 7 }}>Signup for VendorShip</ListItem.Title>
-                        </ListItem.Content>
-                        <ListItem.Chevron size={18} />
-                    </Pressable>
-                    <Pressable onPress={() => navigation.navigate("Support")} style={({ pressed }) => [
+
+                    <Pressable onPress={() => navigation.navigate("expertverify")} style={({ pressed }) => [
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                         },
@@ -188,7 +177,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                     ]}>
                         <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="engineering" type="material" color="#3E4958" />
                         <ListItem.Content>
-                            <ListItem.Title style={{ marginLeft: 7 }}>Become a Expert</ListItem.Title>
+                            <ListItem.Title style={{ marginLeft: 7 }}>Become a Buisness Parthner</ListItem.Title>
                         </ListItem.Content>
                         <ListItem.Chevron size={18} />
                     </Pressable>

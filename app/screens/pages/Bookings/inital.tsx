@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const AllDone = () => {
+const inital = () => {
   return (
     <View>
-      <Text>AllDone</Text>
+      <Text>inital</Text>
     </View>
   )
 }
 
-export default AllDone
+export default inital

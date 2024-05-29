@@ -2,7 +2,6 @@ import { View, ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
 
 import { Text, Button, Avatar, LinearProgress } from "@rneui/themed"
-import { getHeight } from '../../../../utils/GetDimension'
 import { AvatarSrc } from '../../../../constants/ImagesConstants'
 import ThemeProviderColors from '../../../../provider/ThemeProvider'
 

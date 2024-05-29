@@ -3,12 +3,15 @@ const Auth = createStackNavigator()
 //Different Screen Within
 import LoginStack from "./LoginStack/LoginStack"
 import RegisterStack from "./RegisterStack/RegisterStack"
+import AccessLocation from "../pages/Permissions/AccessLocation"
 
 const AuthStack = () => {
     return (
-        <Auth.Navigator >
-            {/* Just add Login and Register option here  */}
-            {/* Each  need to have a seprate progress bar inside header thanks */}
+        <Auth.Navigator
+        initialRouteName="accesspermissions"
+        >
+  
+
             <Auth.Screen name="LoginStack"  component={LoginStack} options={{ headerShown: false }} />
             <Auth.Screen name="RegisterStack"  component={RegisterStack} options={{ headerShown: false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS }} />
         </Auth.Navigator>

@@ -39,8 +39,8 @@ import ProfileTab from "./screens/BottomsTabs/ProfileTab"
 import ExploreTab from "./screens/BottomsTabs/ExploreTab"
 
 //Features
-import OfflinePage from "./screens/pages/OfflinePage/OfflinePage"
-import Enrollment from "./screens/pages/Enrollment/Enrollment"
+
+
 import ViewProfileImage from "./screens/Stacks/UserProfile/-nested/ViewProfileImage"
 import ChatSupport from "./screens/Stacks/UserProfile/-nested/Help&Support/ChatSupport"
 import Settings from "./screens/Stacks/UserProfile/-nested/Settings/Settings"
@@ -55,6 +55,7 @@ import SellerTabsNavigator from "./screens/SellerTabs/Inital"
 
 import ProfilePage from "./screens/pages/ProfilePage/ProfilePage"
 import InitalOrders from "./screens/pages/OrderTracking/initial"
+import AccessLocation from "./screens/pages/Permissions/AccessLocation"
 
 
 
@@ -143,6 +144,8 @@ const Main = () => {
                 }} component={AuthStack} />
 
               <Stack.Screen name="privacypolicy" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={PrivacyPolicy} />
+              <Stack.Screen name="accesspermissions" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={PrivacyPolicy} />
+
             </>
 
           )

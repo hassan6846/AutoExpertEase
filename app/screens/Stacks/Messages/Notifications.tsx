@@ -1,10 +1,11 @@
 import { View, Text,StyleSheet} from 'react-native'
 import React from 'react'
+import NoPromotions from '../../../components/No Promotions/NoPromotion'
 
 const Notifications = () => {
   return (
     <View style={Styles.NotifyContainer}>
-      <Text>Notifications</Text>
+ <NoPromotions/>
     </View>
   )
 }

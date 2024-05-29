@@ -104,7 +104,7 @@ const CartPage = ({ navigation }: { navigation: any }) => {
     <Icon size={30} type="material" name="local-shipping"/>
 <View>
 <Text style={{marginLeft:5,fontSize:10}}>Esmimated Delivery Time</Text>
-<Text h4 style={{marginLeft:5}}>Just 1 Working Day</Text>
+<Text h4 style={{marginLeft:5}}>Just 2-3 Working Day</Text>
 </View>
 </View>
 

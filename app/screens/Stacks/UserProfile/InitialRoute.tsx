@@ -177,7 +177,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                         <ListItem.Chevron size={18} />
                     </Pressable>
                     {/* Payment */}
-                    <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Payment</Text>
+                    <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Wallet</Text>
                     <Pressable style={({ pressed }) => [
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
@@ -186,7 +186,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                     ]}>
                         <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="credit-card" type="material" color="#3E4958" />
                         <ListItem.Content>
-                            <ListItem.Title style={{ marginLeft: 7 }}>Payment Methods.</ListItem.Title>
+                            <ListItem.Title style={{ marginLeft: 7 }}>E-Wallet</ListItem.Title>
                         </ListItem.Content>
                         <ListItem.Chevron size={18} />
                     </Pressable>

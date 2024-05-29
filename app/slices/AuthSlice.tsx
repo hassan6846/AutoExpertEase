@@ -27,7 +27,8 @@ const AuthSlice = createSlice({
         deviceName: "",
         DeviceType: "",
         DeviceYearofManufactuing: "",
-
+        isVendor:"",
+        isExpert:"",
     },
     reducers: {
         //SetProgressValueBar

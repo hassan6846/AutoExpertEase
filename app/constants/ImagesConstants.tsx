@@ -16,3 +16,5 @@ export const pakleasson:string="https://encrypted-tbn0.gstatic.com/images?q=tbn:
 //Login
 export const OtpImage:string="https://res.cloudinary.com/diml3oeaw/image/upload/v1713702757/AutoExpertEase/Assets/Shop/xwzwdlbl2ejyx8i9mvp5.png"
 export const EmailOtp:string="https://res.cloudinary.com/diml3oeaw/image/upload/v1713703558/AutoExpertEase/Assets/Shop/nd53tij2jak2ry0injx4.png"
+export const NoInboxImg:string="https://res.cloudinary.com/diml3oeaw/image/upload/v1716927021/AutoExpertEase/bmwfzjyffslzac5m0eur.png"
+export const NoMessages:string="https://res.cloudinary.com/diml3oeaw/image/upload/v1716928652/jelly-question-mark_yyevcj.png"

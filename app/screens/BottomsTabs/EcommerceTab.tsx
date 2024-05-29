@@ -27,7 +27,7 @@ import ShopCategory from "../Stacks/Shop/nested/ShopCategory"
 import Search from "../Stacks/Shop/nested/SearchPage"
 import ProductViewPage from "../Stacks/Shop/nested/ProductViewPage"
 import SearchResults from "../Stacks/Shop/nested/SearchResults"
-
+import CategoryTabs from "../Stacks/Shop/nested/AllCategory/initialRoute"
 
 const EcommerceTab = ({ navigation }: { navigation: any }) => {
   return (
@@ -173,6 +173,7 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
         }}
 
         component={ProductViewPage} />
+        <EcommerceStack.Screen name="category" component={CategoryTabs}/>
     </EcommerceStack.Navigator>
   )
 }

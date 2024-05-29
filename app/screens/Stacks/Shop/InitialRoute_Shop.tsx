@@ -111,12 +111,12 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
                 {/* Text  header*/}
                 <View style={{ display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", elevation: 5 }}>
                     <Text h4>Categories</Text>
-                    <Pressable onPress={() => navigation.navigate("category")} style={{ display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "center" }}><Text style={Styles.NavigateText}>See all </Text><Icon color={ThemeProviderColors.Light.Primary} name="navigate-next" type="material" /></Pressable>
+                    <Pressable onPress={() => navigation.navigate("Category")} style={{ display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "center" }}><Text style={Styles.NavigateText}>See all </Text><Icon color={ThemeProviderColors.Light.Primary} name="navigate-next" type="material" /></Pressable>
                 </View>
                 {/* Flatlist Slider Cateogry Bar */}
                 <FlatList style={{ flexGrow: 0 }}
                     renderItem={({ item }) => (
-                        <TouchableOpacity  >
+                        <TouchableOpacity  onPress={()=>navigation.navigate("allcategory")} >
                             <View style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                                 <Avatar rounded={true} size={90} source={{ uri: item.image }} />
                                 <Text>{item.name}</Text>

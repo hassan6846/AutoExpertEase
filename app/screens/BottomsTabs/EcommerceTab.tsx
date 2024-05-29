@@ -1,6 +1,5 @@
 import { Pressable, View, Dimensions } from "react-native"
-const height = Dimensions.get("screen").height
-import { Icon, SearchBar, Text, Badge } from "@rneui/themed"
+import { Icon, Badge } from "@rneui/themed"
 // Navigation
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack"
 const EcommerceStack = createStackNavigator()
@@ -54,16 +53,7 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
                 <Icon size={25} color="#5F6368" name="search" type="material" />
               </Pressable>
 
-              {/* Notification */}
-              <Pressable style={({ pressed }) => [
-                { position: "relative", padding: 3, borderRadius: 20 },
-                {
-                  backgroundColor: pressed ? "#d9d9d9" : '#fff'
-                }
-              ]}>
-                <Badge containerStyle={{ position: "absolute", right: 0, top: 0, left: 10, zIndex: 99 }} status="error" />
-                <Icon size={25} color="#5F6368" name="notifications" type="material" />
-              </Pressable>
+
 
 
               {/* Cart */}
@@ -77,7 +67,17 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
                 <Badge containerStyle={{ position: "absolute", right: 0, top: -7, left: 10, zIndex: 99 }} value="5" status="error" />
                 <Icon size={25} color="#5F6368" name="shopping-cart" type="material" />
               </Pressable>
-
+              {/* Wallet */}
+              <Pressable onPress={() => navigation.navigate('wallet')}
+                style={({ pressed }) => [
+                  { position: "relative", padding: 3, borderRadius: 20 },
+                  {
+                    backgroundColor: pressed ? "#d9d9d9" : '#fff'
+                  }
+                ]}>
+                <Badge containerStyle={{ position: "absolute", right: 0, top: -7, left: 10, zIndex: 99 }} value="0" status="error" />
+                <Icon size={25} color="#5F6368" name="account-balance-wallet" type="material" />
+              </Pressable>
             </View>
           )
         }}
@@ -173,7 +173,13 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
         }}
 
         component={ProductViewPage} />
-        <EcommerceStack.Screen name="category" component={CategoryTabs}/>
+
+        <EcommerceStack.Screen options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          cardShadowEnabled:false,
+          headerShadowVisible:false,
+          title:"All Category"
+        }} name="allcategory" component={CategoryTabs}/>
     </EcommerceStack.Navigator>
   )
 }

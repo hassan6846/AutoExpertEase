@@ -6,61 +6,64 @@ const User = require("../models/UserModel")
 const Product = require("../models/ProductModel")
 const Car = require("../models/CarModal")
 
-//Admin Login function
 const AdminLoginFunction = async (req, res, next) => {
-    //send response testing only
-    const { email, password } = req.body
+    const { email, password } = req.body;
+    
     if (!email || !password) {
         return res.status(400).json({
             success: false,
             msg: "Please fill all the fields.",
         });
     }
+    
     try {
-        //Find And Check Role from Enum
-        //compare password. at the end and send cookie
-
-        //find user
-        const user = await User.findOne({ email: email })
-        //Check is User Exists or not
+        // Find user by email
+        const user = await User.findOne({ email: email });
+        
+        // Check if user exists
         if (!user) {
             return res.status(404).json({
                 success: false,
                 msg: "User not found.",
-            })
+            });
         }
-        // compare password being typed byuser
-        const isCorrectPassword = await bcrypt.compare(password, user.password)
-
+        
+        // Check if user is an admin
+        if (user.role !== 'admin') {
+            return res.status(403).json({
+                success: false,
+                msg: "Access denied. You are not an admin.",
+            });
+        }
+        
+        // Compare password
+        const isCorrectPassword = await bcrypt.compare(password, user.password);
+        
         if (!isCorrectPassword) {
             return res.status(401).json({
                 success: false,
                 msg: "Incorrect password.",
             });
         }
-
-        //If user and password are typed correct send a cookie in response
-        const token = jwt.sign({ id: user._id, email: user.email,role:user.role }, process.env.JWT_SECRET, {
+        
+        // If user is admin and password is correct, generate a JWT token
+        const token = jwt.sign({ id: user._id, email: user.email, role: user.UserInfo.role }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN,
         });
-
-   
-        // Send success response
+        
+        // Send success response with token
+        res.cookie("token", token);
         res.status(200).json({
             success: true,
             msg: "Logged in successfully.",
             token: token, // Optionally, you can send the token in the response body as well
         });
-
-        res.cookie("token",token)
-
-    } 
-
-    catch (error) {
+    } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal server error from Admin Login FUnction" });
+        res.status(500).json({ error: "Internal server error from Admin Login Function" });
     }
 }
+
 
 //Get No of Users All Time
 const GetUsersNo = async (req, res, next) => {

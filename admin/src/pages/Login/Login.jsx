@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { MDBInput } from "mdb-react-ui-kit";
 import { Button as MDBBtn } from '@mui/material';
 import toast, { Toaster } from "react-hot-toast";
-
 import "./Login.css";
 import useAuth from "../../Hooks/useAuth";
 import ApiInstance from "../../../Instance/AxiosInstance";
 
 const Login = () => {
-  const {setAuth}=useAuth()
+  const { login } = useAuth(); // Use login function from useAuth
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formik = useFormik({
@@ -20,24 +19,19 @@ const Login = () => {
     },
     onSubmit: async (values) => {
       setIsSubmitting(true);
-      
 
       try {
         const response = await ApiInstance.post('/admin/login', {
           email: values.email,
           password: values.password
-
         });
 
-        if (response.status===200) {
+        if (response.status === 200 && response.data.success) {
           // Handle successful login
           toast.success("Successfully logged in");
-          setAuth(true)
-          console.log(response)
+          login(response.data.token); // Call login function with the token
         } else {
-          const data = await response.json();
-          toast.error(data.msg)
-          console.log(response)
+          toast.error(response.data.msg);
         }
       } catch (error) {
         console.log(error);
@@ -48,10 +42,6 @@ const Login = () => {
     },
   });
 
-  useEffect(() => {
-    sessionStorage.clear();
-  }, []);
-
   return (
     <div>
       <section className="login_wrapper-100">
@@ -60,7 +50,6 @@ const Login = () => {
         </div>
         <div className="login-container">
           <h1 className="login-heading">Login account</h1>
-
           <form onSubmit={formik.handleSubmit} className="login-form">
             <MDBInput
               {...formik.getFieldProps("email")}
@@ -72,7 +61,6 @@ const Login = () => {
             {formik.touched.email && formik.errors.email && (
               <div className="error">{formik.errors.email}</div>
             )}
-
             <MDBInput
               {...formik.getFieldProps("password")}
               className="login-input"

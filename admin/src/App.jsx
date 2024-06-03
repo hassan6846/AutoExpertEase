@@ -1,32 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import Routing from "./routes/Routes";
-import CircularProgress from "@mui/material/CircularProgress";
+import Lottie from 'react-lottie';
+import animationData from "./assets/Animation - 1711859930533.json";
+import { AuthProvider } from "./Providers/AuthProviders";
 
-import Lottie from 'react-lottie'
-import animationData from "./assets/Animation - 1711859930533.json"
 function App() {
   const [loading, setLoading] = useState(true);
-  setTimeout(() => {
-    setLoading(false);
-  }, 0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Set a delay of 2 seconds for demonstration
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div style={{ height: "100vh", justifyContent: "center", alignItems: "center", width: "100%", display: "flex" }}>
-      {loading ? ( // Render CircularProgress if loading state is true
-        <Lottie
-        width={300}
-          options={{
-            loop: true,
-            autoplay: true,
-            animationData: animationData,
-
-          }}
-        />
-      ) : (
-        // Render Routing component once loading is complete
-        <Routing />
-      )}
-    </div>
+    <Router>
+      <AuthProvider>
+        <div style={{ height: "100vh", justifyContent: "center", alignItems: "center", width: "100%", display: "flex" }}>
+          {loading ? (
+            <Lottie
+              width={300}
+              options={{
+                loop: true,
+                autoplay: true,
+                animationData: animationData,
+              }}
+            />
+          ) : (
+            <Routing />
+          )}
+        </div>
+      </AuthProvider>
+    </Router>
   );
 }
 

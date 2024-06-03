@@ -18,7 +18,7 @@ const otpSchema = new mongoose.Schema({
         expires: 60 * 5, // The document will be automatically deleted after 5 minutes of its creation time
 
     }
-})
+},{timestamps:true})
 //module and function realated to model
 async function SendOtpPhone(phone, otp) {
     try {

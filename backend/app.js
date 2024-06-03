@@ -28,12 +28,13 @@ const user = require("./routes/UserRoutes")
 const product = require('./routes/ProductRoutes')
 const chatbot=require('./routes/Chatbot')
 const admin=require('./routes/AdminRoutes');
-
+const auth=require("./routes/AuthRoutes")
 //endpoints middlewares
 app.use("/api", user)
 app.use("/api", product)
 app.use('/api',chatbot)
 app.use('/api',admin)
+app.use("/api",auth)
 module.exports = app
 
 

@@ -10,8 +10,7 @@ const AuthStack = () => {
         <Auth.Navigator
         initialRouteName="accesspermissions"
         >
-  
-
+            <Auth.Screen name="accesspermissions"  component={AccessLocation} options={{ headerShown: false }} />
             <Auth.Screen name="LoginStack"  component={LoginStack} options={{ headerShown: false }} />
             <Auth.Screen name="RegisterStack"  component={RegisterStack} options={{ headerShown: false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS }} />
         </Auth.Navigator>

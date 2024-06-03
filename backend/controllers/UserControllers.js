@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken")//json web token
 const bcrypt = require("bcrypt")
 const cloudinaryInstance = require("../utils/Cloudinary")
 const { GenerateOtp } = require("../utils/GenerateOtp")
-
+const axios=require('axios')
 // 1 User login/Signup Initial
 const loginFunction = async (req, res, next) => {
     const { phone, password } = req.body
@@ -181,6 +181,15 @@ const SendEmailOTP=async(req,res)=>{
         
     }
 }
+//send Phone Otp
+const SendPhoneOtp=async(req,res,next)=>{
+ const {phone}=req.body;
+ //send otp to phone
+}
+const VerifyPhoneOtp=async(req,res,next)=>{
+// Verify Otp to the phone
+ const {phone,otp}=req.body;
+ 
 
-
-module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser }
+}
+module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser,SendPhoneOtp,VerifyPhoneOtp}

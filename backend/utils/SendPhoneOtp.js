@@ -1,6 +1,6 @@
 const axios = require("axios")
 //send otp Utility
-const SendPhoneOtp = async (phone, body) => {
+const OTPSENDER = async (phone, body) => {
     try {
         const response = await axios.post(process.env.MESSAGE_ENDPOINT, {
             "apikey": process.env.MESSAGE_API_KEY,
@@ -13,4 +13,4 @@ const SendPhoneOtp = async (phone, body) => {
         console.log(error)
     }
 }
-module.exports = SendPhoneOtp
+module.exports = OTPSENDER

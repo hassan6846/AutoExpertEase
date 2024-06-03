@@ -35,7 +35,7 @@ const Login = () => {
         }
       } catch (error) {
         console.log(error);
-        toast.error("Error while logging in");
+        toast.error(error.response.data.msg);
       } finally {
         setIsSubmitting(false);
       }

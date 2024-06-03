@@ -1,6 +1,5 @@
-// Routing.js
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 
 // Pages
@@ -9,11 +8,9 @@ import ErrorPage from "../pages/404/ErrorPage";
 import Login from "../pages/Login/Login";
 
 // Nested Pages
-
 import Stats from "../pages/dashboard/nested/Stats/Stats";
 import ProductRequests from "../pages/dashboard/nested/ProductRequests/ProductRequests";
 import AllProducts from "../pages/dashboard/nested/AllProducts/AllProducts";
-
 import VendorRequest from "../pages/dashboard/nested/VendorRequest/VendorRequest";
 import ExpertRequests from "../pages/dashboard/nested/ExpertRequests/ExpertRequests";
 import Logout from "../pages/dashboard/nested/Logout/Logout";
@@ -47,12 +44,12 @@ const Routing = () => {
           <Route path="/orders" element={<Orders />} />
           <Route path="/expertrequests" element={<ExpertRequests />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="*" element={<ErrorPage />} /> {/* Redirect to 404 page for unknown routes */}
         </Route>
       ) : (
         <>
           <Route path="/login" element={<Login />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="*" element={<ErrorPage />} /> {/* Redirect to 404 page for unknown routes */}
         </>
       )}
     </Routes>

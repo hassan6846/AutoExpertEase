@@ -16,7 +16,7 @@ const AuthSlice = createSlice({
         Progress: 0.1,//value for progressbar for 
         RefreshTokenTime: 10000,    //RefreshTokenTime 10min
         HeaderColor: "#E04E2F",
-        Auth: false,
+        Isauth: false,
         currentRouteName: "",
         phone: "",
         password: "",
@@ -54,10 +54,14 @@ const AuthSlice = createSlice({
         SetPassword: (state, action) => {
             state.phone = action.payload
         }
+        //Set AUht State
+        ,SetAuthState:(state,action)=>{
+        state.Isauth=action.payload
+        }
 
     }
 })
 
-export const { SetAlreadyVisitedApp, SetProgressValueBar, SetIsAlreadyRegisted, SetHeaderColor } = AuthSlice.actions
+export const { SetAlreadyVisitedApp, SetProgressValueBar, SetIsAlreadyRegisted, SetHeaderColor,SetPhone,SetPassword,SetAuthState} = AuthSlice.actions
 
 export default AuthSlice.reducer

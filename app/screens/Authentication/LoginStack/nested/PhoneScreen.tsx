@@ -6,10 +6,10 @@ import { Button, Icon, Input, Text } from "@rneui/themed"
 
 
 //Redux
-import { useDispatch,useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import ThemeProviderColors from "../../../../provider/ThemeProvider"
-import { SetProgressValueBar, } from "../../../../slices/AuthSlice"
-import {RootState} from "../../../../store/Store"
+import { SetProgressValueBar, SetPhone } from "../../../../slices/AuthSlice"
+import { RootState } from "../../../../store/Store"
 
 
 //Page
@@ -20,12 +20,11 @@ const PhoneLogin = ({ navigation }: { navigation: any }) => {
 
     const InputRef = createRef<any>(); // Create a ref using useRef
 
-    const [Phone, setPhone] = useState("");
+
 
     //Functions
     const handleInputChange = (text: any) => {
-        setPhone(text);
-
+        dispatch(SetPhone(text))
     };
     //Handle Input Change
     const handleSubmit = () => {
@@ -48,7 +47,7 @@ const PhoneLogin = ({ navigation }: { navigation: any }) => {
             <View style={{ display: "flex", justifyContent: "center", alignItems: 'center', backgroundColor: "#fff" }}>
             </View>
 
-            <ScrollView style={{flex:1}} contentContainerStyle={styles.scrollContainer}>
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.LoginContainer}>
                     <Text style={styles.LoginHeading} h3={true} >Enter Phone Number for Verification</Text>
                     <Text style={styles.LoginSub}>This number  will be used for all ride-related communication. You shall receive an SMS with code for verification.</Text>
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
     },
     // ScrollView
     scrollContainer: {
-  height:"100%"
+        height: "100%"
     },
     LoginHeading: {
         marginTop: 10,

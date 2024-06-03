@@ -1,12 +1,42 @@
-import { View, StyleSheet } from 'react-native'
-import React from 'react'
-//library
-import { Button, Icon, Text, Input } from "@rneui/themed"
-//utils
-import ThemeProviderColors from '../../../../provider/ThemeProvider'
-import { getHeight } from '../../../../utils/GetDimension'
+import { View, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { Button, Icon, Text, Input } from "@rneui/themed";
+import ThemeProviderColors from '../../../../provider/ThemeProvider';
+import { getHeight } from '../../../../utils/GetDimension';
+import { useDispatch, useSelector } from 'react-redux';
+import { SetPassword } from "../../../../slices/AuthSlice";
 
 const PasswordScreen = () => {
+  const dispatch = useDispatch();
+  const phone = useSelector((state: any) => state.auth.phone);
+  const password = useSelector((state: any) => state.auth.password);
+
+  // Handle Text Input
+  const handleInputChange = (text: any) => {
+    dispatch(SetPassword(text));
+  };
+
+  // Handle login button press
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://localhost:4001/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ phone, password }),
+      });
+
+      const data = await response.json();
+      console.log('Login response:', data);
+
+      // Handle successful login here (e.g., store token, navigate to next screen, etc.)
+    } catch (error) {
+      console.error('Login failed:', error);
+      // Handle login error here (e.g., display error message to user)
+    }
+  };
+
   return (
     <View style={Styles.LoginPassContainer}>
       <Text style={Styles.Header} h4>Account Password Entry</Text>
@@ -16,11 +46,10 @@ const PasswordScreen = () => {
       </View>
       {/* Inputs */}
       <View style={Styles.InputWraper}>
-        <Input inputContainerStyle={Styles.InputVoid} inputStyle={Styles.InputMain} containerStyle={Styles.InputCont} placeholder="Password" />
-
+        <Input onChangeText={handleInputChange} inputContainerStyle={Styles.InputVoid} inputStyle={Styles.InputMain} containerStyle={Styles.InputCont} placeholder={phone} />
       </View>
       {/* Input */}
-      <Button containerStyle={{ paddingHorizontal: 40, }} color={ThemeProviderColors.Light.Primary} title="Login" />
+      <Button onPress={handleLogin} containerStyle={{ paddingHorizontal: 40 }} color={ThemeProviderColors.Light.Primary} title="Login" />
       {/* Resend OTp view */}
       <View style={Styles.ResendOtpContainer}>
         <Text style={{ color: "#97ADB6" }}>Didn't Remember Password?</Text>
@@ -28,8 +57,9 @@ const PasswordScreen = () => {
       </View>
       {/* Resend otp Ends */}
     </View>
-  )
-}
+  );
+};
+
 const Styles = StyleSheet.create({
   LoginPassContainer: {
     flex: 1,
@@ -41,7 +71,6 @@ const Styles = StyleSheet.create({
   },
   Subheading: {
     marginTop: 10,
-
     color: "#97ADB6",
     textAlign: "center",
     paddingHorizontal: 60
@@ -56,7 +85,6 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     columnGap: 5,
   },
-  // Styles Inputs.
   InputWraper: {
     marginTop: 10,
     alignItems: "center",
@@ -74,5 +102,6 @@ const Styles = StyleSheet.create({
   InputCont: {
     width: "90%"
   }
-})
-export default PasswordScreen
+});
+
+export default PasswordScreen;

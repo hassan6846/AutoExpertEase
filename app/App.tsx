@@ -91,10 +91,10 @@ function HomePageActivity() {
 
 
 const Main = () => {
-  const [Auth, SetAuth] = useState(false)
+  const Auth=useSelector((state:any)=>state.auth.Isauth)
+
   const progress = useSelector((state: RootState) => state.auth.Progress)
   const activeColor = useSelector((state: RootState) => state.auth.HeaderColor)//dynamic
-  const [isConnected, setIsConnected] = useState<any | null>(false); // Initially, connection status is unknown
 
   //useEffect to CHeck on Appload
   useEffect(() => {

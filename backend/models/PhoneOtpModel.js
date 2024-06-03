@@ -40,3 +40,5 @@ otpSchema.pre("save",async function(next){
       }
       next()
 })
+const PHONEOTP=mongoose.model("PHONEOTP",otpSchema)
+module.exports=PHONEOTP

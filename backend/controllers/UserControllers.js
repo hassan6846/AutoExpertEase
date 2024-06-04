@@ -7,46 +7,53 @@ const jwt = require("jsonwebtoken")//json web token
 const bcrypt = require("bcrypt")
 const cloudinaryInstance = require("../utils/Cloudinary")
 const { GenerateOtp } = require("../utils/GenerateOtp")
-const axios=require('axios')
-// 1 User login/Signup Initial
-const loginFunction = async (req, res, next) => {
-    const { phone, password } = req.body
-    //if fields are not filled
+
+
+
+const loginFunction = async (req, res) => {
+    const { phone, password } = req.body;
     if (!phone || !password) {
         return res.status(400).json({
             success: false,
             msg: "Please fill all the fields.",
         });
     }
+
     try {
-        //find if he is already a user
-        //if not then send error to register 
-        //else Try Registration
-        const FindUserByPhone = await User.findOne({ phone });
-        //if he is not the user
-        if (!FindUserByPhone) {
+        // Find user by phone
+        const user = await User.findOne({ phone });
+        if (!user) {
             return res.status(404).json({
                 success: false,
-                msg: "Invalid Credientials", //for preventing attacks not to send invalid or other unsecure message
+                msg: "User not found.",
             });
         }
-        //if we found users then we have to compare password is correct or not
-        const comparePassword = await bcrypt.compare(password, FindUserByPhone.password)
 
-        if (!comparePassword) {
+        // Compare password
+        const isCorrectPassword = await bcrypt.compare(password, user.password);
+        if (!isCorrectPassword) {
             return res.status(401).json({
                 success: false,
-                msg: "Invalid Credientials", //for preventing attacks not to send invalid or other unsecure message
+                msg: "Incorrect password.",
             });
         }
-    }
 
-    catch (err) {
-        console.log(err)
-    }
-    next()
-}
+        // Password is correct, generate token
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRES_IN,
+        });
 
+        // Send success response with token
+        return res.status(200).json({
+            success: true,
+            msg: "Login successful.",
+            token: token,
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ success: false, message: "Internal server error" });
+    }
+};
 const RegisterFunction = async (req, res, next) => {
     //register functions
     const { firstname, lastname, email, password, otp, Emailotp, deviceid, brand, devicename, devicetype } = req.body
@@ -78,12 +85,12 @@ const RegisterFunction = async (req, res, next) => {
             })
         }
         else if (otp !== response[0].otp) {
-			// Invalid OTP
-			return res.status(400).json({
-				success: false,
-				message: "The OTP is not valid",
-			});
-		}
+            // Invalid OTP
+            return res.status(400).json({
+                success: false,
+                message: "The OTP is not valid",
+            });
+        }
     } catch (error) {
         console.log(error)
         res.status(500).json({ error: "Internal Server Error" });
@@ -173,23 +180,23 @@ const FindUser = async (req, res, next) => {
 
 
 //Send EmailOTP
-const SendEmailOTP=async(req,res)=>{
+const SendEmailOTP = async (req, res) => {
     try {
-        const {email}=req.body;
-        const otp=await GenerateOtp
+        const { email } = req.body;
+        const otp = await GenerateOtp
     } catch (error) {
-        
+
     }
 }
 //send Phone Otp
-const SendPhoneOtp=async(req,res,next)=>{
- const {phone}=req.body;
- //send otp to phone
+const SendPhoneOtp = async (req, res, next) => {
+    const { phone } = req.body;
+    //send otp to phone
 }
-const VerifyPhoneOtp=async(req,res,next)=>{
-// Verify Otp to the phone
- const {phone,otp}=req.body;
- 
+const VerifyPhoneOtp = async (req, res, next) => {
+    // Verify Otp to the phone
+    const { phone, otp } = req.body;
+
 
 }
-module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser,SendPhoneOtp,VerifyPhoneOtp}
+module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser, SendPhoneOtp, VerifyPhoneOtp }

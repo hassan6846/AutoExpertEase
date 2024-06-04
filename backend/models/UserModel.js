@@ -27,7 +27,13 @@ const UserSchema = new mongoose.Schema({
         unique: [true, "Email is already Linked to another account."],//prevent duplciate email
         validate: [validator.isEmail, "Please Enter a valid Email Format."],//Validating is Email.
     },
+    phone: {
+        type: String,
+        required: [true, "Kindly Enter the Contact Number"],
+
+    },
     password: {
+        
         type: String,
     },
     avatar: {
@@ -129,16 +135,7 @@ const UserSchema = new mongoose.Schema({
 
     },
     //  Phone Number Field.
-    phone: {
-        type: Number,
-        required: [true, "Kindly Enter the Contact Number"],
-        validate: {
-            validator: function (value) {
-                return String(value).length === 11;
-            },
-            message: "Phone number must be exactly 10 digits",
-        }
-    },
+
 
     isVerifiedEmail: {
         type: Boolean, //IsVerifiedEmail.. (we'll update the status after twilio verification and redirct on this basis if not.)

@@ -1,12 +1,10 @@
 // List of some user controller supported by the app (autoexpertEase).
 const express = require("express") //expressjs posting methods etc
-const validator = require("validator")//validator for server side Valdiataion
 const User = require("../models/UserModel")
-const OTP = require("../models/EmailOtpModel")
+const OTP = require("../models/EmailOtpModel") //EmailOtpModel
 const jwt = require("jsonwebtoken")//json web token
 const bcrypt = require("bcrypt")
 const cloudinaryInstance = require("../utils/Cloudinary")
-const { GenerateOtp } = require("../utils/GenerateOtp")
 
 
 
@@ -56,10 +54,10 @@ const loginFunction = async (req, res) => {
 };
 const RegisterFunction = async (req, res, next) => {
     //register functions
-    const { firstname, lastname, email, password, otp, Emailotp, deviceid, brand, devicename, devicetype } = req.body
+    const { firstname, lastname, phone, password, email, Emailotp, deviceid, brand, devicename, devicetype } = req.body
 
     //fields are empty
-    if (!firstname || !lastname || !password || !phone || !email || !deviceid || !brand || !devicename || !devicetype || !otp || !Emailotp) {
+    if (!firstname || !lastname || !password || !phone || !email || !deviceid || !brand || !devicename || !devicetype || !Emailotp) {
         return res.status(400).json({
             success: false,
             msg: "Please fill all the fields.",
@@ -69,29 +67,17 @@ const RegisterFunction = async (req, res, next) => {
     //Find if email is already register or not then redirect or tell him to login
     //hash password 
     try {
-        const FindUser = await User.findOne({ phone })
-        //IF we find User Then ASked them or alert them that This Phone is already Registed please Try Latter.
-        if (FindUser) {
-            return res.status(409).json({ message: 'This phone number is already registered. Please try again later.' });
-        }
-        //Send Otp To Phone And Then Send OTP TO Email
-        const response = await OTP.findOne({ email }).sort({ createdAt: -1 }).limit(1)
-        console.log(response)
-        //Find the Length is not found
-        if (response.length === 0) {
-            return res.status(400).json({
-                success: false,
-                message: "The OTP is not valid"
-            })
-        }
-        else if (otp !== response[0].otp) {
-            // Invalid OTP
-            return res.status(400).json({
-                success: false,
-                message: "The OTP is not valid",
-            });
-        }
-    } catch (error) {
+       //FindUser Already Exists
+       const FindByPhone=await User.findOne({phone})
+       if(FindByPhone){
+        res.json({
+            sucess:false,
+            msg:"Phone Already Linked to Another Account"
+        })
+       }
+
+    }
+    catch (error) {
         console.log(error)
         res.status(500).json({ error: "Internal Server Error" });
     }
@@ -180,23 +166,8 @@ const FindUser = async (req, res, next) => {
 
 
 //Send EmailOTP
-const SendEmailOTP = async (req, res) => {
-    try {
-        const { email } = req.body;
-        const otp = await GenerateOtp
-    } catch (error) {
 
-    }
-}
 //send Phone Otp
-const SendPhoneOtp = async (req, res, next) => {
-    const { phone } = req.body;
-    //send otp to phone
-}
-const VerifyPhoneOtp = async (req, res, next) => {
-    // Verify Otp to the phone
-    const { phone, otp } = req.body;
 
 
-}
-module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser, SendPhoneOtp, VerifyPhoneOtp }
+module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser }

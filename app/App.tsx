@@ -1,20 +1,16 @@
 import "react-native-gesture-handler"
-import { View, Dimensions } from "react-native"
-import { useState, useEffect } from "react"
+import { View } from "react-native"
+import { useEffect } from "react"
 ///sdks
-import * as Network from "expo-network"
 import { StatusBar } from "expo-status-bar"
-import SplashScreen from "expo-splash-screen"
 import { Provider, useSelector } from "react-redux"
 
 //libraries /utils
-import { LinearProgress, Text, Avatar } from "@rneui/themed"
-const getHeight = Dimensions.get("screen").height
+import {  Text, Avatar } from "@rneui/themed"
 import Store from "./store/Store"
-import { RootState } from "./interface/AuthInterface"
 import { ChatbotAvatar } from "./constants/ImagesConstants"
 //TabNavigator 
-import { NavigationContainer, useNavigation } from "@react-navigation/native"
+import { NavigationContainer } from "@react-navigation/native"
 import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
 const Stack = createStackNavigator()//Stack Navigator
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -93,8 +89,7 @@ function HomePageActivity() {
 const Main = () => {
   const Auth=useSelector((state:any)=>state.auth.Isauth)
 
-  const progress = useSelector((state: RootState) => state.auth.Progress)
-  const activeColor = useSelector((state: RootState) => state.auth.HeaderColor)//dynamic
+
 
   //useEffect to CHeck on Appload
   useEffect(() => {

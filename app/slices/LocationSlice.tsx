@@ -8,8 +8,8 @@ const initialState = {
     Expertdistance: null, // ExpertDistance from User
     ExpertCurrentLocation: null,    //Service provider locoation
     ExpertArrivalTime: null,//time Arrival for Expert eg mechanic
-
-
+    longitude: "",
+    latitude: ""
 };
 
 export const locationSlice = createSlice({
@@ -33,11 +33,17 @@ export const locationSlice = createSlice({
         setExpertArrivalTime: (state, action) => {
             state.ExpertArrivalTime = action.payload;
         },
+        setLongitude: (state, action) => {
+            state.longitude = action.payload
+        },
+        setLatitude: (state, action) => {
+            state.latitude = action.payload
 
+        }
 
     },
 });
 
-export const { setCurrentLocation, setDestination, setDistanceTravelTime } = locationSlice.actions;
+export const { setCurrentLocation, setDestination, setDistanceTravelTime, setLongitude, setLatitude } = locationSlice.actions;
 
 export default locationSlice.reducer;

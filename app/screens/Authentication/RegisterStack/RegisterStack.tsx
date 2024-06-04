@@ -6,15 +6,17 @@ import EnterName from "./nested/EnterName";
 
 
 
-import VerifyOtp from "./nested/VerifyOtp";
 import VerifyEmailOtp from "./nested/VerifyEmailOtp";
 
 //library
 import { LinearProgress } from '@rneui/themed'
 //utils
 import { getHeight } from "../../../utils/GetDimension";
+import { useSelector } from "react-redux";
 
 const RegisterStack = () => {
+  const progress=useSelector((state:any)=>state.auth.progress)
+
   return (
     <Register.Navigator
 
@@ -23,14 +25,13 @@ const RegisterStack = () => {
         headerTitle: "Register",
         header: () => (
           <View style={{ height: getHeight / 12, justifyContent: "flex-end", alignItems: "center", backgroundColor: "#fff" }}>
-            <LinearProgress color="#E04E2F" value={0.2} trackColor="#D9D9D9" variant="determinate" style={{ width: '60%', height: 7, borderRadius: 5 }} />
+            <LinearProgress color="#E04E2F" value={progress} trackColor="#D9D9D9" variant="determinate" style={{ width: '60%', height: 7, borderRadius: 5 }} />
           </View>
         )
       }}
     >
       <Register.Screen name="setname" component={EnterName} />
-      <Register.Screen name="verifyotp" component={VerifyOtp} />
-      <Register.Screen name="verifyemailotp" component={VerifyEmailOtp} />
+      <Register.Screen name="verifyemailotp" options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} component={VerifyEmailOtp} />
     </Register.Navigator>
   )
 }

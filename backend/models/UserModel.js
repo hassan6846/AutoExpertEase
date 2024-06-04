@@ -3,19 +3,14 @@ const validator = require("validator")
 const bcrypt = require("bcrypt")
 const UserSchema = new mongoose.Schema({
     // userName (for Kyc purposes E.g Real Cnic Name )
-    username: {
-        type: String,
-        require: [true, "Kindly Enter your Name"],
-        maxLength: [30, "Name cannot exceed 30 characters"],//setting max length
-        minLength: [4, "Name should have more than 4 characters"],//setting min length
-    },
+
     firstName:{
         type: String,
         require: [true, "Kindly Enter your Name"],
         maxLength: [30, "Name cannot exceed 30 characters"],//setting max length
         minLength: [4, "Name should have more than 4 characters"],//setting min length
     },
-    SecondName:{
+    lastName:{
         type: String,
         require: [true, "Kindly Enter your Name"],
         maxLength: [30, "Name cannot exceed 30 characters"],//setting max length
@@ -33,7 +28,6 @@ const UserSchema = new mongoose.Schema({
 
     },
     password: {
-        
         type: String,
     },
     avatar: {
@@ -110,31 +104,18 @@ const UserSchema = new mongoose.Schema({
         // Contain Info About Device Info of the User Device which is primarly used
         //We can Write Algorithms to compare device with new auth device and warn them
         //about suspecius activity.
-        DeviceInfo: {
-            // Device ID
-            DeviceId: {
-             
-            },
-            // Brand
-            Brand: {
-             
-            },
-            //DeviceName.
-            DeviceName: {
-                
-            },
-            //    Device Type
-            DeviceType: {
-              
-            },
-            ModelName: {
-            
-            }
-        },
+        DeviceInfo: [{
+            DeviceId: { type: String, default: null },
+            Brand: { type: String, default: null },
+            DeviceName: { type: String, default: null },
+            DeviceType: { type: String, default: null },
+            ModelName: { type: String, default: null }
+        }]
+        
 
 
     },
-    //  Phone Number Field.
+
 
 
     isVerifiedEmail: {
@@ -164,24 +145,13 @@ const UserSchema = new mongoose.Schema({
         RealtimeLocation: {}
     },
     // Handle User Tokens For Sessions.
-    emailotp: {
-        type: Number,
-        required: false
-    },
+
     // User Create at date.
     createdAt: {
         type: Date,
         default: Date.now()
     },
-    otp: {
-        type: Number,
-        maxLength: [5, "otp cannot exceed 5 characters"],//setting max length
-        minLength: [4, "otp should have more than 4 characters"],//setting min length
-        required: false,
 
-
-
-    }
     //timestamps true
 
 },{timestamps:true})

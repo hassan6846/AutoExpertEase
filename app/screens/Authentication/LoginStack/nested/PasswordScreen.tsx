@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createRef } from 'react';
-import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, ActivityIndicator, ToastAndroid } from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, ToastAndroid } from 'react-native';
 import { Button, Icon, Input, Text } from "@rneui/themed";
 import { useDispatch, useSelector } from 'react-redux';
 import { SetPassword, SetAuthState } from "../../../../slices/AuthSlice";

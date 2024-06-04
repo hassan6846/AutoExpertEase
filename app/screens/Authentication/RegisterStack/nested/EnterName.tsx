@@ -4,10 +4,14 @@ import React, { useEffect } from 'react'
 import { Button, Icon, Text, Input } from "@rneui/themed"
 import ThemeProviderColors from '../../../../provider/ThemeProvider'
 import { getHeight } from '../../../../utils/GetDimension'
-//Device
 import {deviceName} from "expo-device"
+//Redux
+import { useDispatch } from 'react-redux'
+import {SetFirstName,SetLastName} from "../../../../slices/AuthSlice"
 const EnterName = ({ navigation }: { navigation: any }) => {
-
+  const HandleName=(text:string)=>{
+ 
+  }
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: "#fff",padding:20 }}>
 
@@ -37,7 +41,7 @@ const EnterName = ({ navigation }: { navigation: any }) => {
       <View style={Styles.InputContainer}>
         <Input inputContainerStyle={Styles.InputVoid} labelStyle={{fontSize:13,marginBottom:5,marginTop:10}} inputStyle={Styles.InputMain} containerStyle={Styles.InputCont} label="Repeat Password" placeholder="Repeat Password" />
       </View>
-      <Button onPress={() => navigation.navigate("verifyotp")} buttonStyle={{ borderRadius: 30, paddingHorizontal: 6, paddingVertical: 10, }} color={ThemeProviderColors.Light.Primary} containerStyle={{ paddingHorizontal: 60,marginTop:10 }} title="Next" >Next<Icon name='arrow-right-alt' color="#fff" containerStyle={{ marginLeft: 5 }} type='material'  /></Button>
+      <Button onPress={() => navigation.navigate("verifyemailotp")} buttonStyle={{ borderRadius: 30, paddingHorizontal: 6, paddingVertical: 10, }} color={ThemeProviderColors.Light.Primary} containerStyle={{ paddingHorizontal: 60,marginTop:10 }} title="Next" >Next<Icon name='arrow-right-alt' color="#fff" containerStyle={{ marginLeft: 5 }} type='material'  /></Button>
 
      </ScrollView>
 

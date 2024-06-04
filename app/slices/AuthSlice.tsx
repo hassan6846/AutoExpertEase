@@ -8,7 +8,7 @@ const AuthSlice = createSlice({
     userToken: null, //Token 
     userinfo: null, //User info persisted version only...
     AlreadyVisitedApp: false, //if app is opened first time or not
-    Progress: 0.1, //value for progress bar 
+    Progress: 0.3, //value for progress bar 
     RefreshTokenTime: 10000, //RefreshTokenTime 10min
     HeaderColor: "#E04E2F",
     Isauth: false,
@@ -63,13 +63,22 @@ const AuthSlice = createSlice({
     SetDeviceType: (state, action) => {
       state.DeviceType = action.payload
     },
-    DeviceYearOfManufacture: (state, action) => {
+    SetDeviceYearOfManufacture: (state, action) => {
       state.DeviceYearofManufacturing = action.payload
-    }
+    },
+    SetFirstName:(state, action)=>{
+      state.firstName=action.payload
+    },
+    SetLastName:(state, action)=>{
+      state.lastName=action.payload
+    },
+    
   },
 });
 
 export const {
+  SetFirstName,
+  SetLastName,
   SetAlreadyVisitedApp,
   SetProgressValueBar,
   SetIsAlreadyRegisted,

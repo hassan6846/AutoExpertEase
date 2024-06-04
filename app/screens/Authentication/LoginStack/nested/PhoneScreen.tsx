@@ -1,13 +1,12 @@
-import React, { useState, useRef, useEffect, createRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from "react-native";
 import { Button, Icon, Input, Text } from "@rneui/themed";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ThemeProviderColors from "../../../../provider/ThemeProvider";
+//Slices
 import { SetProgressValueBar, SetPhone } from "../../../../slices/AuthSlice";
-import { RootState } from "../../../../store/Store";
 
 const PhoneLogin = ({ navigation }: { navigation: any }) => {
-    const progress = useSelector((state: RootState) => state.auth.Progress);
     const [phoneNumber, setPhoneNumber] = useState('');
     const dispatch = useDispatch();
     const InputRef = useRef<any>(null);

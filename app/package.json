@@ -11,6 +11,7 @@
   "dependencies": {
     "@gorhom/bottom-sheet": "^4.6.0",
     "@react-native-async-storage/async-storage": "1.18.2",
+    "@react-native-community/datetimepicker": "7.2.0",
     "@react-native-masked-view/masked-view": "0.2.9",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/material-top-tabs": "^6.6.12",
@@ -39,7 +40,6 @@
     "expo-status-bar": "~1.6.0",
     "expo-tracking-transparency": "~3.1.0",
     "expo-updates": "~0.18.19",
-    "formik": "^2.4.6",
     "lottie-react-native": "5.1.6",
     "react": "18.2.0",
     "react-native": "0.72.10",
@@ -55,8 +55,7 @@
     "react-native-svg": "13.9.0",
     "react-native-tab-view": "^3.5.2",
     "react-redux": "^9.1.0",
-    "socket.io-client": "^4.7.5",
-    "@react-native-community/datetimepicker": "7.2.0"
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

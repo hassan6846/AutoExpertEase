@@ -18,7 +18,7 @@ const ServiceTab = () => {
     return (
         <ServiceStack.Navigator >
             {/* Inital Route */}
-            <ServiceStack.Screen name="inital_service" component={AutoFixInitalRoute} />
+            <ServiceStack.Screen name="inital_service"   options={{headerShadowVisible: false,cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,headerTitle:""}} component={AutoFixInitalRoute} />
             {/* Task Location */}
             <ServiceStack.Screen name="task_location" options={{headerShadowVisible: false,cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS}}component={TaskLocation} />
             {/* Location Seach from api */}

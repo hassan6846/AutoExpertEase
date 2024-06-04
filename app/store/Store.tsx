@@ -1,6 +1,6 @@
 
 //CreateStore using toolkit
-import { configureStore,combineReducers } from "@reduxjs/toolkit"
+import { configureStore } from "@reduxjs/toolkit"
 //slices
 import NetworkSlice from "../slices/NetworkSlice"//network status
 import AuthSlice from "../slices/AuthSlice"//Authentication Status
@@ -14,6 +14,7 @@ const rootReducer={
     auth:AuthSlice,
 }
 
+//preist
 
 const Store = configureStore({
 

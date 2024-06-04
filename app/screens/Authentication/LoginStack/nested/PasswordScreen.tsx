@@ -59,7 +59,7 @@ const PasswordScreen = ({ navigation }: { navigation: any }) => {
 
   useEffect(() => {
     if (InputRef.current) {
-      InputRef.current.focus();
+      InputRef.current.focus(); 
     }
   }, [InputRef]);
 

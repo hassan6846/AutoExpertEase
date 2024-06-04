@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import AsyncStorage, {AsyncStorageStatic} from "@react-native-async-storage/async-storage"
 const AuthSlice = createSlice({
   name: "auth",
   initialState: {
@@ -54,6 +54,7 @@ const AuthSlice = createSlice({
     //Set Auth State
     SetAuthState: (state, action) => {
       state.Isauth = action.payload;
+      AsyncStorage.setItem('authState',JSON.stringify(action.payload))
     },//Set Device Name
     SetDeviceName: (state, action) => {
       state.deviceName = action.payload

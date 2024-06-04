@@ -22,8 +22,11 @@ const AuthSlice = createSlice({
     deviceName: "",
     DeviceType: "",
     DeviceYearofManufacturing: "",
-    isVendor: "",
-    isExpert: "",
+    isVendor: false,
+    isExpert: false,
+    isInstructor:false,
+    CarPostVerification:false,
+    CarRentingVerification:false,
   },
   reducers: {
     //SetProgressValueBar
@@ -53,7 +56,16 @@ const AuthSlice = createSlice({
     //Set Auth State
     SetAuthState: (state, action) => {
       state.Isauth = action.payload;
+    },//Set Device Name
+    SetDeviceName: (state, action) => {
+      state.deviceName = action.payload
+    },//Set DeviceType
+    SetDeviceType: (state, action) => {
+      state.DeviceType = action.payload
     },
+    DeviceYearOfManufacture: (state, action) => {
+      state.DeviceYearofManufacturing = action.payload
+    }
   },
 });
 

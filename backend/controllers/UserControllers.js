@@ -53,38 +53,72 @@ const loginFunction = async (req, res) => {
     }
 };
 const RegisterFunction = async (req, res, next) => {
-    //register functions
-    const { firstname, lastname, phone, password, email, Emailotp, deviceid, brand, devicename, devicetype } = req.body
+    const { firstname, lastname, phone, password, email, brand, devicename } = req.body;
 
-    //fields are empty
-    if (!firstname || !lastname || !password || !phone || !email || !deviceid || !brand || !devicename || !devicetype || !Emailotp) {
+    // Check if all fields are provided
+    if (!firstname || !lastname || !phone || !password || !email || !brand || !devicename) {
         return res.status(400).json({
             success: false,
             msg: "Please fill all the fields.",
         });
     }
-    //find if the Phone is already registered or not
-    //Find if email is already register or not then redirect or tell him to login
-    //hash password 
+
     try {
-       //FindUser Already Exists
-       const FindByPhone=await User.findOne({phone})
-       if(FindByPhone){
-        res.json({
-            sucess:false,
-            msg:"Phone Already Linked to Another Account"
-        })
-       }
+        // Check if the phone number is already registered
+        const FindByPhone = await User.findOne({ phone });
+        if (FindByPhone) {
+            return res.status(409).json({
+                success: false,
+                msg: "Phone Already Linked to Another Account",
+            });
+        }
 
+        // Check if the email is already registered
+        const FindByEmail = await User.findOne({ email });
+        if (FindByEmail) {
+            return res.status(409).json({
+                success: false,
+                msg: "Email Already Linked to Another Account",
+            });
+        }
+
+        // Create the user
+        const newUser = new User({
+            firstName: firstname,
+            lastName: lastname,
+            phone,
+            email,
+            password,
+            DeviceInfo: {
+                Brand: brand,
+                DeviceName: devicename
+            },
+            devicename,
+        });
+
+        // Save the user to the database
+        await newUser.save();
+
+        // Respond with success
+        res.status(201).json({
+            success: true,
+            msg: "User registered successfully",
+            user: {
+                id: newUser._id,
+                firstname: newUser.firstname,
+                lastname: newUser.lastname,
+                phone: newUser.phone,
+                email: newUser.email,
+                brand: newUser.brand,
+                devicename: newUser.devicename,
+            },
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, msg: "Internal Server Error" });
     }
-    catch (error) {
-        console.log(error)
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-    next()
+
 }
-
-
 //update profile picture..
 const updatepicture = async (req, res, next) => {
     const { ImageData, phone } = req.body

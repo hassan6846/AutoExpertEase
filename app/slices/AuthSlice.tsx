@@ -5,7 +5,7 @@ const AuthSlice = createSlice({
   initialState: {
     loading: false, //loading for different elements
     isAlreadyRegisted: false, //we'll check from server if user is registed or not then we navigate through hooks.
-    userToken: null, //Token 
+    userToken: '', //Token 
     userinfo: null, //User info persisted version only...
     AlreadyVisitedApp: false, //if app is opened first time or not
     Progress: 0.3, //value for progress bar 
@@ -18,15 +18,13 @@ const AuthSlice = createSlice({
     firstName: "",
     lastName: "",
     Email: "",
-    token: null,
+    deviceBrand:"",
     deviceName: "",
-    DeviceType: "",
-    DeviceYearofManufacturing: "",
     isVendor: false,
     isExpert: false,
-    isInstructor:false,
-    CarPostVerification:false,
-    CarRentingVerification:false,
+    isInstructor: false,
+    CarPostVerification: false,
+    CarRentingVerification: false,
   },
   reducers: {
     //SetProgressValueBar
@@ -60,23 +58,33 @@ const AuthSlice = createSlice({
     SetDeviceName: (state, action) => {
       state.deviceName = action.payload
     },//Set DeviceType
-    SetDeviceType: (state, action) => {
-      state.DeviceType = action.payload
+
+
+
+    SetFirstName: (state, action) => {
+      state.firstName = action.payload
     },
-    SetDeviceYearOfManufacture: (state, action) => {
-      state.DeviceYearofManufacturing = action.payload
+    SetLastName: (state, action) => {
+      state.lastName = action.payload
     },
-    SetFirstName:(state, action)=>{
-      state.firstName=action.payload
+    SetEmail: (state, action) => {
+      state.Email = action.payload
     },
-    SetLastName:(state, action)=>{
-      state.lastName=action.payload
+    SetDeivceBrand:(state,action)=>{
+      state.deviceBrand=action.payload
     },
-    
+    SetAuthToken:(state,action)=>{
+      state.userToken=action.payload
+    }
   },
 });
 
 export const {
+
+SetDeivceBrand,
+SetDeviceName,
+SetAuthToken,
+  SetEmail,
   SetFirstName,
   SetLastName,
   SetAlreadyVisitedApp,

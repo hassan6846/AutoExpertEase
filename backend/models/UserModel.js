@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         require: [true, "Kindly Enter your Name"],
         maxLength: [30, "Name cannot exceed 30 characters"],//setting max length
-        minLength: [4, "Name should have more than 4 characters"],//setting min length
+        minLength: [3, "Name should have more than 4 characters"],//setting min length
     },
     email: {
         type: String, //email type 
@@ -48,33 +48,34 @@ const UserSchema = new mongoose.Schema({
         //cnic
         Cnic: {
             // Image
-            Image: {
+            ImageFront: {
                 type: String,
                 required: false,
+            },
+            CnicBack:{
+            
+                type: String,
+                required: false,
+            },
+            CnicNo:{
+                type:String,
+                default:""
+            },
+            DOB:{
+                type:Date,
+                default:""
             }
-            //  Other Ml Releated Data.
+         
         },
         //Image
         FacialData: {
             //Face Id Each user is assigned a special FacialId
             //So we can run the face detection and gives us the same id.
-            FaceId: {
+            SelfieImg: {
                 type: String,
                 required: false,
             },
-            // Image 
 
-            Image: {
-                type: String,
-                required: false,
-                default: null,
-
-            },
-            FacialFeatures: {
-                type: Array,
-                required: false,
-                default: null
-            },
 
 
         },
@@ -104,19 +105,18 @@ const UserSchema = new mongoose.Schema({
         // Contain Info About Device Info of the User Device which is primarly used
         //We can Write Algorithms to compare device with new auth device and warn them
         //about suspecius activity.
-        DeviceInfo: [{
-            DeviceId: { type: String, default: null },
-            Brand: { type: String, default: null },
-            DeviceName: { type: String, default: null },
-            DeviceType: { type: String, default: null },
-            ModelName: { type: String, default: null }
-        }]
+
         
 
 
     },
 
-
+    DeviceInfo: {
+ 
+        Brand: { type: String, default: "Unknown" },
+        DeviceName: { type: String, default: "Unknown" },
+   
+    },
 
     isVerifiedEmail: {
         type: Boolean, //IsVerifiedEmail.. (we'll update the status after twilio verification and redirct on this basis if not.)
@@ -124,8 +124,8 @@ const UserSchema = new mongoose.Schema({
     },
     // UserRoles.
     role: {
-        type: String,
-        enum: ['admin', 'vendor', 'expert','none']
+        type: [String],
+        default: ["user"],
     },
     //we ill set this after putting this
     rolestatus: {

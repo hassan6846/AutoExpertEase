@@ -16,9 +16,6 @@ export const locationSlice = createSlice({
     name: "location",
     initialState,
     reducers: {
-        setCurrentLocation: (state, action) => {
-            state.currentLocation = action.payload; // we arre basically destructuring the object of initalState and setting through action.payload.
-        },
         setDestination: (state, action) => {
             state.destination = action.payload; //Setting Destination to get service
         },
@@ -44,6 +41,6 @@ export const locationSlice = createSlice({
     },
 });
 
-export const { setCurrentLocation, setDestination, setDistanceTravelTime, setLongitude, setLatitude } = locationSlice.actions;
+export const { setDestination,setDistanceTravelTime,setExpertArrivalTime,setExpertCurrentLocation,setLatitude,setLongitude} = locationSlice.actions;
 
 export default locationSlice.reducer;

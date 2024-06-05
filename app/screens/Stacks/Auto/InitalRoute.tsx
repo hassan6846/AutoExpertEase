@@ -4,8 +4,11 @@ import * as Location from "expo-location";
 import { useEffect, useState } from "react";
 import { Text, Icon } from "@rneui/themed";
 import CustomButton from "../../../components/ButtonProps/ButtonProps";
-import GoogleMapDesign from "../../../utils/GoogleMapDesign";
 import LottieView  from "lottie-react-native"
+
+//States Manegment
+import { useDispatch } from "react-redux";
+import { setLongitude,setLatitude } from "../../../slices/LocationSlice";
 const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
     const [location, setLocation] = useState<any>(null);
     const [errorMsg, setErrorMsg] = useState<string | any>(null);
@@ -64,7 +67,6 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
                
                 provider={PROVIDER_GOOGLE}
 
-customMapStyle={GoogleMapDesign}
                 userLocationCalloutEnabled
                 showsCompass={false}
                 showsUserLocation

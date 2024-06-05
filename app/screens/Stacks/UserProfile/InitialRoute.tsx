@@ -9,9 +9,12 @@ import * as ImagePicker from 'expo-image-picker';
 
 //Api
 import UpdateImg from "../../../api/User/UpdateProfileImg"
-
+//redux state manegment
+import { SetAuthState } from "../../../slices/AuthSlice"
+import { useDispatch } from "react-redux"
 
 const ProfileInitial = ({ navigation }: { navigation: any }) => {
+    const dispatch=useDispatch()
     //states
     const [isShowBottomSheet, SetisShowBottomSheet] = useState(false)
     const [OverlayVisable, setOverlayVisable] = useState(false) //bottom SheetVisiblity
@@ -55,7 +58,9 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
 
 
     //Update Image
-
+    const HandleLogout=()=>{
+        dispatch(SetAuthState(false))
+    }
 
     const toggleOverlay = () => {
         setOverlayVisable(!OverlayVisable)
@@ -78,7 +83,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                         <Text>Are you Sure you Want to Logout?</Text>
                         <View style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end", columnGap: 10, marginTop: 10 }}>
                             <Button onPress={toggleOverlay} title="Cancel" titleStyle={{ color: "#9E9EA0" }} buttonStyle={{ width: 140, backgroundColor: "#EAEAEB", }} />
-                            <Button title="Logout" color="error" buttonStyle={{ width: 140 }} />
+                            <Button onPress={HandleLogout} title="Logout" color="error" buttonStyle={{ width: 140 }} />
                         </View>
                     </View>
                 </Overlay>

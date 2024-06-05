@@ -23,6 +23,7 @@ const CustomButton = (props: ButtonProps) => {
             icon={props.icon}
             color={props.color || "#E04E2F"}
             iconPosition="right"
+            
             buttonStyle={{ borderRadius: props.BtnRadius }}
             title={props.title} />
     )

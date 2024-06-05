@@ -4,12 +4,11 @@ const nodemailer = require("nodemailer");
 const SendOtpMail = async (email, title, body) => {
     try {
         const transporter = nodemailer.createTransport({
-            host: 'smtp.ethereal.email',
-            port: 587,
-            secure: false,
+    
+            service:"gmail",
             auth: {
-                user: 'violette.wolff@ethereal.email',
-                pass: 'AS9wXY8CJjdGRaTrep'
+                user: 'ha6817334@gmail.com',
+                pass: 'oahs wfgq kjvi ewkq'
             }
         });
 

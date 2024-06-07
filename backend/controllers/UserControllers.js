@@ -115,7 +115,7 @@ const RegisterFunction = async (req, res, next) => {
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false, msg: "Internal Server Error" });
+        res.status(500).json({ success: false, msg: `${error.message}` });
     }
 
 }

@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Image, KeyboardAvoidingView, ActivityIndicator,ToastAndroid} from 'react-native';
 import React, { useState } from 'react';
 
 //library
@@ -10,14 +10,15 @@ import { getHeight } from '../../../../utils/GetDimension';
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
+
 const VerifyEmailOtp = ({ navigation }: { navigation: any }) => {
-  const firstname = useSelector((state: any) => state.auth.firstName)
-  const lastname = useSelector((state: any) => state.auth.lastName)
+  const firstname = useSelector((state: any) => state.auth.firstName);
+  const lastname = useSelector((state: any) => state.auth.lastName);
   const phone = useSelector((state: any) => state.auth.phone); //Email
-  const password = useSelector((state: any) => state.auth.password)
+  const password = useSelector((state: any) => state.auth.password);
   const email = useSelector((state: any) => state.auth.Email); //Email
-  const brand = useSelector((state: any) => state.auth.deviceBrand)
-  const deviceName = useSelector((state: any) => state.auth.deviceName)
+  const brand = useSelector((state: any) => state.auth.deviceBrand);
+  const deviceName = useSelector((state: any) => state.auth.deviceName);
 
   const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false);
@@ -37,15 +38,39 @@ const VerifyEmailOtp = ({ navigation }: { navigation: any }) => {
       });
 
       if (response.ok) {
-
-
+        // OTP verified, now proceed to register the user
+        const registerResponse = await fetch('http://10.0.2.2:4001/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            firstname,
+            lastname,
+            phone,
+            password,
+            email,
+            brand,
+            devicename: deviceName,
+          }),
+        });
+       //Error Data
+        if (registerResponse.ok) {
+          // Registration successful, navigate to login
+          console.log("User Created")
+          ToastAndroid.show('Account created successfully. You can login now.', ToastAndroid.SHORT);
+          navigation.navigate('LoginStack');
+        } else {
+         
+          setError("Invalid Credientials Typed..");
+        }
       } else {
-        console.error('Error verifying OTP:', response.statusText);
+        console.log(error)
         setError('Invalid OTP. Please try again.');
       }
     } catch (error) {
-      console.error('Error verifying OTP:', error);
-      setError('Error verifying OTP. Please try again.');
+      console.error('Error:', );
+      setError('An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }

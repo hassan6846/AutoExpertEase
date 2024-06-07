@@ -20,9 +20,9 @@ const ServiceTab = () => {
             {/* Inital Route */}
             <ServiceStack.Screen name="inital_service"   options={{headerShadowVisible: false,cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,headerTitle:""}} component={AutoFixInitalRoute} />
             {/* Task Location */}
-            <ServiceStack.Screen name="task_location" options={{headerShadowVisible: false,cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS}}component={TaskLocation} />
+            <ServiceStack.Screen name="task_location" options={{headerTitleAlign:"center",title:" Service Location",headerShadowVisible: false,cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,headerLeft:()=>(<></>)}}component={TaskLocation} />
             {/* Location Seach from api */}
-            <ServiceStack.Screen name="querylocation" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={LocationSearch} />
+            <ServiceStack.Screen name="querylocation" options={{headerTitleAlign:"center",headerTitle:"Search Location", cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,headerLeft:()=>(<></>) }} component={LocationSearch} />
             {/* Task Description */}
             <ServiceStack.Screen name="task_description" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={TaskDescription} />
 

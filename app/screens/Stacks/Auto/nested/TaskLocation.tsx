@@ -1,75 +1,105 @@
-
-import React from 'react'
-import { KeyboardAvoidingView, View, StyleSheet, Dimensions, Text, ScrollView } from 'react-native'
-import MapView, { Callout } from "react-native-maps"
-import GoogleMapDesign from '../../../../utils/GoogleMapDesign'
-import { Button, Input, ListItem, Icon } from "@rneui/themed"
-import ThemeProviderColors from '../../../../provider/ThemeProvider'
-import { getHeight as Height } from '../../../../utils/GetDimension'
+import React, { useState } from 'react';
+import { KeyboardAvoidingView, View, StyleSheet, Text } from 'react-native';
+import MapView, { Marker } from "react-native-maps";
+import { Button, Input,Icon} from "@rneui/themed";
+import ThemeProviderColors from '../../../../provider/ThemeProvider';
+import { useSelector } from 'react-redux';
 
 const TaskLocation = ({ navigation }: { navigation: any }) => {
+  const [pickedLocation, setPickedLocation] = useState<any>(null); // State to hold picked location
+  const NearbyPlace=useSelector((state:any)=>state.location.nearbyplace)
+  const handleMapPress = (event: any) => {
+    // Extract latitude and longitude from the pressed location
+    const { latitude, longitude } = event.nativeEvent.coordinate;
+    setPickedLocation({ latitude, longitude });
+  };
+ 
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: "#fff" }}>
-
       {/* Input View Start */}
-      <View style={Style.InputContainer}>
-        <Input onFocus={() => navigation.navigate('querylocation')} inputContainerStyle={Style.InputVoid} inputStyle={Style.InputMain} containerStyle={Style.InputCont} placeholder="Enter Your Location" />
-        {/* Dropdown */}
-
+      <View style={styles.inputContainer}>
+        <Input
+         disabled={true}
+           value={`${NearbyPlace}`}
+          inputContainerStyle={styles.inputVoid}
+          inputStyle={styles.inputMain}
+          containerStyle={styles.inputCont}
+          placeholder="Search Places Nearby You"
+        />
+        {/* Display latitude and longitude */}
+        <Button onPress={()=>navigation.navigate("querylocation")} color="#E04E2F">
+          <Icon name='search' color="#fff"/>
+        </Button>
       </View>
+      {pickedLocation && (
+          <Text style={styles.locationText}>
+            Latitude: {pickedLocation.latitude}, Longitude: {pickedLocation.longitude}
+          </Text>
+        )}
       {/* Input View Ends */}
       <MapView
+        onPress={handleMapPress}
         showsUserLocation={true}
-
-        customMapStyle={GoogleMapDesign}
-        style={Style.MapStyle} />
-      <Button onPress={() => navigation.navigate('task_description')} color={ThemeProviderColors.Light.Primary} containerStyle={Style.BtncontainerStyle} title="Next" />
-      {/* Dropdown Container */}
-
-      {/* Dropdown Container */}
+        style={styles.mapStyle}
+      >
+        {/* Display marker if location is picked */}
+        {pickedLocation && (
+          <Marker coordinate={pickedLocation} />
+        )}
+      </MapView>
+      <Button
+        onPress={() => navigation.navigate('task_description')}
+        color={ThemeProviderColors.Light.Primary}
+        containerStyle={styles.btnContainerStyle}
+        title="Next"
+        disabled={!pickedLocation} // Disable button if location is not picked
+      />
     </KeyboardAvoidingView>
-  )
+  );
 }
-//Styles
-const Style = StyleSheet.create({
-  MapStyle: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-    position: "relative",
 
+//Styles
+const styles = StyleSheet.create({
+  mapStyle: {
+    flex: 1,
+    position: "relative",
   },
   // Button Container
-  BtncontainerStyle: {
+  btnContainerStyle: {
     position: "absolute",
     width: "100%",
     bottom: 20,
     paddingHorizontal: 30,
-
   },
   // Styled
-  InputContainer: {
-    height: Height / 10,
-
-    justifyContent: "center",
-    alignItems: "center",
-
+  inputContainer: {
+        flexDirection:"row",
+    display:"flex",
+    justifyContent:"center",
+  
 
   },
-
-  InputCont: {
+  inputCont: {
     width: "80%",
-
-
+  
   },
-  InputMain: {
+  inputMain: {
     paddingLeft: 10,
     fontSize: 14,
-  }, InputVoid: {
+  },
+  inputVoid: {
     backgroundColor: "#e5e5e5",
     borderBottomWidth: 0,
     borderRadius: 5,
     fontSize: 12,
+
+  },
+  locationText: {
+    marginBottom:20,
+    fontSize: 12,
+textAlign:"center",
+color:ThemeProviderColors.Light.FontSubHeading
   }
-})
-export default TaskLocation
+});
+
+export default TaskLocation;

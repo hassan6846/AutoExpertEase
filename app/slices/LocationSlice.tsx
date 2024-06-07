@@ -1,20 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
 
-    currentLocation: null, // user current location from device
-    destination: null, // user custom service address
-    distanceTravelTime: null, //inital route etc..
-    Expertdistance: null, // ExpertDistance from User
-    ExpertCurrentLocation: null,    //Service provider locoation
-    ExpertArrivalTime: null,//time Arrival for Expert eg mechanic
-    longitude: "",
-    latitude: ""
-};
 
 export const locationSlice = createSlice({
     name: "location",
-    initialState,
+     initialState:{
+    
+        currentLocation: null, // user current location from device
+        destination: null, // user custom service address
+        distanceTravelTime: null, //inital route etc..
+        Expertdistance: null, // ExpertDistance from User
+        ExpertCurrentLocation: null,    //Service provider locoation
+        ExpertArrivalTime: null,//time Arrival for Expert eg mechanic
+        longitude: "",
+        latitude: "",
+        nearbyplace:"Enter Nearby Place",
+    },
     reducers: {
         setDestination: (state, action) => {
             state.destination = action.payload; //Setting Destination to get service
@@ -36,11 +37,14 @@ export const locationSlice = createSlice({
         setLatitude: (state, action) => {
             state.latitude = action.payload
 
+        },
+        SetNearbyPlace:(state,action)=>{
+          state.nearbyplace=action.payload
         }
 
     },
 });
 
-export const { setDestination,setDistanceTravelTime,setExpertArrivalTime,setExpertCurrentLocation,setLatitude,setLongitude} = locationSlice.actions;
+export const { setDestination,setDistanceTravelTime,setExpertArrivalTime,setExpertCurrentLocation,setLatitude,setLongitude,SetNearbyPlace} = locationSlice.actions;
 
 export default locationSlice.reducer;

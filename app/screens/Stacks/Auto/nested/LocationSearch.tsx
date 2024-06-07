@@ -1,13 +1,20 @@
 import { KeyboardAvoidingView, StyleSheet, View, ScrollView, Pressable } from 'react-native';
-import { Input, Text,Divider } from '@rneui/themed';
-import { getHeight as Height } from '../../../../utils/GetDimension';
 import React, { useEffect, useState } from 'react';
+//library
+import { Input, Text, Divider } from '@rneui/themed';
+//utils
+import { getHeight as Height } from '../../../../utils/GetDimension';
+//States
+import { useDispatch } from 'react-redux';
+import { SetNearbyPlace } from '../../../../slices/LocationSlice';
 
 const AccessTOken = 'pk.eyJ1IjoiaGFzc2Fuc2hlcml5YXIiLCJhIjoiY2xybnIxam00MTg0djJscXI1bXVxNTR3aCJ9.4r9apA2hHuxU3tOoGDVZbQ';
-const resultLimit=8
-const LocationSearch = () => {
+const resultLimit = 8;
+
+const LocationSearch = ({ navigation }: { navigation: any }) => {
+    const dispatch = useDispatch();
     const [query, setQuery] = useState('');
-    const [results, setResults] = useState<{ place_name: string,text:string }[]>([]);
+    const [results, setResults] = useState<{ place_name: string, text: string }[]>([]);
 
     const fetchLocations = async () => {
         try {
@@ -23,6 +30,12 @@ const LocationSearch = () => {
         }
     };
 
+    const handleResultPress = (placeName: string) => {
+        dispatch(SetNearbyPlace(placeName));
+        navigation.navigate("task_location")
+    
+    };
+
     useEffect(() => {
         if (query.trim() !== '') {
             fetchLocations();
@@ -34,26 +47,26 @@ const LocationSearch = () => {
     return (
         <KeyboardAvoidingView style={Style.QueryContainer}>
             <View style={Style.InputContainer}>
-                <Input onChangeText={setQuery} inputContainerStyle={Style.InputVoid} inputStyle={Style.InputMain} containerStyle={Style.InputCont} placeholder="Enter Your Location" />
+                <Input   onChangeText={setQuery} inputContainerStyle={Style.InputVoid} inputStyle={Style.InputMain} containerStyle={Style.InputCont} placeholder="Enter Your Location" />
             </View>
-            <ScrollView contentContainerStyle={{display:"flex",flexDirection:'column',rowGap:6}} style={Style.DropdownContainer}>
+            <ScrollView contentContainerStyle={Style.DropdownContainer}>
                 {results.map((location, index) => (
                     <Pressable
-                    style={({ pressed }) => [
-                      {
-                        backgroundColor: pressed ? 'rgba(136, 141, 145, 0.274)' : 'white',
-                        paddingVertical: 3,
-                        paddingHorizontal: 5,
-                        borderRadius:5,
-                      },
-                    ]}
-                    key={index}
-                  >
-                    <Text style={{ fontWeight: 'bold', fontSize: 16 }}>{location.text}</Text>
-                    <Text style={{ fontSize: 12, marginBottom: 5 }}>{location.place_name}</Text>
-                    <Divider />
-                  </Pressable>
-                  
+                        key={index}
+                        onPress={() => handleResultPress(location.place_name)}
+                        style={({ pressed }) => [
+                            {
+                                backgroundColor: pressed ? 'rgba(136, 141, 145, 0.274)' : 'white',
+                                paddingVertical: 3,
+                                paddingHorizontal: 5,
+                                borderRadius: 5,
+                            },
+                        ]}
+                    >
+                        <Text style={{ fontWeight: 'bold', fontSize: 16 }}>{location.text}</Text>
+                        <Text style={{ fontSize: 12, marginBottom: 5 }}>{location.place_name}</Text>
+                        <Divider />
+                    </Pressable>
                 ))}
             </ScrollView>
         </KeyboardAvoidingView>
@@ -84,8 +97,7 @@ const Style = StyleSheet.create({
         width: "90%"
     },
     DropdownContainer: {
-        flex: 1,
-        paddingHorizontal:20,
+        paddingHorizontal: 20,
     }
 });
 

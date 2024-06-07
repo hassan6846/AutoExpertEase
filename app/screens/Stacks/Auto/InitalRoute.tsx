@@ -59,6 +59,7 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
     return (
         <SafeAreaView style={Styles.map}>
             <MapView
+            cacheEnabled={true}
                 initialRegion={{
                     latitude: latitude ?? 30.3753, // Default value for Pakistan
                     longitude: longitude ?? 69.3451, // Default value for Pakistan

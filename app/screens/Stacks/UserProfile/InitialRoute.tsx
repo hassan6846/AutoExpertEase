@@ -145,7 +145,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
 
                     {/* Bookings Card */}
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Bookings</Text>
-                    <Pressable onPress={() => navigation.navigate('Expert')} style={({ pressed }) => [
+                    <Pressable onPress={() => navigation.navigate('bookings')} style={({ pressed }) => [
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                         },

@@ -1,12 +1,18 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs"
+const Bookings=createMaterialTopTabNavigator()
+//Nested Page
+import CarBookings from './nested/CarBookings'
+import PostedCars from './nested/PostedCars'
 
-const inital = () => {
+
+const BookingInital = () => {
   return (
-    <View>
-      <Text>inital</Text>
-    </View>
+     <Bookings.Navigator>
+      <Bookings.Screen component={CarBookings}  name='carbookings'/>
+      <Bookings.Screen  component={PostedCars} name='postedcars'/>
+     </Bookings.Navigator>
   )
 }
 
-export default inital
+export default BookingInital;

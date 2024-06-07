@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Videos = () => {
+const CarBookings = () => {
   return (
     <View>
-      <Text>Videos</Text>
+      <Text>CarBookings</Text>
     </View>
   )
 }
 
-export default Videos
+export default CarBookings

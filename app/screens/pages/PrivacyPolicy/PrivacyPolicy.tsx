@@ -18,7 +18,7 @@ const PrivacyPolicy = ({ navigation }: { navigation: any }) => {
 
                     1.Service Availability:  The availability of transportation services through the app is subject to change without notice. Gett reserves the right to modify, suspend, or discontinue the service at any time.
 
-                    2. Geographic Limitations: The services provided through the app are intended for use within the UK. Using the app outside of the UK may result in limited functionality or inability to access certain features.
+                    2. Geographic Limitations: The services provided through the app are intended for use within the Pk. Using the app outside of the UK may result in limited functionality or inability to access certain features.
 
                     3. User Responsibilities: Users are responsible for maintaining the confidentiality of their account information, including passwords. Any use of the app under a user's account is the user's responsibility.
 
@@ -28,7 +28,7 @@ const PrivacyPolicy = ({ navigation }: { navigation: any }) => {
 
                     6. Contact Information: It is the user's responsibility to ensure that their contact information associated with the app is accurate and up-to-date. Gett is not responsible for any communication issues arising from outdated contact details.
 
-                    7. Governing Law:These terms and conditions are governed by the laws of the United Kingdom. Any disputes arising out of or in connection with these terms shall be subject to the exclusive jurisdiction of the UK courts.
+                    7. Governing Law:These terms and conditions are governed by the laws of the Pakistan. Any disputes arising out of or in connection with these terms shall be subject to the exclusive jurisdiction of the UK courts.
 
                     By continuing to use the app, you acknowledge and agree to all the terms and conditions outlined above.
                 </Text>

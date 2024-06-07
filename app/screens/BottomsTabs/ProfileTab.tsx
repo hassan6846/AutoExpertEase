@@ -5,14 +5,12 @@ const UserStack = createStackNavigator()
 
 //nested child Component or pages
 import ProfileInitial from "../Stacks/UserProfile/InitialRoute"
-import ViewProfileImage from "../Stacks/UserProfile/-nested/ViewProfileImage"
-import Settings from "../Stacks/UserProfile/-nested/Settings/Settings"
 
 const ProfileTab = () => {
     return (
         <UserStack.Navigator>
             {/* Initial Route  */}
-            <UserStack.Screen name="profile" options={{ headerTitleAlign: "center" ,headerTitle:"Profile",headerShadowVisible:false}} component={ProfileInitial} />
+            <UserStack.Screen name="profile" options={{ cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerTitleAlign: "center" ,headerTitle:"Profile",headerShadowVisible:false,cardStyle:{backgroundColor:"black",}}}  component={ProfileInitial} />
             {/* Settings */}
 
 

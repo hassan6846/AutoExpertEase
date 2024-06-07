@@ -52,7 +52,7 @@ import SellerTabsNavigator from "./screens/SellerTabs/Inital"
 import ProfilePage from "./screens/pages/ProfilePage/ProfilePage"
 import InitalOrders from "./screens/pages/OrderTracking/initial"
 import AccessLocation from "./screens/pages/Permissions/AccessLocation"
-
+import BookingInital from "./screens/pages/Bookings/inital"
 
 
 //HomePage 
@@ -104,9 +104,8 @@ const Main = () => {
           Auth ? (
             <>
               <Stack.Screen name="Main" component={HomePageActivity} />
-
               {/* ProfileView */}
-              <Stack.Screen name="ViewProfile" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={ViewProfileImage} />
+              <Stack.Screen name="ViewProfile" options={{cardStyle:{backgroundColor:"black"},headerTitle:"", headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={ViewProfileImage}/>
               {/* TrackOrders */}
               <Stack.Screen name="orders" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShadowVisible: false,title:"Orders Detail"}} component={InitalOrders} />
 
@@ -117,6 +116,7 @@ const Main = () => {
               {/* Langauge */}
               <Stack.Screen name="language" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Change Language", headerShadowVisible: false }} component={SelectLanguage} />
               {/* Expert TabView */}
+              <Stack.Screen name="bookings" options={{headerShown:true,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} component={BookingInital}/>
               <Stack.Screen name="Expert" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ExpertPanel} />
               {/* Expert Verifcation Tab */}
 

@@ -74,7 +74,8 @@ const EnterName = ({ navigation }: { navigation: any }) => {
         </View>
         {/* Profile View */}
         <Text style={Styles.Heading} h4>Create Your Account</Text>
-        <Text style={Styles.subheading}>Please Enter Info to Create your Account {deviceName} {brand}</Text>
+        <Text style={Styles.subheading}>Please Enter Info to Create your Account </Text>
+        <Text style={Styles.subheading}>{deviceName} </Text>
         <View style={Styles.InputContainer}>
           <Input
             inputContainerStyle={Styles.InputVoid}

@@ -10,7 +10,7 @@ import LottieView  from "lottie-react-native"
 import { useDispatch } from "react-redux";
 import { setLongitude,setLatitude } from "../../../slices/LocationSlice";
 const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
-    const [location, setLocation] = useState<any>(null);
+    const [location, setLocation] = useState<any>("");
     const [errorMsg, setErrorMsg] = useState<string | any>(null);
 
     useEffect(() => {

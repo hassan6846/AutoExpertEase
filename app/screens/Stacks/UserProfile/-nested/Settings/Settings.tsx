@@ -26,7 +26,7 @@ const Settings = ({ navigation }: { navigation: any }) => {
 
 
             {/* Expert Pressable */}
-            <Pressable onPress={() => navigation.navigate('language')} style={({ pressed }) => [{ backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white', }, Style.pressableContainer]}>
+            <Pressable onPress={() => navigation.navigate('Expert')} style={({ pressed }) => [{ backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white', }, Style.pressableContainer]}>
                 <Icon containerStyle={{ backgroundColor: "rgba(59, 59, 59, 0.082)", padding: 5, marginRight: 5, borderRadius: 5 }} name='engineering' type='material' />
                 <ListItem.Content>
                     <ListItem.Title >Expert DashBoard</ListItem.Title>
@@ -36,7 +36,7 @@ const Settings = ({ navigation }: { navigation: any }) => {
 
 
             {/* Store */}
-            <Pressable onPress={() => navigation.navigate('language')} style={({ pressed }) => [{ backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white', }, Style.pressableContainer]}>
+            <Pressable onPress={() => navigation.navigate('seller')} style={({ pressed }) => [{ backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white', }, Style.pressableContainer]}>
                 <Icon containerStyle={{ backgroundColor: "rgba(59, 59, 59, 0.082)", padding: 5, marginRight: 5, borderRadius: 5 }} name='store' type='material' />
                 <ListItem.Content>
                     <ListItem.Title >Manage Store</ListItem.Title>

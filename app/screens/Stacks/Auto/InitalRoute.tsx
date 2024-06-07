@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { setLongitude,setLatitude } from "../../../slices/LocationSlice";
 const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
     const [location, setLocation] = useState<any>("");
+    const [longitude,setlongitude]=useState<string>("")
+    const [latitude,setlatitude]=useState<string>("")
     const [errorMsg, setErrorMsg] = useState<string | any>(null);
 
     useEffect(() => {
@@ -52,7 +54,7 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={Styles.map}>
             <MapView
                 initialRegion={{
                     latitude: location.coords.latitude,
@@ -69,7 +71,7 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
 
                 userLocationCalloutEnabled
                 showsCompass={false}
-                showsUserLocation
+                showsUserLocation={true}
                 showsPointsOfInterest
                 showsMyLocationButton={true}
                 style={{ flex: 1, position: "relative" }}
@@ -87,7 +89,7 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
                     Get Instant Help
                 </Text>
                 <Text style={{ textAlign: "center", marginBottom: 15 }} h2>
-                    Anywhere
+                    Anywhere {location}
                 </Text>
                 <CustomButton
                  function={()=>navigation.navigate("task_location")}

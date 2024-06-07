@@ -3,8 +3,3 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 //inital state
-const initalState={
-
-
-
-}

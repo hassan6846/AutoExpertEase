@@ -9,11 +9,18 @@ const ExpertHailingPage = ({navigation}:{navigation:any}) => {
     React.useCallback(() => {
 
       Alert.alert(
-        "Alert Title",
-        "Hello",
+        "You are not verified to use this feature.",
+        "Become An Expert /Buisness Parthners after Submiting Your Simple and Easy KYC form and will let you know... and you after some decision. and verification.",
         [
           {
-            text: "OK",
+            text: "Cancel",
+            onPress: () => {
+              // Redirect to another page here
+              navigation.navigate('profile'); // Navigate to AnotherPage
+            }
+          },
+          {
+            text: "Go",
             onPress: () => {
               // Redirect to another page here
               navigation.navigate('expertverify'); // Navigate to AnotherPage

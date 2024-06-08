@@ -64,7 +64,7 @@ const SelectRole = ({ navigation }: { navigation: any }) => {
         <Avatar size={50} source={{uri:driverInstructor}} />
         <Text>Work as Instructor</Text>
       </Pressable>
-      <CustomButton BtnRadius={10} function={()=>navigation.navigate("expertverification")} title="Apply Now" />
+      <CustomButton  marginBottom={60} BtnRadius={10} function={()=>navigation.navigate("expertverification")} title="Apply Now" />
     </ScrollView>
   );
 };

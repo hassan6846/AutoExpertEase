@@ -18,16 +18,17 @@ const ServiceTab = () => {
     return (
         <ServiceStack.Navigator >
             {/* Inital Route */}
-            <ServiceStack.Screen name="inital_service"   options={{headerShadowVisible: false,cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,headerTitle:""}} component={AutoFixInitalRoute} />
+            <ServiceStack.Screen name="inital_service" options={{ headerShadowVisible: false, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "" }} component={AutoFixInitalRoute} />
             {/* Task Location */}
-            <ServiceStack.Screen name="task_location" options={{headerTitleAlign:"center",title:" Service Location",headerShadowVisible: false,cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,headerLeft:()=>(<></>)}}component={TaskLocation} />
-            {/* Location Seach from api */}
-            <ServiceStack.Screen name="querylocation" options={{headerTitleAlign:"center",headerTitle:"Search Location", cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,headerLeft:()=>(<></>) }} component={LocationSearch} />
+            <ServiceStack.Screen name="task_location" options={{ headerTitleAlign: "center", title: " Service Location", headerShadowVisible: false, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerLeft: () => (<></>) }} component={TaskLocation} />
             {/* Task Description */}
-            <ServiceStack.Screen name="task_description" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={TaskDescription} />
+            <ServiceStack.Screen name="TaskDescription" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,headerTitleAlign:"center",title:"Enter Description", headerLeft: () => (<></>)}} component={TaskDescription} />
+            {/* Location Seach from api */}
+            <ServiceStack.Screen name="querylocation" options={{ headerTitleAlign: "center", headerTitle: "Search Location", cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerLeft: () => (<></>) }} component={LocationSearch} />
+
 
             {/* Hailing Page */}
-            <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} name="hailing_page" component={HailingPage} />
+            <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,headerTitleAlign:"center",title:"Select Offers",headerLeft: () => (<></>)}} name="hailing_page" component={HailingPage} />
             {/* Simulator Page */}
             <ServiceStack.Screen options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} name="simulator_page" component={SimulatorPage} />
 

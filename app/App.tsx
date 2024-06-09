@@ -7,7 +7,7 @@ import { Provider, useSelector } from "react-redux"
 
 //libraries /utils
 import {  Text, Avatar } from "@rneui/themed"
-import Store from "./store/Store"
+
 import { ChatbotAvatar } from "./constants/ImagesConstants"
 //TabNavigator 
 import { NavigationContainer } from "@react-navigation/native"
@@ -53,8 +53,15 @@ import ProfilePage from "./screens/pages/ProfilePage/ProfilePage"
 import InitalOrders from "./screens/pages/OrderTracking/initial"
 import AccessLocation from "./screens/pages/Permissions/AccessLocation"
 import BookingInital from "./screens/pages/Bookings/inital"
+//redux
 
 
+
+
+import {persistStore} from "redux-persist"
+import {PersistGate} from "redux-persist/integration/react"
+let presistor=persistStore(Store)
+import Store from "./store/Store"
 //HomePage 
 //Always Add Pages Inside Only Contains Page After logged in or Authentication Ok👍
 function HomePageActivity() {
@@ -163,8 +170,10 @@ export default function App() {
 
   return (
     <Provider store={Store}>
+      <PersistGate loading={null} persistor={presistor}>
       <StatusBar style="auto" />
       <Main />
+      </PersistGate>
     </Provider>
   );
 }

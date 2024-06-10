@@ -31,14 +31,6 @@ const CustomButton = (props: ButtonProps) => {
     )
 }
 
-// style
-const Styles = StyleSheet.create({
-    ButtonPropsStyle: {
-        padding: 12,
-        zIndex: 999,
 
-
-    }
-})
 
 export default CustomButton;

@@ -10,7 +10,7 @@ const AuthSlice = createSlice({
     Progress: 0.3, //value for progress bar 
     RefreshTokenTime: 10000, //RefreshTokenTime 10min
     HeaderColor: "#E04E2F",
-    Isauth: true,
+    Isauth: false,
     currentRouteName: "",
     phone: "",
     password: "",

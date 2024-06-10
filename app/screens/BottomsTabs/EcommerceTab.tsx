@@ -198,6 +198,9 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
         cardShadowEnabled: false,
         headerTitleAlign:"center",
         headerShadowVisible: false,
+        headerLeft:()=>(
+          <></>
+        )
 
       }} component={Checkout} name="checkout"/>
     </EcommerceStack.Navigator>

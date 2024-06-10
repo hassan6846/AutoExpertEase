@@ -138,7 +138,7 @@ const CartPage = ({ navigation }: { navigation: any }) => {
       <Button
         title="Checkout"
         buttonStyle={{ marginTop: 5 ,}}
-    
+        onPress={()=>navigation.navigate("checkout")}
         color={ThemeProviderColors.Light.Primary}
       />
       

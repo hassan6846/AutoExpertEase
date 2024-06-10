@@ -1,30 +1,29 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { View } from 'react-native';
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
 import { ChatbotAvatar } from '../../../../../constants/ImagesConstants';
-
-// Redux slices
-import { saveMessages, appendMessage } from '../../../../../slices/ChatBotSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { saveMessages, appendMessage } from '../../../../../slices/ChatBotSlice';
 
-interface ChatSupportProps {}
-
-const ChatSupport: React.FC<ChatSupportProps> = () => {
+const ChatSupport: React.FC = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state: any) => state.chatbot.messages);
 
   useEffect(() => {
-    const initialMessage: IMessage = {
-      _id: 1,
-      text: '👋 Hello! How can I help you?',
-      createdAt: new Date(),
-      user: {
-        _id: 2,
-        name: 'React Native Bot',
-        avatar: ChatbotAvatar,
-      },
-    };
-    dispatch(saveMessages([initialMessage]));
-  }, [dispatch]);
+    if (messages.length === 0) {
+      const initialMessage: IMessage = {
+        _id: 1,
+        text: '👋 Hello! How can I help you?',
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native Bot',
+          avatar: ChatbotAvatar,
+        },
+      };
+      dispatch(saveMessages([initialMessage]));
+    }
+  }, [dispatch, messages.length]);
 
   const onSend = useCallback(async (newMessages: IMessage[] = []) => {
     const userMessage = newMessages[0].text;
@@ -67,16 +66,18 @@ const ChatSupport: React.FC<ChatSupportProps> = () => {
   }, [dispatch]);
 
   return (
-    <GiftedChat
-      messagesContainerStyle={{ backgroundColor: '#fff' }}
-      placeholder='Ask anything...'
-      messages={messages}
-      onSend={(newMessages) => onSend(newMessages)}
-      user={{
-        _id: 1,
-        avatar: ChatbotAvatar,
-      }}
-    />
+    <View style={{ flex: 1 }}>
+      <GiftedChat
+        messagesContainerStyle={{ backgroundColor: '#fff' }}
+        placeholder='Ask anything...'
+        messages={messages}
+        onSend={(newMessages) => onSend(newMessages)}
+        user={{
+          _id: 1,
+          avatar: ChatbotAvatar,
+        }}
+      />
+    </View>
   );
 };
 

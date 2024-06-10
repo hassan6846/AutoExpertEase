@@ -1,11 +1,13 @@
-import { View, Text } from 'react-native'
+import { View,ScrollView } from 'react-native'
 import React from 'react'
-
+//library
+import {Text} from "@rneui/themed"
+//
 const Checkout = () => {
   return (
-    <View>
-      <Text>Checkout</Text>
-    </View>
+    <ScrollView>
+    
+    </ScrollView>
   )
 }
 

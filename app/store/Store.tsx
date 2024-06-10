@@ -5,12 +5,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage'; // Import 
 import NetworkSlice from "../slices/NetworkSlice"; // network status
 import AuthSlice from "../slices/AuthSlice"; // Authentication Status
 import locationSlice from "../slices/LocationSlice";
+import ChatBotSlice from "../slices/ChatBotSlice";
 
 // Combine reducers
 const rootReducer = combineReducers({
   network: NetworkSlice,
   auth: AuthSlice,
   location: locationSlice,
+  chatbot:ChatBotSlice
 });
 
 // Persist config

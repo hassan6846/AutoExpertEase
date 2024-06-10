@@ -1,33 +1,36 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
 import { ChatbotAvatar } from '../../../../../constants/ImagesConstants';
-import {Icon} from "@rneui/themed"
+
+// Redux slices
+import { saveMessages, appendMessage } from '../../../../../slices/ChatBotSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 interface ChatSupportProps {}
 
 const ChatSupport: React.FC<ChatSupportProps> = () => {
-  const [messages, setMessages] = useState<IMessage[]>([]);
+  const dispatch = useDispatch();
+  const messages = useSelector((state: any) => state.chatbot.messages);
 
   useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: '👋 Hello! How can I help you?',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native Bot',
-          avatar: ChatbotAvatar,
-        },
+    const initialMessage: IMessage = {
+      _id: 1,
+      text: '👋 Hello! How can I help you?',
+      createdAt: new Date(),
+      user: {
+        _id: 2,
+        name: 'React Native Bot',
+        avatar: ChatbotAvatar,
       },
-    ]);
-  }, []);
+    };
+    dispatch(saveMessages([initialMessage]));
+  }, [dispatch]);
 
   const onSend = useCallback(async (newMessages: IMessage[] = []) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, newMessages)
-    );
-
     const userMessage = newMessages[0].text;
+
+    // Append user message to the chat
+    dispatch(appendMessage(newMessages[0]));
 
     try {
       const response = await fetch('http://10.0.2.2:4001/api/help', {
@@ -45,26 +48,23 @@ const ChatSupport: React.FC<ChatSupportProps> = () => {
       const data = await response.json();
       const botReply = data.data;
 
-      // Add bot's reply to the chat
-      setMessages((prevMessages) =>
-        GiftedChat.append(prevMessages, [
-          {
-            _id: Math.round(Math.random() * 1000000),
-            text: botReply,
-            createdAt: new Date(),
-            user: {
-              _id: 2,
-              name: 'React Native Bot',
-              avatar: ChatbotAvatar,
-            },
-          },
-        ])
-      );
+      const botMessage: IMessage = {
+        _id: Math.round(Math.random() * 1000000),
+        text: botReply,
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native Bot',
+          avatar: ChatbotAvatar,
+        },
+      };
+
+      // Append bot's reply to the chat
+      dispatch(appendMessage(botMessage));
     } catch (error) {
       console.error('Error sending message:', error);
-      // Handle error
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <GiftedChat

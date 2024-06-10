@@ -3,12 +3,13 @@ import { View } from "react-native"
 import { useEffect } from "react"
 ///sdks
 import { StatusBar } from "expo-status-bar"
-import { Provider, useSelector } from "react-redux"
+import {clearMessages} from "./slices/ChatBotSlice"
+import { Provider, useSelector,useDispatch } from "react-redux"
 
 //libraries /utils
-import {  Text, Avatar } from "@rneui/themed"
+import {  Text, Avatar,Icon } from "@rneui/themed"
 
-import { AvatarSrc, ChatbotAvatar } from "./constants/ImagesConstants"
+import { ChatbotAvatar } from "./constants/ImagesConstants"
 //TabNavigator 
 import { NavigationContainer } from "@react-navigation/native"
 import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
@@ -95,6 +96,7 @@ function HomePageActivity() {
 
 
 const Main = () => {
+  const dispatch=useDispatch()
   const Auth=useSelector((state:any)=>state.auth.Isauth)
 
 
@@ -118,7 +120,7 @@ const Main = () => {
               <Stack.Screen name="orders" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShadowVisible: false,title:"Orders Detail"}} component={InitalOrders} />
 
               {/* Chat Support Ai Bot. */}
-              <Stack.Screen name="Support" options={{ headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar overlayContainerStyle={{ borderRadius: 10 }} source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
+              <Stack.Screen name="Support" options={{ headerShown:true,headerRight:()=>(<Icon name="delete" onPress={()=>dispatch(clearMessages())} type="material" containerStyle={{marginRight:10}}/>),headerTitle: () => (<View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}><Avatar overlayContainerStyle={{ borderRadius: 10 }} source={{ uri: ChatbotAvatar }} /><Text > AutoBot</Text></View>), cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }} component={ChatSupport} />
               {/* Settings */}
               <Stack.Screen name="settings" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Settings", headerShadowVisible: false }} component={Settings} />
               {/* Langauge */}

@@ -1,6 +1,7 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
-import { GiftedChat, IMessage } from 'react-native-gifted-chat';
+import { GiftedChat, IMessage, Send } from 'react-native-gifted-chat';
+import { Icon } from "@rneui/themed";
 import { ChatbotAvatar } from '../../../../../constants/ImagesConstants';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveMessages, appendMessage } from '../../../../../slices/ChatBotSlice';
@@ -65,6 +66,22 @@ const ChatSupport: React.FC = () => {
     }
   }, [dispatch]);
 
+  // Custom send button component
+  const renderSend = (props: any) => {
+    return (
+      <Send {...props}>
+        <View style={{ marginRight: 10, marginBottom: 8}}>
+          <Icon
+            name="send"
+            type="material"
+            size={24}
+            color="#007AFF"
+          />
+        </View>
+      </Send>
+    );
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <GiftedChat
@@ -76,6 +93,7 @@ const ChatSupport: React.FC = () => {
           _id: 1,
           avatar: ChatbotAvatar,
         }}
+        renderSend={renderSend}
       />
     </View>
   );

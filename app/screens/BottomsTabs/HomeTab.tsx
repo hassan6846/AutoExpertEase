@@ -3,7 +3,7 @@ import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/
 const HomeStack = createStackNavigator()
 
 //imports modules
-import { Avatar,  } from "@rneui/themed"
+import { Avatar,Icon  } from "@rneui/themed"
 import { AvatarSrc } from "../../constants/ImagesConstants"
 //utils
 
@@ -14,17 +14,21 @@ import Home from "../Stacks/Home/InitialRoute"
 // Lesson Section
 import AllLessons from "../Stacks/Home/nested/drivinglessons/AllLessons"
 import VideoView from "../Stacks/Home/nested/drivinglessons/nested/VideoView"
-
-const HomeTab = () => {
+import PostVideo from "../Stacks/Home/nested/drivinglessons/nested/PostVideo"
+const HomeTab = ({ navigation }: { navigation: any }) => {
 
   return (
     <HomeStack.Navigator initialRouteName="HomeInital" >
 
       <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS, headerRight: () => (<Avatar avatarStyle={{ borderRadius: 20 }} containerStyle={{ marginRight: 12 }} source={{ uri: AvatarSrc }} />), headerTitle: "Welcome", headerStyle: { height: getHeight / 9 } }} component={Home} name="HomeInital" />
-      <HomeStack.Screen  options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"Video Feed",headerLeft:()=><></>,headerTitleAlign:"center"}} component={AllLessons} name="allvideos" />
-      <HomeStack.Screen  options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"",headerTitleAlign:"center"}} component={VideoView} name="viewvideo" />
+      <HomeStack.Screen  options={{headerShown:false,headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"",headerTitleAlign:"center"}} component={VideoView} name="viewvideo" />
 
+      <HomeStack.Screen  options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"Video Feed",headerLeft:()=><></>,headerTitleAlign:"center",headerRight:()=><>
+      <Icon name="add" type="material"iconStyle={{borderRadius:30,padding:10}} onPress={()=>navigation.navigate("postvideo")} containerStyle={{marginRight:10}}/>
+      </>}} component={AllLessons} name="allvideos" />
 
+{/* Post Video */}
+<HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Post Lesson"}} name="postvideo" component={PostVideo} />
 
     </HomeStack.Navigator>
   )

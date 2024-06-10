@@ -12,8 +12,8 @@ import { setLongitude, setLatitude } from "../../../slices/LocationSlice";
 
 const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
     const [location, setLocation] = useState<Location.LocationObject | null>(null);
-    const [longitude, setLongitudeState] = useState<number | null>(null);
-    const [latitude, setLatitudeState] = useState<number | null>(null);
+    const [longitude, setLongitudeState] = useState<number >(0);
+    const [latitude, setLatitudeState] = useState<number>(0);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
     useEffect(() => {
@@ -59,16 +59,17 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
     return (
         <SafeAreaView style={Styles.map}>
             <MapView
-            cacheEnabled={true}
+         
                 initialRegion={{
-                    latitude: latitude ?? 30.3753, // Default value for Pakistan
-                    longitude: longitude ?? 69.3451, // Default value for Pakistan
+                    latitude: latitude, // Default value for Pakistan
+                    longitude:longitude, // Default value for Pakistan
                     latitudeDelta: 0.03, // Adjust the value for the desired zoom level
                     longitudeDelta: 0.02, // Adjust the value for the desired zoom level
                 }}
                 zoomControlEnabled
-                loadingEnabled
-                showsIndoors
+                loadingEnabled={true}
+                showsIndoors={true}
+             
                 provider={PROVIDER_GOOGLE}
                 userLocationCalloutEnabled
                 showsCompass={false}

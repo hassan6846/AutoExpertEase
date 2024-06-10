@@ -113,11 +113,15 @@ const CartPage = ({ navigation }: { navigation: any }) => {
         <Text>SubTotal</Text>
         <Text>Rs.1580</Text>
         </View>
+        <View style={{flexDirection:"row",justifyContent:"space-between",marginBottom:10}}>
+        <Text>Wallet</Text>
+        <Text>Rs.0</Text>
+        </View>
         {/* Sub total ends */}
         {/* Delivery Fee */}
     <View style={{flexDirection:"row",justifyContent:"space-between",marginBottom:10}}>
-        <Text>SubTotal</Text>
-        <Text>Rs.1580</Text>
+        <Text>Delivery Fee (Lahore Only)</Text>
+        <Text>Rs.300</Text>
     </View>
 {/* Delivery Fee ends */}
     <View style={{flexDirection:"row",justifyContent:"space-between",marginBottom:10}}>

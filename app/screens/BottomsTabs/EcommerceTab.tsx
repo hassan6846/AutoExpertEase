@@ -184,6 +184,7 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
       <EcommerceStack.Screen options={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         cardShadowEnabled: false,
+        headerTitleAlign:"center",
         headerShadowVisible: false,
         title: "Wallet"
       }} name="wallet" component={Wallet} />

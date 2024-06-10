@@ -8,7 +8,7 @@ import { Provider, useSelector } from "react-redux"
 //libraries /utils
 import {  Text, Avatar } from "@rneui/themed"
 
-import { ChatbotAvatar } from "./constants/ImagesConstants"
+import { AvatarSrc, ChatbotAvatar } from "./constants/ImagesConstants"
 //TabNavigator 
 import { NavigationContainer } from "@react-navigation/native"
 import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
@@ -42,6 +42,7 @@ import ChatSupport from "./screens/Stacks/UserProfile/-nested/Help&Support/ChatS
 import Settings from "./screens/Stacks/UserProfile/-nested/Settings/Settings"
 import SelectLanguage from "./screens/pages/Localization/SelectLanguage"
 import PrivacyPolicy from "./screens/pages/PrivacyPolicy/PrivacyPolicy"
+import MessageView from "./screens/Stacks/Messages/nested/MessageView"
 
 //stacks and panels
 import AuthStack from "./screens/Authentication/AuthStack"
@@ -67,7 +68,7 @@ import Store from "./store/Store"
 function HomePageActivity() {
 
   return (
-    <Tab.Navigator screenOptions={{ tabBarStyle: { height: BottomNavigator_Height, }, tabBarShowLabel: false, }} >
+    <Tab.Navigator screenOptions={{ tabBarStyle: { height: BottomNavigator_Height, }, tabBarShowLabel: false,}} >
       {/* Home */}
       <Tab.Screen name="Home" component={HomeTab} options={{ headerShown: false, tabBarIcon: TabsConfigs.Home.Svg, }} />
 
@@ -123,7 +124,7 @@ const Main = () => {
               {/* Langauge */}
               <Stack.Screen name="language" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Change Language", headerShadowVisible: false }} component={SelectLanguage} />
               {/* Expert TabView */}
-              <Stack.Screen name="bookings" options={{headerShown:true,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} component={BookingInital}/>
+              <Stack.Screen name="bookings" options={{headerShown:true,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerShadowVisible:false,title:"Bookings"}} component={BookingInital}/>
               <Stack.Screen name="Expert" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ExpertPanel} />
               {/* Expert Verifcation Tab */}
 
@@ -132,7 +133,8 @@ const Main = () => {
               {/* Seller Tab */}
               <Stack.Screen name="seller" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={SellerTabsNavigator} />
               <Stack.Screen name="viewAccount" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ProfilePage} />
-
+             <Stack.Screen name="messageview" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+             }}  component={MessageView}/>
 
             </>
           ) : (

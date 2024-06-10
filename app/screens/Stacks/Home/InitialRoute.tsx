@@ -26,7 +26,7 @@ const Home = ({ navigation }: { navigation: any }) => {
     }, {
       title: "Learn Drive",
       icon: "school",
-      route: "viewvideo"
+      route: "allvideos"
     }
   ]
 

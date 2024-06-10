@@ -1,10 +1,13 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
+const Tabs = createMaterialTopTabNavigator()
 
 import Messages from "../Stacks/Messages/InitialRoute"
 import Notifications from "../Stacks/Messages/Notifications"
+
+
+//utils
 import ThemeProviderColors from "../../provider/ThemeProvider"
 
-const Tabs = createMaterialTopTabNavigator()
 
 const ExploreTab = () => {
     return (

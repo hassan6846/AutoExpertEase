@@ -5,6 +5,7 @@ import React from 'react'
 import { Text } from "@rneui/themed"
 //components
 import InputComponent from '../../../../components/InputComponent/InputComponent'
+import CustomButton from '../../../../components/ButtonProps/ButtonProps'
 
 const VendorVerfication = () => {
     return (
@@ -33,12 +34,13 @@ const VendorVerfication = () => {
 
             </View>
 
-            <View style={{ backgroundColor: "#fff", borderRadius: 5, padding: 10, marginBottom: 10 }}>
-                <Text style={{ textAlign: "center" }} h4>Upload Document </Text>
+            <View style={{ backgroundColor: "#fff", borderRadius: 5, padding: 10, marginBottom: 50 }}>
+                <Text style={{ textAlign: "center" }} h4>Document Details </Text>
                 <InputComponent placeholder="Enter Cnic Numnber" label="cnic no" />
                 <InputComponent placeholder="Enter ntn number" label="ntn" />
-
+                <CustomButton title="Request Vendor Ship"/>
             </View>
+          
         </ScrollView>
     )
 }

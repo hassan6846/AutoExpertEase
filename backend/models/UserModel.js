@@ -41,49 +41,13 @@ const UserSchema = new mongoose.Schema({
     //     
     //    --Contians User Cnic
     // --Contains Very contagius information.
-    UserInfo: {
-        // Only for cnic purpose.
-        name: {
-            type: String,
-            required: false,
-        },
-        //cnic
-        Cnic: {
-            // Image
-            ImageFront: {
-                type: String,
-                required: false,
-            },
-            CnicBack:{
-            
-                type: String,
-                required: false,
-            },
-            CnicNo:{
-                type:String,
-                default:""
-            },
-            DOB:{
-                type:Date,
-                default:""
-            }
-         
-        },
-        //Image
-        FacialData: {
-            //Face Id Each user is assigned a special FacialId
-            //So we can run the face detection and gives us the same id.
-            SelfieImg: {
-                type: String,
-                required: false,
-            },
-
-
-
-        },
-
         //User Permenent Address. According to cnic.
         AddressInfo: {
+            //Address
+            Address:{
+                type: String,
+                default: "Address for billing and parcel",
+            },
             //Country..
             Country: {
                 type: String,
@@ -111,8 +75,6 @@ const UserSchema = new mongoose.Schema({
         
 
 
-    },
-
     DeviceInfo: {
  
         Brand: { type: String, default: "Unknown" },
@@ -135,17 +97,7 @@ const UserSchema = new mongoose.Schema({
         default: "Pending",
     },
 
-    Locations: {
-        // User TypeLocation
-        UserLocation: {
-            default: null,
-            type: String,
-        },
-        // Mutate location.
-        BuisnessLocation: {},
-        // Link a database Ref.
-        RealtimeLocation: {}
-    },
+
     // Handle User Tokens For Sessions.
 
     // User Create at date.

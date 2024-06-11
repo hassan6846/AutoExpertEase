@@ -4,11 +4,8 @@ const fileupload = require("express-fileupload")
 const cors = require("cors");
 const cookieParser=require("cookie-parser")
 const bodyParser=require("body-parser")
-// Initializing App
-const http=require("http")
-const {Server}=require("socket.io")
-const server=http.createServer(app)
-const io=new Server(server)
+// Initializing Websockets.
+
 //END OF INITIALIZATION...
 require("dotenv").config()
 //middlewares
@@ -37,6 +34,7 @@ app.use('/api',chatbot)
 app.use('/api',admin)
 app.use("/api",auth)
 app.use("/api",payment)
+
 module.exports = app
 
 

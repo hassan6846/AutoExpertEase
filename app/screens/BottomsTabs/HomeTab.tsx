@@ -16,7 +16,6 @@ import AllLessons from "../Stacks/Home/nested/drivinglessons/AllLessons"
 import VideoView from "../Stacks/Home/nested/drivinglessons/nested/VideoView"
 import PostVideo from "../Stacks/Home/nested/drivinglessons/nested/PostVideo"
 //Driving Lesson Section...
-import AllTeachers from "../Stacks/Home/nested/ClassBooking/AllTeachers"
 
 const HomeTab = ({ navigation }: { navigation: any }) => {
 
@@ -24,6 +23,7 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
     <HomeStack.Navigator initialRouteName="HomeInital" >
 
       <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS, headerRight: () => (<Avatar avatarStyle={{ borderRadius: 20 }} containerStyle={{ marginRight: 12 }} source={{ uri: AvatarSrc }} />), headerTitle: "Welcome", headerStyle: { height: getHeight / 9 } }} component={Home} name="HomeInital" />
+   
       <HomeStack.Screen  options={{headerShown:false,headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"",headerTitleAlign:"center"}} component={VideoView} name="viewvideo" />
 
       <HomeStack.Screen  options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"Video Feed",headerLeft:()=><></>,headerTitleAlign:"center",headerRight:()=><>

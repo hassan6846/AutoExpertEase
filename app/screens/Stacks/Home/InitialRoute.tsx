@@ -247,30 +247,9 @@ const Home = ({ navigation }: { navigation: any }) => {
 
         {/* car Card */}
       </ScrollView>
-      <Text style={Style.headingText}>Book & Learning Driving </Text>
+    
       {/* Experts Drivers.. */}
-      <ScrollView contentContainerStyle={{columnGap:20}} horizontal={true}>
-       <View style={{display:"flex",flexDirection:"column",alignItems:"center",marginBottom:100}}>
-       <Avatar size={80} containerStyle={{borderRadius:50}} avatarStyle={{borderRadius:50}} source={{uri:AvatarSrc}} />
-       <Text style={{fontSize:10}}>Mr Shehriyar</Text>
-       </View>
-       <View style={{display:"flex",flexDirection:"column",alignItems:"center",marginBottom:100}}>
-       <Avatar size={80} containerStyle={{borderRadius:50}} avatarStyle={{borderRadius:50}} source={{uri:AvatarSrc}} />
-       <Text style={{fontSize:10}}>Mr Shehriyar</Text>
-       </View>
-       <View style={{display:"flex",flexDirection:"column",alignItems:"center",marginBottom:100}}>
-       <Avatar size={80} containerStyle={{borderRadius:50}} avatarStyle={{borderRadius:50}} source={{uri:AvatarSrc}} />
-       <Text style={{fontSize:10}}>Mr Shehriyar</Text>
-       </View>
-       <View style={{display:"flex",flexDirection:"column",alignItems:"center",marginBottom:100}}>
-       <Avatar size={80} containerStyle={{borderRadius:50}} avatarStyle={{borderRadius:50}} source={{uri:AvatarSrc}} />
-       <Text style={{fontSize:10}}>Mr Shehriyar</Text>
-       </View>
-       <View style={{display:"flex",flexDirection:"column",alignItems:"center",marginBottom:100}}>
-       <Avatar size={80} containerStyle={{borderRadius:50}} avatarStyle={{borderRadius:50}} source={{uri:AvatarSrc}} />
-       <Text style={{fontSize:10}}>Mr Shehriyar</Text>
-       </View>
-      </ScrollView>
+
       {/* Experts Drivers. */}
     </ScrollView>
   )

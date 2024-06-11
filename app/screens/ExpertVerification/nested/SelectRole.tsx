@@ -1,10 +1,9 @@
-import { View, StyleSheet, Pressable,ScrollView } from 'react-native';
+import { View, StyleSheet, Pressable, ScrollView } from 'react-native';
 import React from 'react';
 import { Avatar, Text, Icon } from '@rneui/themed';
 import { getHeight } from '../../../utils/GetDimension';
 import ThemeProviderColors from '../../../provider/ThemeProvider';
-import { moneyman,driverInstructor,vendor,VehicleRental,VehicleListingVerification,MechanicVerifiction} from '../../../constants/ImagesConstants'; // Make sure this imports the correct image URI
-import CustomButton from '../../../components/ButtonProps/ButtonProps';
+import { moneyman, vendor, VehicleRental, VehicleListingVerification, MechanicVerifiction } from '../../../constants/ImagesConstants'; // Make sure this imports the correct image URI
 
 
 const SelectRole = ({ navigation }: { navigation: any }) => {
@@ -43,28 +42,23 @@ const SelectRole = ({ navigation }: { navigation: any }) => {
       {/* Vehicle Post VErification */}
       {/* Rental Verification  */}
       {/* Work As Vendor */}
-      {/* Work As Instructor. */}
-      <Pressable style={Styles.VerificationCard}>
-      <Avatar avatarStyle={{objectFit:"contain"}}  size={50} source={{uri:MechanicVerifiction}} />
+  
+      <Pressable  onPress={()=>navigation.navigate('expertverification')} style={Styles.VerificationCard}>
+        <Avatar avatarStyle={{ objectFit: "contain" }} size={50} source={{ uri: MechanicVerifiction }} />
         <Text>Expert Verification</Text>
       </Pressable>
-      <Pressable style={Styles.VerificationCard}>
-      <Avatar avatarStyle={{objectFit:"contain"}}  size={50} source={{uri:VehicleListingVerification}} />
-        <Text>Vehicle Listing Verification</Text>
-      </Pressable>
-      <Pressable  style={Styles.VerificationCard}>
-      <Avatar avatarStyle={{objectFit:"contain"}}  size={50} source={{uri:VehicleRental}} />
+
+      {/* Verification Rental */}
+      <Pressable onPress={()=>navigation.navigate('rentalverification')} style={Styles.VerificationCard}>
+        <Avatar avatarStyle={{ objectFit: "contain" }} size={50} source={{ uri: VehicleRental }} />
         <Text>Vehicle Rental Verification</Text>
       </Pressable>
-      <Pressable   style={Styles.VerificationCard}>
-        <Avatar  size={50} source={{uri:vendor}} />
+      {/* Work as Vendor */}
+      <Pressable onPress={()=>navigation.navigate('vendorverification')} style={Styles.VerificationCard}>
+        <Avatar size={50} source={{ uri: vendor }} />
         <Text>Work As Vendor</Text>
       </Pressable>
-      <Pressable     style={Styles.VerificationCard}>
-        <Avatar size={50} source={{uri:driverInstructor}} />
-        <Text>Work as Instructor</Text>
-      </Pressable>
-      <CustomButton  marginBottom={60} BtnRadius={10} function={()=>navigation.navigate("expertverification")} title="Apply Now" />
+
     </ScrollView>
   );
 };
@@ -74,7 +68,7 @@ const Styles = StyleSheet.create({
     height: getHeight / 4, // Call the getHeight function
     borderRadius: 5,
     padding: 10,
-    marginBottom:20,
+    marginBottom: 20,
     position: 'relative',
     backgroundColor: ThemeProviderColors.Light.FontSubHeading
   },
@@ -83,16 +77,16 @@ const Styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     top: "10%"
-  }, 
+  },
   VerificationCard: {
-backgroundColor:"#fff",
-marginBottom:5,
-flexDirection:'row',
-alignItems:'center',
-columnGap:10,
-paddingVertical:12,
-borderRadius:5,
-paddingHorizontal:10,
+    backgroundColor: "#fff",
+    marginBottom: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: 10,
+    paddingVertical: 12,
+    borderRadius: 5,
+    paddingHorizontal: 10,
 
   }
 });

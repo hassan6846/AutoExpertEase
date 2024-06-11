@@ -6,13 +6,15 @@ import NetworkSlice from "../slices/NetworkSlice"; // network status
 import AuthSlice from "../slices/AuthSlice"; // Authentication Status
 import locationSlice from "../slices/LocationSlice";
 import ChatBotSlice from "../slices/ChatBotSlice";
+import TaskSlice from "../slices/TaskSlice";
 
 // Combine reducers
 const rootReducer = combineReducers({
   network: NetworkSlice,
   auth: AuthSlice,
   location: locationSlice,
-  chatbot:ChatBotSlice
+  chatbot:ChatBotSlice,
+  task:TaskSlice,
 });
 
 // Persist config

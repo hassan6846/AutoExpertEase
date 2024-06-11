@@ -1,40 +1,76 @@
 const express = require("express");
-const app = express();
-const fileupload = require("express-fileupload")
+const fileupload = require("express-fileupload");
 const cors = require("cors");
-const cookieParser=require("cookie-parser")
-const bodyParser=require("body-parser")
-// Initializing Websockets.
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const http = require("http");
+const { Server } = require("socket.io");
+const { ConnectMongodb } = require("./db/ConnectionDb");
 
-//END OF INITIALIZATION...
-require("dotenv").config()
-//middlewares
-app.disable("x-powered-by")//hiding tech stack from Hacker..
-app.use(fileupload()) //using fileupload middleware.
+// Initialize the app
+const app = express();
+
+// Load environment variables
+require("dotenv").config();
+
+// Middlewares
+app.disable("x-powered-by"); // Hide tech stack from hackers
+app.use(fileupload()); // Use fileupload middleware
 app.use(cors({
-    origin: true, //cors policy...
+    origin: true, // CORS policy
     credentials: true
 }));
+app.use(express.json()); // Server is JSON type
+app.use(cookieParser());
+app.use(bodyParser.json());
 
-app.use(express.json())//server is json type.
-app.use(cookieParser())
-app.use(bodyParser.json())
+// All Routes
+const user = require("./routes/UserRoutes");
+const product = require('./routes/ProductRoutes');
+const chatbot = require('./routes/Chatbot');
+const admin = require('./routes/AdminRoutes');
+const auth = require("./routes/AuthRoutes");
+const payment = require("./routes/PaymentRoutes");
 
-//all Routes
-const user = require("./routes/UserRoutes")
-const product = require('./routes/ProductRoutes')
-const chatbot=require('./routes/Chatbot')
-const admin=require('./routes/AdminRoutes');
-const auth=require("./routes/AuthRoutes")
-const payment=require("./routes/PaymentRoutes")
-//endpoints middlewares
-app.use("/api", user)
-app.use("/api", product)
-app.use('/api',chatbot)
-app.use('/api',admin)
-app.use("/api",auth)
-app.use("/api",payment)
+// Endpoints middlewares
+app.use("/api", user);
+app.use("/api", product);
+app.use('/api', chatbot);
+app.use('/api', admin);
+app.use("/api", auth);
+app.use("/api", payment);
 
-module.exports = app
+// Create HTTP server
+const server = http.createServer(app);
 
+// Initialize Socket.IO
+const io = new Server(server, {
+    cors: {
+        origin: true,
+        credentials: true
+    }
+});
 
+// Socket.IO connection handler
+io.on("connection", (socket) => {
+    console.log(`User connected: ${socket.id}`);
+
+    // Example event handler
+    socket.on("message", (data) => {
+        console.log(`Message received: ${data}`);
+        socket.emit('message', 'Hello from server!');
+    });
+
+    socket.on("disconnect", () => {
+        console.log(`User disconnected: ${socket.id}`);
+    });
+});
+
+// Connection to MongoDB
+ConnectMongodb();
+
+// Listen for both HTTP and WebSocket connections
+const Port = process.env.PORT || 3000;
+server.listen(Port, () => {
+    console.log(`App is running on Port ${Port}`);
+});

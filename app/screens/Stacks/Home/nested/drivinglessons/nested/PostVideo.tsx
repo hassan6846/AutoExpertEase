@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Text, Avatar, Input } from "@rneui/themed";
-import InputComponent from '../../../../../../components/InputComponent/InputComponent';
 import * as ImagePicker from 'expo-image-picker';
 import { VideoPlaceHolder } from '../../../../../../constants/ImagesConstants';
 import { Icon } from '@rneui/base';

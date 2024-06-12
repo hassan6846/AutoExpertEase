@@ -19,4 +19,5 @@ const AdminLoginLimit=RateLimit.rateLimit({
     message: { msg: 'Too many Requests from this IP, please try again after an 1hr, Kindly Dont Spam Server' }
 })
 
+
 module.exports={AdminLoginLimit,LoginRequestLimits}

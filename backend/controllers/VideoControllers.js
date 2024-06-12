@@ -1,17 +1,10 @@
-//Create A Video 
-//Get All Random Feed
-///Fetch A Single VIdeo...
-//Use Cloudinary to upload
 const User = require("../models/UserModel");
 const Lesson = require("../models/LessonsModal");
-//utils
-const cloudinaryInstance = require("../utils/Cloudinary");
+const cloudinary = require("../utils/Cloudinary");
 
-
-
-//Create A Video 
+//Upload Single Day
 const UploadVideo = async (req, res, next) => {
-    const { title, description, videourl, userid } = req.body
+    const { title, description, videourl, userid } = req.body;
     if (!title || !description || !videourl || !userid) {
         return res.status(400).json({
             success: false,
@@ -19,30 +12,53 @@ const UploadVideo = async (req, res, next) => {
         });
     }
 
-    const user = await User.findById(userid);
-    if (!user) {
-        return res.status(404).json({ error: 'User not Existed' });
-    }
-try {
-        //Upload Video To cloud..
-        const result = await cloudinaryInstance.uploader.upload(videourl, {
+    try {
+        // Find user by ID and check if it exists
+        const user = await User.findById(userid);
+        if (!user) {
+            return res.status(404).json({ error: 'User not Found' });
+        }
+
+        // Upload video to Cloudinary
+        const cloudinaryResponse = await cloudinary.uploader.upload(videourl, {
             resource_type: "video",
-            folder: "video"
-        })
-        //create video
-        const newVideo = new Lesson({
-            title:title,
-            description:description,
-            postedBy: user._id,
-            videoUrl: result.secure_url,
-    
-    
-        })
-        //Finally Save this to database
-        const savedVideo = await newVideo.save();
-        res.status(201).json(savedVideo)
-} catch (error) {
-    console.log(error)
+            folder: "lesson_videos"
+        });
+
+        // Create new lesson
+        const newLesson = new Lesson({
+            title,
+            description,
+            postedBy: user,
+            videoUrl: cloudinaryResponse.secure_url, // Store secure URL
+        });
+
+        // Save the lesson to the database
+        const savedLesson = await newLesson.save();
+
+        res.status(201).json(savedLesson);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            msg: "Internal server error",
+        });
+    }
+};
+//Get All Videos
+const AllVideos=async(req,res,next)=>{
+  try {
+    const videos=await Lesson.find({})
+    res.status(200).json({
+        videos
+    })
+  }catch (error) {
+    console.error(error);
+    res.status(500).json({
+        success: false,
+        msg: "Internal server error",
+    });
 }
+
 }
-module.exports = { UploadVideo }
+module.exports = { UploadVideo,AllVideos };

@@ -6,14 +6,17 @@ import { AvatarSrc, DefaultImageSrc } from "../../../constants/ImagesConstants"
 
 //Image picker
 import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from ""
 
 //Api
 import UpdateImg from "../../../api/User/UpdateProfileImg"
 //redux state manegment
 import { SetAuthState } from "../../../slices/AuthSlice"
-import { useDispatch } from "react-redux"
+import { useDispatch,useSelector } from "react-redux"
 
 const ProfileInitial = ({ navigation }: { navigation: any }) => {
+    const id=useSelector((state:any)=>state.auth.userid)
+
     const dispatch=useDispatch()
     //states
     const [isShowBottomSheet, SetisShowBottomSheet] = useState(false)

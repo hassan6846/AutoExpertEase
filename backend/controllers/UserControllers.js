@@ -122,36 +122,28 @@ const RegisterFunction = async (req, res, next) => {
 }
 //update profile picture..
 const updatepicture = async (req, res, next) => {
-    const { ImageData, phone } = req.body
+    const { image, id } = req.body;
 
-    //validate if the provided data is base64
-    //convert the base64 data to Cloudinary and update the field
-    //find the user by email 
-    //update the user avatar field
-
-    //if fields are empty
-    if (!ImageData || !email || !phone) {
+    if (!image || !id) {
         return res.status(400).json({
             success: false,
-            msg: "Please fill all the fields.",
+            msg: "Please fill all the fields (from update avatar)",
         });
     }
 
-
-
     try {
         // Find the user
-        const user = await User.findOne({ phone: phone, email: email })
+        const user = await User.findById(id);
         // Handle if user does not exist
         if (!user) {
             return res.status(400).json({
                 success: false,
                 msg: "User does not exist in the database"
-            })
+            });
         }
 
         // Upload the image to Cloudinary
-        const uploadResult = await cloudinaryInstance.uploader.upload(ImageData);
+        const uploadResult = await cloudinaryInstance.uploader.upload(image);
 
         // Update the user avatar field with the Cloudinary URL
         user.avatar = uploadResult.secure_url;
@@ -171,9 +163,8 @@ const updatepicture = async (req, res, next) => {
             msg: "Internal Server Error"
         });
     }
+};
 
-    next();
-}
 
 
 //Check if user is already Signup or Not...

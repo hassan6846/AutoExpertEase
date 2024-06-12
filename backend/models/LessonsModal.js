@@ -27,8 +27,13 @@ const LessonSchema = new mongoose.Schema({
         default:1,
         type:Number,
         required:false,
+    },
+    videoCategory:{
+        type:String,
+        default:"undefined",
+        required:true
+
     }
-    
 });
 
 const Lesson = mongoose.model('Lesson', LessonSchema);

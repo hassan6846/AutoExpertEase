@@ -4,8 +4,8 @@ const cloudinary = require("../utils/Cloudinary");
 
 //Upload Single Day
 const UploadVideo = async (req, res, next) => {
-    const { title, description, videourl, userid } = req.body;
-    if (!title || !description || !videourl || !userid) {
+    const { title, description, videourl, userid, category } = req.body;
+    if (!title || !description || !videourl || !userid || !category) {
         return res.status(400).json({
             success: false,
             msg: "Please fill all the fields.",
@@ -31,6 +31,7 @@ const UploadVideo = async (req, res, next) => {
             description,
             postedBy: user,
             videoUrl: cloudinaryResponse.secure_url, // Store secure URL
+            videoCategory: category
         });
 
         // Save the lesson to the database
@@ -46,19 +47,46 @@ const UploadVideo = async (req, res, next) => {
     }
 };
 //Get All Videos
-const AllVideos=async(req,res,next)=>{
-  try {
-    const videos=await Lesson.find({})
-    res.status(200).json({
-        videos
-    })
-  }catch (error) {
-    console.error(error);
-    res.status(500).json({
-        success: false,
-        msg: "Internal server error",
-    });
-}
+const AllVideos = async (req, res, next) => {
+    try {
+        const videos = await Lesson.find({})
+        res.status(200).json({
+            videos
+        })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            msg: "Internal server error",
+        });
+    }
 
 }
-module.exports = { UploadVideo,AllVideos };
+//Get Single Video
+const GetSingleVideo = async (req, res, next) => {
+    const { id } = req.params; // Access id from route parameters
+    
+    try {
+        const video = await Lesson.findOne({ _id: id }); // Find lesson by _id
+        if (!video) {
+            return res.status(404).json({
+                success: false,
+                msg: "Video not found",
+            });
+        }
+        
+        // If video found, send it in the response
+        res.status(200).json({
+            success: true,
+            data: video,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            msg: "Internal server error",
+        });
+    }
+}
+
+module.exports = { UploadVideo, AllVideos,GetSingleVideo };

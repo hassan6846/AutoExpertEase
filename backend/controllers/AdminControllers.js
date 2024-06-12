@@ -29,7 +29,7 @@ const AdminLoginFunction = async (req, res, next) => {
         }
         
         // Check if user is an admin
-        if (user.role !== 'admin') {
+        if (!user.role.includes('admin')) {
             return res.status(403).json({
                 success: false,
                 msg: "Access denied. You are not an admin.",
@@ -47,7 +47,7 @@ const AdminLoginFunction = async (req, res, next) => {
         }
         
         // If user is admin and password is correct, generate a JWT token
-        const token = jwt.sign({ id: user._id, email: user.email, role: user.UserInfo.role }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ id: user._id, email: user.email, role: user.role[0] }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN,
         });
         

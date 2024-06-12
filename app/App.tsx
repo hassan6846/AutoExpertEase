@@ -133,7 +133,7 @@ const Main = () => {
               <Stack.Screen name="expertverify"  options={{ headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={VerficationStack} />
 
               {/* Seller Tab */}
-              <Stack.Screen name="seller" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={SellerTabsNavigator} />
+              <Stack.Screen name="seller" options={{ headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={SellerTabsNavigator} />
               <Stack.Screen name="viewAccount" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ProfilePage} />
              <Stack.Screen name="messageview" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
              }}  component={MessageView}/>

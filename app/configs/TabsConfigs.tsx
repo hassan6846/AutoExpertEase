@@ -7,7 +7,7 @@
 //App Etc
 import { Icon, Text, Avatar } from "@rneui/themed"
 import ThemeProviderColors from "../provider/ThemeProvider"
-import { TouchableOpacity, StyleSheet, Pressable } from "react-native"
+
 import { AvatarSrc } from "../constants/ImagesConstants"
 //note use theme provided color only to manage a better code and ui ok not 😞
 const TabsConfigs = {
@@ -95,7 +95,3 @@ const TabsConfigs = {
 }
 export default TabsConfigs
 
-// Styles
-const BottomTabBarStyles = StyleSheet.create({
-
-})

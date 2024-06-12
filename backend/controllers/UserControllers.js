@@ -46,6 +46,7 @@ const loginFunction = async (req, res) => {
             success: true,
             msg: "Login successful.",
             token: token,
+            user
         });
     } catch (error) {
         console.error(error);

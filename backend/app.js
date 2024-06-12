@@ -4,8 +4,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const http = require("http");
-const { Server } = require("socket.io");
 const { ConnectMongodb } = require("./db/ConnectionDb");
+const { initSocket } = require("./utils/initSockets");
 
 // Initialize the app
 const app = express();
@@ -31,7 +31,7 @@ const chatbot = require('./routes/Chatbot');
 const admin = require('./routes/AdminRoutes');
 const auth = require("./routes/AuthRoutes");
 const payment = require("./routes/PaymentRoutes");
-const video=require("./routes/VideosRoute")
+const video=require("./routes/VideosRoute");
 // Endpoints middlewares
 app.use("/api", user);
 app.use("/api", product);
@@ -44,27 +44,7 @@ app.use("/api",video);
 const server = http.createServer(app);
 
 // Initialize Socket.IO
-const io = new Server(server, {
-    cors: {
-        origin: true,
-        credentials: true
-    }
-});
-
-// Socket.IO connection handler
-io.on("connection", (socket) => {
-    console.log(`User connected: ${socket.id}`);
-
-    // Example event handler
-    socket.on("message", (data) => {
-        console.log(`Message received: ${data}`);
-        socket.emit('message', 'Hello from server!');
-    });
-
-    socket.on("disconnect", () => {
-        console.log(`User disconnected: ${socket.id}`);
-    });
-});
+const io = initSocket(server);
 
 // Connection to MongoDB
 ConnectMongodb();

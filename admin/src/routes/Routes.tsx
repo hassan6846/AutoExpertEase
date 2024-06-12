@@ -16,8 +16,8 @@ import ExpertRequests from "../pages/dashboard/nested/ExpertRequests/ExpertReque
 import Logout from "../pages/dashboard/nested/Logout/Logout";
 import Orders from "../pages/dashboard/nested/Orders/Orders";
 import CarBookings from "../pages/dashboard/nested/CarBookings/CarBookings";
-import Tasks from "../pages/dashboard/nested/Tasks/Tasks";
-import ActiveTasks from "../pages/dashboard/nested/ActiveTasks/ActiveTasks";
+
+
 import AllCars from "../pages/dashboard/nested/AllCars/AllCars";
 import ApproveCars from "../pages/dashboard/nested/ApproveCars/ApproveCars";
 import Overview from "../pages/dashboard/nested/Oveview/Overview";
@@ -32,8 +32,7 @@ const Routing = () => {
         <Route path="/" element={<AdminOutlet />}>
           <Route path="/admin" element={<Overview />} />
           <Route path="/stats" element={<Stats />} />
-          <Route path="/tasks" element={<Tasks />} />
-          <Route path="/activetasks" element={<ActiveTasks />} />
+
           <Route path="/products" element={<AllProducts />} />
           <Route path="/bookings" element={<CarBookings />} />
           <Route path="/products/add" element={<ProductRequests />} />

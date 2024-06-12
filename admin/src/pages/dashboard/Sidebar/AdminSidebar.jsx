@@ -21,17 +21,7 @@ const sidebarItems = [
     icon: <BsFillMapFill />,
     link: '/stats',
   },
-  ,
-    {
-    title: 'All Tasks',
-    icon: <BsListTask />,
-    link: '/tasks',
-  },
-    {
-    title: 'Active Tasks',
-    icon: <BsListTask />,
-    link: '/activetasks',
-  },
+
 
   {
     title: 'All Products',

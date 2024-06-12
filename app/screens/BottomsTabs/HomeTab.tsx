@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native"
+
 import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
 const HomeStack = createStackNavigator()
 
@@ -21,9 +21,9 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
 
   return (
     <HomeStack.Navigator initialRouteName="HomeInital" >
-
+      {/* Inital Home Route */}
       <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS, headerRight: () => (<Avatar avatarStyle={{ borderRadius: 20 }} containerStyle={{ marginRight: 12 }} source={{ uri: AvatarSrc }} />), headerTitle: "Welcome", headerStyle: { height: getHeight / 9 } }} component={Home} name="HomeInital" />
-   
+      {/* Fetch All Videos.. */}
       <HomeStack.Screen  options={{headerShown:false,headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"",headerTitleAlign:"center"}} component={VideoView} name="viewvideo" />
 
       <HomeStack.Screen  options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"Video Feed",headerLeft:()=><></>,headerTitleAlign:"center",headerRight:()=><>
@@ -45,8 +45,5 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
     </HomeStack.Navigator>
   )
 }
-// styleSheet
-const Styles = StyleSheet.create({
 
-})
 export default HomeTab

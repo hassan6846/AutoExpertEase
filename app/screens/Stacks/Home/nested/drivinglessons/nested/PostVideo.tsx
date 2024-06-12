@@ -5,6 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { VideoPlaceHolder } from '../../../../../../constants/ImagesConstants';
 import { Icon } from '@rneui/base';
 import ThemeProviderColors from '../../../../../../provider/ThemeProvider';
+import InputComponent from '../../../../../../components/InputComponent/InputComponent';
 
 const PostVideo: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -46,8 +47,11 @@ const PostVideo: React.FC = () => {
         <Icon onPress={handleImageSelect} containerStyle={styles.iconContainer} type='material' name='open-in-new' />
       </Avatar>
       {image && <Text style={styles.imageText}>Video Selected {image}</Text>}
+      <InputComponent placeholder="Title "/>
+      <InputComponent placeholder="category "/>
+
       <Input
-        placeholder="Enter Video Title"
+        placeholder="Description"
         value={title}
         onChangeText={setTitle}
         style={styles.textArea}
@@ -90,7 +94,7 @@ const styles = StyleSheet.create({
     color: ThemeProviderColors.Light.FontSubHeading,
     fontSize: 9,
     marginLeft: 7,
-    marginBottom: 5
+    marginBottom: 30
   },
   textArea: {
     backgroundColor: '#e5e5e5',

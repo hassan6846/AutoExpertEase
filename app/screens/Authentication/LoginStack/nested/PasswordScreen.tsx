@@ -2,7 +2,7 @@ import React, { useState, useEffect, createRef } from 'react';
 import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, ToastAndroid } from 'react-native';
 import { Button, Icon, Input, Text } from "@rneui/themed";
 import { useDispatch, useSelector } from 'react-redux';
-import { SetPassword, SetAuthState } from "../../../../slices/AuthSlice";
+import { SetPassword, SetAuthState,SetUserId } from "../../../../slices/AuthSlice";
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
 import { getHeight } from '../../../../utils/GetDimension';
 
@@ -43,7 +43,7 @@ const PasswordScreen = ({ navigation }: { navigation: any }) => {
 
       const data = await response.json();
       console.log('Login response:', data);
-
+      dispatch(SetUserId(data.user._id))
       dispatch(SetAuthState(true));
       navigation.navigate('Home');
 

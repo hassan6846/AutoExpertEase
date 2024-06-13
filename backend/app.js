@@ -7,6 +7,7 @@ const http = require("http");
 const { ConnectMongodb } = require("./db/ConnectionDb");
 const { initSocket } = require("./utils/initSockets");
 
+
 // Initialize the app
 const app = express();
 
@@ -16,14 +17,23 @@ require("dotenv").config();
 // Middlewares
 app.disable("x-powered-by"); // Hide tech stack from hackers
 app.use(fileupload()); // Use fileupload middleware
+
+
 app.use(cors({
     origin: true, // CORS policy
     credentials: true
 }));
 app.use(express.json()); // Server is JSON type
 app.use(cookieParser());
-app.use(bodyParser.json());
-
+app.use(bodyParser.json(
+    {
+        limit:'1000mb'
+    }
+));
+app.use(bodyParser.urlencoded({
+    limit:'1000mb',
+    extended:true,
+}))
 // All Routes
 const user = require("./routes/UserRoutes");
 const product = require('./routes/ProductRoutes');
@@ -32,6 +42,7 @@ const admin = require('./routes/AdminRoutes');
 const auth = require("./routes/AuthRoutes");
 const payment = require("./routes/PaymentRoutes");
 const video=require("./routes/VideosRoute");
+
 // Endpoints middlewares
 app.use("/api", user);
 app.use("/api", product);

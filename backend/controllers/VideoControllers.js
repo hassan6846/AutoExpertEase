@@ -2,6 +2,9 @@ const User = require("../models/UserModel");
 const Lesson = require("../models/LessonsModal");
 const cloudinary = require("../utils/Cloudinary");
 
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 //Upload Single Day
 const UploadVideo = async (req, res, next) => {
     const { title, description, videourl, userid, category } = req.body;
@@ -91,9 +94,9 @@ const GetSingleVideo = async (req, res, next) => {
 
 //upload localvideo to cloudinary
 const uploadvideo = async (req, res) => {
-    const { uri } = req.body;
+    const { url } = req.body;
 
-    if (!uri) {
+    if (!url) {
         return res.status(400).json({
             success: false,
             msg: "No URL provided",
@@ -101,10 +104,10 @@ const uploadvideo = async (req, res) => {
     }
 
     try {
-        const cloudinaryResponse = await cloudinary.uploader.upload(uri, {
-            resource_type: "video",
-            folder: "lesson_videos"
+        const cloudinaryResponse = await cloudinary.uploader.upload(url, {
+            folder: "lesson_images" // Set the folder where images will be stored in Cloudinary
         });
+
         return res.status(201).json({
             success: true,
             cloudinaryResponse

@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Under799 = () => {
+const Sixty = () => {
   return (
     <View>
-      <Text>Under799</Text>
+      <Text>Sixty</Text>
     </View>
   )
 }
 
-export default Under799
+export default Sixty

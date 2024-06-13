@@ -1,4 +1,3 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 //Nested 
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
@@ -23,6 +22,13 @@ import RustSpray from './nested/RustSpray';
 import Seatings from './nested/Seatings';
 import Stickers from './nested/Stickers';
 import Sprays from './nested/Sprays';
+
+//Offers
+import Under799 from './nested/Under799';
+import Under999 from './nested/Under999';
+import HalfPrice from './nested/HalfPrice';
+import Sixty from './nested/Sixty';
+
 const CategoryTabs = () => {
     return (
         <Tabs.Navigator 
@@ -52,6 +58,11 @@ const CategoryTabs = () => {
             <Tabs.Screen name='seatings' component={Seatings} />
             <Tabs.Screen name='stickers' component={Stickers} />
             <Tabs.Screen name='sprays' component={Sprays} />
+            {/* Offer */}
+            <Tabs.Screen  options={{title:"Under 800"}} name='undereight' component={Under799} />
+            <Tabs.Screen options={{title:"Under 999"}} name='underthous' component={Under999} />
+            <Tabs.Screen  options={{title:"50% off"}}name='halfprice' component={HalfPrice}/>
+            <Tabs.Screen  options={{title:"60 % off"}}name='Sixtyoff' component={Sixty}/>
         </Tabs.Navigator>
     )
 }

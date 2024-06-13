@@ -19,30 +19,44 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
         {
             name: "Rims",
             image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708888306/AutoExpertEase/Assets/Shop/CategoryList/usjuy45e9lsiybgrxto2.png",
-
+            route: 'rims'
         }, {
             name: "Covers",
             image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708888306/AutoExpertEase/Assets/Shop/CategoryList/mroixb76ymwnarcm1zyn.png",
+            route: 'covers',
         }, {
             name: "Gadgets",
             image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708888306/AutoExpertEase/Assets/Shop/CategoryList/dr1fdoz4pzdg3mvwsuau.png",
+            route: 'gadgets',
         }, {
             name: "Lightings",
             image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708888306/AutoExpertEase/Assets/Shop/CategoryList/jueqfuifkhydp7h0p7hb.png",
+            route: 'lightings'
         }, {
             name: "Seatings",
-            image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708888306/AutoExpertEase/Assets/Shop/CategoryList/xb07fhjr9jpboisrldea.png"
+            image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708888306/AutoExpertEase/Assets/Shop/CategoryList/xb07fhjr9jpboisrldea.png",
+            route: 'seatings'
 
         }
     ]
     const PriceRangeFilter = [
-        "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891864/AutoExpertEase/Assets/Shop/PriceRange/nyolfv7d4bcl2nfmohsb.png",
-        "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891864/AutoExpertEase/Assets/Shop/PriceRange/znmu7lazyhzjwr1kyyyn.png",
-        "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891864/AutoExpertEase/Assets/Shop/PriceRange/nkvwzty5i9rslehypuio.png",
-        "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891865/AutoExpertEase/Assets/Shop/PriceRange/uantcdu0c07o53fgi2ij.png"
+        {
+            image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891864/AutoExpertEase/Assets/Shop/PriceRange/nyolfv7d4bcl2nfmohsb.png",
+            route: "undereight"
+        }, {
+            image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891864/AutoExpertEase/Assets/Shop/PriceRange/znmu7lazyhzjwr1kyyyn.png",
+            route: "underthous"
+        }, {
+            image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891864/AutoExpertEase/Assets/Shop/PriceRange/nkvwzty5i9rslehypuio.png",
+            route: "halfprice"
+
+        }, {
+            image: "https://res.cloudinary.com/diml3oeaw/image/upload/v1708891865/AutoExpertEase/Assets/Shop/PriceRange/uantcdu0c07o53fgi2ij.png",
+            route: "Sixtyoff"
+
+        }
     ]
     // Product Categories Array
-    const ProductCategory = ["Featured", "Lights", "Wheels", "Furnished", "Mats", "Hangings"]
     //Example for Product Infinite Scroll
     const Product = [
         {
@@ -116,7 +130,7 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
                 {/* Flatlist Slider Cateogry Bar */}
                 <FlatList style={{ flexGrow: 0 }}
                     renderItem={({ item }) => (
-                        <TouchableOpacity  onPress={()=>navigation.navigate("allcategory")} >
+                        <TouchableOpacity onPress={() => navigation.navigate('allcategory', { screen: item.route })} >
                             <View style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                                 <Avatar rounded={true} size={90} source={{ uri: item.image }} />
                                 <Text>{item.name}</Text>
@@ -154,35 +168,36 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => (
 
-                        <TouchableOpacity >
-                            <Avatar rounded={true} size={GetWidth / 5} source={{ uri: item }} />
+                        <TouchableOpacity onPress={()=>navigation.navigate('allcategory',{screen:item.route})} >
+                            <Avatar rounded={true} size={GetWidth / 5} source={{ uri: item.image }} />
                         </TouchableOpacity>
                     )}
                     contentContainerStyle={{ justifyContent: "space-between", columnGap: 2, alignItems: "center", flex: 1, padding: 10 }}
                     data={PriceRangeFilter}
                     style={{ flexGrow: 0 }}
                     horizontal={true} />
+
                 {/* Sale Bar Ends */}
                 {/* Product Infinite Scroll Element */}
                 <Text style={{ marginLeft: 14 }} h4>Browse Product</Text>
                 {/* FilterBar */}
 
                 <ScrollView
-                style={{paddingHorizontal:20,marginBottom:20}}
-                contentContainerStyle={{flex:1,backgroundColor:'#fff',flexWrap:'wrap',flexDirection:'row',alignSelf:'center',rowGap:10,justifyContent:"space-between",paddingHorizontal:8,marginTop:10}} >
-                       {
-                        Product.map((index,key)=>(
+                    style={{ paddingHorizontal: 20, marginBottom: 20 }}
+                    contentContainerStyle={{ flex: 1, backgroundColor: '#fff', flexWrap: 'wrap', flexDirection: 'row', alignSelf: 'center', rowGap: 10, justifyContent: "space-between", paddingHorizontal: 8, marginTop: 10 }} >
+                    {
+                        Product.map((index, key) => (
                             <View key={key} style={{ width: GetWidth * 0.3, margin: 5, }}>
-                            <Avatar onPress={() => navigation.navigate("view")} containerStyle={{ width: "100%", height: 180, borderRadius: 3 }} avatarStyle={{ resizeMode: "contain", width: '100%', height: '100%' }} source={{ uri: index.image }} />
-                            <View style={{ flexDirection: "row", alignItems: "center" }}>
-                                <Text style={{ fontSize: 16, fontWeight: "900", marginTop: 4 }}>{index.price} {""}Rs</Text>
-                                <Text style={{ textDecorationLine: "line-through", fontSize: 12, color: "red", marginLeft: 5 }}>{index.priceBefore}</Text>
+                                <Avatar onPress={() => navigation.navigate("view")} containerStyle={{ width: "100%", height: 180, borderRadius: 3 }} avatarStyle={{ resizeMode: "contain", width: '100%', height: '100%' }} source={{ uri: index.image }} />
+                                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                                    <Text style={{ fontSize: 16, fontWeight: "900", marginTop: 4 }}>{index.price} {""}Rs</Text>
+                                    <Text style={{ textDecorationLine: "line-through", fontSize: 12, color: "red", marginLeft: 5 }}>{index.priceBefore}</Text>
+                                </View>
+                                <Text style={{ fontSize: 10, fontWeight: "500", padding: 4, color: ThemeProviderColors.Light.FontSubHeading }}>{index.Title}</Text>
+                                <Button titleStyle={{ fontSize: 12 }} buttonStyle={{ marginTop: 3 }} color={ThemeProviderColors.Light.Primary} title="Add to Cart" />
                             </View>
-                            <Text style={{ fontSize: 10, fontWeight: "500", padding: 4, color: ThemeProviderColors.Light.FontSubHeading }}>{index.Title}</Text>
-                            <Button titleStyle={{ fontSize: 12 }} buttonStyle={{ marginTop: 3 }} color={ThemeProviderColors.Light.Primary} title="Add to Cart" />
-                        </View>
                         ))
-                       }
+                    }
                 </ScrollView>
 
             </ScrollView>

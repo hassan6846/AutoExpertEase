@@ -13,7 +13,7 @@ const Home = ({ navigation }: { navigation: any }) => {
     {
       title: "Rent Cars",
       icon: "car-rental",
-      route: "rentalcars"
+      route: "allcars"
     },
     {
       title: "AutoHelp",
@@ -215,7 +215,7 @@ const Home = ({ navigation }: { navigation: any }) => {
 
       <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
         <Text style={Style.headingText}>Browse Rental Vehicle</Text>
-        <Text onPress={() => navigation.navigate('rentalcars')} style={{ fontSize: 15, fontWeight: "bold", color: ThemeProviderColors.Light.Primary }}>See more</Text>
+        <Text onPress={() => navigation.navigate('allcars')} style={{ fontSize: 15, fontWeight: "bold", color: ThemeProviderColors.Light.Primary }}>See more</Text>
       </View>
       {/* Horizontal Scroll map some vechiles here */}
       <ScrollView style={{ flex: 1, marginBottom: 50 }} contentContainerStyle={{ columnGap: 10 }} showsHorizontalScrollIndicator={false} horizontal={true}>

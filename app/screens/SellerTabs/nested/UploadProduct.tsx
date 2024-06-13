@@ -1,4 +1,4 @@
-import { View,FlatList,StyleSheet } from 'react-native'
+import { View,FlatList,StyleSheet,ScrollView} from 'react-native'
 import React from 'react'
 //Components
 import InputComponent from '../../../components/InputComponent/InputComponent'

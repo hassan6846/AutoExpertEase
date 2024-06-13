@@ -47,7 +47,7 @@ const PhoneLogin = ({ navigation }: { navigation: any }) => {
                         labelStyle={{ marginBottom: 5, fontSize: 10 }}
                         label="Phone"
                         inputContainerStyle={styles.LoginInputCont}
-                        rightIcon={<TouchableOpacity activeOpacity={0.7}><Icon name="close" reverseColor="#66696D" reverse={true} color="#e3e3e3" iconStyle={{ fontSize: 15, fontWeight: "bold" }} type="evilicon" size={8} raised={true} /></TouchableOpacity>}
+                        rightIcon={<TouchableOpacity  activeOpacity={0.7}><Icon name="close" reverseColor="#66696D" reverse={true} color="#e3e3e3" iconStyle={{ fontSize: 15, fontWeight: "bold" }} type="evilicon" size={8} raised={true} /></TouchableOpacity>}
                         placeholder="923332739790"
                         keyboardType="number-pad"
                     />

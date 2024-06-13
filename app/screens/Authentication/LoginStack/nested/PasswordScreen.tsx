@@ -2,7 +2,7 @@ import React, { useState, useEffect, createRef } from 'react';
 import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, ToastAndroid } from 'react-native';
 import { Button, Icon, Input, Text } from "@rneui/themed";
 import { useDispatch, useSelector } from 'react-redux';
-import { SetPassword, SetAuthState,SetUserId } from "../../../../slices/AuthSlice";
+import { SetPassword, SetAuthState,SetUserId,SetProgressValueBar,SetHeaderColor} from "../../../../slices/AuthSlice";
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
 import { getHeight } from '../../../../utils/GetDimension';
 
@@ -58,6 +58,9 @@ const PasswordScreen = ({ navigation }: { navigation: any }) => {
   };
 
   useEffect(() => {
+    dispatch(SetProgressValueBar(0.8))
+    
+    dispatch(SetHeaderColor('#49AF41'))
     if (InputRef.current) {
       InputRef.current.focus(); 
     }

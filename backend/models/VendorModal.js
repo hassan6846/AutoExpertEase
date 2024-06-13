@@ -65,6 +65,11 @@ const VendorSchema = new mongoose.Schema({
         },
         // Other vendor details such as date of birth, nationality, etc.
     },
+    isVendor:{
+        type:Boolean,
+        default:false,
+    
+    }
     
 });
 

@@ -5,7 +5,6 @@ import { createSlice } from "@reduxjs/toolkit";
 export const locationSlice = createSlice({
     name: "location",
      initialState:{
-    
         currentLocation: null, // user current location from device
         destination: null, // user custom service address
         distanceTravelTime: null, //inital route etc..

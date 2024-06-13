@@ -8,9 +8,20 @@ const initSocket = (server) => {
         }
     });
 
+    let connectedUsers = {}; // Object to store socket IDs mapped to user IDs
+
     // Socket.IO connection handler
     io.on("connection", (socket) => {
         console.log(`User connected: ${socket.id}`);
+
+        // Listen for the "userId" event to receive the user ID from the client
+        socket.on("userId", (userId) => {
+            // Associate the user ID with the socket ID
+            connectedUsers[userId] = socket.id;
+
+            // Emit the user ID and socket ID back to the client
+            socket.emit("userIdAndSocketId", { userId, socketId: socket.id });
+        });
 
         // Example event handler
         socket.on("message", (data) => {
@@ -20,10 +31,20 @@ const initSocket = (server) => {
 
         socket.on("disconnect", () => {
             console.log(`User disconnected: ${socket.id}`);
+            
+            // Find the user ID associated with the disconnected socket
+            const disconnectedUserId = Object.keys(connectedUsers).find(
+                (userId) => connectedUsers[userId] === socket.id
+            );
+
+            if (disconnectedUserId) {
+                // Remove the association between the user ID and socket ID
+                delete connectedUsers[disconnectedUserId];
+            }
         });
     });
 
-    return io; // Return io instance
+    return { io, connectedUsers }; // Return io instance and connectedUsers object
 };
 
 module.exports = { initSocket };

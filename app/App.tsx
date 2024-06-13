@@ -53,7 +53,6 @@ import SellerTabsNavigator from "./screens/SellerTabs/Inital"
 
 import ProfilePage from "./screens/pages/ProfilePage/ProfilePage"
 import InitalOrders from "./screens/pages/OrderTracking/initial"
-import AccessLocation from "./screens/pages/Permissions/AccessLocation"
 import BookingInital from "./screens/pages/Bookings/inital"
 //redux
 
@@ -114,7 +113,6 @@ const Main = () => {
         {
           Auth ? (
             <>
-            <Stack.Screen name="upload" component={upload}/>
               <Stack.Screen name="Main" component={HomePageActivity} />
               {/* ProfileView */}
               <Stack.Screen name="ViewProfile" options={{cardStyle:{backgroundColor:"black"},headerTitle:"", headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={ViewProfileImage}/>
@@ -136,7 +134,7 @@ const Main = () => {
 
               {/* Seller Tab */}
               <Stack.Screen name="seller" options={{ headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={SellerTabsNavigator} />
-              <Stack.Screen name="viewAccount" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ProfilePage} />
+              <Stack.Screen name="viewAccount" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,headerTitleAlign:"center",title:"Account",headerLeft:()=>(<></>)}} component={ProfilePage} />
              <Stack.Screen name="messageview" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
              }}  component={MessageView}/>
 

@@ -81,7 +81,7 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
     // Banners Urls
     const BannerUrls = [
         "https://res.cloudinary.com/diml3oeaw/image/upload/v1709872959/omcjgurvprtsblfgt3hp.png",
-        AvatarSrc,
+
         "https://res.cloudinary.com/diml3oeaw/image/upload/v1709872959/omcjgurvprtsblfgt3hp.png"
     ]
     return (

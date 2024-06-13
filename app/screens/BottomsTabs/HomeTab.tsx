@@ -15,7 +15,8 @@ import Home from "../Stacks/Home/InitialRoute"
 import AllLessons from "../Stacks/Home/nested/drivinglessons/AllLessons"
 import VideoView from "../Stacks/Home/nested/drivinglessons/nested/VideoView"
 import PostVideo from "../Stacks/Home/nested/drivinglessons/nested/PostVideo"
-//Driving Lesson Section...
+//Car Bc ALiShan  ki mkc.
+import AllCars from "../Stacks/Home/nested/CarSection.tsx/AllCars"
 
 const HomeTab = ({ navigation }: { navigation: any }) => {
 
@@ -32,14 +33,9 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
 
 {/* Post Video */}
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Post Lesson"}} name="postvideo" component={PostVideo} />
-{/* Teacher Driving Lessons Section.... */}
+{/* All Cars */}
+<HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Post Lesson"}} name="allcars" component={AllCars} />
 
-
-{/* All Teachers */}
-
-
-
-{/* Book A Person... */}
 
 
     </HomeStack.Navigator>

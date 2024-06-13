@@ -1,10 +1,9 @@
 const User = require("../models/UserModel");
 const Lesson = require("../models/LessonsModal");
 const cloudinary = require("../utils/Cloudinary");
-
-const multer = require('multer');
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const fomidable = require('formidable');
+const formidable = require("formidable");
+const cloudinaryInstance = require("../utils/Cloudinary");
 //Upload Single Day
 const UploadVideo = async (req, res, next) => {
     const { title, description, videourl, userid, category } = req.body;
@@ -68,7 +67,7 @@ const AllVideos = async (req, res, next) => {
 //Get Single Video
 const GetSingleVideo = async (req, res, next) => {
     const { id } = req.params; // Access id from route parameters
-    
+
     try {
         const video = await Lesson.findOne({ _id: id }); // Find lesson by _id
         if (!video) {
@@ -77,7 +76,7 @@ const GetSingleVideo = async (req, res, next) => {
                 msg: "Video not found",
             });
         }
-        
+
         // If video found, send it in the response
         res.status(200).json({
             success: true,
@@ -95,30 +94,27 @@ const GetSingleVideo = async (req, res, next) => {
 //upload localvideo to cloudinary
 const uploadvideo = async (req, res) => {
     const { url } = req.body;
-
     if (!url) {
         return res.status(400).json({
             success: false,
-            msg: "No URL provided",
+            msg: "Please fill all the fields.",
         });
     }
-
     try {
-        const cloudinaryResponse = await cloudinary.uploader.upload(url, {
-            folder: "lesson_images" // Set the folder where images will be stored in Cloudinary
-        });
-
-        return res.status(201).json({
-            success: true,
+        const cloudinaryResponse = await cloudinaryInstance.uploader.upload(url, {
+       
+            folder: "lesson_videos"
+        })
+        res.status(201).json({
             cloudinaryResponse
-        });
+        })
     } catch (error) {
         console.error(error);
-        return res.status(500).json({
+        res.status(500).json({
             success: false,
             msg: "Internal server error",
         });
     }
 };
 
-module.exports = { UploadVideo, AllVideos,GetSingleVideo,uploadvideo};
+module.exports = { UploadVideo, AllVideos, GetSingleVideo, uploadvideo };

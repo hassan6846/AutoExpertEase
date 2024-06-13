@@ -64,6 +64,7 @@ import {persistStore} from "redux-persist"
 import {PersistGate} from "redux-persist/integration/react"
 let presistor=persistStore(Store)
 import Store from "./store/Store"
+import upload from "./screens/uploadvideo/upload"
 //HomePage 
 //Always Add Pages Inside Only Contains Page After logged in or Authentication Ok👍
 function HomePageActivity() {
@@ -113,6 +114,7 @@ const Main = () => {
         {
           Auth ? (
             <>
+            <Stack.Screen name="upload" component={upload}/>
               <Stack.Screen name="Main" component={HomePageActivity} />
               {/* ProfileView */}
               <Stack.Screen name="ViewProfile" options={{cardStyle:{backgroundColor:"black"},headerTitle:"", headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerStyle: { backgroundColor: "black" }, headerShadowVisible: false, headerTransparent: true, headerTintColor: "#97ADB6" }} component={ViewProfileImage}/>

@@ -89,4 +89,29 @@ const GetSingleVideo = async (req, res, next) => {
     }
 }
 
-module.exports = { UploadVideo, AllVideos,GetSingleVideo };
+//upload localvideo to cloudinary
+const uploadvideo=async(req,res)=>{
+    const {url}=req.body
+    if(!url){
+        res.status(500).json({
+            success: false,
+            msg: "Internal server error",
+        });
+    }
+ try {
+    const cloudinaryResponse = await cloudinary.uploader.upload(url, {
+        resource_type: "video",
+        folder: "lesson_videos"
+    });
+    res.status(201).json({
+        cloudinaryResponse
+    })
+ } catch (error) {
+    console.error(error);
+    res.status(500).json({
+        success: false,
+        msg: "Internal server error",
+    });
+ }
+}
+module.exports = { UploadVideo, AllVideos,GetSingleVideo,uploadvideo};

@@ -3,18 +3,20 @@ import React from 'react';
 import CarCard from '../../../../../components/CarCard/CarCard';
 
 
-const AllCars = () => {
+const AllCars = ({ navigation }: { navigation: any }) => {
   return (
     <View style={styles.container}>
-      <CarCard hasAC={true}/>
+      <CarCard  onPress={()=>navigation.navigate('cardetail')} hasAC={true}/>
+
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
- flex:1,
+
  padding:10,
+
   },
 
 });

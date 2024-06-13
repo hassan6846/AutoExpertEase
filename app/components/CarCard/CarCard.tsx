@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import { Avatar, Icon } from "@rneui/themed";
 
-const CarCard = ({ hasAC }: { hasAC: any }) => {
+const CarCard = (props:any) => {
+  const { hasAC, onPress } = props;
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Avatar
         containerStyle={styles.avatarContainer}
         size={100}
@@ -27,8 +29,14 @@ const CarCard = ({ hasAC }: { hasAC: any }) => {
           )}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
+};
+
+// Default props object
+CarCard.defaultProps = {
+  hasAC: false,
+  onPress: () => {},
 };
 
 const styles = StyleSheet.create({
@@ -36,7 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     elevation: 3,
-    marginVertical: 10,
+    marginVertical: 5,
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,

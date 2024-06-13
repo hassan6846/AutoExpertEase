@@ -17,13 +17,14 @@ import VideoView from "../Stacks/Home/nested/drivinglessons/nested/VideoView"
 import PostVideo from "../Stacks/Home/nested/drivinglessons/nested/PostVideo"
 //Car Bc ALiShan  ki mkc.
 import AllCars from "../Stacks/Home/nested/CarSection.tsx/AllCars"
+import ViewCarDetails from "../Stacks/Home/nested/CarSection.tsx/nested/ViewCarDetails"
 
 const HomeTab = ({ navigation }: { navigation: any }) => {
 
   return (
     <HomeStack.Navigator initialRouteName="HomeInital" >
       {/* Inital Home Route */}
-      <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS, headerRight: () => (<Avatar avatarStyle={{ borderRadius: 20 }} containerStyle={{ marginRight: 12 }} source={{ uri: AvatarSrc }} />), headerTitle: "Welcome", headerStyle: { height: getHeight / 9 } }} component={Home} name="HomeInital" />
+      <HomeStack.Screen options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS, headerRight: () => (<Avatar avatarStyle={{ borderRadius: 20 }} containerStyle={{ marginRight: 12 }} source={{ uri: AvatarSrc }} />), headerTitle: "Welcome", headerStyle: { height: getHeight / 9 } }} component={Home} name="HomeInital" />
       {/* Fetch All Videos.. */}
       <HomeStack.Screen  options={{headerShown:false,headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"",headerTitleAlign:"center"}} component={VideoView} name="viewvideo" />
 
@@ -35,7 +36,7 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Post Lesson"}} name="postvideo" component={PostVideo} />
 {/* All Cars */}
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Browse Rental Cars"}} name="allcars" component={AllCars} />
-
+<HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:""}} name="cardetail" component={ViewCarDetails} />
 
 
     </HomeStack.Navigator>

@@ -1,7 +1,6 @@
 import { ScrollView, Text, Button } from 'react-native';
 import React, { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
-import * as FileSystem from 'expo-file-system';
 
 const Upload = () => {
   const [video, setVideo] = useState<any>(null);

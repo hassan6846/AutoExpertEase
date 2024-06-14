@@ -1,14 +1,12 @@
 import "react-native-gesture-handler"
 import { View } from "react-native"
-import { useEffect } from "react"
+
 ///sdks
 import { StatusBar } from "expo-status-bar"
 import {clearMessages} from "./slices/ChatBotSlice"
-import { Provider, useSelector,useDispatch } from "react-redux"
 
 //libraries /utils
 import {  Text, Avatar,Icon } from "@rneui/themed"
-
 import { ChatbotAvatar } from "./constants/ImagesConstants"
 //TabNavigator 
 import { NavigationContainer } from "@react-navigation/native"
@@ -21,13 +19,6 @@ const Tab = createBottomTabNavigator()
 import TabsConfigs from "./configs/TabsConfigs"
 import { BottomNavigator_Height } from "./configs/TabNavigatorConfigs"
 //Stack Navigator
-
-
-
-
-
-
-
 //TabsMain
 import HomeTab from "./screens/BottomsTabs/HomeTab"
 import EcommerceTab from "./screens/BottomsTabs/EcommerceTab"
@@ -36,8 +27,6 @@ import ProfileTab from "./screens/BottomsTabs/ProfileTab"
 import ExploreTab from "./screens/BottomsTabs/ExploreTab"
 
 //Features
-
-
 import ViewProfileImage from "./screens/Stacks/UserProfile/-nested/ViewProfileImage"
 import ChatSupport from "./screens/Stacks/UserProfile/-nested/Help&Support/ChatSupport"
 import Settings from "./screens/Stacks/UserProfile/-nested/Settings/Settings"
@@ -55,16 +44,15 @@ import ProfilePage from "./screens/pages/ProfilePage/ProfilePage"
 import InitalOrders from "./screens/pages/OrderTracking/initial"
 import BookingInital from "./screens/pages/Bookings/inital"
 //redux
-
-
-
-
+import Store from "./store/Store"
+import { Provider, useSelector,useDispatch } from "react-redux"
 import {persistStore} from "redux-persist"
 import {PersistGate} from "redux-persist/integration/react"
 let presistor=persistStore(Store)
-import Store from "./store/Store"
-import upload from "./screens/uploadvideo/upload"
-//HomePage 
+
+// Stripe
+import {StripeProvider} from "@stripe/stripe-react-native"
+const PUBLISHABLE_KEY='pk_test_51NIDjMKxIUjmCPdCkuccRvfJCOR0Wl7VcFMfc4CMfy2I1K0eXKe0UEUm6doBSnkdOfK3JPjGdccVrx6kiuNu77vc00xifmoTSq'
 //Always Add Pages Inside Only Contains Page After logged in or Authentication Ok👍
 function HomePageActivity() {
 
@@ -98,15 +86,6 @@ function HomePageActivity() {
 const Main = () => {
   const dispatch=useDispatch()
   const Auth=useSelector((state:any)=>state.auth.Isauth)
-
-
-
-  //useEffect to CHeck on Appload
-  useEffect(() => {
-
-
-  })
-
   return (
     <NavigationContainer >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -142,15 +121,13 @@ const Main = () => {
           ) : (
 
             <>
-
+              <Stack.Screen name="privacypolicy" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={PrivacyPolicy} />
               <Stack.Screen name="Auth"
                 options={{
                   headerShown: false,
                   headerShadowVisible: false, headerTitleAlign: "center",
                 }} component={AuthStack} />
 
-              <Stack.Screen name="privacypolicy" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={PrivacyPolicy} />
-              <Stack.Screen name="accesspermissions" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={PrivacyPolicy} />
 
             </>
 
@@ -174,10 +151,12 @@ export default function App() {
 
   return (
     <Provider store={Store}>
+      <StripeProvider publishableKey={PUBLISHABLE_KEY}>
       <PersistGate loading={null} persistor={presistor}>
       <StatusBar style="auto" />
       <Main />
       </PersistGate>
+      </StripeProvider>
     </Provider>
   );
 }

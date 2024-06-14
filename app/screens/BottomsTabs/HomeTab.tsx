@@ -18,6 +18,7 @@ import PostVideo from "../Stacks/Home/nested/drivinglessons/nested/PostVideo"
 //Car Bc ALiShan  ki mkc.
 import AllCars from "../Stacks/Home/nested/CarSection.tsx/AllCars"
 import ViewCarDetails from "../Stacks/Home/nested/CarSection.tsx/nested/ViewCarDetails"
+import BookingSteps from "../Stacks/Home/nested/CarSection.tsx/nested/BookingSteps"
 
 const HomeTab = ({ navigation }: { navigation: any }) => {
 
@@ -37,6 +38,7 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
 {/* All Cars */}
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Browse Rental Cars"}} name="allcars" component={AllCars} />
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:""}} name="cardetail" component={ViewCarDetails} />
+<HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:""}} name="bookingsteps" component={BookingSteps} />
 
 
     </HomeStack.Navigator>

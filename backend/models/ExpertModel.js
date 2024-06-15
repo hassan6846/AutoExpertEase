@@ -9,7 +9,9 @@ const ExpertSchema = new mongoose.Schema({
       type: String,
       required: false
    },
-
+   phone:{
+      type: String,
+   },
    topups: {
       type: Number,
       default: 0

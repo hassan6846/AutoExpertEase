@@ -90,6 +90,7 @@ function HomePageActivity() {
 const Main = () => {
   const dispatch=useDispatch()
   const Auth=useSelector((state:any)=>state.auth.Isauth)
+
   return (
     <NavigationContainer >
       <Stack.Navigator screenOptions={{ headerShown: false }}>

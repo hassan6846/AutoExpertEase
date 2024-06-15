@@ -41,6 +41,12 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos/Videos to Share and Post Features."
+        }
+      ],
       "expo-localization",
       "expo-tracking-transparency",
 

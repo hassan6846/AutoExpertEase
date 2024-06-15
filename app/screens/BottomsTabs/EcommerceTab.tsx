@@ -1,4 +1,4 @@
-import { Pressable, View, Dimensions } from "react-native"
+import { Pressable, View } from "react-native"
 import { Icon, Badge } from "@rneui/themed"
 // Navigation
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack"

@@ -4,7 +4,7 @@ import { Avatar, Icon } from '@rneui/themed'
 import ThemeProviderColors from '../../../../../../provider/ThemeProvider'
 import { AvatarSrc } from '../../../../../../constants/ImagesConstants'
 
-const AllOrders = ({navigation}:{navigation:any}) => {
+const AllOrders = ({ navigation }: { navigation: any }) => {
   return (
     <ScrollView style={Styles.OrderWrapper}>
       {/* Card for orders */}
@@ -30,7 +30,7 @@ const AllOrders = ({navigation}:{navigation:any}) => {
         {/* Ends */}
         <View style={{ flexDirection: "row", justifyContent: 'space-between', marginTop: 10, }}>
           <Text style={{ fontWeight: "bold", fontSize: 15 }}>Rs 489.00</Text>
-          <Text onPress={()=>navigation.navigate('OrderDetail')} style={{ backgroundColor: ThemeProviderColors.Light.Primary, color: "#fff", paddingHorizontal: 10, paddingVertical: 5, borderRadius: 6, fontSize: 12 }}>View Details</Text>
+          <Text onPress={() => navigation.navigate('OrderDetail')} style={{ backgroundColor: ThemeProviderColors.Light.Primary, color: "#fff", paddingHorizontal: 10, paddingVertical: 5, borderRadius: 6, fontSize: 12 }}>View Details</Text>
         </View>
       </View>
       {/* Ends */}
@@ -41,11 +41,11 @@ const Styles = StyleSheet.create({
   OrderWrapper: {
     backgroundColor: "#f9f9f9",
     flex: 1,
-    padding:10,
+    padding: 10,
   }, HistoryCard: {
     marginTop: 10,
     padding: 10,
-    borderRadius:5,
+    borderRadius: 5,
     backgroundColor: "#fff"
   }, OrderTxtDetails: {
     flexDirection: 'row',

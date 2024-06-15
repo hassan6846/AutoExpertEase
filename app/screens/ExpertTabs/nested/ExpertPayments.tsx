@@ -1,76 +1,54 @@
-import React, { useRef, useState } from 'react';
-import { View, StyleSheet, Pressable } from 'react-native';
-import { Text, Button, Icon, ListItem, Avatar,Divider } from '@rneui/themed';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import React, { useState } from 'react';
+import { View, StyleSheet, Pressable, Modal } from 'react-native';
+import { Text, Button, ListItem, Avatar, Divider } from '@rneui/themed';
 import { getHeight } from '../../../utils/GetDimension';
 import ThemeProviderColors from '../../../provider/ThemeProvider';
 import { JazzCash, easypaisa } from '../../../constants/ImagesConstants';
 
 const ExpertPayments = () => {
-  const bottomSheetRef = useRef<BottomSheet>(null);
-  const [isSheetOpen, SetisSheetOpen] = useState(false)
-  //Handle Click
-  function HandleToggle() {
-    if (bottomSheetRef.current) {
-      if (isSheetOpen) {
-        bottomSheetRef.current.close();
-      }
-      else {
-        bottomSheetRef.current.expand();
-      }
-    }
-    SetisSheetOpen(!isSheetOpen);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  }
-  // Handle backdrop press
-  const handleBackdropPress = () => {
-    if (isSheetOpen && bottomSheetRef.current) {
-      bottomSheetRef.current.close();
-      SetisSheetOpen(false);
-    }
+  const handleToggle = () => {
+    setIsModalVisible(!isModalVisible);
   };
 
   return (
     <>
       <View style={styles.container}>
         <Text style={styles.balanceTitle}>Current Balance</Text>
-        <Text  style={styles.balanceAmount}>500</Text>
-        <Button onPress={HandleToggle} title="Top-up Account" color={ThemeProviderColors.Light.Primary} containerStyle={styles.buttonContainer} />
-        <Pressable style={styles.withdrawButton}><Text style={styles.withdrawText}>Withdraw Cash</Text></Pressable>
+        <Text style={styles.balanceAmount}>500</Text>
+        <Button onPress={handleToggle} title="Top-up Account" color={ThemeProviderColors.Light.Primary} containerStyle={styles.buttonContainer} />
       </View>
-      <BottomSheet
-    
-        enableContentPanningGesture={true}
-        backgroundStyle={{ backgroundColor: '#fff' }} snapPoints={['30', '20%']} ref={bottomSheetRef}
-        containerStyle={[
-      
-          isSheetOpen ? styles.openSheet : styles.closedSheet,
-        ]}
-      
+
+      <Modal
+        visible={isModalVisible}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={handleToggle}
       >
-        <BottomSheetView style={styles.bottomSheetContent}>
-          <Pressable>
-            <ListItem>
-              <Avatar avatarStyle={{ objectFit: "contain", }} source={{ uri: JazzCash }} />
-              <ListItem.Content>
-                <ListItem.Title >Jazzcash</ListItem.Title>
-
-              </ListItem.Content>
-            </ListItem>
-          </Pressable>
-          {/* Easypaisa Pay */}
-          <Divider/>
-          <Pressable>
-            <ListItem>
-              <Avatar source={{ uri: easypaisa }} />
-              <ListItem.Content>
-                <ListItem.Title >EasyPaisa</ListItem.Title>
-
-              </ListItem.Content>
-            </ListItem>
-          </Pressable>
-        </BottomSheetView>
-      </BottomSheet>
+        <View style={styles.modalBackdrop}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Add Topup To Your Account</Text>
+            <Pressable onPress={handleToggle}>
+              <ListItem>
+                <Avatar avatarStyle={{ objectFit: "contain", }} source={{ uri: JazzCash }} />
+                <ListItem.Content>
+                  <ListItem.Title>Through Whatsapp</ListItem.Title>
+                </ListItem.Content>
+              </ListItem>
+            </Pressable>
+            <Divider />
+            <Pressable onPress={handleToggle}>
+              <ListItem>
+                <Avatar source={{ uri: easypaisa }} />
+                <ListItem.Content>
+                  <ListItem.Title>Online Payment.</ListItem.Title>
+                </ListItem.Content>
+              </ListItem>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </>
   );
 };
@@ -81,10 +59,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  bottomSheetContent: {
-    flex: 1,
-
   },
   balanceTitle: {
     fontSize: getHeight / 40,
@@ -99,21 +73,23 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 20,
   },
-  withdrawButton: {
-    marginTop: 20,
+  modalBackdrop: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  withdrawText: {
-    fontSize: getHeight / 60,
+  modalContent: {
+    width: '80%',
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 20,
+  },
+  modalTitle: {
+    fontSize: getHeight / 40,
     fontWeight: 'bold',
+    marginBottom: 20,
   },
-  openSheet: {
-backgroundColor:'rgba(0, 0, 0, 0.349)'
-  },
-
-  closedSheet:{
-   
-
-  }
 });
 
 export default ExpertPayments;

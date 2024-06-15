@@ -106,7 +106,7 @@ const Main = () => {
               <Stack.Screen name="language" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: "Change Language", headerShadowVisible: false }} component={SelectLanguage} />
               {/* Expert TabView */}
               <Stack.Screen name="bookings" options={{headerShown:true,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerShadowVisible:false,title:"Bookings"}} component={BookingInital}/>
-              <Stack.Screen name="Expert" options={{ headerShown: true, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ExpertPanel} />
+              <Stack.Screen name="Expert" options={{ headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={ExpertPanel} />
               {/* Expert Verifcation Tab */}
 
               <Stack.Screen name="expertverify"  options={{ headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={VerficationStack} />
@@ -121,12 +121,12 @@ const Main = () => {
           ) : (
 
             <>
-              <Stack.Screen name="privacypolicy" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={PrivacyPolicy} />
               <Stack.Screen name="Auth"
                 options={{
                   headerShown: false,
                   headerShadowVisible: false, headerTitleAlign: "center",
                 }} component={AuthStack} />
+              <Stack.Screen name="privacypolicy" options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} component={PrivacyPolicy} />
 
 
             </>

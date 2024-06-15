@@ -4,6 +4,7 @@ import SelectRole from "./nested/SelectRole";
 import ExpertVerification from "./nested/ExpertVerification/ExpertVerification";
 import CarRentalVerification from "./nested/ExpertVerification/CarRentalVerification";
 import VendorVerfication from "./nested/ExpertVerification/VendorVerfication";
+import CarPostingVerification from "./nested/ExpertVerification/CarPostingVerification";
 
 const Verify = createStackNavigator();
 
@@ -38,7 +39,11 @@ const VerficationStack = () => {
             name="vendorverification"
             component={VendorVerfication}
             options={{ title: "Vendor Verification", headerTitleAlign: "center", headerLeft: () => (<></>) }}/>
-
+   {/* Posting */}
+   <Verify.Screen
+            name="carpostverification"
+            component={CarPostingVerification}
+            options={{ title: "Car Lend Verification", headerTitleAlign: "center", headerLeft: () => (<></>) }}/>
         </Verify.Navigator>
     );
 }

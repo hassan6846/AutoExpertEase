@@ -53,6 +53,11 @@ const SelectRole = ({ navigation }: { navigation: any }) => {
         <Avatar avatarStyle={{ objectFit: "contain" }} size={50} source={{ uri: VehicleRental }} />
         <Text>Vehicle Rental Verification</Text>
       </Pressable>
+      {/* Listing Verification */}
+      <Pressable onPress={()=>navigation.navigate('carpostverification')} style={Styles.VerificationCard}>
+        <Avatar avatarStyle={{ objectFit: "contain" }} size={50} source={{ uri: VehicleListingVerification }} />
+        <Text>Car Listing Verification</Text>
+      </Pressable>
       {/* Work as Vendor */}
       <Pressable onPress={()=>navigation.navigate('vendorverification')} style={Styles.VerificationCard}>
         <Avatar size={50} source={{ uri: vendor }} />

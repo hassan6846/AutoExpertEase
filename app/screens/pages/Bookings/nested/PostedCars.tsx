@@ -3,8 +3,8 @@ import React from 'react'
 
 const PostedCars = () => {
   return (
-    <View>
-      <Text>PostedCars</Text>
+    <View style={{flex:1,justifyContent:"center",alignItems:'center'}}>
+      <Text>Nothing To Show Here</Text>
     </View>
   )
 }

@@ -1,12 +1,11 @@
 import { Pressable, ScrollView, StyleSheet, View, } from 'react-native'
-import React,{useEffect} from 'react'
+import React from 'react'
 
 //utils libraries
 import { Text, Avatar, Icon } from '@rneui/themed'
-import {  DrvingVideoImage, pakImage, pakleasson, Sedan } from '../../../constants/ImagesConstants'
+import { DrvingVideoImage, pakImage, pakleasson, Sedan } from '../../../constants/ImagesConstants'
 import ThemeProviderColors from '../../../provider/ThemeProvider'
-import io from "socket.io-client"
-const socket=io('http://192.168.0.110:4001')
+
 const Home = ({ navigation }: { navigation: any }) => {
 
   const serviceArray = [
@@ -29,12 +28,7 @@ const Home = ({ navigation }: { navigation: any }) => {
       route: "allvideos"
     }
   ]
- useEffect(()=>{
-  socket.connect();
-    return () => {
-      socket.disconnect();
-    };
- })
+
   return (
     <ScrollView style={Style.container}>
       <Text style={Style.headingText}>Expolore Services</Text>
@@ -250,7 +244,7 @@ const Home = ({ navigation }: { navigation: any }) => {
 
         {/* car Card */}
       </ScrollView>
-    
+
       {/* Experts Drivers.. */}
 
       {/* Experts Drivers. */}

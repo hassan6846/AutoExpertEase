@@ -1,23 +1,69 @@
-import { View, StyleSheet } from 'react-native'
-import React from 'react'
+import { KeyboardAvoidingView, StyleSheet, ScrollView } from 'react-native';
+import React from 'react';
 
-//Library
-import {Text} from "@rneui/themed"
+// Library
+import { Text, Button } from "@rneui/themed";
 
-//compoenents
-import CustomButton from '../../../../components/ButtonProps/ButtonProps'
-import InputComponent from '../../../../components/InputComponent/InputComponent'
+// Components
+import InputComponent from '../../../../components/InputComponent/InputComponent';
+
 const CarRentalVerification = () => {
   return (
-    <View>
-      <Text>CarRentalVerification</Text>
-    </View>
-  )
-}
+    <ScrollView style={styles.container}>
+      {/* Basic Info Section */}
+      <KeyboardAvoidingView style={styles.infoSection}>
+        <Text style={styles.header} h4>Basic Info</Text>
+        <Text style={styles.infoText}>
+          Car Rental Information. Your information is secure with us. We need this for rental verification rules to verify our customers.
+        </Text>
+        <InputComponent label="Your Full Name" placeholder="Full Name" />
+        <InputComponent label="Father Name" placeholder="Father Name" />
+        <InputComponent label="Email" placeholder="Email" />
+        <InputComponent label="Phone" placeholder="Active/Emergency Phone to contact" />
+      </KeyboardAvoidingView>
+
+      {/* ID Confirmation Section */}
+      <KeyboardAvoidingView style={styles.infoSection}>
+        <Text style={styles.header} h4>ID Confirmation</Text>
+        <Text style={styles.infoText}>
+          Car Rental Information. Your information is secure with us. We need this for rental verification rules to verify our customers.
+        </Text>
+        <InputComponent label="Cnic No." placeholder="Enter Your Cnic no" />
+        <InputComponent label="Current Address." placeholder="Current Address" />
+        <InputComponent label="License Number." placeholder="Enter Driving License Number" />
+        <Button title="Submit" style={styles.button} />
+      </KeyboardAvoidingView>
+    </ScrollView>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-      padding: 20,
-  }
-})
-export default CarRentalVerification
+    flex: 1,
+    padding: 20,
+  },
+  infoSection: {
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    padding: 10,
+    height: "auto",
+    marginBottom: 30,
+  },
+  header: {
+    textAlign: "center",
+    marginBottom: 5,
+    marginTop: 5,
+  },
+  infoText: {
+    textAlign: "center",
+    fontSize: 10,
+    paddingHorizontal: 20,
+    color: "#97ADB6",
+  },
+  button: {
+    marginTop: 10,
+    color:"#E04E2F"
+  },
+});
+
+export default CarRentalVerification;

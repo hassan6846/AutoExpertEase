@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import { ScrollView, StyleSheet, View, Pressable } from "react-native"
-import { Text, ListItem, Icon, Badge, Avatar, BottomSheet, FAB, Button, Overlay } from "@rneui/themed"
+import { Text, ListItem, Icon, Avatar, BottomSheet, Button, Overlay } from "@rneui/themed"
 import CountryFlag from "react-native-country-flag"
 import { AvatarSrc, DefaultImageSrc } from "../../../constants/ImagesConstants"
 

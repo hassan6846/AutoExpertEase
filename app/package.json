@@ -24,7 +24,6 @@
     "@stripe/stripe-react-native": "0.28.0",
     "expo": "~49.0.15",
     "expo-av": "~13.4.1",
-    "expo-camera": "~13.4.4",
     "expo-dev-client": "~2.4.13",
     "expo-device": "~5.4.0",
     "expo-file-system": "~15.4.5",
@@ -58,7 +57,7 @@
     "react-native-tab-view": "^3.5.2",
     "react-redux": "^9.1.0",
     "redux-persist": "^6.0.0",
-    "socket.io-client": "^4.7.5",
+ 
     "expo-document-picker": "~11.5.4"
   },
   "devDependencies": {

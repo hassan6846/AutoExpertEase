@@ -37,11 +37,7 @@ const UserSchema = new mongoose.Schema({
         required: false,
         default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
     },
-    // User Infomation.
-    //     
-    //    --Contians User Cnic
-    // --Contains Very contagius information.
-        //User Permenent Address. According to cnic.
+
         AddressInfo: {
             //Address
             Address:{
@@ -96,10 +92,27 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "Pending",
     },
-
-
-    // Handle User Tokens For Sessions.
-
+    fatherName:{
+        type:String,
+        default:"",
+    },
+    RentalEmail:{
+    type:String,
+    default:"",
+    },
+    emergencyPhone:{
+        type:String,
+        default:"",
+    },
+    CurrentAddress:{
+        type:String,
+        default:"",
+    },
+    LisenceNo:{
+        type:String,
+        default:"",
+        required:false,
+    },
     // User Create at date.
     createdAt: {
         type: Date,

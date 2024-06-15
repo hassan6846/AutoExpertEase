@@ -27,3 +27,4 @@ export const VehicleListingVerification:string="https://res.cloudinary.com/diml3
 export const MechanicVerifiction:string="https://res.cloudinary.com/diml3oeaw/image/upload/v1717011907/clip-mechanic-repairing-something_pmbs8r.png"
 //VIdeo
 export const VideoPlaceHolder:string="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGD0rMvVZIRh_Xu07vF7gMFSYDHEcutvS5nUoAKHXx2YAkEomVqrnEpDgQGdIY9qrPXxI&usqp=CAU"
+export const selectPhoto:string='https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg'

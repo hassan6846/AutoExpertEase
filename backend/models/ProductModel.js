@@ -26,13 +26,7 @@ const ProductSchema = new mongoose.Schema({
         minItems: [3, "Price cannot exceed 8 characters"],
         maxItems: [9, "Image limits Exceds."]
     },
-    tags: {
-        type: Array,
-        default: [],
-        required: [true, "kindly Enter Tags it Helps to Filter"],
-        maxlength: [20, "Please dont add too much Tags"],
-        minlength: [2, "please Enter Few Tags this Helps to filteration"]
-    },
+
     //category
     productcategory: {
         category: {
@@ -62,15 +56,14 @@ const ProductSchema = new mongoose.Schema({
             type: Number,
             required: [true, "Please Enter product Price"],
             maxLength: [8, "Price cannot exceed 8 characters"],
+        },
+        TotalEarnings:{
+            type:Number,
+            default:0,
+
         }
     },
-    stock: {
-        type: Number,
-        required: [true, "Please Enter product Stock"],
-        minLength: [1, "Stock cannot be low "],
-        default: 1,
-    },
-    //Product Reviews
+
   Review: [
     {
       user: {

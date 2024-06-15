@@ -93,28 +93,25 @@ const GetSingleVideo = async (req, res, next) => {
 
 //upload localvideo to cloudinary
 const uploadvideo = async (req, res) => {
-    const { url } = req.body;
-    if (!url) {
+    const { urls } = req.body;
+    if (!urls || !Array.isArray(urls)) {
         return res.status(400).json({
             success: false,
-            msg: "Please fill all the fields.",
+            msg: "Please provide an array of URLs.",
         });
     }
-    try {
-        const cloudinaryResponse = await cloudinaryInstance.uploader.upload(url, {
-       
-            folder: "lesson_videos"
-        })
-        res.status(201).json({
-            cloudinaryResponse
-        })
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            success: false,
-            msg: "Internal server error",
-        });
-    }
+
+    // Log each URI
+    urls.forEach(url => console.log('Received URI:', url));
+
+    // Return the URIs as part of the response
+    res.json({
+        success: true,
+        uris: urls
+    });
 };
+
+
+
 
 module.exports = { UploadVideo, AllVideos, GetSingleVideo, uploadvideo };

@@ -6,7 +6,7 @@ const BookingSchema = new mongoose.Schema({
         ref: 'Car', // Reference to the car model
         required: true,
     },
-    user: {
+    bookedby: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', // Reference to the user model
         required: true,
@@ -32,7 +32,15 @@ const BookingSchema = new mongoose.Schema({
         type: Date,
         default: Date.now(),
     },
-    
+    owner:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Agency",
+        required: true,
+    },
+    ownerUserDetauls:{
+        type:mongoose.Schema.Types.ObjectId,
+        
+    }
 });
 
 const Booking = mongoose.model('Booking', BookingSchema);

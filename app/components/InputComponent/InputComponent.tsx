@@ -1,12 +1,14 @@
 import { View, StyleSheet } from 'react-native'
 import React from 'react'
-import { getHeight } from '../../utils/GetDimension'
+
 import { Input } from "@rneui/themed"
 const InputComponent = (props:any) => {
     return (
         <View style={Style.InputContainer}>
             <Input  
-            
+        
+            numberOfLines={props.numberOfLines}
+            multiline={props.multiline}
             value={props.value}  
                 disabled={props.disabled} 
                 onFocus={props.onFocus} 

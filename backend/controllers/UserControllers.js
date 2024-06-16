@@ -189,11 +189,42 @@ const FindUser = async (req, res, next) => {
 
 }
 
+//Get Avatar
+const GetAvatar = async (req, res, next) => {
+    const { id } = req.body;
+
+    if ( !id) {
+        return res.status(400).json({
+            success: false,
+            msg: "Please fill all the fields from get  avatar)",
+        });
+    }
+
+    try {
+        // Find the user
+        const user = await User.findById(id);
+        // Handle if user does not exist
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                msg: "User does not exist in the database"
+            });
+        }
 
 
-//Send EmailOTP
+        // Send success response
+        res.status(200).json({
+            success: true,
+            avatar: user.avatar
+        });
+    } catch (err) {
+        // Handle errors
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            msg: "Internal Server Error"
+        });
+    }
+};
 
-//send Phone Otp
-
-
-module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser }
+module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser,GetAvatar }

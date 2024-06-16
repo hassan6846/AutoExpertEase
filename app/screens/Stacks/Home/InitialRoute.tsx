@@ -6,13 +6,13 @@ import { Text, Avatar, Icon } from '@rneui/themed'
 import { DrvingVideoImage, pakImage, pakleasson, Sedan } from '../../../constants/ImagesConstants'
 import ThemeProviderColors from '../../../provider/ThemeProvider'
 //state manaegment
-import { useSelector,useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { SetAvatar, } from '../../../slices/UserSlice'
 
 const Home = ({ navigation }: { navigation: any }) => {
   //State manegment
-  const id = useSelector((state:any) => state.auth.userid);
-  const dispatch=useDispatch();
+  const id = useSelector((state: any) => state.auth.userid);
+  const dispatch = useDispatch();
 
   const serviceArray = [
     {
@@ -34,30 +34,30 @@ const Home = ({ navigation }: { navigation: any }) => {
       route: "allvideos"
     }
   ]
-//Get Avatar on Update Compoent mount by Id..
-useEffect(()=>{
+  //Get Avatar on Update Compoent mount by Id..
+  useEffect(() => {
 
-  const fetchAvatar = async () => {
-    try {
-      const response = await fetch(`http://10.0.2.2:4001/api/getavatar/${id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
+    const fetchAvatar = async () => {
+      try {
+        const response = await fetch(`http://10.0.2.2:4001/api/getavatar/${id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+        const data = await response.json();
+        const avatar = data.avatar
+        dispatch(SetAvatar(avatar))
+      } catch (error) {
+        console.log('Error fetching avatar:', error);
       }
-      const data = await response.json();
-        const avatar=data.avatar
-      dispatch(SetAvatar(avatar))
-    } catch (error) {
-      console.log('Error fetching avatar:', error);
-    }
-  };
+    };
 
-  fetchAvatar(); 
-},[id])
+    fetchAvatar();
+  }, [id])
   return (
     <ScrollView style={Style.container}>
       <Text style={Style.headingText}>Expolore Services</Text>

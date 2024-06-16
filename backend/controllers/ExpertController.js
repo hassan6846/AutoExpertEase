@@ -85,5 +85,17 @@ const GetTopup = async (req, res, next) => {
         });
     }
 }
+//Purchase TOpups By Stripe
+const PurchaseTopus=async(req,res,next)=>{
+    const {id}=req.params;
+    try{
 
+    }catch(error){
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            msg: "Internal Server Error"
+        });
+    }
+}
 module.exports = { ApplyExpertShip, GetTopup };

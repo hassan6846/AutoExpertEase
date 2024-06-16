@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 // Schema Model
 const OrderSchema = new mongoose.Schema({
+    OrderId:{
+        type:String,
+        
+    },
     shippingInfo: {
         address: {
             type: String,
@@ -51,7 +55,14 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         enum: ['COD', 'Online'],
         default: 'COD',
+    },
+    orderState:{
+        type:Boolean,
+        default:false, //if shipped then false
     }
+
+
+
 });
 
 const Order = mongoose.model('Order', OrderSchema);

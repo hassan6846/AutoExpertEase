@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import {  useState,useEffect } from "react"
 import { ScrollView, StyleSheet, View, Pressable } from "react-native"
 import { Text, ListItem, Icon, Avatar, BottomSheet, Button, Overlay } from "@rneui/themed"
 import CountryFlag from "react-native-country-flag"
@@ -9,21 +9,20 @@ import * as ImagePicker from 'expo-image-picker';
 
 
 //Api
-import UpdateImg from "../../../api/User/UpdateProfileImg"
+
 //redux state manegment
 import { SetAuthState } from "../../../slices/AuthSlice"
-import { useDispatch,useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 const ProfileInitial = ({ navigation }: { navigation: any }) => {
     const id=useSelector((state:any)=>state.auth.userid)
 
-    const dispatch=useDispatch()
+    const dispatch = useDispatch()
     //states
     const [isShowBottomSheet, SetisShowBottomSheet] = useState(false)
     const [OverlayVisable, setOverlayVisable] = useState(false) //bottom SheetVisiblity
-    const [imageUri, setImageUri] = useState<string | null>(null);
+    const [imageUri, setImageUri] = useState<string | any>();
 
-    //pick Image
     const PickImage = async () => {
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -31,51 +30,29 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
             allowsEditing: true,
             aspect: [1, 1],
             quality: 0.5,
-
-
+            base64: true,
+            allowsMultipleSelection:false,
         })
         if (!result.canceled) {
-            setImageUri(result.assets[0].uri)
+            setImageUri(result.assets[0].base64)
         }
-        console.log(result)
-        console.warn(imageUri + "ImagePath")
-
-    }
-    //Open Camera
-    const openCamera = async () => {
-
-        const result = await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [1, 1],
-            quality: 1,
-        })
-        if (!result.canceled) {
-            setImageUri(result.assets[0].uri)
-        }
-        console.log(result)
-        console.warn(imageUri + "ImagePath")
-
-
     }
 
+    // Log imageUri whenever it changes
+    useEffect(() => {
+        console.log(imageUri);
+    }, [imageUri]);
 
-    //Update Image
-    const HandleLogout=()=>{
+
+  //Handle Logout
+    const HandleLogout = () => {
         dispatch(SetAuthState(false))
     }
-
+    //Show Upload Image..
     const toggleOverlay = () => {
         setOverlayVisable(!OverlayVisable)
     }
-    interface ListItemProps {
-        Component?: React.ComponentType<any>;
-    }
 
-    const UserProfileSchema = [
-
-    ]
-    //OpenGallary Function On press
 
     return (
         <>
@@ -93,7 +70,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                 {/* Avatar container bois to alignItems to the center */}
                 <View style={Styles.AvatarContainer} >
                     <Avatar onPress={() => navigation.navigate("ViewProfile")} rounded size={100} source={{ uri: AvatarSrc || DefaultImageSrc }} ><Avatar.Accessory onPress={() => SetisShowBottomSheet(true)} size={25} /></Avatar>
-                    <Text>Hi, <CountryFlag size={12} isoCode="pk" /></Text>
+                    <Text><CountryFlag size={12} isoCode="pk" /> </Text>
                 </View>
                 {/* List Items Will be map Below ok */}
                 <>
@@ -254,22 +231,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                             </ListItem.Content>
 
                         </Pressable>
-                        <Pressable onPress={openCamera} style={({ pressed }) => [
-                            {
-                                backgroundColor: pressed ? 'rgb(229,229,229)' : '#fff',
-                            }, {
-                                display: "flex",
-                                flexDirection: 'row',
-                                padding: 10
-                            }
 
-                        ]}>
-                            <Icon reverse reverseColor="#3D3D3D" style={{ marginRight: 7 }} name="photo-camera" type="material" color="rgb(229,229,229)" />
-                            <ListItem.Content>
-                                <ListItem.Title>Open Camera</ListItem.Title>
-                            </ListItem.Content>
-
-                        </Pressable>
                     </View>
                 </BottomSheet>
             </ScrollView>

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-
+const User=require("../models/UserModel")
 const ExpertSchema = new mongoose.Schema({
    firstName: {
       type: String,
@@ -14,10 +14,15 @@ const ExpertSchema = new mongoose.Schema({
       type: Number,
       default: 0
    },
+   email:{
+      type: String,
+      required:false,
+   },
    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: true,
+    //populate
+
    },
    DateOfBirth: {
       type: String,
@@ -43,7 +48,23 @@ const ExpertSchema = new mongoose.Schema({
    facialVerification:{
       type:String,
       default:"",
-   }
+   },
+   NoTasks:{
+      default:0,
+      type:Number,
+      required:false,
+   },
+   TotalEarnings:{
+      default:0,
+      type:Number,
+      required:false,
+   },
+   AccountNo:{
+      default:0,
+      type:Number,
+      required:false,
+   },
+
 }, { timestamps: true })
 const Expert = mongoose.model('Expert', ExpertSchema)
 module.exports = Expert;

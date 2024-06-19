@@ -38,7 +38,6 @@ const chatbot = require("./routes/Chatbot");
 const admin = require("./routes/AdminRoutes");
 const auth = require("./routes/AuthRoutes");
 const payment = require("./routes/PaymentRoutes");
-const video = require("./routes/VideosRoute");
 // const expert=require("./routes/ExpertRoute")
 // Endpoints middlewares
 app.use("/api", user);
@@ -47,7 +46,7 @@ app.use("/api", chatbot);
 app.use("/api", admin);
 app.use("/api", auth);
 app.use("/api", payment);
-app.use("/api", video);
+
 // app.use('/api',expert)
 // Create HTTP server
 const server = http.createServer(app);

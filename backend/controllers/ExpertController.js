@@ -1,3 +1,4 @@
+
 const Expert = require("../models/ExpertModel");
 const User = require("../models/UserModel")
 
@@ -90,9 +91,6 @@ const PurchaseTopus=async(req,res,next)=>{
     const {id}=req.params;
     try{
 
-<<<<<<< HEAD
-module.exports = { ApplyExpertShip, GetTopup };
-=======
     }catch(error){
         console.error(error);
         res.status(500).json({
@@ -102,4 +100,6 @@ module.exports = { ApplyExpertShip, GetTopup };
     }
 }
 module.exports = { ApplyExpertShip, GetTopup };
->>>>>>> 43f08df (main)
+
+
+

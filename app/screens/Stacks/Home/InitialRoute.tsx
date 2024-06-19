@@ -5,6 +5,7 @@ import React from 'react'
 import { Text, Avatar, Icon } from '@rneui/themed'
 import { DrvingVideoImage, pakImage, pakleasson, Sedan } from '../../../constants/ImagesConstants'
 import ThemeProviderColors from '../../../provider/ThemeProvider'
+<<<<<<< HEAD
 //state manaegment
 import { useSelector, useDispatch } from 'react-redux'
 import { SetAvatar, } from '../../../slices/UserSlice'
@@ -13,6 +14,10 @@ const Home = ({ navigation }: { navigation: any }) => {
   //State manegment
   const id = useSelector((state: any) => state.auth.userid);
   const dispatch = useDispatch();
+=======
+
+const Home = ({ navigation }: { navigation: any }) => {
+>>>>>>> parent of a5bf736 (main)
 
   const serviceArray = [
     {
@@ -34,6 +39,7 @@ const Home = ({ navigation }: { navigation: any }) => {
       route: "allvideos"
     }
   ]
+<<<<<<< HEAD
   //Get Avatar on Update Compoent mount by Id..
   useEffect(() => {
 
@@ -58,6 +64,9 @@ const Home = ({ navigation }: { navigation: any }) => {
 
     fetchAvatar();
   }, [id])
+=======
+
+>>>>>>> parent of a5bf736 (main)
   return (
     <ScrollView style={Style.container}>
       <Text style={Style.headingText}>Expolore Services</Text>

@@ -1,12 +1,14 @@
-import { View, Text } from 'react-native'
+import { View, Text,ScrollView,StyleSheet } from 'react-native'
 import React from 'react'
 //Components
 const PostCar = () => {
   return (
-    <View>
-      <Text>PostCar</Text>
-    </View>
+    <ScrollView>
+
+    </ScrollView>
   )
 }
+const styles=StyleSheet.create({
 
+})
 export default PostCar

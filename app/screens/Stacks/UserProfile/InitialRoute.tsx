@@ -145,15 +145,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
      }
     // Log imageUri whenever it changes
     useEffect(() => {
-    // Show alert on useffect
-    Alert.alert(
-        'Information',
-        'You are not verified to use this feature. Kindly verify your account through the kyc verification process.',
-        [
-          { text: 'OK'},
-        ],
-        { cancelable: false }
-      );
+
     }, [imageUri]);
 
     return (

@@ -40,7 +40,7 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
 
 {/* Post Video */}
 {/* All Cars */}
-<HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Browse Rental Cars",headerRight:()=>(<Icon name="add" type="material" containerStyle={{marginRight:10}}/>)}} name="allcars" component={AllCars} />
+<HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Browse Rental Cars",headerRight:()=>(<Icon name="add" onPress={()=>navigation.navigate("postcar")}  type="material" iconStyle={{padding:5,borderRadius:60}} containerStyle={{marginRight:10}}/>)}} name="allcars" component={AllCars} />
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:""}} name="cardetail" component={ViewCarDetails} />
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:""}} name="bookingsteps" component={BookingSteps} />
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Post A Car"}} name="postcar" component={PostCar} />

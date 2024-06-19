@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { ScrollView, StyleSheet, View, Pressable } from "react-native"
+import { ScrollView, StyleSheet, View, Pressable,Alert } from "react-native"
 import { Text, ListItem, Icon, Avatar, BottomSheet, Button, Overlay } from "@rneui/themed"
 import CountryFlag from "react-native-country-flag"
 
@@ -37,7 +37,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
         if (!result.canceled) {
             //convert this to 
             setImageUri(result.assets[0].base64)
-            console.log(result.assets[0].base64)
+          
              UploadImage(imageUri)
         }
     }
@@ -66,9 +66,6 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
             console.log('Error Uploading avatar:', error);
         }
     }
-    
-
-
     //Handle Logout
     const HandleLogout = () => {
         dispatch(SetAuthState(false))
@@ -80,7 +77,15 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
 
     // Log imageUri whenever it changes
     useEffect(() => {
-       
+    // Show alert on useffect
+    Alert.alert(
+        'Information',
+        'You are not verified to use this feature. Kindly verify your account through the kyc verification process.',
+        [
+          { text: 'OK'},
+        ],
+        { cancelable: false }
+      );
     }, [imageUri]);
 
     return (
@@ -104,7 +109,6 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                 {/* List Items Will be map Below ok */}
                 <>
                     {/* Account */}
-
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10, }}>Account</Text>
                     {/* 1 */}
 
@@ -195,7 +199,9 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                         </ListItem.Content>
                         <ListItem.Chevron size={18} />
                     </Pressable>
+
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Help</Text>
+
                     <Pressable onPress={() => navigation.navigate("Support")} style={({ pressed }) => [
                         {
                             backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
@@ -208,6 +214,33 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                         </ListItem.Content>
                         <ListItem.Chevron size={18} />
                     </Pressable>
+                    <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Manage</Text>
+                    <Pressable  style={({ pressed }) => [
+                            {
+                                backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
+                            },
+                            Styles.ProfileList,
+                        ]}>
+                            <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="engineering" type="material" color="#3E4958" />
+                            <ListItem.Content>
+                                <ListItem.Title style={{ marginLeft: 7 }}>Expert DashBoard</ListItem.Title>
+                            
+                            </ListItem.Content>
+                            <ListItem.Chevron size={18} />
+                        </Pressable>
+                        {/* Manage Store */}
+                        <Pressable style={({ pressed }) => [
+                            {
+                                backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
+                            },
+                            Styles.ProfileList,
+                        ]}>
+                            <Icon backgroundColor="#EAEAEB" iconStyle={{ padding: 8, borderRadius: 5 }} name="store" type="material" color="#3E4958" />
+                            <ListItem.Content>
+                                <ListItem.Title style={{ marginLeft: 7 }}>Manage Store</ListItem.Title>
+                            </ListItem.Content>
+                            <ListItem.Chevron size={18} />
+                        </Pressable>
                     {/* More  */}
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>More</Text>
                     {/* More Container */}
@@ -241,6 +274,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                     </View>
                 </>
 
+{/* Bottom SHeet DOnt Touch THis shit */}
                 <BottomSheet backdropStyle={{ backgroundColor: "rgba(59, 59, 59, 0.404)" }} onBackdropPress={() => SetisShowBottomSheet(false)} isVisible={isShowBottomSheet}>
                     <View style={{ backgroundColor: "#fff", height: 'auto', borderTopStartRadius: 10, borderTopRightRadius: 10 }}>
 

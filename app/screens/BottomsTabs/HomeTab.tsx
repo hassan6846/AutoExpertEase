@@ -13,7 +13,7 @@ import { getHeight } from "../../utils/GetDimension"
 // Lesson Section
 import AllLessons from "../Stacks/Home/nested/drivinglessons/AllLessons"
 import VideoView from "../Stacks/Home/nested/drivinglessons/nested/VideoView"
-import PostVideo from "../Stacks/Home/nested/drivinglessons/nested/PostVideo"
+
 //Car Bc ALiShan  ki mkc.
 import AllCars from "../Stacks/Home/nested/CarSection/AllCars"
 import ViewCarDetails from "../Stacks/Home/nested/CarSection/nested/ViewCarDetails"
@@ -39,7 +39,6 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
       </>}} component={AllLessons} name="allvideos" />
 
 {/* Post Video */}
-<HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Post Lesson"}} name="postvideo" component={PostVideo} />
 {/* All Cars */}
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Browse Rental Cars",headerRight:()=>(<Icon name="add" type="material" containerStyle={{marginRight:10}}/>)}} name="allcars" component={AllCars} />
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:""}} name="cardetail" component={ViewCarDetails} />

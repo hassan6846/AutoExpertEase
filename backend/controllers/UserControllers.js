@@ -232,11 +232,12 @@ const GetAvatar = async (req, res, next) => {
 
 ///Check is Expert/mechanic
 const IsExepert = async (req, res, next) => {
-    const { id } = req.body;
+    const { id } = req.params;
+
     if (!id) {
         return res.status(400).json({
             success: false,
-            msg: "Please fill all the fields from is expert",
+            msg: "Please fill all the fields from  Isexpert",
         });
     }
     try {
@@ -257,7 +258,7 @@ const IsExepert = async (req, res, next) => {
         }
         //If user is not expert in role array of user
         res.status(200).json({
-            success: true,
+            success: false,
             isExpert: false
         });
     } catch (error) {
@@ -266,6 +267,40 @@ const IsExepert = async (req, res, next) => {
     }
 }
 //Is Seller...
+const isVendor=async (req, res, next) => {
+    const { id } = req.params;
+    if (!id) {
+        return res.status(400).json({
+            success: false,
+            msg: "Please fill all the fields from  IsVendor",
+        });
+    }
 
+    try {
+           //find user by id 
+           const user = await User.findById(id);
 
-module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser, GetAvatar,IsExepert };
+           if(!user) {
+               return res.status(400).json({
+                   success: false,
+                   msg: "User does not exist in the database"
+               });
+           }
+                   //If user is expert in role array of user
+        if(user.role.includes('vendor')) {
+            return res.status(200).json({
+                success: true,
+                isVendor: true
+            });
+        }
+        res.status(200).json({
+            success: false,
+            isVendor: false
+        });
+} catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, msg: `${error.message}` });
+}
+}
+
+module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser, GetAvatar,IsExepert,isVendor };

@@ -9,12 +9,6 @@ const Settings = ({ navigation }: { navigation: any }) => {
 
     return (
         <ScrollView style={Style.container}>
-
-
-
-
-
-
             <Pressable onPress={() => navigation.navigate('language')} style={({ pressed }) => [{ backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white', }, Style.pressableContainer]}>
                 <Icon containerStyle={{ backgroundColor: "rgba(59, 59, 59, 0.082)", padding: 5, marginRight: 5, borderRadius: 5 }} name='translate' type='material' />
                 <ListItem.Content>
@@ -23,7 +17,6 @@ const Settings = ({ navigation }: { navigation: any }) => {
                 <ListItem.Chevron />
             </Pressable>
 
-            {/* DarkTheme toggle */}
 
         </ScrollView>
     )
@@ -31,10 +24,8 @@ const Settings = ({ navigation }: { navigation: any }) => {
 const Style = StyleSheet.create({
     container: {
         flex: 1,
-
     },
     pressableContainer: {
-
         flexDirection: "row",
         paddingVertical: 20,
         paddingHorizontal: 20,

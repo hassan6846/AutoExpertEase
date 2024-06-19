@@ -74,7 +74,75 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
     const toggleOverlay = () => {
         setOverlayVisable(!OverlayVisable)
     }
-
+    //Check is Expert..
+     const isExpert=async ()=>{
+        try {
+            //get request
+            const response = await fetch(`http://10.0.2.2:4001/api/check-expert/${id}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // Parse the response body as JSON
+            const data= await response.json();
+            //check if expert
+            if(data.isExpert){
+                navigation.navigate('Expert')
+            }else{
+                Alert.alert(
+                    'Information',
+                    'You are not verified to use this feature. Kindly verify your account through the kyc verification process to Start earning',
+                    [
+                      { text: 'Verify Now', onPress: () => navigation.navigate('expertverify',{screen:"expertverification"}) },
+                      { text: 'Not now'},
+                    ],
+                    { cancelable: false }
+                    
+                  );
+            }
+        } catch (error) {
+             console.log('Error:', error);
+        }
+     }
+     //Check is Vendor..
+     const isVendor=async ()=>{
+        try {
+            //get request
+            const response = await fetch(`http://10.0.2.2:4001/api/check-vendor/${id}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // Parse the response body as JSON
+            const data= await response.json();
+            console.log(data)
+            //check if expert
+            if(data.isVendor){
+                navigation.navigate('seller')
+            }else{
+                Alert.alert(
+                    'Information',
+                    'You are not Registered as a Vendor. Kindly register as a vendor to start earning',
+                    [
+                      { text: 'Verify Now', onPress: () => navigation.navigate('expertverify',{screen:"vendorverification"}) },
+                      { text: 'Not now'},
+                    ],
+                    { cancelable: false }
+                    
+                  );
+            }
+        } catch (error) {
+             console.log('Error:', error);
+        }
+     }
     // Log imageUri whenever it changes
     useEffect(() => {
     // Show alert on useffect
@@ -215,7 +283,8 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                         <ListItem.Chevron size={18} />
                     </Pressable>
                     <Text h4 style={{ marginTop: 8, marginBottom: 2, marginLeft: 10 }}>Manage</Text>
-                    <Pressable  style={({ pressed }) => [
+
+                    <Pressable onPress={isExpert}  style={({ pressed }) => [
                             {
                                 backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                             },
@@ -229,7 +298,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                             <ListItem.Chevron size={18} />
                         </Pressable>
                         {/* Manage Store */}
-                        <Pressable style={({ pressed }) => [
+                        <Pressable onPress={isVendor} style={({ pressed }) => [
                             {
                                 backgroundColor: pressed ? 'rgba(59, 59, 59, 0.082)' : 'white',
                             },

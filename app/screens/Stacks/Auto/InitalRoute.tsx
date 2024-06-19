@@ -1,75 +1,46 @@
 import { StyleSheet, SafeAreaView, View } from "react-native";
+import { useEffect, useState } from "react";
+
+///library Imports sdks
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
-import { useEffect, useState } from "react";
 import { Text, Icon } from "@rneui/themed";
+//components
 import CustomButton from "../../../components/ButtonProps/ButtonProps";
-import LottieView from "lottie-react-native";
-
-// States Management
-import { useDispatch } from "react-redux";
-import { setLongitude, setLatitude } from "../../../slices/LocationSlice";
+//States
 
 const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
-    const [location, setLocation] = useState<Location.LocationObject | null>(null);
-    const [longitude, setLongitudeState] = useState<number >(0);
-    const [latitude, setLatitudeState] = useState<number>(0);
-    const [errorMsg, setErrorMsg] = useState<string | null>(null);
+    const [location, setLocation] = useState<any>(null);
+    const [errorMsg, setErrorMsg] = useState<any>(null);
+
 
     useEffect(() => {
         (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== "granted") {
-                setErrorMsg("Permission to access location was denied");
-                return;
-            }
-
-            try {
-                let currentLocation = await Location.getCurrentPositionAsync({});
-                setLocation(currentLocation);
-                console.log(currentLocation);
-                // Set longitude and latitude to state as numbers
-                setLongitudeState(currentLocation.coords.longitude);
-                setLatitudeState(currentLocation.coords.latitude);
-                console.log("EVAL VALUES ARE |" + currentLocation.coords.longitude + ", " + currentLocation.coords.latitude);
-            } catch (error) {
-                setErrorMsg("Error fetching location");
-                console.error(error);
-            }
+          
+          let { status } = await Location.requestForegroundPermissionsAsync();
+          if (status !== 'granted') {
+            setErrorMsg('Permission to access location was denied');
+            return;
+          }
+    
+          let location = await Location.getCurrentPositionAsync({});
+          setLocation(location);
+          console.log(location);
         })();
-    }, []);
-
-    if (!location) {
-        // Return a loading indicator or handle the case when location is not available
-        return (
-            <View style={{ flex: 1, justifyContent: "center", backgroundColor: "#fff", alignItems: "center" }}>
-                <LottieView
-                    autoPlay
-                    source={require("../../../assets/lottie/fadeCircle.json")}
-                    style={{
-                        width: 300,
-                        height: 300,
-                    }}
-                />
-                <Text style={{ textAlign: "center", fontSize: 15, fontWeight: "bold", paddingHorizontal: 24 }}>Finding Experts Nearby You!</Text>
-            </View>
-        );
-    }
+      }, []);
 
     return (
         <SafeAreaView style={Styles.map}>
             <MapView
-         
                 initialRegion={{
-                    latitude: latitude, // Default value for Pakistan
-                    longitude:longitude, // Default value for Pakistan
+                    latitude: location.coords.latitude, // Default value for Pakistan
+                    longitude: location.coords.longitude, // Default value for Pakistan
                     latitudeDelta: 0.03, // Adjust the value for the desired zoom level
                     longitudeDelta: 0.02, // Adjust the value for the desired zoom level
                 }}
                 zoomControlEnabled
                 loadingEnabled={true}
                 showsIndoors={true}
-             
                 provider={PROVIDER_GOOGLE}
                 userLocationCalloutEnabled
                 showsCompass={false}

@@ -7,7 +7,6 @@ import AuthSlice from "../slices/AuthSlice"; // Authentication Status
 import locationSlice from "../slices/LocationSlice";
 import ChatBotSlice from "../slices/ChatBotSlice";
 import TaskSlice from "../slices/TaskSlice";
-import UserSlice from "../slices/UserSlice";
 
 // Combine reducers
 const rootReducer = combineReducers({
@@ -16,7 +15,6 @@ const rootReducer = combineReducers({
   location: locationSlice,
   chatbot:ChatBotSlice,
   task:TaskSlice,
-  user:UserSlice
 });
 
 // Persist config

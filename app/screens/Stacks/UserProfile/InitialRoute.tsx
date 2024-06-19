@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react"
+import {  useState,useEffect } from "react"
 import { ScrollView, StyleSheet, View, Pressable } from "react-native"
 import { Text, ListItem, Icon, Avatar, BottomSheet, Button, Overlay } from "@rneui/themed"
 import CountryFlag from "react-native-country-flag"
+import { AvatarSrc, DefaultImageSrc } from "../../../constants/ImagesConstants"
 
 //Image picker
 import * as ImagePicker from 'expo-image-picker';
@@ -11,12 +12,10 @@ import * as ImagePicker from 'expo-image-picker';
 
 //redux state manegment
 import { SetAuthState } from "../../../slices/AuthSlice"
-import {SetAvatar} from "../../../slices/UserSlice"
 import { useDispatch, useSelector } from "react-redux"
 
 const ProfileInitial = ({ navigation }: { navigation: any }) => {
-    const id = useSelector((state: any) => state.auth.userid)
-    const avatar = useSelector((state: any) => state.user.avatar)
+    const id=useSelector((state:any)=>state.auth.userid)
 
     const dispatch = useDispatch()
     //states
@@ -32,47 +31,20 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
             aspect: [1, 1],
             quality: 0.5,
             base64: true,
-            allowsMultipleSelection: false,
+            allowsMultipleSelection:false,
         })
         if (!result.canceled) {
-            //convert this to 
             setImageUri(result.assets[0].base64)
-             UploadImage(imageUri)
         }
     }
-    //Upload Image to Server
-    const UploadImage = async (image:any) => {
-        try {
-            if (!imageUri) {
-                console.error('No image selected');
-                return;
-            }
-    
-            const response = await fetch('http://10.0.2.2:4001/api/avatar/', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({id:id,image:image}) // Send image data in the request body
-            });
-    
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-    
-            // Handle success response here if needed
-            const data = await response.json();
-         
-            dispatch(SetAvatar(data.avatarUrl))
 
-        } catch (error) {
-            console.log('Error Uploading avatar:', error);
-        }
-    }
-    
+    // Log imageUri whenever it changes
+    useEffect(() => {
+        console.log(imageUri);
+    }, [imageUri]);
 
 
-    //Handle Logout
+  //Handle Logout
     const HandleLogout = () => {
         dispatch(SetAuthState(false))
     }
@@ -81,10 +53,6 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
         setOverlayVisable(!OverlayVisable)
     }
 
-    // Log imageUri whenever it changes
-    useEffect(() => {
-       
-    }, [imageUri]);
 
     return (
         <>
@@ -101,8 +69,8 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                 </Overlay>
                 {/* Avatar container bois to alignItems to the center */}
                 <View style={Styles.AvatarContainer} >
-                    <Avatar onPress={() => navigation.navigate("ViewProfile")} rounded size={100} source={{ uri: avatar }} ><Avatar.Accessory onPress={() => SetisShowBottomSheet(true)} size={25} /></Avatar>
-                    <Text><CountryFlag size={12} isoCode="pk" /> {id} </Text>
+                    <Avatar onPress={() => navigation.navigate("ViewProfile")} rounded size={100} source={{ uri: AvatarSrc || DefaultImageSrc }} ><Avatar.Accessory onPress={() => SetisShowBottomSheet(true)} size={25} /></Avatar>
+                    <Text><CountryFlag size={12} isoCode="pk" /> </Text>
                 </View>
                 {/* List Items Will be map Below ok */}
                 <>

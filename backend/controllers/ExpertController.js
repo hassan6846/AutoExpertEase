@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const Expert = require("../models/ExpertModel");
 const User = require("../models/UserModel")
 
@@ -99,3 +100,8 @@ const PurchaseTopus=async(req,res,next)=>{
     }
 }
 module.exports = { ApplyExpertShip, GetTopup };
+=======
+const mongoose =require("mongoose")
+//add topup 
+//subtract topup..
+>>>>>>> parent of a5bf736 (main)

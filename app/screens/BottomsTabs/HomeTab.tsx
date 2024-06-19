@@ -4,8 +4,9 @@ const HomeStack = createStackNavigator()
 
 //imports modules
 import { Avatar,Icon  } from "@rneui/themed"
-
+import { AvatarSrc } from "../../constants/ImagesConstants"
 //utils
+
 import { getHeight } from "../../utils/GetDimension"
 //nested childs
 import Home from "../Stacks/Home/InitialRoute"
@@ -19,17 +20,13 @@ import AllCars from "../Stacks/Home/nested/CarSection/AllCars"
 import ViewCarDetails from "../Stacks/Home/nested/CarSection/nested/ViewCarDetails"
 import BookingSteps from "../Stacks/Home/nested/CarSection/nested/BookingSteps"
 import PostCar from "../Stacks/Home/nested/CarSection/nested/PostCar"
-//State manegment
-import { useSelector } from "react-redux"
 
 const HomeTab = ({ navigation }: { navigation: any }) => {
-  //Select Avatar
-  const avatar=useSelector((state:any)=>state.user.avatar)
 
   return (
     <HomeStack.Navigator initialRouteName="HomeInital" >
       {/* Inital Home Route */}
-      <HomeStack.Screen options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS, headerRight: () => (<Avatar avatarStyle={{ borderRadius: 20 }} containerStyle={{ marginRight: 12 }} source={{ uri: avatar }} />), headerTitle: "Welcome", headerStyle: { height: getHeight / 9 } }} component={Home} name="HomeInital" />
+      <HomeStack.Screen options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS, headerRight: () => (<Avatar avatarStyle={{ borderRadius: 20 }} containerStyle={{ marginRight: 12 }} source={{ uri: AvatarSrc }} />), headerTitle: "Welcome", headerStyle: { height: getHeight / 9 } }} component={Home} name="HomeInital" />
       {/* Fetch All Videos.. */}
       <HomeStack.Screen  options={{headerShown:false,headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"",headerTitleAlign:"center"}} component={VideoView} name="viewvideo" />
 

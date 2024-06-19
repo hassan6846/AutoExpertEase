@@ -1,5 +1,7 @@
 // List of some user controller supported by the app (autoexpertEase).
+const express = require("express") //expressjs posting methods etc
 const User = require("../models/UserModel")
+const OTP = require("../models/EmailOtpModel") //EmailOtpModel
 const jwt = require("jsonwebtoken")//json web token
 const bcrypt = require("bcrypt")
 const cloudinaryInstance = require("../utils/Cloudinary")
@@ -120,41 +122,39 @@ const RegisterFunction = async (req, res, next) => {
 }
 //update profile picture..
 const updatepicture = async (req, res, next) => {
-    const { image,id } = req.body;
+    const { image, id } = req.body;
 
-    if (!image||!id) {
+    if (!image || !id) {
         return res.status(400).json({
             success: false,
-            msg: "Please fill Entiere fields (from Update picture)",
+            msg: "Please fill all the fields (from update avatar)",
         });
     }
 
     try {
-        //Find User First
+        // Find the user
         const user = await User.findById(id);
+        // Handle if user does not exist
         if (!user) {
             return res.status(400).json({
                 success: false,
                 msg: "User does not exist in the database"
             });
         }
-        // Convert base64 string to buffer
-        const base64Data = image.replace(/^data:image\/\w+;base64,/, '');
-        const buffer = Buffer.from(base64Data, 'base64');
 
-        // Create Data URI
-        const dataURI = `data:image/jpeg;base64,${buffer.toString('base64')}`;
-        // Send to cloudinary
-        const uploadResult = await cloudinaryInstance.uploader.upload(dataURI);
+        // Upload the image to Cloudinary
+        const uploadResult = await cloudinaryInstance.uploader.upload(image);
+
+        // Update the user avatar field with the Cloudinary URL
         user.avatar = uploadResult.secure_url;
         await user.save();
 
+        // Send success response
         res.status(200).json({
             success: true,
             msg: "Avatar updated successfully",
             avatarUrl: uploadResult.secure_url
         });
-  
     } catch (err) {
         // Handle errors
         console.error(err);
@@ -164,7 +164,6 @@ const updatepicture = async (req, res, next) => {
         });
     }
 };
-
 
 
 
@@ -190,18 +189,18 @@ const FindUser = async (req, res, next) => {
 
 }
 
-//Get Avatar Working 100% State done
+//Get Avatar
 const GetAvatar = async (req, res, next) => {
-    const { id } = req.params;
+    const { id } = req.body;
 
     if ( !id) {
         return res.status(400).json({
             success: false,
-            msg: "Please fill all the fields from get  avatar",
+            msg: "Please fill all the fields from get  avatar)",
         });
     }
-      //Find User ..
-      try {
+
+    try {
         // Find the user
         const user = await User.findById(id);
         // Handle if user does not exist
@@ -224,10 +223,8 @@ const GetAvatar = async (req, res, next) => {
         res.status(500).json({
             success: false,
             msg: "Internal Server Error"
-        
         });
     }
 };
-
 
 module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser,GetAvatar }

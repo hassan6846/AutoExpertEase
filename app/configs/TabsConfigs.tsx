@@ -7,13 +7,10 @@
 //App Etc
 import { Icon, Text, Avatar } from "@rneui/themed"
 import ThemeProviderColors from "../provider/ThemeProvider"
-import { DefaultImageSrc } from "../constants/ImagesConstants"
 
+import { AvatarSrc } from "../constants/ImagesConstants"
 //note use theme provided color only to manage a better code and ui ok not 😞
-
-
 const TabsConfigs = {
-    
     // HomeScreen 
     Home: {
         Svg: ({ focused }: { focused: any }) => (
@@ -56,7 +53,7 @@ const TabsConfigs = {
     Profile: {
         Svg: ({ focused }: { focused: any }) => (
             <>
-                <Avatar avatarStyle={{ borderWidth: 2, borderColor: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }} rounded source={{ uri: DefaultImageSrc }} size={25} />
+                <Avatar avatarStyle={{ borderWidth: 2, borderColor: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }} rounded source={{ uri: AvatarSrc }} size={25} />
                 <Text style={{ fontSize: 10, fontWeight: "bold", color: focused ? ThemeProviderColors.Light.Primary : "#5F6368" }}>You</Text>
             </>
         )

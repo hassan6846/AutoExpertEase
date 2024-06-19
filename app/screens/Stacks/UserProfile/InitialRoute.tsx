@@ -22,7 +22,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
     //states
     const [isShowBottomSheet, SetisShowBottomSheet] = useState(false)
     const [OverlayVisable, setOverlayVisable] = useState(false) //bottom SheetVisiblity
-    const [imageUri, setImageUri] = useState<string | any>();
+    const [imageUri, setImageUri] = useState<any>("");
 
     const PickImage = async () => {
         // No permissions request is necessary for launching the image library
@@ -37,17 +37,14 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
         if (!result.canceled) {
             //convert this to 
             setImageUri(result.assets[0].base64)
+            console.log(result.assets[0].base64)
              UploadImage(imageUri)
         }
     }
     //Upload Image to Server
     const UploadImage = async (image:any) => {
         try {
-            if (!imageUri) {
-                console.error('No image selected');
-                return;
-            }
-    
+
             const response = await fetch('http://10.0.2.2:4001/api/avatar/', {
                 method: "POST",
                 headers: {

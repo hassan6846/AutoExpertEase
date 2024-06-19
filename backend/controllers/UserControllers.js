@@ -147,8 +147,9 @@ const updatepicture = async (req, res, next) => {
         // Send to cloudinary
         const uploadResult = await cloudinaryInstance.uploader.upload(dataURI);
         user.avatar = uploadResult.secure_url;
+        console.log(uploadResult.secure_url);
         await user.save();
-
+    
         res.status(200).json({
             success: true,
             msg: "Avatar updated successfully",

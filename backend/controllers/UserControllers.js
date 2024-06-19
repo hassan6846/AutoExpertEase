@@ -120,9 +120,9 @@ const RegisterFunction = async (req, res, next) => {
 }
 //update profile picture..
 const updatepicture = async (req, res, next) => {
-    const { image,id } = req.body;
+    const { image, id } = req.body;
 
-    if (!image||!id) {
+    if (!image || !id) {
         return res.status(400).json({
             success: false,
             msg: "Please fill Entiere fields (from Update picture)",
@@ -147,15 +147,15 @@ const updatepicture = async (req, res, next) => {
         // Send to cloudinary
         const uploadResult = await cloudinaryInstance.uploader.upload(dataURI);
         user.avatar = uploadResult.secure_url;
-        console.log(uploadResult.secure_url);
+
         await user.save();
-    
+
         res.status(200).json({
             success: true,
             msg: "Avatar updated successfully",
             avatarUrl: uploadResult.secure_url
         });
-  
+
     } catch (err) {
         // Handle errors
         console.error(err);
@@ -195,14 +195,14 @@ const FindUser = async (req, res, next) => {
 const GetAvatar = async (req, res, next) => {
     const { id } = req.params;
 
-    if ( !id) {
+    if (!id) {
         return res.status(400).json({
             success: false,
             msg: "Please fill all the fields from get  avatar",
         });
     }
-      //Find User ..
-      try {
+    //Find User ..
+    try {
         // Find the user
         const user = await User.findById(id);
         // Handle if user does not exist
@@ -225,10 +225,47 @@ const GetAvatar = async (req, res, next) => {
         res.status(500).json({
             success: false,
             msg: "Internal Server Error"
-        
+
         });
     }
 };
 
+///Check is Expert/mechanic
+const IsExepert = async (req, res, next) => {
+    const { id } = req.body;
+    if (!id) {
+        return res.status(400).json({
+            success: false,
+            msg: "Please fill all the fields from is expert",
+        });
+    }
+    try {
+       //find user by id 
+        const user = await User.findById(id);
+        if(!user) {
+            return res.status(400).json({
+                success: false,
+                msg: "User does not exist in the database"
+            });
+        }
+        //If user is expert in role array of user
+        if(user.role.includes('expert')) {
+            return res.status(200).json({
+                success: true,
+                isExpert: true
+            });
+        }
+        //If user is not expert in role array of user
+        res.status(200).json({
+            success: true,
+            isExpert: false
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, msg: `${error.message}` });
+    }
+}
+//Is Seller...
 
-module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser,GetAvatar }
+
+module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser, GetAvatar,IsExepert };

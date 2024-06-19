@@ -302,5 +302,71 @@ const isVendor=async (req, res, next) => {
     res.status(500).json({ success: false, msg: `${error.message}` });
 }
 }
+//Can Post Cars..
+const CanPostCars = async (req, res, next) => {
+    const { id } = req.params;
+    if (!id) {
+        return res.status(400).json({
+            success: false,
+            msg: "Please fill all the fields from  CanPostCars",
+        });
+    }
+    try {
+        //find user by id 
+        const user = await User.findById(id);
+        if(!user) {
+            return res.status(400).json({
+                success: false,
+                msg: "User does not exist in the database"
+            });
+        }
+        //If user is expert in role array of user
+        if(user.role.includes('postal') ) {
+            return res.status(200).json({
+                success: true,
+                canPostCars: true
+            });
+        }
+        res.status(200).json({
+            success: false,
+            canPostCars: false
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, msg: `${error.message}` });
+    }
+}
+//can Rent Cars
 
-module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser, GetAvatar,IsExepert,isVendor };
+const CanRentCars = async (req, res, next) => {
+    const { id } = req.params;
+    if (!id) {
+        return res.status(400).json({
+            success: false,
+            msg: "Please fill all the fields from  CanRentCars",
+        });
+    }
+    try {
+        //find user by id 
+        const user = await User.findById(id);
+        if(!user) {
+            return res.status(400).json({
+                success: false,
+                msg: "User does not exist in the database"
+            });
+        }
+        //If user is expert in role array of user
+        if(user.role.includes('rental') ) {
+            return res.status(200).json({
+                success: true,
+                canRentCars: true
+            });
+        }
+        res.status(200).json({
+            success: false,
+            canRentCars: true
+        })} catch (error) {
+            console.error(error);
+            res.status(500).json({ success: false, msg: `${error.message}` });
+        }}
+module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser, GetAvatar,IsExepert,isVendor,CanPostCars,CanRentCars};

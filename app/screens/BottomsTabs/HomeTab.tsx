@@ -1,4 +1,5 @@
 
+import {Alert} from "react-native"
 import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack"
 const HomeStack = createStackNavigator()
 
@@ -26,7 +27,7 @@ import HomeInital from "../Stacks/Home/InitialRoute"
 const HomeTab = ({ navigation }: { navigation: any }) => {
   //Select Avatar
   const avatar=useSelector((state:any)=>state.user.avatar)
-
+//
   return (
     <HomeStack.Navigator initialRouteName="HomeInital" >
       {/* Inital Home Route */}
@@ -40,7 +41,7 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
 
 {/* Post Video */}
 {/* All Cars */}
-<HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Browse Rental Cars",headerRight:()=>(<Icon name="add" onPress={()=>navigation.navigate("postcar")}  type="material" iconStyle={{padding:5,borderRadius:60}} containerStyle={{marginRight:10}}/>)}} name="allcars" component={AllCars} />
+<HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Browse Rental Cars",headerRight:()=>(<Icon name="add" onPress={()=>Alert.alert("Wtf")}  type="material" iconStyle={{padding:5,borderRadius:60}} containerStyle={{marginRight:10}}/>)}} name="allcars" component={AllCars} />
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:""}} name="cardetail" component={ViewCarDetails} />
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:""}} name="bookingsteps" component={BookingSteps} />
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Post A Car"}} name="postcar" component={PostCar} />

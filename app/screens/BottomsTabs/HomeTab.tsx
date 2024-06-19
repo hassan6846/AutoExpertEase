@@ -8,7 +8,7 @@ import { Avatar,Icon  } from "@rneui/themed"
 //utils
 import { getHeight } from "../../utils/GetDimension"
 //nested childs
-import Home from "../Stacks/Home/InitialRoute"
+
 /////////////////////////////////////////////////////////
 // Lesson Section
 import AllLessons from "../Stacks/Home/nested/drivinglessons/AllLessons"
@@ -21,6 +21,7 @@ import BookingSteps from "../Stacks/Home/nested/CarSection/nested/BookingSteps"
 import PostCar from "../Stacks/Home/nested/CarSection/nested/PostCar"
 //State manegment
 import { useSelector } from "react-redux"
+import HomeInital from "../Stacks/Home/InitialRoute"
 
 const HomeTab = ({ navigation }: { navigation: any }) => {
   //Select Avatar
@@ -29,7 +30,7 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
   return (
     <HomeStack.Navigator initialRouteName="HomeInital" >
       {/* Inital Home Route */}
-      <HomeStack.Screen options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS, headerRight: () => (<Avatar avatarStyle={{ borderRadius: 20 }} containerStyle={{ marginRight: 12 }} source={{ uri: avatar }} />), headerTitle: "Welcome", headerStyle: { height: getHeight / 9 } }} component={Home} name="HomeInital" />
+      <HomeStack.Screen options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS, headerRight: () => (<Avatar avatarStyle={{ borderRadius: 20 }} containerStyle={{ marginRight: 12 }} source={{ uri: avatar }} />), headerTitle: "Welcome", headerStyle: { height: getHeight / 9 } }} component={HomeInital} name="HomeInital" />
       {/* Fetch All Videos.. */}
       <HomeStack.Screen  options={{headerShown:false,headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"",headerTitleAlign:"center"}} component={VideoView} name="viewvideo" />
 

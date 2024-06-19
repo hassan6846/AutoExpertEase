@@ -1,323 +1,252 @@
-import { Pressable, ScrollView, StyleSheet, View, } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
-//utils libraries
-import { Text, Avatar, Icon } from '@rneui/themed'
-import { DrvingVideoImage, pakImage, pakleasson, Sedan } from '../../../constants/ImagesConstants'
-import ThemeProviderColors from '../../../provider/ThemeProvider'
-<<<<<<< HEAD
-//state manaegment
-import { useSelector, useDispatch } from 'react-redux'
-import { SetAvatar, } from '../../../slices/UserSlice'
+// Utils libraries
+import { Text, Avatar, Icon } from '@rneui/themed';
+import { DrvingVideoImage, pakImage, pakleasson, Sedan } from '../../../constants/ImagesConstants';
+import ThemeProviderColors from '../../../provider/ThemeProvider';
 
-const Home = ({ navigation }: { navigation: any }) => {
-  //State manegment
+// State management
+import { useSelector, useDispatch } from 'react-redux';
+import { SetAvatar } from '../../../slices/UserSlice';
+
+interface HomeInitalProps {
+  navigation: any;
+}
+
+const HomeInital: React.FC<HomeInitalProps> = ({ navigation }) => {
+  // State management
   const id = useSelector((state: any) => state.auth.userid);
   const dispatch = useDispatch();
-=======
-
-const Home = ({ navigation }: { navigation: any }) => {
->>>>>>> parent of a5bf736 (main)
 
   const serviceArray = [
-    {
-      title: "Rent Cars",
-      icon: "car-rental",
-      route: "allcars"
-    },
-    {
-      title: "AutoHelp",
-      icon: "electric-car",
-      route: "Support"
-    }, {
-      title: "Auto Repair",
-      icon: "electric-car",
-      route: "Service"
-    }, {
-      title: "Learn Drive",
-      icon: "school",
-      route: "allvideos"
-    }
-  ]
-<<<<<<< HEAD
-  //Get Avatar on Update Compoent mount by Id..
-  useEffect(() => {
+    { title: 'Rent Cars', icon: 'car-rental', route: 'allcars' },
+    { title: 'AutoHelp', icon: 'electric-car', route: 'Support' },
+    { title: 'Auto Repair', icon: 'electric-car', route: 'Service' },
+    { title: 'Learn Drive', icon: 'school', route: 'allvideos' },
+  ];
 
+  useEffect(() => {
     const fetchAvatar = async () => {
       try {
         const response = await fetch(`http://10.0.2.2:4001/api/getavatar/${id}`, {
           method: 'GET',
           headers: {
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+          },
         });
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        const avatar = data.avatar
-        dispatch(SetAvatar(avatar))
+        const avatar = data.avatar;
+        dispatch(SetAvatar(avatar));
       } catch (error) {
         console.log('Error fetching avatar:', error);
       }
     };
 
     fetchAvatar();
-  }, [id])
-=======
+  }, [id, dispatch]);
 
->>>>>>> parent of a5bf736 (main)
   return (
     <ScrollView style={Style.container}>
-      <Text style={Style.headingText}>Expolore Services</Text>
+      <Text style={Style.headingText}>Explore Services</Text>
       {/* Service Array */}
       <View style={Style.ServiceContainer}>
-
-        {
-          serviceArray.map((index, key) => (
-
-            <Pressable onPress={() => navigation.navigate(index.route)} key={key} style={{ backgroundColor: "#fff", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingVertical: 10, paddingHorizontal: 5, borderRadius: 5, elevation: 2 }}>
-              <Icon name={index.icon} type='material' />
-              <Text style={{ fontSize: 9 }}>{index.title}</Text>
-            </Pressable>
-
-          ))
-        }
-
-
-
+        {serviceArray.map((item, key) => (
+          <Pressable
+            onPress={() => navigation.navigate(item.route)}
+            key={key}
+            style={Style.servicePressable}
+          >
+            <Icon name={item.icon} type="material" />
+            <Text style={Style.serviceText}>{item.title}</Text>
+          </Pressable>
+        ))}
       </View>
       {/* Service Array Ends */}
-
       <Text style={Style.headingText}>Driving School</Text>
-
-      {/* Map Video Recomendations here */}
-      <ScrollView contentContainerStyle={{ columnGap: 10 }} horizontal={true}>
-
-
-
-        <Pressable
-
-          style={{
-
-            height: 160,
-
-          }}
-          onPress={() => navigation.navigate("viewvideo")}
-        >
-          <View
-            style={{
-              width: '100%',
-              position: 'relative',
-              height: '100%',
-
-            }}
-          >
-            <Avatar
-              containerStyle={{
-                width: '100%',
-                position: 'relative',
-                height: '100%',
-
-              }}
-              avatarStyle={{
-                objectFit: 'cover',
-                aspectRatio: 2,
-                borderRadius: 5
-              }}
-              source={{ uri: DrvingVideoImage }}
-            />
-            {/* Icon positioned above the Avatar */}
-            <Icon
-              containerStyle={{
-                position: 'absolute',
-                top: '30%',
-                left: '40%',
-                transform: [{ translateX: -15 }, { translateY: -15 }],
-              }}
-              name='play-arrow'
-              type='material'
-              size={90}
-              color='white' // Example color for the icon
-
-            />
-          </View>
-        </Pressable>
-
-        <Pressable
-          style={{
-
-            height: 160,
-
-          }}
-          onPress={() => {
-            // Handle onPress event
-          }}
-        >
-          <View
-            style={{
-              width: '100%',
-              position: 'relative',
-              height: '100%',
-
-            }}
-          >
-            <Avatar
-              containerStyle={{
-                width: '100%',
-                position: 'relative',
-                height: '100%',
-
-              }}
-              avatarStyle={{
-                objectFit: 'cover',
-                aspectRatio: 2,
-                borderRadius: 5
-              }}
-              source={{ uri: pakImage }}
-            />
-            {/* Icon positioned above the Avatar */}
-            <Icon
-              containerStyle={{
-                position: 'absolute',
-                top: '30%',
-                left: '40%',
-                transform: [{ translateX: -15 }, { translateY: -15 }],
-              }}
-              name='play-arrow'
-              type='material'
-              size={90}
-              color='white' // Example color for the icon
-
-            />
-          </View>
-        </Pressable>
-
-        <Pressable
-          style={{
-
-            height: 160,
-
-          }}
-          onPress={() => {
-            // Handle onPress event
-          }}
-        >
-          <View
-            style={{
-              width: '100%',
-              position: 'relative',
-              height: '100%',
-
-            }}
-          >
-            <Avatar
-              containerStyle={{
-                width: '100%',
-                position: 'relative',
-                height: '100%',
-
-              }}
-              avatarStyle={{
-                objectFit: 'cover',
-                aspectRatio: 2,
-                borderRadius: 5
-              }}
-              source={{ uri: pakleasson }}
-            />
-            {/* Icon positioned above the Avatar */}
-            <Icon
-              containerStyle={{
-                position: 'absolute',
-                top: '30%',
-                left: '40%',
-                transform: [{ translateX: -15 }, { translateY: -15 }],
-              }}
-              name='play-arrow'
-              type='material'
-              size={90}
-              color='white' // Example color for the icon
-
-            />
-          </View>
-        </Pressable>
-
+      {/* Map Video Recommendations here */}
+      <ScrollView contentContainerStyle={Style.horizontalScroll} horizontal={true}>
+        {[DrvingVideoImage, pakImage, pakleasson].map((image, index) => (
+          <Pressable key={index} style={Style.videoPressable} onPress={() => navigation.navigate('viewvideo')}>
+            <View style={Style.videoContainer}>
+              <Avatar containerStyle={Style.avatarContainer} avatarStyle={Style.avatarStyle} source={{ uri: image }} />
+              <Icon containerStyle={Style.iconContainer} name="play-arrow" type="material" size={90} color="white" />
+            </View>
+          </Pressable>
+        ))}
       </ScrollView>
-      {/* End of the  Map Video Recomendations here */}
-
-      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+      {/* End of the Map Video Recommendations */}
+      <View style={Style.browseRentalContainer}>
         <Text style={Style.headingText}>Browse Rental Vehicle</Text>
-        <Text onPress={() => navigation.navigate('allcars')} style={{ fontSize: 15, fontWeight: "bold", color: ThemeProviderColors.Light.Primary }}>See more</Text>
+        <Text onPress={() => navigation.navigate('allcars')} style={Style.seeMoreText}>See more</Text>
       </View>
-      {/* Horizontal Scroll map some vechiles here */}
-      <ScrollView style={{ flex: 1, marginBottom: 50 }} contentContainerStyle={{ columnGap: 10 }} showsHorizontalScrollIndicator={false} horizontal={true}>
-        {/* car Card */}
+      {/* Horizontal Scroll map some vehicles here */}
+      <ScrollView style={Style.vehicleScroll} contentContainerStyle={Style.horizontalScroll} showsHorizontalScrollIndicator={false} horizontal={true}>
         <View style={Style.BookingWrapper}>
-          <Avatar containerStyle={{ width: "100%", height: 120, borderRadius: 5 }} avatarStyle={{ objectFit: "contain", width: 170 }} source={{ uri: Sedan }} />
-          {/* Feature Container */}
-          <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: "space-between", paddingHorizontal: 2 }}>
-            <Text style={{ fontWeight: "bold", marginLeft: 5, fontSize: 12 }}>Toyota Yaris</Text>
-            <Text style={{ fontSize: 14, fontWeight: "bold", marginLeft: 5 }}>Rs 5600/<Text style={{ color: "#97ADB6", fontSize: 10, alignSelf: 'center' }}>day</Text></Text>
-
+          <Avatar containerStyle={Style.carAvatarContainer} avatarStyle={Style.carAvatarStyle} source={{ uri: Sedan }} />
+          <View style={Style.featureContainer}>
+            <Text style={Style.carTitle}>Toyota Yaris</Text>
+            <Text style={Style.carPrice}>Rs 5600/<Text style={Style.carPriceSubtext}>day</Text></Text>
           </View>
-          <Text style={{ fontSize: 11, fontWeight: "300", color: "#97ADB6", marginLeft: 5 }}>Without Driver</Text>
-          {/* Properties */}
-          <View style={{ flex: 1, marginTop: 5, justifyContent: "flex-start", flexDirection: 'row', columnGap: 5 }}>
-            <View style={{ borderRadius: 3, flexDirection: "row", alignItems: "center", backgroundColor: ThemeProviderColors.Light.Primary, paddingHorizontal: 2, paddingVertical: 2 }}>
-              <Icon color="#fff" size={17} name='airline-seat-recline-normal' type='material' />
-              <Text style={{ fontSize: 10, color: "#fff" }}>4</Text>
+          <Text style={Style.carDescription}>Without Driver</Text>
+          <View style={Style.propertiesContainer}>
+            <View style={Style.propertyItem}>
+              <Icon color="#fff" size={17} name="airline-seat-recline-normal" type="material" />
+              <Text style={Style.propertyText}>4</Text>
             </View>
-
-            <View style={{ borderRadius: 3, flexDirection: "row", alignItems: "center", backgroundColor: ThemeProviderColors.Light.Primary, paddingHorizontal: 2, paddingVertical: 2 }}>
-              <Icon color="#fff" size={17} name='ac-unit' type='material' />
-              <Text style={{ fontSize: 10, color: "#fff" }}>Yes</Text>
+            <View style={Style.propertyItem}>
+              <Icon color="#fff" size={17} name="ac-unit" type="material" />
+              <Text style={Style.propertyText}>Yes</Text>
             </View>
-
-
-
           </View>
         </View>
-
-
-
-        {/* car Card */}
       </ScrollView>
-
-      {/* Experts Drivers.. */}
-
-      {/* Experts Drivers. */}
+      {/* Experts Drivers */}
+      {/* Experts Drivers */}
     </ScrollView>
-  )
-}
+  );
+};
+
 const Style = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
-    backgroundColor: "#fff",
-
-
+    backgroundColor: '#fff',
   },
   headingText: {
     marginTop: 10,
-    fontSize: 18, fontWeight: "bold",
+    fontSize: 18,
+    fontWeight: 'bold',
     marginBottom: 10,
   },
-  // Booking card
-  BookingWrapper: {
-    borderRadius: 5,
-    backgroundColor: "#F8FAFC",
-
-  }, ServiceContainer: {
+  ServiceContainer: {
     borderRadius: 5,
     elevation: 5,
-    backgroundColor: "#fff",
-    width: "100%",
-    flexWrap: "wrap",
+    backgroundColor: '#fff',
+    width: '100%',
+    flexWrap: 'wrap',
     paddingVertical: 20,
     paddingHorizontal: 10,
-    justifyContent: "space-around",
+    justifyContent: 'space-around',
     alignItems: 'center',
-    flexDirection: 'row'
-  }
-})
-export default Home
+    flexDirection: 'row',
+  },
+  servicePressable: {
+    backgroundColor: '#fff',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    borderRadius: 5,
+    elevation: 2,
+  },
+  serviceText: {
+    fontSize: 9,
+  },
+  horizontalScroll: {
+    columnGap: 10,
+  },
+  videoPressable: {
+    height: 160,
+  },
+  videoContainer: {
+    width: '100%',
+    position: 'relative',
+    height: '100%',
+  },
+  avatarContainer: {
+    width: '100%',
+    position: 'relative',
+    height: '100%',
+  },
+  avatarStyle: {
+    objectFit: 'cover',
+    aspectRatio: 2,
+    borderRadius: 5,
+  },
+  iconContainer: {
+    position: 'absolute',
+    top: '30%',
+    left: '40%',
+    transform: [{ translateX: -15 }, { translateY: -15 }],
+  },
+  browseRentalContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  seeMoreText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: ThemeProviderColors.Light.Primary,
+  },
+  vehicleScroll: {
+    flex: 1,
+    marginBottom: 50,
+  },
+  BookingWrapper: {
+    borderRadius: 5,
+    backgroundColor: '#F8FAFC',
+  },
+  carAvatarContainer: {
+    width: '100%',
+    height: 120,
+    borderRadius: 5,
+  },
+  carAvatarStyle: {
+    objectFit: 'contain',
+    width: 170,
+  },
+  featureContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 2,
+  },
+  carTitle: {
+    fontWeight: 'bold',
+    marginLeft: 5,
+    fontSize: 12,
+  },
+  carPrice: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginLeft: 5,
+  },
+  carPriceSubtext: {
+    color: '#97ADB6',
+    fontSize: 10,
+    alignSelf: 'center',
+  },
+  carDescription: {
+    fontSize: 11,
+    fontWeight: '300',
+    color: '#97ADB6',
+    marginLeft: 5,
+  },
+  propertiesContainer: {
+    flex: 1,
+    marginTop: 5,
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    columnGap: 5,
+  },
+  propertyItem: {
+    borderRadius: 3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: ThemeProviderColors.Light.Primary,
+    paddingHorizontal: 2,
+    paddingVertical: 2,
+  },
+  propertyText: {
+    fontSize: 10,
+    color: '#fff',
+  },
+});
+
+export default HomeInital;

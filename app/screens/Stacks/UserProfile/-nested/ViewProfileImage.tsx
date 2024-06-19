@@ -1,13 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, ScrollView, Animated } from 'react-native';
+import { StyleSheet, Dimensions, Animated } from 'react-native';
 import { PinchGestureHandler, State } from 'react-native-gesture-handler';
 import { Image } from 'expo-image';
-import { AvatarSrc } from '../../../../constants/ImagesConstants';
 
 const getWidth = Dimensions.get('window').width;
 const getHeight = Dimensions.get('window').height;
+//State
+import { useSelector } from 'react-redux';
 
 export default function ViewProfileImage() {
+  const avatar=useSelector((state:any)=>state.user.avatar)
+
   const scale = new Animated.Value(1);
   let lastScale = 3;
 
@@ -42,7 +45,7 @@ export default function ViewProfileImage() {
           allowDownscaling={true}
           focusable={true}
           style={Styles.ViewImage}
-          source={{ uri: AvatarSrc }}
+          source={{ uri: avatar }}
           transition={1000}
         />
       </Animated.View>

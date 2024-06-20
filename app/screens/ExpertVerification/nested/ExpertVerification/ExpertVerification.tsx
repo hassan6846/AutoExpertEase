@@ -5,7 +5,7 @@ import InputComponent from '../../../../components/InputComponent/InputComponent
 import DateTimePicker from "@react-native-community/datetimepicker";
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
 import * as ImagePicker from 'expo-image-picker';
-import { cnicBack,cnicFront, AvatarSrc} from '../../../../constants/ImagesConstants';
+import { cnicBack,cnicFront, DefaultImageSrc} from '../../../../constants/ImagesConstants';
 
 const ExpertVerification = () => {
   const [firstName, setFirstName] = useState('');
@@ -16,7 +16,7 @@ const ExpertVerification = () => {
   const [cnic, setCnic] = useState('');
   const [frontCnicUri, setFrontCnicUri] = useState(cnicFront);
   const [backCnicUri, setBackCnicUri] = useState(cnicBack);
-  const [selfieUri, setSelfieUri] = useState(AvatarSrc);
+  const [selfieUri, setSelfieUri] = useState(DefaultImageSrc);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [isDateSelected, setIsDateSelected] = useState(false);
 

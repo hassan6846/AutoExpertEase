@@ -25,8 +25,8 @@ const SellerTabsNavigator = () => {
                 }
             }}>
             <SellerTabs.Screen   options={{headerShown:true,headerTitleAlign:'center',title:"Dashboard",tabBarIcon:DashConfig.Dashboard.Icon}}   name="sellerdashboard" component={Dashboard} />
-            <SellerTabs.Screen options={{headerShown:true,headerTitleAlign:'center',title:"Products",tabBarIcon:DashConfig.Products.Icon}}    name="allproducts" component={AllProducts} />
-            <SellerTabs.Screen  options={{headerShown:true,headerTitleAlign:'center',title:"Orders",tabBarIcon:DashConfig.Orders.Icon}}   name="orders" component={Orders} />
+            <SellerTabs.Screen options={{headerShown:true,headerTitleAlign:'center',title:"Products",tabBarIcon:DashConfig.Products.Icon}}    name="postedproducts" component={AllProducts} />
+            <SellerTabs.Screen  options={{headerShown:true,headerTitleAlign:'center',title:"Orders",tabBarIcon:DashConfig.Orders.Icon}}   name="myorders" component={Orders} />
             <SellerTabs.Screen options={{headerShown:true,headerTitleAlign:'center',title:"Add Products",tabBarIcon:DashConfig.AddProducts.Icon}}    name="uploadproduct" component={UploadProduct} />
         </SellerTabs.Navigator>
     )

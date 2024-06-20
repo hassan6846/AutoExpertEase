@@ -21,13 +21,16 @@ app.use(express.json()); // Server is JSON type
 app.use(cookieParser());
 app.use(
   bodyParser.json({
-    limit: "1000mb",
+    limit: "50mb",
+  
   })
 );
 app.use(
   bodyParser.urlencoded({
-    limit: "1000mb",
+    limit: "50mb",
     extended: true,
+    parameterLimit:50000000,
+    type: "application/json"
   })
 );
 
@@ -38,7 +41,7 @@ const chatbot = require("./routes/Chatbot");
 const admin = require("./routes/AdminRoutes");
 const auth = require("./routes/AuthRoutes");
 const payment = require("./routes/PaymentRoutes");
-// const expert=require("./routes/ExpertRoute")
+const car=require("./routes/CarRoutes")
 // Endpoints middlewares
 app.use("/api", user);
 app.use("/api", product);
@@ -46,8 +49,9 @@ app.use("/api", chatbot);
 app.use("/api", admin);
 app.use("/api", auth);
 app.use("/api", payment);
+app.use("/api",car);
 
-// app.use('/api',expert)
+
 // Create HTTP server
 const server = http.createServer(app);
 

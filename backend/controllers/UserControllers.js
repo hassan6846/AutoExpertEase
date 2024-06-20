@@ -369,13 +369,5 @@ const CanRentCars = async (req, res, next) => {
             console.error(error);
             res.status(500).json({ success: false, msg: `${error.message}` });
         }}
-const PostTask=async (req, res, next) => {
-    //title 
-    //vehicletype
-    //images array
-    //Location Coordinnats
-    //nearby location address.
-    //Description.
-    
-}
+
 module.exports = { RegisterFunction, loginFunction, FindUser, updatepicture, FindUser, GetAvatar,IsExepert,isVendor,CanPostCars,CanRentCars};

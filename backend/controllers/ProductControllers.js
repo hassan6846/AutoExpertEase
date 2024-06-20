@@ -20,16 +20,17 @@ const cloudinaryInstance = require("../utils/Cloudinary");
 //Price and range filteration
 //autocomplete search options
 const CreateProductListing = async (req, res, next) => {
-    const { id, name, brand, description, category, subcategory, saleprice, beforePrice, image, imagetwo, imagethree } = req.body;
-
-    if (!id || !name || !brand || !description || !category || !subcategory || !image || !imagetwo || !imagethree || !saleprice || !beforePrice) {
-        return res.status(400).json({
-            success: false,
-            msg: "Please fill all required fields",
-        });
-    }
+    const { id, name, brand, description, category, subcategory, saleprice, beforePrice, image, imagetwo } = req.body;
 
     try {
+        // Check if all required fields are present
+        if (!id || !name || !brand || !description || !category || !subcategory || !image || !imagetwo  || !saleprice || !beforePrice) {
+            return res.status(400).json({
+                success: false,
+                msg: "Please fill all required fields",
+            });
+        }
+
         // Convert base64 string to buffer and then to Data URI
         const base64ToDataURI = (base64String) => {
             const base64Data = base64String.replace(/^data:image\/\w+;base64,/, '');
@@ -48,7 +49,7 @@ const CreateProductListing = async (req, res, next) => {
         const [uploadedImage1, uploadedImage2, uploadedImage3] = await Promise.all([
             uploadImageToCloudinary(image),
             uploadImageToCloudinary(imagetwo),
-            uploadImageToCloudinary(imagethree)
+
         ]);
 
         // Create a new product
@@ -65,7 +66,7 @@ const CreateProductListing = async (req, res, next) => {
                 beforePrice: beforePrice,
                 saleprice: saleprice,
             },
-            image: [uploadedImage1, uploadedImage2, uploadedImage3]
+            image: [uploadedImage1, uploadedImage2]
         });
 
         // Save the new product to the database
@@ -88,8 +89,35 @@ const CreateProductListing = async (req, res, next) => {
     }
 };
 
+//Fetch Seller Posted Products.
+const FetchSellerProducts = async (req, res, next) => {
+    const { id } = req.params;
+//check if id is provided
+    if (!id) {
+        return res.status(400).json({
+            success: false,
+            msg: "Please provide user id",
+        });
+    }
+    try {
+        // Fetch all products posted by the user
+        const products = await Product.find({ PostedBy: id });
+        res.status(200).json({
+            success: true,
+            products: products
+        });
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            msg: "Internal Server Error"
+        });
+    }
+
+}
 
 
 
 
-module.exports = { CreateProductListing }
+module.exports = { CreateProductListing,FetchSellerProducts }

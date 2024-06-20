@@ -22,6 +22,7 @@ const stripe = require('stripe')(
       const paymentIntent = await stripe.paymentIntents.create({
         amount: amountInPaisa +platformFeeInPaisa,
         currency: "pkr",
+        payment_method_types: ['card'],
         automatic_payment_methods: {
           enabled: true,
         },
@@ -37,6 +38,13 @@ const stripe = require('stripe')(
       });
     }
   };
-  
+  //Add Topups
+  const AddTopup=async(req,res)=>{
+    const { amount } = req.body;
+    //User id ref to expert id
+    const {id}=req.params;
+    
+
+  }
   module.exports = { CreatePayment };
   

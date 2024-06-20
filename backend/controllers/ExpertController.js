@@ -48,3 +48,15 @@ const GetTopup = async (req, res, next) => {
         });
     }
 }
+
+const PostTask=async (req, res, next) => {
+   
+    const {title,vehciletype,description,coordinates,county}=req.body;
+    if (!title || !vehciletype || !description || !coordinates || !county) {
+        return res.status(400).json({
+            success: false,
+            msg: "Please fill all the fields.",
+        });
+    }
+}
+module.exports = { ApplyExpertShip, GetTopup,PostTask };

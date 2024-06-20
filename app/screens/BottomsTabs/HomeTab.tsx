@@ -26,8 +26,46 @@ import HomeInital from "../Stacks/Home/InitialRoute"
 
 const HomeTab = ({ navigation }: { navigation: any }) => {
   //Select Avatar
+  const id = useSelector((state: any) => state.auth.userid);
+
   const avatar=useSelector((state:any)=>state.user.avatar)
-//
+//Check Can PostCars..
+const CanPostCars = async () => {
+  try {
+    const response = await fetch(`http://10.0.2.2:4001/api/can-post/${id}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
+    }
+    const data = await response.json();
+   
+    //if can post cars=false then show alert and not allow to post cars..
+    if (!data.canPostCars) {
+      Alert.alert(
+        "Sorry",
+        "You can't post new cars right now. Please check your role and permissions or Request to become a Car Poster Agency",
+        [
+          {
+            text: "Request Now",
+            onPress: () => {
+              navigation.navigate("expertverify",{screen:"carpostverification"});
+              // Handle the "Request Now" action here
+            },
+          },
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+        ]
+      );      return false;
+    }
+//if true then navigate to post car page..
+      navigation.navigate("postcar")
+    console.log(data);
+  } catch (error) {
+    console.error('Error fetching products:', error.message);
+    // Handle error, e.g., show error message to user
+  }
+};
   return (
     <HomeStack.Navigator initialRouteName="HomeInital" >
       {/* Inital Home Route */}
@@ -41,7 +79,7 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
 
 {/* Post Video */}
 {/* All Cars */}
-<HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Browse Rental Cars",headerRight:()=>(<Icon name="add" onPress={()=>Alert.alert("Wtf")}  type="material" iconStyle={{padding:5,borderRadius:60}} containerStyle={{marginRight:10}}/>)}} name="allcars" component={AllCars} />
+<HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Browse Rental Cars",headerRight:()=>(<Icon name="add" onPress={CanPostCars}  type="material" iconStyle={{padding:5,borderRadius:60}} containerStyle={{marginRight:10}}/>)}} name="allcars" component={AllCars} />
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:""}} name="cardetail" component={ViewCarDetails} />
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:""}} name="bookingsteps" component={BookingSteps} />
 <HomeStack.Screen options={{cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,headerLeft:()=><></>,headerTitleAlign:"center",title:"Post A Car"}} name="postcar" component={PostCar} />

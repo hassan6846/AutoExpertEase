@@ -7,23 +7,11 @@ import { Text, Input, Avatar, Button } from "@rneui/themed"
 import * as ImagePicker from 'expo-image-picker';
 import { selectPhoto } from '../../../constants/ImagesConstants';
 
-const UploadProduct = () => {
+const UploadProduct = ({ navigation }: { navigation: any }) => {
   const [images, setImages] = useState<string[]>([]);
   // Handle Category Layout Modal
-  const [isCategorymodelvisable, SetisCategorymodelvisable] = useState(false)
-  const handleToggle = () => {
-    SetisCategorymodelvisable(!isCategorymodelvisable);
-  };
-  //Handle SubCategory Layout Modal..
-  const [isSubCategorymodelVisable, SetisSubCategorymodelVisable] = useState(false)
-  const HandleSubTogle = () => {
-    SetisSubCategorymodelVisable(!isSubCategorymodelVisable)
-  }
-  //Select Images Function
-  // Convert them to b64 plain type 
-  //post in backend
-  //backend can further post to cloudinary..
-  //fetch by userId..
+
+
   const selectImage = async () => {
     await ImagePicker.requestMediaLibraryPermissionsAsync();
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -37,6 +25,7 @@ const UploadProduct = () => {
     if (!result.canceled) {
       const base64Images = result.assets.map(asset => 'data:image/jpeg;base64,' + asset.base64);
       setImages(base64Images);
+      console.log(base64Images);
     }
   }
 

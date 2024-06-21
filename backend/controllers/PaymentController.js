@@ -21,15 +21,15 @@ const stripe = require('stripe')(
   
       const paymentIntent = await stripe.paymentIntents.create({
         amount: amountInPaisa +platformFeeInPaisa,
+      
         currency: "pkr",
-        payment_method_types: ['card'],
         automatic_payment_methods: {
           enabled: true,
         },
-
+      
       });
   
-      res.json({ paymentIntent });
+      res.json({ paymentIntent:paymentIntent.client_secret });
     } catch (error) {
       console.error(error);
       res.status(500).json({

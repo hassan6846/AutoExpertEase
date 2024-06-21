@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, KeyboardAvoidingView, View, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, KeyboardAvoidingView, View, TouchableOpacity, FlatList } from 'react-native';
+//Utils
 import { getHeight } from '../../../../utils/GetDimension';
-import { Input, LinearProgress, Text, Button, Avatar, Icon } from '@rneui/themed';
+import { bike, Sedan, truck, selectPhoto } from '../../../../constants/ImagesConstants';
+
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
-import { bike, Sedan, truck } from '../../../../constants/ImagesConstants';
+//Library 
+import { Input, Text, Button, Avatar } from '@rneui/themed';
+import * as ImagePicker from 'expo-image-picker';
 
 const TaskDescription = ({ navigation }: { navigation: any }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [imageCount, setImageCount] = useState(0);
+  const [images, setImages] = useState<string[]>([]);
+  const [carType, setCarType] = useState('');
 
   const handleTitleChange = (text: string) => {
     setTitle(text);
@@ -18,8 +23,27 @@ const TaskDescription = ({ navigation }: { navigation: any }) => {
     setDescription(text);
   };
 
-  const handleImagePress = () => {
-    // Logic to select images
+  const cartypeData = [
+    { id: 1, image: bike, title: 'Bike' },
+    { id: 2, image: Sedan, title: 'Sedan' },
+    { id: 3, image: truck, title: 'Truck' },
+  ];
+
+  const selectImage = async () => {
+    await ImagePicker.requestMediaLibraryPermissionsAsync();
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsMultipleSelection: true,
+      aspect: [4, 3],
+      quality: 0.6,
+      base64: true,
+      selectionLimit: 2,
+    });
+
+    if (!result.canceled) {
+      const base64Images = result.assets.map((asset) => asset.base64!);
+      setImages(base64Images);
+    }
   };
 
   const handlePostNow = () => {
@@ -27,12 +51,10 @@ const TaskDescription = ({ navigation }: { navigation: any }) => {
     navigation.navigate('hailing_page');
   };
 
-  // Disable button if any field is empty or description length is less than 30
-  const isButtonDisabled = !title || !description || description.length < 30 || imageCount < 2;
+  const isButtonDisabled = !title || !description || description.length < 30 || images.length < 2;
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
-      <LinearProgress trackColor={ThemeProviderColors.Light.Primary} />
       <ScrollView style={Styles.container}>
 
         {/* Input */}
@@ -48,27 +70,41 @@ const TaskDescription = ({ navigation }: { navigation: any }) => {
         </View>
         {/* Input MainVOid*/}
         {/* Vehicle type */}
-        <Text style={{ fontSize: 14, fontWeight: "bold", marginBottom: 5 }}>Vehicle Type</Text>
+        <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>Vehicle Type:{carType}</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: "row", columnGap: 10 }}>
-          <TouchableOpacity onPress={() => handleImagePress()} style={Styles.avatarContainer}>
-            <Avatar size={getHeight / 8} avatarStyle={Styles.avatar} source={{ uri: bike }} />
-          </TouchableOpacity>
-          {/* Add onPress for Sedan and Truck avatars */}
-          <TouchableOpacity onPress={() => handleImagePress()} style={Styles.avatarContainer}>
-            <Avatar size={getHeight / 8} avatarStyle={Styles.avatar} source={{ uri: Sedan }} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleImagePress()} style={Styles.avatarContainer}>
-            <Avatar size={getHeight / 8} avatarStyle={Styles.avatar} source={{ uri: truck }} />
-          </TouchableOpacity>
+         {
+          cartypeData.map((item, index) => (
+            <TouchableOpacity 
+              key={index} 
+              onPress={() => setCarType(item.title)}
+              style={[Styles.avatarContainer, carType === item.title && Styles.selectedAvatar]}
+            >
+              <Avatar size={getHeight / 8} avatarStyle={Styles.avatar} source={{ uri: item.image }} />
+            </TouchableOpacity>
+          ))    
+         }
         </ScrollView>
 
         {/* Upload Video */}
-        <View style={Styles.uploadContainer}>
-          <Text style={{ color: ThemeProviderColors.Light.FontSubHeading }}>Upload Media Image or Video</Text>
-          <TouchableOpacity onPress={() => handleImagePress()} style={Styles.uploadButton}>
-            <Icon color="#adacac" type='material' name='publish' containerStyle={Styles.uploadIcon} size={30} />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={selectImage}  style={{ padding: 10, backgroundColor: "#f8f8f8", borderRadius: 5 }}>
+          <Text style={{fontSize:12,marginBottom:10}}>Select Max 3 Images only and min 2</Text>
+          {
+            images.length > 0 ? (
+              <FlatList
+                contentContainerStyle={{gap:10}}
+                data={images}
+                horizontal
+                renderItem={({ item }) => (
+                  <Avatar avatarStyle={{ borderRadius: 5 }} containerStyle={{borderRadius:5}} source={{ uri: `data:image/jpeg;base64,${item}` }} size={50} />
+                )}
+                keyExtractor={(item, index) => index.toString()}
+                ListEmptyComponent={<Avatar avatarStyle={{ borderRadius: 5 }} source={{ uri: selectPhoto }} size={50} />}
+              />
+            ) : (
+              <Avatar avatarStyle={{ borderRadius: 5 }} source={{ uri: selectPhoto }} size={50} />
+            )
+          }
+        </TouchableOpacity>
         {/* Upload media Ends */}
         {/* Vehicle ended */}
         <Input
@@ -132,6 +168,11 @@ const Styles = StyleSheet.create({
   },
   avatar: {
     objectFit: "contain",
+  },
+  selectedAvatar: {
+    borderWidth: 2,
+    borderRadius:5,
+    borderColor: ThemeProviderColors.Light.Primary,
   },
   uploadContainer: {
     backgroundColor: "#e5e5e5",

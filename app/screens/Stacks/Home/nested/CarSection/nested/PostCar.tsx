@@ -4,13 +4,51 @@ import React,{useState} from 'react'
 import InputComponent from '../../../../../../components/InputComponent/InputComponent'
 //library
 import { Text,CheckBox,Avatar,Button} from '@rneui/themed'
+import * as ImagePicker from 'expo-image-picker';
+
 //util
 import { selectPhoto } from '../../../../../../constants/ImagesConstants'
 
 const PostCar = () => {
+  //Handle Pickup images
+  const selectImage = async () => {
+    await ImagePicker.requestMediaLibraryPermissionsAsync();
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsMultipleSelection: true,
+      aspect: [4, 3],
+      quality: 0.6,
+      base64: true,
+      selectionLimit: 2,
+    });
+
+    if (!result.canceled) {
+      const base64Images = result.assets.map((asset) => asset.base64!); // Use non-null assertion operator
+
+      setImages(base64Images);
+      console.log(base64Images[0]);
+    }
+  };
   const [checked, setChecked] = React.useState(true);
   const [images, setImages] = useState<string[]>([]);
-
+ const [name, setName] = useState('');
+ const [plate,setPlate] = useState('');
+ const [registration, setRegistration] = useState('');
+ const [color, setColor] = useState('');
+ const [carType, setCarType] = useState('');
+ const [enginetype, setEngineType] = useState('');
+ const [fuelType, setFuelType] = useState('');
+ const [yearOfManufacture, setYearOfManufacture] = useState('');
+ const [mileage, setMileage] = useState('');
+ const [carCondition, setCarCondition] = useState('');
+ const [seats, setSeats] = useState('');
+ const [pricePerDay, setPricePerDay] = useState('');
+ const [ac, setAc] = useState(false);
+const [tracker, setTracker] = useState(false);
+ const [workSoundSystem, setWorkSoundSystem] = useState(false);
+ const [legalDocuments, setLegalDocuments] = useState(false);
+ const [pickedLocation, setPickedLocation] = useState('');
+ const [coordinates, setCoordinates] = useState({ latitude: 0, longitude: 0 });
   return (
     <ScrollView style={styles.container}>
       <View style={styles.ChildWrapper}>
@@ -55,7 +93,7 @@ const PostCar = () => {
       <InputComponent placeholder="Enter Pickup Address Address"/>
       </View>
       <View>
-      <TouchableOpacity  style={{ padding: 10, backgroundColor: "#fff", borderRadius: 5 }}>
+      <TouchableOpacity onPress={selectImage}  style={{ padding: 10, backgroundColor: "#fff", borderRadius: 5 }}>
       {
         images.length>0?(
           <FlatList
@@ -65,7 +103,7 @@ const PostCar = () => {
           data={images}
           horizontal
           renderItem={({ item }) => (
-            <Avatar avatarStyle={{ borderRadius: 5 }} source={{ uri: item }} size={50} />
+            <Avatar avatarStyle={{ borderRadius: 5 }} source={{ uri: `data:image/jpeg;base64,${item}` }} size={50} />
           )}
           keyExtractor={(item, index) => index.toString()}
           ListEmptyComponent={<Avatar avatarStyle={{ borderRadius: 5 }} source={{ uri: selectPhoto }} size={50} />}

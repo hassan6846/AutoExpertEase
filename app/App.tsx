@@ -54,7 +54,6 @@ let presistor=persistStore(Store)
 import {StripeProvider} from "@stripe/stripe-react-native"
 
 const PUBLISHABLE_KEY='pk_test_51NIDjMKxIUjmCPdCkuccRvfJCOR0Wl7VcFMfc4CMfy2I1K0eXKe0UEUm6doBSnkdOfK3JPjGdccVrx6kiuNu77vc00xifmoTSq'
-//Testing For VIdeo and Photo Upload..
 
 
 //Always Add Pages Inside Only Contains Page After logged in or Authentication Ok👍

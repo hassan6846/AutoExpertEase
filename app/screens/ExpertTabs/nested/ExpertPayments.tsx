@@ -5,14 +5,13 @@ import { getHeight } from '../../../utils/GetDimension';
 import ThemeProviderColors from '../../../provider/ThemeProvider';
 import InputComponent from '../../../components/InputComponent/InputComponent';
 import { useSelector } from 'react-redux';
-import { CardField, useStripe } from '@stripe/stripe-react-native';
+import { useStripe } from '@stripe/stripe-react-native';
 
-const ExpertPayments = () => {
+const ExpertPayments: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [amount, setAmount] = useState('');
-  const [cardDetails, setCardDetails] = useState(null);
   const id = useSelector((state: any) => state.auth.userid);
-  const stripe = useStripe();
+  const { initPaymentSheet, presentPaymentSheet } = useStripe();
 
   // Handle change
   const handleAmountChange = (text: string) => setAmount(text);
@@ -24,37 +23,60 @@ const ExpertPayments = () => {
   const isButtonDisabled = amount === '' || Number(amount) <= 0;
 
   const handleConfirmPayment = async () => {
-    if (!cardDetails) {
-      Alert.alert('Error', 'Please enter complete card details.');
-      return;
-    }
-
     try {
-      // Assume you have a backend endpoint that creates a PaymentIntent
-      const response = await fetch('http://10.0.2.2:4001/api/intends', {
+      console.log('Sending request to create PaymentIntent...');
+      const response = await fetch('http://10.0.2.2:4001/api/intents', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ amount: Number(amount) * 100 }), // Amount in cents
+        body: JSON.stringify({ amount: Number(amount)  }), // Amount in cents
       });
 
-      const { clientSecret } = await response.json();
+      console.log('Received response from server:', response.status);
 
-      const { paymentIntent, error } = await stripe.confirmPayment({
-        paymentIntentClientSecret: clientSecret,
-        paymentMethodType: 'Card',
-      });
-
-      if (error) {
-        Alert.alert('Payment failed', error.message);
-      } else if (paymentIntent) {
-        Alert.alert('Payment successful', 'Your payment was successful!');
-        setIsModalVisible(false);
-        // Reset amount and card details
-        setAmount('');
-        setCardDetails(null);
+      if (!response.ok) {
+        Alert.alert('Payment failed', 'Failed to create PaymentIntent. Please try again.');
+        return;
       }
+
+      const data = await response.json();
+      console.log('PaymentIntent data:', data);
+
+      if (!data.paymentIntent) {
+        console.log('No paymentIntent received');
+        Alert.alert('Payment failed', 'No paymentIntent received from server.');
+        return;
+      }
+
+      // Initialize PaymentSheet with the PaymentIntent ID
+      const initResponse = await initPaymentSheet({
+        merchantDisplayName: 'AutoExperts',
+        paymentIntentClientSecret: data.paymentIntent,
+      });
+
+      console.log('initPaymentSheet response:', initResponse);
+
+      if (initResponse.error) {
+        console.log('Error initializing PaymentSheet:', initResponse.error.message);
+        Alert.alert('Payment failed', 'Failed to initialize PaymentSheet. Please try again.');
+        return;
+      }
+
+      // Present PaymentSheet
+      const paymentResponse = await presentPaymentSheet();
+      console.log('presentPaymentSheet response:', paymentResponse);
+
+      if (paymentResponse.error) {
+        console.log('Error presenting PaymentSheet:', paymentResponse.error.message);
+        Alert.alert(
+          `Error code: ${paymentResponse.error.code}`,
+          paymentResponse.error.message
+        );
+        return;
+      }
+
+      Alert.alert('Payment successful', 'Your payment was successful!');
     } catch (error) {
       console.error('Error processing payment:', error.message);
       Alert.alert('Payment failed', 'There was an error processing your payment.');
@@ -82,13 +104,6 @@ const ExpertPayments = () => {
               onChangeText={handleAmountChange}
               keyboardType="number-pad"
               placeholder="Enter Amount min 300"
-            />
-            <CardField
-              postalCodeEnabled={false}
-              placeholders={{ number: '4242 4242 4242 4242' }}
-              cardStyle={styles.cardField}
-              style={styles.cardContainer}
-              onCardChange={cardDetails => setCardDetails(cardDetails)}
             />
             <Button color="#E04E2F" title="Confirm" disabled={isButtonDisabled} onPress={handleConfirmPayment} />
           </View>

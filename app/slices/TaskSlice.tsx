@@ -3,10 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const TaskSlice = createSlice({
     name: "task",
     initialState: {
+        address:"", // state for address
         title: "",
-        vehicleType: "",
+        vehicleType: "",  // state for vehicle type
         mediaSource: "", // state for handling media and video
         description: "",
+        images:[]
     },
     reducers: {
         // Set title

@@ -44,17 +44,17 @@ const OrderSchema = new mongoose.Schema({
     },
     orderedAt: {
         type: Date,
-        default: Date.now,
+        default: Date.now(),
     },
     orderStatus: {
-        type: String,
-        enum: ['pending', 'confirmed', 'shipped', 'delivered'],
-        default: 'pending',
+        type: [String],
+       //pending ,shipped, delivered, 
+        default: ['pending'],
     },
     PaymentMethod: {
-        type: String,
-        enum: ['COD', 'Online'],
-        default: 'COD',
+        type: [String],
+
+        default: ['COD'],
     },
     orderState:{
         type:Boolean,

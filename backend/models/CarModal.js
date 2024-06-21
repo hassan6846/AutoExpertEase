@@ -103,30 +103,7 @@ const CarSchema = new mongoose.Schema({
             default: Date.now,
         },
     }],
-    insuranceDetails: {
-        provider: {
-            type: String,
-            required: true,
-        },
-        policyNumber: {
-            type: String,
-            required: true,
-        },
-        expiryDate: {
-            type: Date,
-            required: true,
-        },
-    },
-    serviceHistory: [{
-        date: {
-            type: Date,
-            required: true,
-        },
-        details: {
-            type: String,
-            required: true,
-        },
-    }],
+
     createdAt: {
         type: Date,
         default: Date.now,
@@ -134,7 +111,9 @@ const CarSchema = new mongoose.Schema({
     IsApproved:{
         type:Boolean,
         default:false,
-    }
+    },
+    // Owner details
+    
 });
 
 // Create the model from the schema

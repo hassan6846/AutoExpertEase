@@ -72,10 +72,11 @@ const ProductRequests = () => {
           products.map(product => (
             <div key={product._id} className='ProductRequestCard' onClick={() => handleOpenModal(product)}>
               <div className='TextContainerProductRequests'>
-                <Avatar style={{ marginRight: '5px' }} src={product.avatar} />
+                <Avatar style={{ marginRight: '5px' }} src={product.PostedBy.avatar} />
                 <div>
-                  <p><span style={{ fontWeight: "bold", marginBottom: 0 }}>{product.PostedBy.firstName}</span> Applied the product for approval.</p>
+                  <p><span style={{ fontWeight: "bold", marginBottom: 0 }}>{product.PostedBy.firstName}</span> Applied the product for approval in {product.productcategory.category} Products of {product.productcategory.subcategory}</p>
                   <p style={{ fontSize: '10px', marginTop: 0, marginBottom: 0 }}>{truncateDescription(product.description)}</p>
+                  
                 </div>
               </div>
               <NavigateNextIcon />
@@ -104,13 +105,20 @@ const ProductRequests = () => {
               <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <Typography variant="h6" component="p">Price:</Typography>
-                  <Typography variant="body1" component="p">Sale Price: PKRselectedProduct?.price.saleprice}</Typography>
-                  <Typography variant="body1" component="p">Before Price: PKR{selectedProduct?.price.beforePrice}</Typography>
+                  <Typography variant="body1" component="p">Sale Price: PKR{selectedProduct?.price.saleprice}</Typography>
+                  <Typography variant="body1" component="p">
+  Profit: PKR {selectedProduct?.price.saleprice * 0.1}
+</Typography>
+<Typography variant="body1" component="p">
+  SellerRevenue {selectedProduct?.price.saleprice-selectedProduct?.price.saleprice * 0.1}
+</Typography>
+
+
                 </div>
 
                 <div>
-                  <Button style={{ backgroundColor: "#EDEDED", boxShadow: "none", color: '#4F4F4F', fontWeight: "500", border: '1px solid #4F4F4F', textTransform: "initial", fontFamily: "Outfit" }} variant='outlined' onClick={handleCloseModal}>Cancel</Button>
-                  <Button variant="contained" color="primary" onClick={() => approveProduct(selectedProduct._id)}>Approve Product</Button>
+                  <Button  style={{ backgroundColor: "#EDEDED", boxShadow: "none", color: '#4F4F4F', fontWeight: "500", border: '1px solid #4F4F4F', textTransform: "initial", fontFamily: "Outfit" }} variant='outlined' onClick={handleCloseModal}>Cancel</Button>
+                  <Button variant="contained" color="error" onClick={() => approveProduct(selectedProduct._id)}>Approve Product</Button>
                 </div>
               </div>
             </>

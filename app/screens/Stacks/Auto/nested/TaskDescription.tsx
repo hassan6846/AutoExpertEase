@@ -4,7 +4,6 @@ import { ScrollView, StyleSheet, KeyboardAvoidingView, View, TouchableOpacity, F
 import { getHeight } from '../../../../utils/GetDimension';
 import { bike, Sedan, truck, selectPhoto } from '../../../../constants/ImagesConstants';
 
-import ThemeProviderColors from '../../../../provider/ThemeProvider';
 //Library 
 import { Input, Text, Button, Avatar } from '@rneui/themed';
 import * as ImagePicker from 'expo-image-picker';
@@ -71,7 +70,7 @@ const TaskDescription = ({ navigation }: { navigation: any }) => {
         {/* Input MainVOid*/}
         {/* Vehicle type */}
         <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>Vehicle Type:{carType}</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: "row", columnGap: 10 }}>
+        <ScrollView  horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: "row", columnGap: 10,marginBottom:10}}>
          {
           cartypeData.map((item, index) => (
             <TouchableOpacity 
@@ -119,7 +118,7 @@ const TaskDescription = ({ navigation }: { navigation: any }) => {
         />
         <Button
           onPress={handlePostNow}
-          color={ThemeProviderColors.Light.Primary}
+          color="#E04E2F"
           buttonStyle={[Styles.ButtonStyle, isButtonDisabled && { backgroundColor: 'gray' }]}
           title="Post Now"
           disabled={isButtonDisabled}
@@ -164,6 +163,7 @@ const Styles = StyleSheet.create({
     width: "100%",
   },
   avatarContainer: {
+
     marginRight: 10,
   },
   avatar: {
@@ -172,7 +172,7 @@ const Styles = StyleSheet.create({
   selectedAvatar: {
     borderWidth: 2,
     borderRadius:5,
-    borderColor: ThemeProviderColors.Light.Primary,
+    borderColor: "#E04E2F",
   },
   uploadContainer: {
     backgroundColor: "#e5e5e5",

@@ -103,7 +103,7 @@ const Dashboard = () => {
       horizontal={false}
       showsVerticalScrollIndicator={false}
         style={styles.productList}
-        contentContainerStyle={{ paddingVertical: 10,rowGap:10,display:"flex",flexDirection:"column" }}
+        contentContainerStyle={{ paddingVertical: 10,rowGap:10,display:"flex",flexDirection:"column",paddingHorizontal:10, }}
         data={products}
         renderItem={renderProductItem}
         keyExtractor={(item) => item._id.toString()} // Assuming each product has a unique id
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   productList: {
     height:"auto",
     backgroundColor: '#fff',
-    paddingHorizontal:10,
+ 
 borderRadius:5,
   },
   productContainer: {

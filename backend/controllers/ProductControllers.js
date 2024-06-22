@@ -117,7 +117,126 @@ const FetchSellerProducts = async (req, res, next) => {
 
 }
 
+//get all products where product status is true
 
+const AllProducts = async (req, res, next) => {
+    try {
+        const products = await Product.find({ productStatus: true });
+        res.status(200).json({
+            success: true,
+            products: products
+        });
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            msg: "Internal Server Error"
+        });
+    }
 
+}
+//Get single product by id
+const GetProductById = async (req, res, next) => {
+    const { id } = req.params;
+    if (!id) {
+        return res.status(400).json({
+            success: false,
+            msg: "Please provide product id",
+        });
+    }
+   try {
+     const product = await Product.findById(id);
+     if (!product) {
+       return res.status(404).json({
+         success: false,
+         msg: "Product not found",
+       });
+     }
+     res.status(200).json({
+       success: true,
+       product: product,
+     });
+   } catch (error) {
+    console.error(error);
+    res.status(500).json({
+        success: false,
+        msg: "Internal Server Error"
+    });
+   }
 
-module.exports = { CreateProductListing,FetchSellerProducts }
+}
+//Get all products where product status is true Vendor Only
+const FetchApprovedProducts = async (req, res, next) => {
+const { id } = req.params;
+const findProducts = await Product.find({ PostedBy: id, productStatus: true });
+
+if (!findProducts) {
+    return res.status(404).json({
+        success: false,
+        msg: "No products found",
+    });
+
+}
+try {
+    
+    res.status(200).json({
+        success: true,
+        products: findProducts,
+    });
+} catch (error) {
+    console.error(error);
+    res.status(500).json({
+        success: false,
+        msg: "Internal Server Error"
+    });
+}
+}
+//Search Products
+const SearchProducts = async (req, res, next) => {
+const { query } = req.params;
+//if query is not provided
+    if (!query) {
+        return res.status(400).json({
+            success: false,
+            msg: "Please provide a search query",
+        });
+    }
+    try {
+         //finding products based on name field from schema
+         const products = await Product.find({ name: { $regex: query, $options: 'i' } });
+         if (!products) {
+             return res.status(404).json({
+                 success: false,
+                 msg: "No products found",
+             });
+         }
+         res.status(200).json({
+             success: true,
+             products: products,
+         });
+
+    } catch (error) {
+         console.error(error);
+        res.status(500).json({
+            success: false,
+            msg: "Internal Server Error"
+        });
+    }
+}
+
+//get all products by subcategory
+const GetProductsBySubcategory = async (req, res, next) => {
+const {query} = req.params;
+
+//if query is not provided
+    if (!query) {
+        return res.status(400).json({
+            success: false,
+            msg: "Please provide a subcategory",
+        });
+    }
+
+}
+
+module.exports = { CreateProductListing,FetchSellerProducts, AllProducts,GetProductById,FetchApprovedProducts,SearchProducts,GetProductsBySubcategory}

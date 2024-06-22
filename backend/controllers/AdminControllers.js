@@ -141,4 +141,32 @@ const DeleteUser = async (req, res, next) => {
         res.status(500).json({ error: "Internal server error" });
     }
 }
-module.exports = { AdminLoginFunction, GetUsersNo, GetProductNo, GetAllUsers, GetAllCars, RecentSignups, DeleteUser }
+
+//Get all UnApproved Products
+const GetUnapprovedProducts = async (req, res, next) => {
+    try {
+        const unapprovedProducts = await Product.find({ productStatus:false });
+        res.status(200).json(unapprovedProducts);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
+
+//Approve Product 
+
+const ApproveProduct = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const approvedProduct = await Product.findByIdAndUpdate(id, { productStatus: true }, { new: true });
+        if (!approvedProduct) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+        res.status(200).json({ message: 'Product approved successfully' ,name:approvedProduct.name  });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
+
+module.exports = { AdminLoginFunction, GetUsersNo, GetProductNo, GetAllUsers, GetAllCars, RecentSignups, DeleteUser,GetUnapprovedProducts,ApproveProduct }

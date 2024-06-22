@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { BiUpload, BiLogOutCircle } from 'react-icons/bi';
 import { BsBox2, BsFillMapFill,BsListTask,BsBookmarkCheck} from 'react-icons/bs';
 import { BiSolidUser,BiCar, BiAddToQueue,} from 'react-icons/bi';
-import { TfiStatsUp } from 'react-icons/tfi';
 import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import { FaHandsHelping } from 'react-icons/fa';
@@ -11,11 +10,7 @@ import { defaultUserImg } from '../../../constants/ImageConstants';
 import './AdminSidebar.css';
 
 const sidebarItems = [
-  {
-    title: 'Overview',
-    icon: <TfiStatsUp />,
-    link: '/admin',
-  },
+
   {
     title: 'Stats',
     icon: <BsFillMapFill />,

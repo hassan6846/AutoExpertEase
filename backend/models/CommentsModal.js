@@ -12,7 +12,7 @@ const CommentSchema = new mongoose.Schema({
     },
     lesson: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Lesson', // Reference to the lesson to which the comment belongs
+        ref: 'User', // Reference to the lesson to which the comment belongs
         required: true,
     },
     parentComment: {

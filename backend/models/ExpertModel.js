@@ -66,6 +66,16 @@ const ExpertSchema = new mongoose.Schema({
       type:Number,
       required:false,
    },
+   createdAt:{
+      type: Date,
+      default: Date.now()
+   },
+   isExpert:{
+   type: Boolean,
+   default: false,
+   required: false,
+
+   }
 
 }, { timestamps: true })
 const Expert = mongoose.model('Expert', ExpertSchema)

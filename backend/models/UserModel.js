@@ -96,30 +96,10 @@ const UserSchema = new mongoose.Schema({
         type:String,
         default:"",
     },
-    RentalEmail:{
-    type:String,
-    default:"",
-    },
-    emergencyPhone:{
-        type:String,
-        default:"",
-    },
-    CurrentAddress:{
-        type:String,
-        default:"",
-    },
-    LisenceNo:{
-        type:String,
-        default:"",
-        required:false,
-    },
-    // User Create at date.
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    },
-
-    //timestamps true
+createdAt:{
+    type: Date,
+    default: Date.now(),
+}
 
 },{timestamps:true})
 //setting index

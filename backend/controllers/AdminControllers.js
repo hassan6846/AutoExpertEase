@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt')
 const User = require("../models/UserModel")
 const Product = require("../models/ProductModel")
 const Car = require("../models/CarModal")
+const Vendor = require("../models/VendorModal")
+const Expert = require("../models/ExpertModel")
 
 const AdminLoginFunction = async (req, res, next) => {
     const { email, password } = req.body;
@@ -79,11 +81,11 @@ const GetUsersNo = async (req, res, next) => {
 
 }
 
-//Product Count
+//Product Count Approved only
 const GetProductNo = async (req, res, next) => {
 
     try {
-        const productCount = await Product.countDocuments();
+        const productCount = await Product.countDocuments({productStatus:true});
         res.status(200).json({ count: productCount }); // Send the count back as JSON response
 
     } catch (error) {
@@ -145,13 +147,22 @@ const DeleteUser = async (req, res, next) => {
 //Get all UnApproved Products
 const GetUnapprovedProducts = async (req, res, next) => {
     try {
-        const unapprovedProducts = await Product.find({ productStatus:false });
-        res.status(200).json(unapprovedProducts);
+        // Find unapproved products
+        const unapprovedProducts = await Product.find({ productStatus: false });
+
+        // Populate the PostedBy field to get user details
+        await Product.populate(unapprovedProducts, { path: "PostedBy", select: "firstName lastName email avatar" });
+
+        res.status(200).json({
+            success: true,
+            products: unapprovedProducts
+        });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
     }
 }
+
 
 //Approve Product 
 
@@ -168,5 +179,57 @@ const ApproveProduct = async (req, res, next) => {
         res.status(500).json({ error: "Internal server error" });
     }
 }
+//Get Today Registration
 
-module.exports = { AdminLoginFunction, GetUsersNo, GetProductNo, GetAllUsers, GetAllCars, RecentSignups, DeleteUser,GetUnapprovedProducts,ApproveProduct }
+const GetTodayRegistration = async (req, res, next) => {
+    try {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        const todayRegistration = await User.countDocuments({ createdAt: { $gte: today, $lt: tomorrow } });
+        res.status(200).json({ count: todayRegistration });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
+//count approved vendors
+
+const CountApprovedVendors = async (req, res, next) => {
+    try {
+        const approvedVendors = await Vendor.countDocuments({ isVendor: true });
+        res.status(200).json({ count: approvedVendors });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
+//count approved Experts
+
+const CountApprovedExperts = async (req, res, next) => {
+    try {
+        const approvedExperts = await Expert.countDocuments({ isExpert: true });
+        res.status(200).json({ count: approvedExperts });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
+//Get Latest Users
+const GetLatestUsers = async (req, res, next) => {
+try {
+ //Fetch Last User
+ const latestUsers = await User.find()
+    .limit(10)
+    .sort({ createdAt: -1 })
+ res.status(200).json(latestUsers)
+
+} catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+}
+
+}
+module.exports = { AdminLoginFunction, GetUsersNo, GetProductNo, GetAllUsers, GetAllCars, RecentSignups, DeleteUser,GetUnapprovedProducts,ApproveProduct,GetTodayRegistration,CountApprovedVendors,CountApprovedExperts,GetLatestUsers}

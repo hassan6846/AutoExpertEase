@@ -6,7 +6,7 @@ import Header from '../../../../components/Header/Header'
 const AllCars = () => {
   return (
     <div>
-<Header title="Listed Cars"/>
+<Header title="Listed Cars(approved only)"/>
     </div>
   )
 }

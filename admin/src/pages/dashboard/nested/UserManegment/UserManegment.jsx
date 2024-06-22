@@ -1,3 +1,4 @@
+import "./UserManegment.css";
 import React, { useState, useEffect } from 'react';
 import { Avatar, Chip } from '@mui/material';
 import { toast, Toaster } from 'react-hot-toast';
@@ -5,7 +6,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Header from '../../../../components/Header/Header';
-import "./UserManegment.css";
+
 import ApiInstance from '../../../../../Instance/AxiosInstance';
 
 const UserManegment = () => {
@@ -14,7 +15,7 @@ const UserManegment = () => {
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [deleting, setDeleting] = useState(false);
 
-  //handle opening and closing of modal
+  // Handle opening and closing of modal
   const handleOpen = (userId) => {
     setSelectedUserId(userId);
     setOpenModal(true);
@@ -80,38 +81,31 @@ const UserManegment = () => {
 
       <div>
         {users.map((user) => (
-          <div key={user._id} style={{ backgroundColor: "red", width: "100%", height: "10vh", marginTop: 5, marginBlock: 5, borderRadius: 5, display: "flex", alignItems: "center", padding: 3, justifyContent: "space-around", cursor: "pointer" }}>
-            <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+          <div key={user._id} className='UserCard' style={{display:"flex",justifyContent:"space-between",padding:10,marginTop:20}}>
+            <div style={{ display: "flex", alignItems: "center" }}>
               <Avatar src={user.avatar} />
-              <div style={{ marginLeft: 5 }}>
-                <p style={{ marginBottom: 0, marginTop: 0 }}>{user.username}</p>
-                <p style={{ marginBottom: 0, marginTop: 0, fontSize: 10 }}>{user.email}</p>
-                <p style={{ marginBottom: 0, marginTop: 0, fontSize: 10 }}>{user._id}</p>
+              <div style={{ marginLeft: 10 }}>
+                <p style={{ marginBottom: 5, fontWeight: "bold",marginBottom:0 }}>{`${user.firstName} ${user.lastName}`}</p>
+                <p style={{ marginBottom: 5, fontSize: 12 ,marginBottom:0}}>{user.email}</p>
+                <p style={{ marginBottom: 5, fontSize: 12,marginBottom:0 }}>{user.phone}</p>
+                <p style={{ marginBottom: 5, fontSize: 12 ,marginBottom:0}}>{`${user.AddressInfo.Address}, ${user.AddressInfo.City}`}</p>
               </div>
             </div>
-            <div>
-              <p style={{ marginBottom: 0, marginTop: 0 }}>Joining Date</p>
-              <p style={{ marginBottom: 0, marginTop: 0, fontSize: 10 }}>{user.createdAt}</p>
+            <div style={{display:"flex",justifyContent:"center",alignItems:'center'}}>
+              <p style={{ marginBottom: 5, fontSize: 12,marginBottom:0 ,marginTop:0,marginRight:4}}>Joining Date: {new Date(user.createdAt).toLocaleDateString()}</p>
+              <Chip label={user.role.join(', ')} style={{ height: 20, fontSize: 10, backgroundColor: "#e5e5e5", marginBottom:0 ,marginRight:4}} />
+              <Chip label={`${user.DeviceInfo.Brand} ${user.DeviceInfo.DeviceName}`} style={{marginRight:4,height: 20, fontSize: 10, backgroundColor: "#e5e5e5" ,marginBottom:0 }} />
             </div>
-            <div>
-              <p style={{ marginBottom: 0, marginTop: 0 }}>Phone</p>
-              <p style={{ marginBottom: 0, marginTop: 0, fontSize: 10 }}>+{user.phone}</p>
-            </div>
-            <div>
-              <p style={{ marginBottom: 0, marginTop: 0 }}>Address</p>
-              <p style={{ marginBottom: 0, marginTop: 0, fontSize: 10 }}>135-c Samanabad, Lahore</p>
-            </div>
-            <div>
-              <p style={{ marginBottom: 0, marginTop: 0 }}>Role</p>
-              <Chip label={user.role} style={{ height: 17, backgroundColor: "#e5e5e5" }} />
-            </div>
-            <div>
-              <p style={{ marginBottom: 0, marginTop: 0 }}>Device</p>
-              <Chip label={user.Locations.BuisnessLocation} style={{ height: 17, backgroundColor: "#e5e5e5" }} />
-            </div>
-            <div style={{ justifyContent: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <p style={{ marginBottom: 0, marginTop: 0 }}>Actions </p>
-              <DeleteIcon onClick={() => handleOpen(user._id)} />
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+              <Button
+                variant="contained"
+                color="error"
+                size="small"
+                onClick={() => handleOpen(user._id)}
+                startIcon={<DeleteIcon />}
+              >
+                Delete User
+              </Button>
             </div>
           </div>
         ))}

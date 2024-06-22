@@ -20,7 +20,6 @@ import CarBookings from "../pages/dashboard/nested/CarBookings/CarBookings";
 
 import AllCars from "../pages/dashboard/nested/AllCars/AllCars";
 import ApproveCars from "../pages/dashboard/nested/ApproveCars/ApproveCars";
-import Overview from "../pages/dashboard/nested/Oveview/Overview";
 import UserManegment from "../pages/dashboard/nested/UserManegment/UserManegment";
 
 const Routing = () => {
@@ -30,7 +29,6 @@ const Routing = () => {
     <Routes>
       {isAuthenticated ? (
         <Route path="/" element={<AdminOutlet />}>
-          <Route path="/admin" element={<Overview />} />
           <Route path="/stats" element={<Stats />} />
 
           <Route path="/products" element={<AllProducts />} />

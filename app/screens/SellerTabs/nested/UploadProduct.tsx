@@ -24,7 +24,8 @@ const UploadProduct = ({ navigation }: { navigation: any }) => {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsMultipleSelection: true,
       aspect: [4, 3],
-      quality: 0.6,
+    
+      quality: 0.2,
       base64: true,
       selectionLimit: 2,
     });
@@ -55,7 +56,8 @@ const UploadProduct = ({ navigation }: { navigation: any }) => {
       subcategory.trim() &&
       saleprice > 0 &&
       beforeprice > 0 &&
-      images.length > 0
+      images.length > 0 &&
+      images.length <= 2  // Limiting to 2 images for now
     ) {
       setIsButtonDisabled(false);
     } else {
@@ -100,8 +102,12 @@ const UploadProduct = ({ navigation }: { navigation: any }) => {
       Alert.alert(
         'Product created Successfully',
         'Your product has been created successfully. But you still need to wait for Product Approval',
+      //ading buton
+
       );
       navigation.navigate('postedproducts');
+
+
     } catch (error) {
       console.error('Error creating product:', error.message);
       // Handle error scenario, e.g., show error message to user

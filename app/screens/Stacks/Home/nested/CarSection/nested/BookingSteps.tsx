@@ -5,6 +5,7 @@ import { useStripe } from "@stripe/stripe-react-native";
 
 const BookingSteps = () => {
   const [emergencyPhone, setEmergencyPhone] = useState('');
+  const [amount, setAmount] = useState(100);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [pickupTime, setPickupTime] = useState(new Date());
@@ -13,6 +14,68 @@ const BookingSteps = () => {
   const [showPickupTimePicker, setShowPickupTimePicker] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [totalDays, setTotalDays] = useState(0);
+  const { initPaymentSheet, presentPaymentSheet } = useStripe(); // Handle Payment Sheet
+
+  // Handle Payment Sheet
+  const handleConfirmPayment = async () => {
+    try {
+      console.log('Sending request to create PaymentIntent...');
+      const response = await fetch('http://10.0.2.2:4001/api/intents', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ amount: Number(amount) * 100 }), // Amount in cents
+      });
+
+      console.log('Received response from server:', response.status);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Server response error:', errorData);
+        Alert.alert('Payment failed', `Failed to create PaymentIntent. Error: ${errorData.message || 'Unknown error'}`);
+        return;
+      }
+
+      const data = await response.json();
+      console.log('PaymentIntent data:', data);
+
+      if (!data.paymentIntent) {
+        console.log('No paymentIntent received');
+        Alert.alert('Payment failed', 'No paymentIntent received from server.');
+        return;
+      }
+
+      // Initialize PaymentSheet with the PaymentIntent ID
+      const initResponse = await initPaymentSheet({
+        merchantDisplayName: 'AutoExperts',
+        paymentIntentClientSecret: data.paymentIntent,
+      });
+
+      console.log('initPaymentSheet response:', initResponse);
+
+      if (initResponse.error) {
+        console.log('Error initializing PaymentSheet:', initResponse.error.message);
+        Alert.alert('Payment failed', `Failed to initialize PaymentSheet. Error: ${initResponse.error.message}`);
+        return;
+      }
+
+      // Present PaymentSheet
+      const paymentResponse = await presentPaymentSheet();
+      console.log('presentPaymentSheet response:', paymentResponse);
+
+      if (paymentResponse.error) {
+        console.log('Error presenting PaymentSheet:', paymentResponse.error.message);
+        Alert.alert(`Error code: ${paymentResponse.error.code}`, paymentResponse.error.message);
+        return;
+      }
+
+      Alert.alert('Payment successful', 'Your payment was successful! Your can Now view your booking details.');
+    } catch (error) {
+      console.error('Error processing payment:', error.message);
+      Alert.alert('Payment failed', 'There was an error processing your payment.');
+    }
+  };
 
   useEffect(() => {
     validateFields();
@@ -59,8 +122,6 @@ const BookingSteps = () => {
     const days = Math.round(Math.abs((endDate.getTime() - startDate.getTime()) / oneDay));
     setTotalDays(days + 1); // Adding 1 to include both start and end date
   };
-
-
 
   return (
     <ScrollView style={styles.container}>
@@ -129,6 +190,7 @@ const BookingSteps = () => {
       </Text>
 
       <TouchableOpacity
+        onPress={handleConfirmPayment}
         style={[styles.submitButton, isButtonDisabled && styles.disabledButton]}
         disabled={isButtonDisabled}
       >

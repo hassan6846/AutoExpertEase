@@ -2,7 +2,6 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 // slices (reducers actions)
-import NetworkSlice from "../slices/NetworkSlice"; // network status
 import AuthSlice from "../slices/AuthSlice"; // Authentication Status
 import locationSlice from "../slices/LocationSlice";
 import ChatBotSlice from "../slices/ChatBotSlice";
@@ -11,7 +10,6 @@ import UserSlice from "../slices/UserSlice";
 
 // Combine reducers
 const rootReducer = combineReducers({
-  network: NetworkSlice,
   auth: AuthSlice,
   location: locationSlice,
   chatbot:ChatBotSlice,

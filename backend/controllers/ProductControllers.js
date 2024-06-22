@@ -236,7 +236,27 @@ const {query} = req.params;
             msg: "Please provide a subcategory",
         });
     }
-
+   try{
+        //finding products based on subcategory field from schema
+        const products = await Product.find({ "productcategory.subcategory": query });
+        if (!products) {
+            return res.status(404).json({
+                success: false,
+                msg: "No products found",
+            });
+        }
+        res.status(200).json({
+            success: true,
+            products: products,
+        });
+   }catch(error){
+    console.error(error);
+    res.status(500).json({
+        success: false,
+        msg: "Internal Server Error"
+    });
+   
+}
 }
 
 module.exports = { CreateProductListing,FetchSellerProducts, AllProducts,GetProductById,FetchApprovedProducts,SearchProducts,GetProductsBySubcategory}

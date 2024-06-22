@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { Button, Text, Avatar, Icon } from "@rneui/themed";
-import { AvatarSrc, easypaisa, JazzCash, DefaultImageSrc } from '../../../../constants/ImagesConstants';
+import { useRoute } from "@react-navigation/native";
 
 const ProductViewPage = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const images = [AvatarSrc, easypaisa, JazzCash, DefaultImageSrc]; // Array of image URLs
+  const route = useRoute();
+  const { productId } = route.params as { productId: string }; // Type assertion to specify the shape of route.params
+
+  const [product, setProduct] = useState<any>(null); // State to hold product details
+  const [loading, setLoading] = useState<boolean>(true); // Loading state
+  const [selectedIndex, setSelectedIndex] = useState<number>(0); // State to track selected image index
 
   const FeaturesArray = [
     {
@@ -38,61 +42,115 @@ const ProductViewPage = () => {
     }
   ];
 
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      try {
+        const response = await fetch(`http://10.0.2.2:4001/api/product/${productId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch product details');
+        }
+
+        const data = await response.json();
+        setProduct(data.product); // Set product details to state
+        setLoading(false); // Set loading to false after data is fetched
+      } catch (error) {
+        console.error('Error fetching product details:', error);
+        setLoading(false); // Set loading to false in case of error
+      }
+    };
+
+    fetchProductDetails();
+  }, [productId]);
+
+  const handleAvatarPress = (index: number) => {
+    setSelectedIndex(index); // Update selectedIndex when Avatar is pressed
+  };
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#E04E2F" />
+      </View>
+    );
+  }
+
+  if (!product) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text>No product found.</Text>
+      </View>
+    );
+  }
+
   return (
-    <View style={Styles.container}>
-      <ScrollView style={Styles.scrollView} contentContainerStyle={Styles.scrollViewContent}>
+    <View style={styles.container}>
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContent}>
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", marginTop: 30 }}>
-          <Avatar avatarStyle={{ borderRadius: 5 }} containerStyle={{ height: 250, width: "90%", marginBottom: 5 }} source={{ uri: images[selectedIndex] }} />
+          <Avatar 
+            avatarStyle={{ borderRadius: 5 }} 
+            containerStyle={{ height: 250, width: "90%", marginBottom: 5 }} 
+            source={{ uri: product.image[selectedIndex] }} // Use selectedIndex to display the selected image
+          />
         </View>
-        <View style={Styles.ImageRow}>
-          {images.map((image, index) => (
+        <View style={styles.imageRow}>
+          {product.image.map((image: any, index: number) => (
             <Avatar
               key={index}
               size={60}
+              containerStyle={{ marginLeft: 5 }}
               avatarStyle={StyleSheet.flatten([
                 { borderRadius: 5 },
-                { borderColor: selectedIndex === index ? "#E04E2F": 'transparent', borderWidth: 2 }
+                { borderColor: selectedIndex === index ? "#E04E2F" : 'transparent', borderWidth: 2 }
               ])}
               source={{ uri: image }}
-              onPress={() => setSelectedIndex(index)}
+              onPress={() => handleAvatarPress(index)} // Call handleAvatarPress with index
             />
           ))}
         </View>
         <Text style={{ paddingHorizontal: 20, marginTop: 5, color: "#302F33", fontWeight: "100", fontSize: 20 }}>
-          BDK Polypro Car Seat Covers Full Set in Charcoal
+          {product.name}
         </Text>
         <View style={{ flexDirection: "row", paddingHorizontal: 20, alignItems: "center" }}>
-          <Text style={{ fontSize: 10, backgroundColor: "#f6f6f6", paddingHorizontal: 8, paddingVertical: 3, borderRadius: 10, marginTop: 10, marginBottom: 10 }}>
-            Automotive Seat cover
+          <Text style={{ fontSize: 10, backgroundColor: "#f6f6f6", paddingHorizontal: 8, paddingVertical: 3, borderRadius: 10, marginTop: 10, marginBottom: 10, marginLeft: 5 }}>
+            {product.productcategory.category}
+          </Text>
+          <Text style={{ fontSize: 10, backgroundColor: "#f6f6f6", paddingHorizontal: 8, paddingVertical: 3, borderRadius: 10, marginTop: 10, marginBottom: 10, marginLeft: 5 }}>
+            {product.productcategory.subcategory}
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "center", paddingHorizontal: 20, marginBottom: 10 }}>
-          <Text style={{ marginRight: 5, color: "#302F33", fontWeight: "400", fontSize: 18 }}>PKR 200</Text>
-          <Text style={{ fontSize: 12, fontWeight: "100", textDecorationLine: "line-through", color: "#97ADB6" }}>$270</Text>
+          <Text style={{ marginRight: 5, color: "#302F33", fontWeight: "400", fontSize: 18 }}>PKR{product.price.saleprice}</Text>
+          <Text style={{ fontSize: 12, fontWeight: "100", textDecorationLine: "line-through", color: "#97ADB6" }}>{product.price.beforePrice}</Text>
         </View>
         <View>
-          <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: 10,justifyContent:"center",columnGap:10 }}>
+          <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: 10, justifyContent: "center", columnGap: 10 }}>
             {FeaturesArray.map((feature, index) => (
-              <View key={index} style={{ backgroundColor: feature.backgroundColor, flexDirection: 'column', alignItems: 'center',  borderRadius: 5,paddingHorizontal:5,paddingVertical:8}}>
-                <Icon containerStyle={{ marginRight: 3 }}  name={feature.icon} />
-                <Text style={{ fontSize: 10, fontWeight: "100"}}>{feature.name}</Text>
+              <View key={index} style={{ backgroundColor: feature.backgroundColor, flexDirection: 'column', alignItems: 'center', borderRadius: 5, paddingHorizontal: 5, paddingVertical: 8 }}>
+                <Icon containerStyle={{ marginRight: 3 }} name={feature.icon} />
+                <Text style={{ fontSize: 10, fontWeight: "100" }}>{feature.name}</Text>
               </View>
             ))}
           </View>
           <View style={{ paddingHorizontal: 20, marginTop: 10 }}>
             <Text style={{ fontSize: 14 }}>Description</Text>
             <Text style={{ color: "#97ADB6", fontWeight: "100" }}>
-              An exclusive creation from Tiny Steps illustration for our site, these Retro Swimmers is a perfect add to your home decor. Getting inspiration by vintage fashion, from the 20's to the 50's, these graceful couple of swimmers with minimal traces is another great work Printed in uncoated natural paper, 300 gsm
+              {product.description}
             </Text>
           </View>
         </View>
       </ScrollView>
-      <Button color="#E04E2F" title="Add to Cart" containerStyle={Styles.button} />
+      <Button color="#E04E2F" title="Add to Cart" containerStyle={styles.button} />
     </View>
   );
 };
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff"
@@ -103,17 +161,23 @@ const Styles = StyleSheet.create({
   scrollViewContent: {
     paddingBottom: 60, // Adjust based on the button's height
   },
+  loadingContainer: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imageRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginVertical: 10,
+  },
   button: {
     position: "absolute",
     bottom: 20,
     width: "100%",
     paddingHorizontal: 30,
   },
-  ImageRow: {
-    columnGap: 5,
-    justifyContent: "center",
-    flexDirection: "row"
-  }
 });
 
 export default ProductViewPage;

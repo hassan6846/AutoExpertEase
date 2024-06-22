@@ -34,12 +34,14 @@ const BookingSchema = new mongoose.Schema({
     },
     owner:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Agency",
+        ref:"User",
         required: true,
     },
-    ownerUserDetauls:{
+    ownerUserDetails:{
         type:mongoose.Schema.Types.ObjectId,
-        
+        ref:"User",
+        required: true,
+
     }
 });
 

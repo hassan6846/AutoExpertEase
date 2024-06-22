@@ -1,15 +1,20 @@
-import { View, StyleSheet, Pressable, FlatList, Dimensions, ScrollView, SafeAreaView } from "react-native"
-import { Text, Icon, Skeleton, Avatar, ButtonGroup, Button } from "@rneui/themed"
+import { View, StyleSheet, Pressable, FlatList, ScrollView,TouchableOpacity  } from "react-native"
+import { useEffect, useState } from "react"
+
+//Library
+import { Text, Icon, Avatar, Button } from "@rneui/themed"
+import { getHeight as GetHeight, getWidth } from "../../../utils/GetDimension"
+
+//utils
 import ThemeProviderColors from "../../../provider/ThemeProvider"
-import { TouchableOpacity } from "react-native-gesture-handler"
-import { AvatarSrc } from "../../../constants/ImagesConstants"
-import { useState } from "react"
-const GetWidth = Dimensions.get("screen").width
-const GetHeight = Dimensions.get("screen").height
+
+
+
 const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
 
     // States
     const [selectedBannerIndex, SetselectedBannerIndex] = useState(0)
+    const [products,setprododucts]= useState<any>([])
     //Handle Click Banner dispach
     const handleImageClick = (index: any) => {
         SetselectedBannerIndex(index);
@@ -58,46 +63,28 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
     ]
     // Product Categories Array
     //Example for Product Infinite Scroll
-    const Product = [
-        {
-            Title: "Jallraven - Foldsack No. 1 Bagpack",
-            price: 109.95,
-            priceBefore: 204,
-            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-        },
-        {
-            Title: "Jallraven - Foldsack No. 1 Bagpack",
-            price: 109.95,
-            priceBefore: 204,
-            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-        },
-        {
-            Title: "Jallraven - Foldsack No. 1 Bagpack",
-            price: 109.95,
-            priceBefore: 204,
-            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-        },
-        {
-            Title: "Jallraven - Foldsack No. 1 Bagpack",
-            price: 109.95,
-            priceBefore: 204,
-            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-        },
-        {
-            Title: "Jallraven - Foldsack No. 1 Bagpack",
-            price: 109.95,
-            priceBefore: 204,
-            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-        },
-
-
-    ]
+    
     // Banners Urls
     const BannerUrls = [
         "https://res.cloudinary.com/diml3oeaw/image/upload/v1709872959/omcjgurvprtsblfgt3hp.png",
 
         "https://res.cloudinary.com/diml3oeaw/image/upload/v1709872959/omcjgurvprtsblfgt3hp.png"
     ]
+    // Fetching Products
+    useEffect(()=>{
+        const getAllProducts = async () => {
+            const response=await fetch('http://10.0.2.2:4001/api/product',{
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+             const data=await response.json()
+         
+             setprododucts(data.products)
+        }
+        getAllProducts()
+    })
     return (
         < >
             <ScrollView style={Styles.InitialShopContainer}>
@@ -169,7 +156,7 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
                     renderItem={({ item }) => (
 
                         <TouchableOpacity onPress={()=>navigation.navigate('allcategory',{screen:item.route})} >
-                            <Avatar rounded={true} size={GetWidth / 5} source={{ uri: item.image }} />
+                            <Avatar rounded={true} size={getWidth / 5} source={{ uri: item.image }} />
                         </TouchableOpacity>
                     )}
                     contentContainerStyle={{ justifyContent: "space-between", columnGap: 2, alignItems: "center", flex: 1, padding: 10 }}
@@ -186,16 +173,16 @@ const ShopInitalRoute = ({ navigation }: { navigation: any }) => {
                     style={{ paddingHorizontal: 20, marginBottom: 20 }}
                     contentContainerStyle={{ flex: 1, backgroundColor: '#fff', flexWrap: 'wrap', flexDirection: 'row', alignSelf: 'center', rowGap: 10, justifyContent: "space-between", paddingHorizontal: 8, marginTop: 10 }} >
                     {
-                        Product.map((index, key) => (
-                            <View key={key} style={{ width: GetWidth * 0.3, margin: 5, }}>
-                                <Avatar onPress={() => navigation.navigate("view")} containerStyle={{ width: "100%", height: 180, borderRadius: 3 }} avatarStyle={{ resizeMode: "contain", width: '100%', height: '100%' }} source={{ uri: index.image }} />
+                        products.map((index:any, key:any) => (
+                            <TouchableOpacity  key={key} style={{ width: getWidth * 0.33, margin: 5, }}>
+                                <Avatar onPress={() => navigation.navigate("view",{productId:index._id})}   overlayContainerStyle={{borderRadius:5}} containerStyle={{ width: "100%", height: 180, borderRadius: 3 }} avatarStyle={{ resizeMode: "cover", width: '100%', height: '100%',borderRadius:5}} source={{ uri: index.image[0] }} />
                                 <View style={{ flexDirection: "row", alignItems: "center" }}>
-                                    <Text style={{ fontSize: 16, fontWeight: "900", marginTop: 4 }}>{index.price} {""}Rs</Text>
-                                    <Text style={{ textDecorationLine: "line-through", fontSize: 12, color: "red", marginLeft: 5 }}>{index.priceBefore}</Text>
+                                    <Text style={{ fontSize: 16, fontWeight: "900", marginTop: 4 }}>{index.price.saleprice} {""}Rs</Text>
+                                    <Text style={{ textDecorationLine: "line-through", fontSize: 12, color: "red", marginLeft: 5 }}>{index.price.beforePrice}</Text>
                                 </View>
-                                <Text style={{ fontSize: 10, fontWeight: "500", padding: 4, color: ThemeProviderColors.Light.FontSubHeading }}>{index.Title}</Text>
+                                <Text style={{ fontSize: 10, fontWeight: "500", padding: 4, color: ThemeProviderColors.Light.FontSubHeading }}>{index.name.length > 30 ? `${index.name.substring(0, 30)}...` : index.name}</Text>
                                 <Button titleStyle={{ fontSize: 12 }} buttonStyle={{ marginTop: 3 }} color={ThemeProviderColors.Light.Primary} title="Add to Cart" />
-                            </View>
+                            </TouchableOpacity>
                         ))
                     }
                 </ScrollView>

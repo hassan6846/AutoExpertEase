@@ -52,10 +52,7 @@ const ProductSchema = new mongoose.Schema({
             required: [true, "Please Enter product Price"],
             maxLength: [8, "Price cannot exceed 8 characters"]
         },
-        TotalEarnings: {
-            type: Number,
-            default: 0
-        }
+
     },
     postedAt: {
         type: Date,

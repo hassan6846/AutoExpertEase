@@ -25,7 +25,6 @@ import CartPage from "../Stacks/Shop/nested/CartPage"
 import ShopCategory from "../Stacks/Shop/nested/ShopCategory"
 import Search from "../Stacks/Shop/nested/SearchPage"
 import ProductViewPage from "../Stacks/Shop/nested/ProductViewPage"
-import SearchResults from "../Stacks/Shop/nested/SearchResults"
 import CategoryTabs from "../Stacks/Shop/nested/AllCategory/initialRoute"
 import Wallet from "../Stacks/Shop/nested/Wallet"
 import Checkout from "../Stacks/Shop/nested/Checkout"
@@ -103,17 +102,7 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
 
 
       />
-      {/* Search Results */}
-      <EcommerceStack.Screen
-        name="searchresults"
-        options={{
-          headerShown: false,
-          cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
-          gestureEnabled: true,
-          headerShadowVisible: false
-        }}
 
-        component={SearchResults} />
 
       {/*CartPage  */}
       <EcommerceStack.Screen

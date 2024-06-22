@@ -1,7 +1,7 @@
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
-import { presentPaymentSheet } from "@stripe/stripe-react-native";
+import { useStripe } from "@stripe/stripe-react-native";
 
 const BookingSteps = () => {
   const [emergencyPhone, setEmergencyPhone] = useState('');
@@ -60,9 +60,7 @@ const BookingSteps = () => {
     setTotalDays(days + 1); // Adding 1 to include both start and end date
   };
 
-  const handlePaymentButton = async () => {
-    await presentPaymentSheet();
-  };
+
 
   return (
     <ScrollView style={styles.container}>
@@ -123,7 +121,7 @@ const BookingSteps = () => {
       </View>
 
       <Text style={styles.infoText}>
-        Make sure to drop the vehicle back at the same pickup time, otherwise, you'll incur extra charges.
+        Make sure to drop the vehicle back at the same pickup time, otherwise, you'll include extra charges.
       </Text>
 
       <Text style={styles.infoText}>
@@ -131,7 +129,6 @@ const BookingSteps = () => {
       </Text>
 
       <TouchableOpacity
-        onPress={handlePaymentButton}
         style={[styles.submitButton, isButtonDisabled && styles.disabledButton]}
         disabled={isButtonDisabled}
       >
@@ -169,7 +166,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   submitButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#E04E2F',
     padding: 15,
     borderRadius: 5,
     alignItems: 'center',

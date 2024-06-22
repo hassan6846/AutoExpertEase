@@ -12,7 +12,7 @@ const ViewCarDetails = ({ navigation }: { navigation: any }) => {
   // Handle Clicks for Change Image,
   const [selectedBannerIndex, SetselectedBannerIndex] = useState(0)
   // Handle Click Banner dispatch
-  const handleImageClick = (index:any) => {
+  const handleImageClick = (index: any) => {
     SetselectedBannerIndex(index);
   };
 
@@ -23,21 +23,21 @@ const ViewCarDetails = ({ navigation }: { navigation: any }) => {
 
   ////// Ends here for photo Change...
 
-//Handle Book Button..
-const HandleNext=async()=>{
-  navigation.navigate('bookingsteps')
-}
+  //Handle Book Button..
+  const HandleNext = async () => {
+    navigation.navigate('bookingsteps')
+  }
 
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {/* Car Banner */}
         <View style={styles.bannerContainer}>
-          <Avatar 
-            containerStyle={styles.bannerAvatar} 
-            avatarStyle={styles.bannerAvatarStyle} 
-            source={{ uri: BannerUrls[selectedBannerIndex] }} 
-            size={300} 
+          <Avatar
+            containerStyle={styles.bannerAvatar}
+            avatarStyle={styles.bannerAvatarStyle}
+            source={{ uri: BannerUrls[selectedBannerIndex] }}
+            size={300}
           />
           <View style={styles.bannerDots}>
             {BannerUrls.map((url, index) => (
@@ -61,12 +61,12 @@ const HandleNext=async()=>{
           </ListItem.Content>
         </ListItem>
         <View style={styles.priceContainer}>
-          <Text style={{color:"#F54335",fontSize:18}}>PKR 4000/day</Text>
-         
+          <Text h4 style={{  fontWeight: "100",marginLeft:5 }}>PKR 4000/day</Text>
+
         </View>
 
         {/* About Owner */}
-        <View style={{padding:10}}>
+        <View >
           <ListItem>
             <Avatar size={50} avatarStyle={styles.ownerAvatar} source={{ uri: "https://shorturl.at/NsJpp" }} />
             <ListItem.Content >
@@ -144,29 +144,29 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   scrollContainer: {
-    paddingBottom: 100, // Adjust to give space for the fixed button
+    paddingBottom: 50, // Adjust to give space for the fixed button
   },
   bannerContainer: {
-    display: 'flex', 
-    alignItems: 'center', 
+    display: 'flex',
+    alignItems: 'center',
     position: "relative"
   },
   bannerAvatar: {
-    width: "100%", 
-    height: 300 
+    width: "100%",
+    height: 300
   },
   bannerAvatarStyle: {
-    objectFit: "cover" 
+    objectFit: "cover"
   },
   bannerDots: {
-    width: "100%", 
-    display: "flex", 
-    justifyContent: "center", 
-    alignItems: 'center', 
-    flexDirection: "row", 
-    columnGap: -5, 
-    position: 'absolute', 
-    bottom: 5 
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: 'center',
+    flexDirection: "row",
+    columnGap: -5,
+    position: 'absolute',
+    bottom: 5
   },
   dot: {
     width: 7,
@@ -180,18 +180,22 @@ const styles = StyleSheet.create({
     backgroundColor: ThemeProviderColors.Light.Primary,
   },
   carTitle: {
-    fontSize: 18
+    fontSize: 18,
+ 
+    fontWeight: "bold",
+    color:"#97ADB6"
+
   },
   carSubtitle: {
-    fontSize: 12
+    fontSize: 12,
+    color:"#97ADB6"
   },
   priceContainer: {
-    paddingHorizontal: 20,
-   paddingVertical:20,
+paddingVertical:10,
     backgroundColor: "#fff",
-    flexDirection:'row',
-    alignItems:'center',
-columnGap:4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: 4,
   },
   ownerAvatar: {
     borderRadius: 60
@@ -213,7 +217,7 @@ columnGap:4,
     fontWeight: "100"
   },
   fixedButtonContainer: {
-    backgroundColor:"#fff",
+    backgroundColor: "#fff",
     position: 'absolute',
     bottom: -1,
     width: '100%',
@@ -225,13 +229,13 @@ columnGap:4,
     backgroundColor: ThemeProviderColors.Light.Primary,
     padding: 15,
     borderRadius: 10,
-    width:"80%",
-  
+    width: "80%",
+
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
-    textAlign:"center",
+    textAlign: "center",
     fontWeight: 'bold'
   }
 });

@@ -167,6 +167,8 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
       <EcommerceStack.Screen options={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         cardShadowEnabled: false,
+     
+
         headerShadowVisible: false,
         title: "All Category"
       }} name="allcategory" component={CategoryTabs} />

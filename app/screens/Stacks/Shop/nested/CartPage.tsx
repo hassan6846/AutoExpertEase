@@ -1,18 +1,20 @@
-import { View, StyleSheet, Dimensions, ScrollView, Pressable } from "react-native";
+import { View, StyleSheet, ScrollView, Pressable } from "react-native";
 import { useState } from "react";
 
 // utils
 import ThemeProviderColors from "../../../../provider/ThemeProvider";
-import { Text, Button, Avatar, Icon, } from "@rneui/themed";
-//sdks
-import { Image } from "expo-image";
 import { getHeight,getWidth } from "../../../../utils/GetDimension";
 
-// Get width
-
+//sdks
+import { Image } from "expo-image";
+import { Text, Button, Avatar, Icon, } from "@rneui/themed";
+//State manegment
+import { useSelector } from "react-redux";
 
 
 const CartPage = ({ navigation }: { navigation: any }) => {
+  const Items=useSelector((state:any)=>state.cart.items)
+
   const [CartEmpty, SetCartEmpty] = useState(false); // State for Cart page being empty or not
   const [showPaymentMethod, SetshowPaymentMethod] = useState(true); // State for Checkout Payment
 

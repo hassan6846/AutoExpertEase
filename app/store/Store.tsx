@@ -7,6 +7,7 @@ import locationSlice from "../slices/LocationSlice";
 import ChatBotSlice from "../slices/ChatBotSlice";
 import TaskSlice from "../slices/TaskSlice";
 import UserSlice from "../slices/UserSlice";
+import CartSlice from "../slices/CartSlice";
 
 // Combine reducers
 const rootReducer = combineReducers({
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   location: locationSlice,
   chatbot:ChatBotSlice,
   task:TaskSlice,
-  user:UserSlice
+  user:UserSlice,
+  cart: CartSlice, // Add Cart Slice here
 });
 
 // Persist config

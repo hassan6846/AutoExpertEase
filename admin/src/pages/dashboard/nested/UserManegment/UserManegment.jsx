@@ -92,7 +92,7 @@ const UserManegment = () => {
               </div>
             </div>
             <div style={{display:"flex",justifyContent:"center",alignItems:'center'}}>
-              <p style={{ marginBottom: 5, fontSize: 12,marginBottom:0 ,marginTop:0,marginRight:4}}>Joining Date: {new Date(user.createdAt).toLocaleDateString()}</p>
+              <p style={{  fontSize: 12,marginBottom:0 ,marginTop:0,marginRight:4}}>Joining Date: {new Date(user.createdAt).toLocaleDateString()}</p>
               <Chip label={user.role.join(', ')} style={{ height: 20, fontSize: 10, backgroundColor: "#e5e5e5", marginBottom:0 ,marginRight:4}} />
               <Chip label={`${user.DeviceInfo.Brand} ${user.DeviceInfo.DeviceName}`} style={{marginRight:4,height: 20, fontSize: 10, backgroundColor: "#e5e5e5" ,marginBottom:0 }} />
             </div>

@@ -238,7 +238,7 @@ const {query} = req.params;
     }
    try{
         //finding products based on subcategory field from schema
-        const products = await Product.find({ "productcategory.subcategory": query });
+        const products = await Product.find({ "productcategory.subcategory": query ,productStatus:true});
         if (!products) {
             return res.status(404).json({
                 success: false,

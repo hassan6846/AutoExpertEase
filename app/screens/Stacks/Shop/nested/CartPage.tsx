@@ -1,23 +1,26 @@
 import { View, StyleSheet, ScrollView, Pressable } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // utils
 import ThemeProviderColors from "../../../../provider/ThemeProvider";
-import { getHeight,getWidth } from "../../../../utils/GetDimension";
-
+import { Text, Button, Avatar, Icon, } from "@rneui/themed";
 //sdks
 import { Image } from "expo-image";
-import { Text, Button, Avatar, Icon, } from "@rneui/themed";
-//State manegment
+import { getHeight,getWidth } from "../../../../utils/GetDimension";
 import { useSelector } from "react-redux";
+
+//state
+
+
 
 
 const CartPage = ({ navigation }: { navigation: any }) => {
-  const Items=useSelector((state:any)=>state.cart.items)
-
   const [CartEmpty, SetCartEmpty] = useState(false); // State for Cart page being empty or not
   const [showPaymentMethod, SetshowPaymentMethod] = useState(true); // State for Checkout Payment
-
+  const Items=useSelector((state:any)=>state.cart.items)
+useEffect(()=>{
+  console.log(Items)
+})
   return CartEmpty ? (
     // If Cart is empty... dont touch this please
     <View style={CartStyle.EmptyCartContainer}>

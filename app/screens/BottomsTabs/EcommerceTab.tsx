@@ -3,7 +3,7 @@ import { Icon, Badge } from "@rneui/themed"
 // Navigation
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack"
 const EcommerceStack = createStackNavigator()
-
+//State
 
 // Components
 
@@ -28,7 +28,13 @@ import ProductViewPage from "../Stacks/Shop/nested/ProductViewPage"
 import CategoryTabs from "../Stacks/Shop/nested/AllCategory/initialRoute"
 import Wallet from "../Stacks/Shop/nested/Wallet"
 import Checkout from "../Stacks/Shop/nested/Checkout"
+//State
+
+import { useDispatch } from "react-redux"
+import { ClearCart } from "../../slices/CartSlice"
+
 const EcommerceTab = ({ navigation }: { navigation: any }) => {
+  const dispatch = useDispatch()
   return (
     <EcommerceStack.Navigator initialRouteName="ShopContainer" >
 
@@ -110,7 +116,11 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           gestureEnabled: true,
-          headerShadowVisible: false
+          headerShadowVisible: false,
+          headerRight:()=>(
+            <Icon iconStyle={{padding:5,borderRadius:60}} containerStyle={{marginRight:10}}   onPress={() => dispatch(ClearCart())} // Ensure the action is imported correctly
+            color="#97ADB6" name="delete" type="material"/>
+          )
         }}
         component={CartPage} />
 

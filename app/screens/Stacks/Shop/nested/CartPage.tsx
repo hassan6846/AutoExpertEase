@@ -6,7 +6,7 @@ import ThemeProviderColors from "../../../../provider/ThemeProvider";
 import { Text, Button, Avatar, Icon, } from "@rneui/themed";
 //sdks
 import { Image } from "expo-image";
-import { getHeight,getWidth } from "../../../../utils/GetDimension";
+import { getHeight, getWidth } from "../../../../utils/GetDimension";
 import { useSelector } from "react-redux";
 
 //state
@@ -16,11 +16,13 @@ import { useSelector } from "react-redux";
 
 const CartPage = ({ navigation }: { navigation: any }) => {
   const [CartEmpty, SetCartEmpty] = useState(false); // State for Cart page being empty or not
-  const [showPaymentMethod, SetshowPaymentMethod] = useState(true); // State for Checkout Payment
-  const Items=useSelector((state:any)=>state.cart.items)
-useEffect(()=>{
-  console.log(Items)
-})
+  const Items = useSelector((state: any) => state.cart.items)
+  useEffect(() => {
+    console.log(Items)
+    if (Items.length === 0) {
+      SetCartEmpty(true)
+    }
+  })
   return CartEmpty ? (
     // If Cart is empty... dont touch this please
     <View style={CartStyle.EmptyCartContainer}>
@@ -59,42 +61,46 @@ useEffect(()=>{
     <View style={{ flex: 1 }}>
       <ScrollView style={{ backgroundColor: "#fff" }} contentContainerStyle={{ padding: 20, backgroundColor: "#fff" }}>
 
-        {/* ALl Cards  ScrollView Please Map All The cart from redux here*/}
 
+        {/* Product Card */}
         <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+{
+  Items.map((item:any,index:any)=>
+  
+    <View key={item._id} style={{ paddingHorizontal: 10, flexDirection: "row", rowGap: 5, marginBottom: 5 }}>
+    <Avatar containerStyle={{ height: getHeight / 8, width: getWidth / 3.5 }} overlayContainerStyle={{ borderRadius: 5 }} source={{ uri:item.image[0]  }} />
 
-          <View style={{ paddingHorizontal: 10, flexDirection: "row", rowGap: 5, marginBottom: 5 }}>
-            <Avatar containerStyle={{ height: getHeight / 8, width: getWidth / 3.5 }} overlayContainerStyle={{ borderRadius: 5 }} source={{ uri: "https://res.cloudinary.com/diml3oeaw/image/upload/v1709877092/AutoExpertEase/vfjk9tvvg4vlkvqzaqfc.webp" }} />
+    <View style={{ flexShrink: 1, marginLeft: 10, justifyContent: "space-between" }}>
+      <Text style={{ flexWrap: "wrap", display: "flex", fontSize: 15, fontWeight: "600" }} numberOfLines={3}>{item.name}</Text>
+      {/* Cateogry Chip Wrap Start */}
+      <View style={{ display: "flex", flexWrap: "wrap", flexDirection: "row", columnGap: 4, rowGap: 3, marginTop: 5 }}>
+      <Text style={{ paddingHorizontal: 10, backgroundColor: "#F3F3F3", color: "gray", fontSize: 12, borderRadius: 10, }}>{item.productcategory.category}</Text>
+      <Text style={{ paddingHorizontal: 10, backgroundColor: "#F3F3F3", color: "gray", fontSize: 12, borderRadius: 10, }}>{item.productcategory.subcategory}</Text>
 
-            <View style={{ flexShrink: 1, marginLeft: 10, justifyContent: "space-between" }}>
-              <Text style={{ flexWrap: "wrap", display: "flex", fontSize: 15, fontWeight: "600" }} numberOfLines={3}>Car Interior Fragrance Enhancer With lid and Cover</Text>
-              {/* Cateogry Chip Wrap Start */}
-              <View style={{ display: "flex", flexWrap: "wrap", flexDirection: "row", columnGap: 4, rowGap: 3, marginTop: 5 }}>
-                <Text style={{ paddingHorizontal: 10, backgroundColor: "#F3F3F3", color: "gray", fontSize: 12, borderRadius: 10, }}>Interior</Text>
-                <Text style={{ paddingHorizontal: 10, backgroundColor: "#F3F3F3", color: "gray", fontSize: 12, borderRadius: 10 }}>Exterior</Text>
-                <Text style={{ paddingHorizontal: 10, backgroundColor: "#F3F3F3", color: "gray", fontSize: 12, borderRadius: 10 }}>Walter</Text>
-              </View>
-              {/*   Cateogry Chip Wrap Ends */}
-              {/* Container for Price and action Start*/}
-              <View style={{ flexDirection: "row", alignItems: "center", marginTop: 8, justifyContent: "space-between" }}>
-                {/* Text */}
-                <View style={{ flexDirection: "row", alignItems: "center", columnGap: 6 }}>
-                  <Text style={{ fontSize: 14, fontWeight: "bold", }}>15000Rs</Text>
-                  <Text style={{ textDecorationLine: "line-through", fontSize: 10, color: "gray" }}>180230</Text>
-                </View>
-                {/* Text Ends */}
-                {/* Action Button Start */}
-                <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
-                  <Pressable style={{ padding: 3, borderRadius: 20, borderColor: "black", borderWidth: 1 }}><Icon type="material" name="remove" /></Pressable>
-                  <Text style={{ marginRight: 5 }} h4> 1</Text>
-                  <Pressable style={{ padding: 3, borderRadius: 20, borderColor: "black", borderWidth: 1 }}><Icon type="material" name="add" /></Pressable>
-                </View>
-                {/*  End Action Button  */}
-              </View>
-              {/*End  Container for Price and action */}
-            </View>
-          </View>
-
+      </View>
+      {/*   Cateogry Chip Wrap Ends */}
+      {/* Container for Price and action Start*/}
+      <View style={{ flexDirection: "row", alignItems: "center", marginTop: 8, justifyContent: "space-between" }}>
+        {/* Text */}
+        <View style={{ flexDirection: "row", alignItems: "center", columnGap: 6 }}>
+          <Text style={{ fontSize: 14, fontWeight: "bold", }}>{item.price.saleprice}</Text>
+          <Text style={{ textDecorationLine: "line-through", fontSize: 10, color: "gray" }}>{item.price.beforePrice}</Text>
+        </View>
+        {/* Text Ends */}
+        {/* Action Button Start */}
+        <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
+          <Pressable style={{ padding: 3, borderRadius: 20, borderColor: "black", borderWidth: 1 }}><Icon type="material" name="remove" /></Pressable>
+          <Text style={{ marginRight: 5 }} h4> 1</Text>
+          <Pressable style={{ padding: 3, borderRadius: 20, borderColor: "black", borderWidth: 1 }}><Icon type="material" name="add" /></Pressable>
+        </View>
+   
+      </View>
+      {/*End  Container for Price and action */}
+    </View>
+  </View>
+  )
+}
+          {/* Product Card */}
 
         </ScrollView>
 

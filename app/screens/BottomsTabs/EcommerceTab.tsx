@@ -30,10 +30,12 @@ import Wallet from "../Stacks/Shop/nested/Wallet"
 import Checkout from "../Stacks/Shop/nested/Checkout"
 //State
 
-import { useDispatch } from "react-redux"
+import { useDispatch,useSelector } from "react-redux"
 import { ClearCart } from "../../slices/CartSlice"
 
 const EcommerceTab = ({ navigation }: { navigation: any }) => {
+  const Items = useSelector((state: any) => state.cart.items)
+
   const dispatch = useDispatch()
   return (
     <EcommerceStack.Navigator initialRouteName="ShopContainer" >
@@ -70,7 +72,7 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
                     backgroundColor: pressed ? "#d9d9d9" : '#fff'
                   }
                 ]}>
-                <Badge containerStyle={{ position: "absolute", right: 0, top: -7, left: 10, zIndex: 99 }} value="5" status="error" />
+                <Badge containerStyle={{ position: "absolute", right: 0, top: -7, left: 10, zIndex: 99 }} value={Items.length} status="error" />
                 <Icon size={25} color="#5F6368" name="shopping-cart" type="material" />
               </Pressable>
               {/* Wallet */}

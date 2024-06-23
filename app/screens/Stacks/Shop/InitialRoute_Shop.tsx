@@ -42,8 +42,8 @@ const ShopInitialRoute = ({ navigation }: { navigation: any }) => {
     };
 
     // Determine if item is added to cart
-    const isItemAddedToCart = (productId: string) => {
-        return addedToCartItems.includes(productId);
+    const isItemAddedToCart = (_id: string) => {
+        return addedToCartItems.includes(_id);
     };
 
     // Category Image URLs

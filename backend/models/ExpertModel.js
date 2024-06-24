@@ -21,8 +21,8 @@ const ExpertSchema = new mongoose.Schema({
       required:false,
    },
    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      type: String,
+      required:true,
     //populate
 
    },
@@ -78,7 +78,7 @@ const ExpertSchema = new mongoose.Schema({
    },//post rating and comments
    ratings:[
     {
-      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      user: { type: String, },
       rating: { type: Number, min: 1, max: 5 },
       comment: { type: String }
     }

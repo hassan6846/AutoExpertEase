@@ -33,12 +33,7 @@ const sidebarItems = [
     icon: <BiAddToQueue />,
     link: '/carapproval',
   },
-  {
-    title: 'Car Bookings',
-    icon: <BsBookmarkCheck />,
-    link: '/bookings',
-    
-  },
+
   {
     title: 'Product Requests',
     icon: <AiOutlineAppstoreAdd />,
@@ -57,9 +52,9 @@ const sidebarItems = [
     link: '/vendorrequest',
   },
   {
-    title: 'Orders',
+    title: 'Car Agency Requests',
     icon: <FaHandsHelping />,
-    link: '/orders',
+    link: '/caragencyrequests',
   },
   {
     title: 'Expert Requests',

@@ -41,11 +41,11 @@ const ShopInitialRoute = ({ navigation }: { navigation: any }) => {
         dispatch(addItemToCart(item)); // Dispatch action to add item to Redux cart
     };
 
-    // Determine if item is added to cart
+    // Determine if item is added to cart check in Items state
     const isItemAddedToCart = (_id: string) => {
         return addedToCartItems.includes(_id);
     };
-
+ 
     // Category Image URLs
     const CategoryImageUrls = [
         {

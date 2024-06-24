@@ -14,13 +14,12 @@ import AllProducts from "../pages/dashboard/nested/AllProducts/AllProducts";
 import VendorRequest from "../pages/dashboard/nested/VendorRequest/VendorRequest";
 import ExpertRequests from "../pages/dashboard/nested/ExpertRequests/ExpertRequests";
 import Logout from "../pages/dashboard/nested/Logout/Logout";
-import Orders from "../pages/dashboard/nested/Orders/Orders";
-import CarBookings from "../pages/dashboard/nested/CarBookings/CarBookings";
-
 
 import AllCars from "../pages/dashboard/nested/AllCars/AllCars";
 import ApproveCars from "../pages/dashboard/nested/ApproveCars/ApproveCars";
 import UserManegment from "../pages/dashboard/nested/UserManegment/UserManegment";
+import ApproveAgency from "../pages/dashboard/nested/ApproveAgency/ApproveAgency";
+import RentalRequest from "../pages/dashboard/nested/CarRentalRequest/RentalRequest";
 
 const Routing = () => {
   const { isAuthenticated } = useAuth();
@@ -32,15 +31,15 @@ const Routing = () => {
           <Route path="/stats" element={<Stats />} />
 
           <Route path="/products" element={<AllProducts />} />
-          <Route path="/bookings" element={<CarBookings />} />
           <Route path="/products/add" element={<ProductRequests />} />
           <Route path="/cars" element={<AllCars />} />
           <Route path="/carapproval" element={<ApproveCars />} />
           <Route path="/users" element={<UserManegment />} />
           <Route path="/vendorrequest" element={<VendorRequest />} />
-          <Route path="/orders" element={<Orders />} />
+          <Route path="/caragencyrequests" element={<ApproveAgency />} />
           <Route path="/expertrequests" element={<ExpertRequests />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/carrentalrequests" element={<RentalRequest />} />
           <Route path="*" element={<ErrorPage />} /> {/* Redirect to 404 page for unknown routes */}
         </Route>
       ) : (

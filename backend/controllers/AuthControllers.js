@@ -46,14 +46,13 @@ const VerifyEmail = async (req, res, next) => {
     try {
         // Find the latest OTP document for the given email
         const latestOTP = await OTP.findOne({ email }).sort({ createdAt: -1 }).exec();
-        const user = await User.findOne({ email })
         if (!latestOTP) {
             return res.status(404).json({ error: "OTP not found" });
         }
 
         if (latestOTP.otp === otp) {
             // OTP is valid
-            user.isVerifiedEmail=true
+     
             return res.status(200).json({ message: "OTP verified successfully" });
         } else {
             // OTP is invalid

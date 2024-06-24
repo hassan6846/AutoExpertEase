@@ -85,10 +85,10 @@ const UserManegment = () => {
             <div style={{ display: "flex", alignItems: "center" }}>
               <Avatar src={user.avatar} />
               <div style={{ marginLeft: 10 }}>
-                <p style={{ marginBottom: 5, fontWeight: "bold",marginBottom:0 }}>{`${user.firstName} ${user.lastName}`}</p>
-                <p style={{ marginBottom: 5, fontSize: 12 ,marginBottom:0}}>{user.email}</p>
-                <p style={{ marginBottom: 5, fontSize: 12,marginBottom:0 }}>{user.phone}</p>
-                <p style={{ marginBottom: 5, fontSize: 12 ,marginBottom:0}}>{`${user.AddressInfo.Address}, ${user.AddressInfo.City}`}</p>
+                <p style={{ marginBottom: 5, fontWeight: "bold"}}>{`${user.firstName} ${user.lastName}`}</p>
+                <p style={{ marginBottom: 5, fontSize: 12 }}>{user.email}</p>
+                <p style={{ marginBottom: 5, fontSize: 12}}>{user.phone}</p>
+                <p style={{ marginBottom: 5, fontSize: 12 }}>{`${user.AddressInfo.Address}, ${user.AddressInfo.City}`}</p>
               </div>
             </div>
             <div style={{display:"flex",justifyContent:"center",alignItems:'center'}}>

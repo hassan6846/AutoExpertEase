@@ -54,7 +54,13 @@ const sidebarItems = [
   {
     title: 'Car Agency Requests',
     icon: <FaHandsHelping />,
-    link: '/caragencyrequests',
+    link: '/carrentalrequests',
+  },
+  {
+    title: 'Car Rental Requests',
+    icon: <BsListTask />,
+    link: '/carrentalrequests',
+
   },
   {
     title: 'Expert Requests',

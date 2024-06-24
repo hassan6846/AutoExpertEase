@@ -24,15 +24,10 @@ const CarSchema = new mongoose.Schema({
         unique: true,
     },
     owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // assuming you have a User model
+        type:String,
         required: true,
     },
-    KmTraveled: {
-        type: Number,
-        required: true,
-        min: 0,
-    },
+
     seats: {
         type: Number,
         required: true,
@@ -71,38 +66,19 @@ const CarSchema = new mongoose.Schema({
         trim: true,
     },
     fuelType: {
-        type: String,
+        type: [String],
         enum: ['Petrol', 'Diesel', 'Electric', 'Hybrid'],
         required: true,
     },
     transmission: {
-        type: String,
+        type: [String],
         enum: ['Manual', 'Automatic'],
         required: true,
     },
     features: [{
         type: String,
     }],
-    reviews: [{
-        user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-        },
-        rating: {
-            type: Number,
-            min: 1,
-            max: 5,
-            required: true,
-        },
-        comment: {
-            type: String,
-            trim: true,
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now,
-        },
-    }],
+
 
     createdAt: {
         type: Date,

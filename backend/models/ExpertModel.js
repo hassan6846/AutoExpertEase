@@ -75,7 +75,14 @@ const ExpertSchema = new mongoose.Schema({
    default: false,
    required: false,
 
-   }
+   },//post rating and comments
+   ratings:[
+    {
+      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      rating: { type: Number, min: 1, max: 5 },
+      comment: { type: String }
+    }
+   ]
 
 }, { timestamps: true })
 const Expert = mongoose.model('Expert', ExpertSchema)

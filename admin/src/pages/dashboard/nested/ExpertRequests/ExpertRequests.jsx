@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar, Button, Modal } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { defaultUserImg } from '../../../../constants/ImageConstants';
 import Header from '../../../../components/Header/Header';
 import "./ExpertRequests.css";
-import {PhoneAndroid} from "@mui/icons-material/"
+import axios from 'axios';
+
 const ExpertRequests = () => {
+
   const [openModal, setOpenModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
 
@@ -15,7 +17,22 @@ const ExpertRequests = () => {
   };
 
   const handleClose = () => setOpenModal(false);
+////////////////////
+useEffect(() => {
+  const fetchApplications = async () => {
+    try {
+      const response = await axios.get('http://localhost:4001/api/admin/expert-applications');
+      console.log(response.data);
 
+    } catch (error) {
+      console.error('Error fetching applications:', error);
+      setError(error.message);
+    }
+  };
+
+  fetchApplications();
+}, []);
+///////////
   return (
     <div style={{ flex: 1, backgroundColor: "#fff" }}>
       <Header title="Expert Requests" />
@@ -47,16 +64,16 @@ const ExpertRequests = () => {
           {/* Device */}
 
 
-        
+
           {/* Placeholder for selfie */}
-          <img src={defaultUserImg} alt="selfie" style={{ display: 'block', margin: 'auto', marginBottom: '20px',height:100 }} />
+          <img src={defaultUserImg} alt="selfie" style={{ display: 'block', margin: 'auto', marginBottom: '20px', height: 100 }} />
           {/* Placeholder for CNIC image */}
 
-          <img src={defaultUserImg} alt="cnicfront" style={{ display: 'block', margin: 'auto',width:"400px",height:"200px" }} />
+          <img src={defaultUserImg} alt="cnicfront" style={{ display: 'block', margin: 'auto', width: "400px", height: "200px" }} />
           <p style={{ textAlign: 'center', fontSize: '12px', color: '#999' }}>front Cnic</p>
 
 
-          <img src={defaultUserImg} alt="cnic Back" style={{ display: 'block', margin: 'auto',width:"400px",height:"200px" }} />
+          <img src={defaultUserImg} alt="cnic Back" style={{ display: 'block', margin: 'auto', width: "400px", height: "200px" }} />
           <p style={{ textAlign: 'center', fontSize: '12px', color: '#999' }}>Back Cnic</p>
           <div className='ButtonContainerModal'>
             <Button style={{ backgroundColor: "#EDEDED", boxShadow: "none", color: '#4F4F4F', fontWeight: "500", border: '1px solid #4F4F4F', textTransform: "initial", fontFamily: "Outfit" }} variant='outlined' onClick={handleClose}>Cancel</Button>

@@ -1,32 +1,32 @@
-import { ScrollView, StyleSheet, KeyboardAvoidingView, View, Alert } from 'react-native';
-import React, { useState } from 'react';
-//sdks
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { Text, Avatar, Button } from "@rneui/themed";
 import * as ImagePicker from 'expo-image-picker';
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { Button, Text, Avatar } from "@rneui/themed";
-
-//state
 import { useSelector } from 'react-redux';
-
-//utils
-import { cnicBack,cnicFront, DefaultImageSrc} from '../../../../constants/ImagesConstants';
-import ThemeProviderColors from '../../../../provider/ThemeProvider';
 import InputComponent from '../../../../components/InputComponent/InputComponent';
+import {
+  cnicBack,
+  cnicFront,
+  DefaultImageSrc, // Assuming you have a constant for default image source
+} from '../../../../constants/ImagesConstants';
+import ThemeProviderColors from '../../../../provider/ThemeProvider';
 
 const ExpertVerification = () => {
-  const id=useSelector((state:any)=>state.auth.userid);
+  const id = useSelector((state: any) => state.auth.userid);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [dob, setDob] = useState(new Date());
   const [cnic, setCnic] = useState('');
-  const [frontCnicUri, setFrontCnicUri] = useState(cnicFront);
-  const [backCnicUri, setBackCnicUri] = useState(cnicBack);
-  const [selfieUri, setSelfieUri] = useState(DefaultImageSrc);
+  const [frontCnicUri, setFrontCnicUri] = useState('');
+  const [backCnicUri, setBackCnicUri] = useState('');
+  const [selfieUri, setSelfieUri] = useState('');
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [isDateSelected, setIsDateSelected] = useState(false);
 
+  // Function to handle date change
   const handleDateChange = (event: any, selectedDate?: Date) => {
     const currentDate = selectedDate || dob;
     setShowDatePicker(false);
@@ -34,41 +34,76 @@ const ExpertVerification = () => {
     setIsDateSelected(true);
   };
 
-  const pickImage = async (setImageUri: React.Dispatch<React.SetStateAction<string>>) => {
+  // Function to pick image and update respective state
+  const pickImage = async (setImageUri: React.Dispatch<React.SetStateAction<any>>, imageType: 'frontCnic' | 'backCnic' | 'selfie') => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
-      base64:true
+      quality: 0.1,
+      base64: true
     });
 
     if (!result.canceled) {
-      setImageUri(result.assets[0].uri);
+      // Update state based on imageType
+      switch (imageType) {
+        case 'frontCnic':
+          setFrontCnicUri(`data:image/jpeg;base64,${result.assets[0].base64}`);
+          console.log(`Front CNIC base64: ${result.assets[0].base64}`);
+          break;
+        case 'backCnic':
+          setBackCnicUri(`data:image/jpeg;base64,${result.assets[0].base64}`);
+          console.log(`Back CNIC base64: ${result.assets[0].base64}`);
+          break;
+        case 'selfie':
+          setSelfieUri(`data:image/jpeg;base64,${result.assets[0].base64}`);
+          console.log(`Selfie base64: ${result.assets[0].base64}`);
+          break;
+        default:
+          break;
+      }
     }
   };
 
-  const handleSubmit = () => {
-    const formData = {
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      dob: dob.toDateString(),
-      cnic,
-      frontCnicUri,
-      backCnicUri,
-      selfieUri,
-    };
-    Alert.alert('Form Data', JSON.stringify(formData));
+  // Function to handle form submission
+  const handleSubmit = async () => {
+    const response = await fetch('http://10.0.2.2:4001/api/apply-expert', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstname: firstName,
+        lastname: lastName,
+        userid: id,
+        email: email,
+        phone: phoneNumber,
+        dateofbirth: dob.toISOString(),
+        cnicno: cnic,
+        cnicfront: frontCnicUri,
+        photo: selfieUri,
+        cnicback: backCnicUri,
+      })
+    });
+
+    const data = await response.json();
+    console.log(data);
+    if(response.status===409){
+      Alert.alert('Error', 'You have already applied for Expert we will notify you after approval');
+      return;
+    }
+    // Handle response as needed
+    // For example, show an alert or navigate to a new screen
+    Alert.alert('Form Submitted', 'Your expert application has been submitted successfully!');
   };
 
+  // Check if all form fields are complete
   const isFormComplete = firstName && lastName && email && phoneNumber && isDateSelected && cnic && frontCnicUri && backCnicUri && selfieUri;
 
   return (
     <ScrollView style={Styles.ExpertVerifyContainer}>
-      <KeyboardAvoidingView style={{ backgroundColor: "#fff", borderRadius: 5, padding: 10, height: "auto", marginBottom: 50 }}>
-        <Text style={{ textAlign: "center", marginBottom: 20, marginTop: 5 }} h4>Basic Info {id}</Text>
+      <View style={Styles.formContainer}>
+        <Text style={Styles.heading}>Basic Info</Text>
         <InputComponent label="First Name" placeholder="First Name" value={firstName} onChangeText={setFirstName} />
         <InputComponent label="Last Name" placeholder="Last Name" value={lastName} onChangeText={setLastName} />
         <InputComponent label="E-Mail" placeholder="Email" value={email} onChangeText={setEmail} />
@@ -76,8 +111,7 @@ const ExpertVerification = () => {
 
         <InputComponent
           label="Date of Birth"
-
-          placeholder="Date of Birth Should Match Cnic"
+          placeholder="Date of Birth Should Match CNIC"
           value={isDateSelected ? dob.toDateString() : ''}
           onFocus={() => setShowDatePicker(true)}
           disabled={false}
@@ -93,62 +127,106 @@ const ExpertVerification = () => {
           />
         )}
 
-        <Text style={{ textAlign: "center", marginBottom: 20, marginTop: 5 }} h4>ID Confirmation</Text>
-        <InputComponent label="Cnic No." placeholder="Enter Your Cnic no." value={cnic} onChangeText={setCnic} />
+        <Text style={Styles.heading}>ID Confirmation</Text>
+        <InputComponent label="CNIC No." placeholder="Enter Your CNIC No." value={cnic} onChangeText={setCnic} />
 
-        <View style={Styles.AvatarContainer}>
-          <Avatar source={{ uri: frontCnicUri }} avatarStyle={Styles.AvatarStyles} containerStyle={Styles.CnicAvatar} size={200} />
-          <Text style={{ color: ThemeProviderColors.Light.FontSubHeading, marginTop: 10 }}>Upload Front Side of Cnic</Text>
-          <Button buttonStyle={{ marginTop: 10 }} containerStyle={{ width: '40%' }} title="Upload" onPress={() => pickImage(setFrontCnicUri)} />
+        {/* Front CNIC Avatar */}
+        <View style={Styles.avatarContainer}>
+          <Avatar
+          containerStyle={{width:"90%"}}
+            source={{ uri: frontCnicUri ? frontCnicUri : cnicFront }} // Use frontCnicUri or default image
+            size={200}
+            avatarStyle={Styles.avatar}
+          />
+          <Text style={Styles.label}>Upload Front Side of CNIC</Text>
+          <Button
+            title="Upload"
+            onPress={() => pickImage(setFrontCnicUri, 'frontCnic')}
+            containerStyle={Styles.uploadButton}
+          />
         </View>
 
-        <View style={Styles.AvatarContainer}>
-          <Avatar source={{ uri: backCnicUri }} avatarStyle={Styles.AvatarStyles} containerStyle={Styles.CnicAvatar} size={200} />
-          <Text style={{ color: ThemeProviderColors.Light.FontSubHeading, marginTop: 10 }}>Upload Back Side of Cnic</Text>
-          <Button buttonStyle={{ marginTop: 10 }} containerStyle={{ width: '40%' }} title="Upload" onPress={() => pickImage(setBackCnicUri)} />
+        {/* Back CNIC Avatar */}
+        <View style={Styles.avatarContainer}>
+          <Avatar
+            source={{ uri: backCnicUri ? backCnicUri : cnicBack }} // Use backCnicUri or default image
+            size={200}
+            containerStyle={{width:"90%"}}
+            avatarStyle={Styles.avatar}
+          />
+          <Text style={Styles.label}>Upload Back Side of CNIC</Text>
+          <Button
+            title="Upload"
+            onPress={() => pickImage(setBackCnicUri, 'backCnic')}
+            containerStyle={Styles.uploadButton}
+          />
         </View>
 
-        <Text style={{ textAlign: "center", marginBottom: 20, marginTop: 5 }} h4>Facial Verification</Text>
-        
-        <View style={Styles.AvatarContainer}>
-          <Avatar source={{ uri: selfieUri }} avatarStyle={Styles.AvatarStyles} containerStyle={Styles.AvatarStyles} size={200} />
-          <Text style={{ color: ThemeProviderColors.Light.FontSubHeading, marginTop: 10 }}>Upload your Selfie</Text>
-          <Button buttonStyle={{ marginTop: 10 }} containerStyle={{ width: '40%' }} title="Upload" onPress={() => pickImage(setSelfieUri)} />
+        <Text style={Styles.heading}>Facial Verification</Text>
+
+        {/* Selfie Avatar */}
+        <View style={Styles.avatarContainer}>
+          <Avatar
+            source={{ uri: selfieUri ? selfieUri : DefaultImageSrc }} // Use selfieUri or default image
+            size={200}
+            avatarStyle={Styles.avatar}
+          />
+          <Text style={Styles.label}>Upload Your Selfie</Text>
+          <Button
+            title="Upload"
+            onPress={() => pickImage(setSelfieUri, 'selfie')}
+       containerStyle={Styles.uploadButton}
+          />
         </View>
 
-        <Button 
-          color={ThemeProviderColors.Light.Primary} 
-          buttonStyle={Styles.ButtonStyle} 
+        {/* Submit Button */}
+        <Button
+          color={ThemeProviderColors.Light.Primary}
+          buttonStyle={Styles.submitButton}
           title="Submit Form"
           onPress={handleSubmit}
           disabled={!isFormComplete}
         />
-      </KeyboardAvoidingView>
+      </View>
     </ScrollView>
   );
-}
+};
 
 const Styles = StyleSheet.create({
   ExpertVerifyContainer: {
     flex: 1,
     padding: 20,
   },
-  ButtonStyle: {
-    borderRadius: 5
-  },
-  AvatarContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  AvatarStyles: {
-    borderRadius: 5
-  },
-  CnicAvatar: {
+  formContainer: {
+    backgroundColor: "#fff",
     borderRadius: 5,
-    width: '90%'
-  }
+    padding: 10,
+    marginBottom: 50,
+  },
+  heading: {
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 20,
+  },
+  avatarContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  avatar: {
+    borderRadius: 5,
+  },
+  label: {
+    marginTop: 10,
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  uploadButton: {
+width:"50%"
+  },
+  submitButton: {
+ 
+    borderRadius: 5,
+  },
 });
 
 export default ExpertVerification;

@@ -1,12 +1,13 @@
 const Expert = require("../models/ExpertModel");
-const User = require("../models/UserModel")
+const User = require("../models/UserModel");
+const cloudinaryInstance = require("../utils/Cloudinary");
 
 //Apply Being Expert
 const ApplyExpertShip = async (req, res, next) => {
-  const { firstname, lastname, userid, email, phone, dateofbirth, cnicno, cnicfront, cnicback } = req.body;
+  const { firstname, lastname, userid, email, phone, dateofbirth, cnicno, cnicfront, cnicback, photo } = req.body;
 
   // Check if all fields are provided
-  if (!firstname || !lastname || !userid || !email || !phone || !dateofbirth || !cnicno || !cnicfront || !cnicback) {
+  if (!firstname || !lastname || !userid || !email || !phone || !dateofbirth || !cnicno || !cnicfront || !cnicback || !photo) {
     return res.status(400).json({
       success: false,
       msg: "Please fill all the fields.",
@@ -23,6 +24,23 @@ const ApplyExpertShip = async (req, res, next) => {
         msg: "You've already applied for Expertship. We'll notify you after approval.",
       });
     }
+    // Convert base64 string to buffer and then to Data URI
+    const base64ToDataURI = (base64String) => {
+      const base64Data = base64String.replace(/^data:image\/\w+;base64,/, '');
+      const buffer = Buffer.from(base64Data, 'base64');
+      return `data:image/jpeg;base64,${buffer.toString('base64')}`;
+    };
+    // Upload images to Cloudinary
+    const uploadImageToCloudinary = async (base64String) => {
+      const dataURI = base64ToDataURI(base64String);
+      const uploadResult = await cloudinaryInstance.uploader.upload(dataURI);
+      return uploadResult.secure_url;
+    };
+    const [cnicfrontUpload, cnicbackUpload, photoUpload] = await Promise.all([
+      uploadImageToCloudinary(cnicfront),
+      uploadImageToCloudinary(cnicback),
+      uploadImageToCloudinary(photo)
+    ]);
 
     // Find user to get avatar
     const user = await User.findById(userid);
@@ -36,17 +54,18 @@ const ApplyExpertShip = async (req, res, next) => {
 
     // Save new application 
     const expert = new Expert({
-      firstname,
-      lastname,
+ firstName:firstname,
+ LastName:lastname,
       user: userid,
       email,
       phone,
-      dateofbirth,
-      cnicno,
-      cnicfront,
-      cnicback,
+      DateOfBirth: dateofbirth,
+      CnicNo: cnicno,
+      CnicFront: cnicfrontUpload,
+      CnicBack: cnicbackUpload,
+      facialVerification: photoUpload
     });
-
+    //convert 
     await expert.save();
 
     // Respond with success and include avatar
@@ -54,7 +73,7 @@ const ApplyExpertShip = async (req, res, next) => {
       success: true,
       msg: "Successfully Applied for Expertship.",
       expert,
-      name:user.firstName, // Assuming user.firstname is the field containing the user's first name
+      name: user.firstName, // Assuming user.firstname is the field containing the user's first name
       avatar: user.avatar, // Assuming user.avatar is the field containing the avatar URL
     });
 
@@ -69,76 +88,76 @@ const ApplyExpertShip = async (req, res, next) => {
 //Check if already Applied or not..
 //Get Topups..
 const GetTopup = async (req, res, next) => {
-    const { id } = req.params;
-    try {
+  const { id } = req.params;
+  try {
     //Find Expert by ID
-    const expert = await Expert.findOne({user:id})
+    const expert = await Expert.findOne({ user: id })
     // finally Send Topup
     res.status(201).json({
-        success:true,
-        msg: "Successfully Fetched Topups.",
-        topup: expert.topups,
+      success: true,
+      msg: "Successfully Fetched Topups.",
+      topup: expert.topups,
     });
-    
 
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            success: false,
-            msg: "Internal Server Error"
-        });
-    }
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      msg: "Internal Server Error"
+    });
+  }
 }
 //Add Topup To Account
 const AddTopup = async (req, res) => {
-    const { amount, id } = req.body;
-  
-    if (!amount) {
-      return res.status(400).json({
+  const { amount, id } = req.body;
+
+  if (!amount) {
+    return res.status(400).json({
+      success: false,
+      msg: "Please Provide Amount.",
+    });
+  }
+
+  try {
+    // Update the balance and find the updated expert document
+    const expert = await Expert.findOneAndUpdate(
+      { user: id },
+      { $inc: { topups: amount } },
+      { new: true }
+    );
+
+    if (!expert) {
+      return res.status(404).json({
         success: false,
-        msg: "Please Provide Amount.",
+        msg: "Expert not found.",
       });
     }
-  
-    try {
-      // Update the balance and find the updated expert document
-      const expert = await Expert.findOneAndUpdate(
-        { user: id },
-        { $inc: { topups: amount } },
-        { new: true }
-      );
-  
-      if (!expert) {
-        return res.status(404).json({
-          success: false,
-          msg: "Expert not found.",
-        });
-      }
-  
-      // Send Top-up Response
-      res.status(201).json({
-        success: true,
-        msg: "Topup Successfully Added.",
-        expert: expert,
-      });
-    } catch (error) {
-      console.error('Error adding top-up:', error);
-      res.status(500).json({
-        success: false,
-        msg: "Internal Server Error.",
-      });
-    }
-  };
-  
-const PostTask=async (req, res, next) => {
-   
-    const {title,vehciletype,description,coordinates,county}=req.body;
-    if (!title || !vehciletype || !description || !coordinates || !county) {
-        return res.status(400).json({
-            success: false,
-            msg: "Please fill all the fields.",
-        });
-    }
+
+    // Send Top-up Response
+    res.status(201).json({
+      success: true,
+      msg: "Topup Successfully Added.",
+      expert: expert,
+    });
+  } catch (error) {
+    console.error('Error adding top-up:', error);
+    res.status(500).json({
+      success: false,
+      msg: "Internal Server Error.",
+    });
+  }
+};
+
+const PostTask = async (req, res, next) => {
+
+  const { title, vehciletype, description, coordinates, county } = req.body;
+  if (!title || !vehciletype || !description || !coordinates || !county) {
+    return res.status(400).json({
+      success: false,
+      msg: "Please fill all the fields.",
+    });
+  }
 }
 
 //rate and comment expert
@@ -146,4 +165,4 @@ const PostTask=async (req, res, next) => {
 
 
 
-module.exports = { ApplyExpertShip, GetTopup,PostTask,AddTopup,  };
+module.exports = { ApplyExpertShip, GetTopup, PostTask, AddTopup, };

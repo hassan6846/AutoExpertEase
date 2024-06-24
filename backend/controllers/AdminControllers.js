@@ -10,18 +10,18 @@ const Expert = require("../models/ExpertModel")
 
 const AdminLoginFunction = async (req, res, next) => {
     const { email, password } = req.body;
-    
+
     if (!email || !password) {
         return res.status(400).json({
             success: false,
             msg: "Please fill all the fields.",
         });
     }
-    
+
     try {
         // Find user by email
         const user = await User.findOne({ email: email });
-        
+
         // Check if user exists
         if (!user) {
             return res.status(404).json({
@@ -29,7 +29,7 @@ const AdminLoginFunction = async (req, res, next) => {
                 msg: "User not found.",
             });
         }
-        
+
         // Check if user is an admin
         if (!user.role.includes('admin')) {
             return res.status(403).json({
@@ -37,22 +37,22 @@ const AdminLoginFunction = async (req, res, next) => {
                 msg: "Access denied. You are not an admin.",
             });
         }
-        
+
         // Compare password
         const isCorrectPassword = await bcrypt.compare(password, user.password);
-        
+
         if (!isCorrectPassword) {
             return res.status(401).json({
                 success: false,
                 msg: "Incorrect password.",
             });
         }
-        
+
         // If user is admin and password is correct, generate a JWT token
         const token = jwt.sign({ id: user._id, email: user.email, role: user.role[0] }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN,
         });
-        
+
         // Send success response with token
         res.cookie("token", token);
         res.status(200).json({
@@ -85,7 +85,7 @@ const GetUsersNo = async (req, res, next) => {
 const GetProductNo = async (req, res, next) => {
 
     try {
-        const productCount = await Product.countDocuments({productStatus:true});
+        const productCount = await Product.countDocuments({ productStatus: true });
         res.status(200).json({ count: productCount }); // Send the count back as JSON response
 
     } catch (error) {
@@ -131,7 +131,7 @@ const RecentSignups = async (req, res, next) => {
 //Delete User By ID
 const DeleteUser = async (req, res, next) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         const deleteUser = await User.findByIdAndDelete(id);
         //If User is not found (Maybe its already deleted from our side or may be void)
         if (!deleteUser) {
@@ -173,7 +173,7 @@ const ApproveProduct = async (req, res, next) => {
         if (!approvedProduct) {
             return res.status(404).json({ message: 'Product not found' });
         }
-        res.status(200).json({ message: 'Product approved successfully' ,name:approvedProduct.name  });
+        res.status(200).json({ message: 'Product approved successfully', name: approvedProduct.name });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
@@ -219,17 +219,33 @@ const CountApprovedExperts = async (req, res, next) => {
 }
 //Get Latest Users
 const GetLatestUsers = async (req, res, next) => {
-try {
- //Fetch Last User
- const latestUsers = await User.find()
-    .limit(10)
-    .sort({ createdAt: -1 })
- res.status(200).json(latestUsers)
+    try {
+        //Fetch Last User
+        const latestUsers = await User.find()
+            .limit(10)
+            .sort({ createdAt: -1 })
+        res.status(200).json(latestUsers)
 
-} catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal server error" });
-}
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
 
 }
-module.exports = { AdminLoginFunction, GetUsersNo, GetProductNo, GetAllUsers, GetAllCars, RecentSignups, DeleteUser,GetUnapprovedProducts,ApproveProduct,GetTodayRegistration,CountApprovedVendors,CountApprovedExperts,GetLatestUsers}
+//Get Expert Applications
+const GetExpertApplications = async (req, res, next) => {
+
+    try {
+     
+
+        const getApplicationsExpert = await Expert.find({ isExpert:false });
+       
+        res.status(200).json(getApplicationsExpert);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+
+}
+module.exports = { AdminLoginFunction, GetUsersNo, GetProductNo, GetAllUsers, GetAllCars, RecentSignups, DeleteUser, GetUnapprovedProducts, ApproveProduct, GetTodayRegistration, CountApprovedVendors, CountApprovedExperts, GetLatestUsers, GetExpertApplications, }

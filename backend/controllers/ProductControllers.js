@@ -204,7 +204,7 @@ const { query } = req.params;
     }
     try {
          //finding products based on name field from schema
-         const products = await Product.find({ name: { $regex: query, $options: 'i' } });
+         const products = await Product.find({ name: { $regex: query, $options: 'i' } ,productStatus:true});
          if (!products) {
              return res.status(404).json({
                  success: false,

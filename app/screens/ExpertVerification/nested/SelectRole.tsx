@@ -3,7 +3,7 @@ import React from 'react';
 import { Avatar, Text, Icon } from '@rneui/themed';
 import { getHeight } from '../../../utils/GetDimension';
 import ThemeProviderColors from '../../../provider/ThemeProvider';
-import { moneyman, vendor, VehicleRental, VehicleListingVerification, MechanicVerifiction } from '../../../constants/ImagesConstants'; // Make sure this imports the correct image URI
+import { moneyman, vendor, VehicleRental, MechanicVerifiction } from '../../../constants/ImagesConstants'; // Make sure this imports the correct image URI
 
 
 const SelectRole = ({ navigation }: { navigation: any }) => {
@@ -54,10 +54,7 @@ const SelectRole = ({ navigation }: { navigation: any }) => {
         <Text>Vehicle Rental Verification</Text>
       </Pressable>
       {/* Listing Verification */}
-      <Pressable onPress={()=>navigation.navigate('carpostverification')} style={Styles.VerificationCard}>
-        <Avatar avatarStyle={{ objectFit: "contain" }} size={50} source={{ uri: VehicleListingVerification }} />
-        <Text>Car Listing Verification</Text>
-      </Pressable>
+
       {/* Work as Vendor */}
       <Pressable onPress={()=>navigation.navigate('vendorverification')} style={Styles.VerificationCard}>
         <Avatar size={50} source={{ uri: vendor }} />

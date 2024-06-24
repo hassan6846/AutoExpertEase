@@ -44,6 +44,7 @@ const payment = require("./routes/PaymentRoutes");
 const car=require("./routes/CarRoutes")
 const expert=require("./routes/ExpertRoute")
 const location=require("./routes/LocationRoutes")
+const order=require("./routes/OrderRoutes")
 // Endpoints middlewares
 app.use("/api", user);
 app.use("/api", product);
@@ -54,6 +55,7 @@ app.use("/api", payment);
 app.use("/api",car);
 app.use("/api",expert);
 app.use("/api",location);
+app.use('/api',order);
 // Create HTTP server
 const server = http.createServer(app);
 

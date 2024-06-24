@@ -4,17 +4,22 @@ import { Text, ListItem, Button, Avatar } from "@rneui/themed";
 import { useStripe } from "@stripe/stripe-react-native";
 import InputComponent from '../../../../components/InputComponent/InputComponent';
 import { AvatarSrc } from '../../../../constants/ImagesConstants';
+import { useSelector } from 'react-redux';
 
 type PaymentMethod = 'online' | 'cod' | null; // Define a union type for payment methods
 
-const Checkout = () => {
+const Checkout = ({ navigation }: { navigation: any }) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod>(null); // State to manage selected payment method
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [phone, setPhone] = useState('');
+  const userFirstName=useSelector((state:any)=>state.auth.firstName)
+  const UserPhone=useSelector((state:any)=>state.auth.phone)
+  const UserLast=useSelector((state:any)=>state.auth.lastName)
+  const total=useSelector((state:any)=>state.cart.totalCharges)
+  const [firstname, setFirstname] = useState(userFirstName);
+  const [lastname, setLastname] = useState(UserLast);
+  const [phone, setPhone] = useState(UserPhone);
   const [homeAddress, setHomeAddress] = useState('');
-  const [zipCode, setZipCode] = useState('');
-  const [town, setTown] = useState('');
+  const [zipCode, setZipCode] = useState('54000');
+  const [town, setTown] = useState('Lahore');
   
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
 
@@ -25,7 +30,7 @@ const Checkout = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ amount: 40000 }), // Amount in cents for 400Rs
+        body: JSON.stringify({ amount: total }), // Amount in cents for 400Rs
       });
 
       if (!response.ok) {

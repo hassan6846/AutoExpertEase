@@ -17,7 +17,8 @@ import { useDispatch, useSelector } from "react-redux"
 const ProfileInitial = ({ navigation }: { navigation: any }) => {
     const id = useSelector((state: any) => state.auth.userid)
     const avatar = useSelector((state: any) => state.user.avatar)
-
+    const userFirstName=useSelector((state:any)=>state.auth.firstName)
+    const UserLast=useSelector((state:any)=>state.auth.lastName)
     const dispatch = useDispatch()
     //states
     const [isShowBottomSheet, SetisShowBottomSheet] = useState(false)
@@ -164,7 +165,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                 {/* Avatar container bois to alignItems to the center */}
                 <View style={Styles.AvatarContainer} >
                     <Avatar onPress={() => navigation.navigate("ViewProfile")} rounded size={100} source={{ uri: avatar }} ><Avatar.Accessory onPress={() => SetisShowBottomSheet(true)} size={25} /></Avatar>
-                    <Text><CountryFlag size={12} isoCode="pk" /> {id} </Text>
+                    <Text>{userFirstName} {UserLast} <CountryFlag size={12} isoCode="pk" /> </Text>
                 </View>
                 {/* List Items Will be map Below ok */}
                 <>

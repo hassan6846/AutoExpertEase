@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 // Schema Model
 const OrderSchema = new mongoose.Schema({
-    OrderId:{
-        type:String,
-        
+    OrderId: {
+        type: String,
+        default: () => Math.floor(Math.random() * 999999).toString(), // Generating random Order ID
     },
     shippingInfo: {
         address: {
@@ -13,19 +13,19 @@ const OrderSchema = new mongoose.Schema({
         },
         city: {
             type: String,
-            required: true,
+            default: "Lahore",
         },
         state: {
             type: String,
-            required: true,
+            default: "Punjab",
         },
         country: {
             type: String,
-            required: true,
+            default: "Pakistan",
         },
         pinCode: {
             type: Number,
-            required: true,
+            default: 54000,
         },
         phoneNo: {
             type: Number,
@@ -33,36 +33,33 @@ const OrderSchema = new mongoose.Schema({
         },
     },
     products: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product', // Reference to the product model
+        type: Object,
         required: true,
     }],
     orderedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Reference to the user model who ordered
+        type: String, // Assuming this is a reference to a user's ID
         required: true,
     },
     orderedAt: {
         type: Date,
-        default: Date.now(),
+        default: Date.now,
     },
     orderStatus: {
         type: [String],
-       //pending ,shipped, delivered, 
         default: ['pending'],
     },
     PaymentMethod: {
         type: [String],
-
         default: ['COD'],
     },
-    orderState:{
-        type:Boolean,
-        default:false, //if shipped then false
+    orderState: {
+        type: Boolean,
+        default: false, // if shipped then false
+    },
+    TotalAmount: {
+        type: Number,
+        required: true,
     }
-
-
-
 });
 
 const Order = mongoose.model('Order', OrderSchema);

@@ -34,7 +34,7 @@ const TaskDescription = ({ navigation }: { navigation: any }) => {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsMultipleSelection: true,
       aspect: [4, 3],
-      quality: 0.6,
+      quality: 0.3,
       base64: true,
       selectionLimit: 2,
     });

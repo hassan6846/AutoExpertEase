@@ -30,7 +30,7 @@ const CarRentalVerification = () => {
         </Text>
         <InputComponent label="Cnic No." placeholder="Enter Your Cnic no" />
         <InputComponent label="Current Address." placeholder="Current Address" />
-        <InputComponent label="License Number." placeholder="Enter Driving License Number" />
+
         <Button title="Submit" style={styles.button} />
       </KeyboardAvoidingView>
     </ScrollView>

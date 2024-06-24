@@ -30,7 +30,7 @@ import Wallet from "../Stacks/Shop/nested/Wallet"
 import Checkout from "../Stacks/Shop/nested/Checkout"
 //State
 
-import { useDispatch,useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { ClearCart } from "../../slices/CartSlice"
 
 const EcommerceTab = ({ navigation }: { navigation: any }) => {
@@ -119,9 +119,9 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           gestureEnabled: true,
           headerShadowVisible: false,
-          headerRight:()=>(
-            <Icon iconStyle={{padding:5,borderRadius:60}} containerStyle={{marginRight:10}}   onPress={() => dispatch(ClearCart())} // Ensure the action is imported correctly
-            color="#97ADB6" name="delete" type="material"/>
+          headerRight: () => (
+            <Icon iconStyle={{ padding: 5, borderRadius: 60 }} containerStyle={{ marginRight: 10 }} onPress={() => dispatch(ClearCart())} // Ensure the action is imported correctly
+              color="#97ADB6" name="delete" type="material" />
           )
         }}
         component={CartPage} />
@@ -165,7 +165,7 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
                     backgroundColor: pressed ? "#d9d9d9" : '#fff'
                   }
                 ]}>
-                <Badge containerStyle={{ position: "absolute", right: 0, top: -7, left: 10, zIndex: 99 }} value="5" status="error" />
+                <Badge containerStyle={{ position: "absolute", right: 0, top: -7, left: 10, zIndex: 99 }} value={Items.length} status="error" />
                 <Icon size={25} color="#5F6368" name="shopping-cart" type="material" />
               </Pressable>
 
@@ -179,7 +179,7 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
       <EcommerceStack.Screen options={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         cardShadowEnabled: false,
-     
+
 
         headerShadowVisible: false,
         title: "All Category"
@@ -188,24 +188,24 @@ const EcommerceTab = ({ navigation }: { navigation: any }) => {
       <EcommerceStack.Screen options={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         cardShadowEnabled: false,
-        headerTitleAlign:"center",
+        headerTitleAlign: "center",
         headerShadowVisible: false,
         title: "Wallet"
       }} name="wallet" component={Wallet} />
 
 
-{/* Checkout */}
+      {/* Checkout */}
       <EcommerceStack.Screen options={{
-        title:"Enter Order Details",
+        title: "Enter Order Details",
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         cardShadowEnabled: false,
-        headerTitleAlign:"center",
+        headerTitleAlign: "center",
         headerShadowVisible: false,
-        headerLeft:()=>(
+        headerLeft: () => (
           <></>
         )
 
-      }} component={Checkout} name="checkout"/>
+      }} component={Checkout} name="checkout" />
     </EcommerceStack.Navigator>
   )
 }

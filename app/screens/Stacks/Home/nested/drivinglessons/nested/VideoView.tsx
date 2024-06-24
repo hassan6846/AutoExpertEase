@@ -29,7 +29,7 @@ const VideoView = ({ navigation }: { navigation: any }) => {
     shouldPlay: true,
     resizeMode: ResizeMode.CONTAIN,
     source: {
-      uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      uri: 'https://www.youtube.com/watch?v=-wtIMTCHWuI',
     },
   }}
 />

@@ -8,5 +8,73 @@
 
 //Rate Product.
 
-const Order=require("../models/OrderModel")
+const Order = require("../models/OrderModel")
+const Product = require("../models/ProductModel")
+const User = require("../models/UserModel")
 
+
+//required controllers
+
+const CreateProductOrder = async (req, res, next) => {
+    const { products, address, orderbyid, paymentmethod, phone,total } = req.body;
+
+    // Check if any required field is missing
+    if (!products || !address || !orderbyid || !paymentmethod || !phone|| !total) {
+        return res.status(400).json({
+            success: false,
+            message: "All fields are required"
+        });
+    }
+
+    try {
+        // Create new order
+        const newOrder = new Order({
+            products: products,
+            PaymentMethod: paymentmethod,
+            orderedBy: orderbyid,
+            shippingInfo: {
+                phoneNo: phone, // Correct field name based on the schema
+                address: address,
+            },
+            TotalAmount: total,
+        });
+
+        // Save the order to the database
+        await newOrder.save();
+
+        // Send success response
+        return res.status(200).json({
+            success: true,
+            message: "Order Created Successfully",
+            order: newOrder
+        });
+    } catch (err) {
+        console.error(err);
+
+        // Send error response
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+};
+
+const GetUserOrders = async (req, res, next) => {
+    const { id } = req.params;
+    try {
+        const findOrder = await Order.find({ orderedBy: id });
+
+        return res.status(200).json({
+            success: true,
+            orders: findOrder
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+};
+
+module.exports = { CreateProductOrder,GetUserOrders }

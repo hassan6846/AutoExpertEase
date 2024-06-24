@@ -47,7 +47,7 @@ const CanPostCars = async () => {
           {
             text: "Request Now",
             onPress: () => {
-              navigation.navigate("expertverify",{screen:"carpostverification"});
+              navigation.navigate("expertverify",{screen:"rentalverification"});
               // Handle the "Request Now" action here
             },
           },

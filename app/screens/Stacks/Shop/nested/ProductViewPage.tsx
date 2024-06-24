@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { Button, Text, Avatar, Icon } from "@rneui/themed";
 import { useRoute } from "@react-navigation/native";
+import { addItemToCart } from '../../../../slices/CartSlice';
+import { useDispatch,useSelector } from 'react-redux';
+
 
 const ProductViewPage = () => {
   const route = useRoute();
+  const dispatch = useDispatch();
   const { productId } = route.params as { productId: string }; // Type assertion to specify the shape of route.params
+  const addedToCartItems = useSelector((state: any) => state.cart.items); // Redux state for added items
 
   const [product, setProduct] = useState<any>(null); // State to hold product details
   const [loading, setLoading] = useState<boolean>(true); // Loading state
@@ -41,6 +46,12 @@ const ProductViewPage = () => {
       backgroundColor: "#f6f6f6",
     }
   ];
+  const handleAddToCart = (item: any) => {
+    dispatch(addItemToCart(item)); // Dispatch action to add item to Redux cart
+};
+const isItemAddedToCart = (_id: string) => {
+  return addedToCartItems.includes(_id);
+};
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -145,7 +156,10 @@ const ProductViewPage = () => {
           </View>
         </View>
       </ScrollView>
-      <Button color="#E04E2F" title="Add to Cart" containerStyle={styles.button} />
+      <Button 
+                 disabled={isItemAddedToCart(product._id)} // Disable button if item is already added to cart
+                 onPress={() => handleAddToCart(product)}
+      color="#E04E2F" title="Add to Cart" containerStyle={styles.button} />
     </View>
   );
 };

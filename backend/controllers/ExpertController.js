@@ -54,6 +54,7 @@ const ApplyExpertShip = async (req, res, next) => {
       success: true,
       msg: "Successfully Applied for Expertship.",
       expert,
+      name:user.firstName, // Assuming user.firstname is the field containing the user's first name
       avatar: user.avatar, // Assuming user.avatar is the field containing the avatar URL
     });
 

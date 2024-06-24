@@ -1,13 +1,20 @@
 import { ScrollView, StyleSheet, KeyboardAvoidingView, View, Alert } from 'react-native';
 import React, { useState } from 'react';
-import { Button, Text, Avatar } from "@rneui/themed";
-import InputComponent from '../../../../components/InputComponent/InputComponent';
-import DateTimePicker from "@react-native-community/datetimepicker";
-import ThemeProviderColors from '../../../../provider/ThemeProvider';
+//sdks
 import * as ImagePicker from 'expo-image-picker';
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { Button, Text, Avatar } from "@rneui/themed";
+
+//state
+import { useSelector } from 'react-redux';
+
+//utils
 import { cnicBack,cnicFront, DefaultImageSrc} from '../../../../constants/ImagesConstants';
+import ThemeProviderColors from '../../../../provider/ThemeProvider';
+import InputComponent from '../../../../components/InputComponent/InputComponent';
 
 const ExpertVerification = () => {
+  const id=useSelector((state:any)=>state.auth.userid);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -61,7 +68,7 @@ const ExpertVerification = () => {
   return (
     <ScrollView style={Styles.ExpertVerifyContainer}>
       <KeyboardAvoidingView style={{ backgroundColor: "#fff", borderRadius: 5, padding: 10, height: "auto", marginBottom: 50 }}>
-        <Text style={{ textAlign: "center", marginBottom: 20, marginTop: 5 }} h4>Basic Info</Text>
+        <Text style={{ textAlign: "center", marginBottom: 20, marginTop: 5 }} h4>Basic Info {id}</Text>
         <InputComponent label="First Name" placeholder="First Name" value={firstName} onChangeText={setFirstName} />
         <InputComponent label="Last Name" placeholder="Last Name" value={lastName} onChangeText={setLastName} />
         <InputComponent label="E-Mail" placeholder="Email" value={email} onChangeText={setEmail} />

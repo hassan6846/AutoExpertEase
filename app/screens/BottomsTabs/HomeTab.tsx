@@ -12,8 +12,7 @@ import { getHeight } from "../../utils/GetDimension"
 
 /////////////////////////////////////////////////////////
 // Lesson Section
-import AllLessons from "../Stacks/Home/nested/drivinglessons/AllLessons"
-import VideoView from "../Stacks/Home/nested/drivinglessons/nested/VideoView"
+
 
 //Car Bc ALiShan  ki mkc.
 import AllCars from "../Stacks/Home/nested/CarSection/AllCars"
@@ -71,11 +70,7 @@ const CanPostCars = async () => {
       {/* Inital Home Route */}
       <HomeStack.Screen options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS, headerRight: () => (<Avatar avatarStyle={{ borderRadius: 20 }} containerStyle={{ marginRight: 12 }} source={{ uri: avatar }} />), headerTitle: "Welcome", headerStyle: { height: getHeight / 9 } }} component={HomeInital} name="HomeInital" />
       {/* Fetch All Videos.. */}
-      <HomeStack.Screen  options={{headerShown:false,headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"",headerTitleAlign:"center"}} component={VideoView} name="viewvideo" />
 
-      <HomeStack.Screen  options={{headerShadowVisible:false,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,title:"Video Feed",headerLeft:()=><></>,headerTitleAlign:"center",headerRight:()=><>
-      <Icon name="add" type="material"iconStyle={{borderRadius:30,padding:10}} onPress={()=>navigation.navigate("postvideo")} containerStyle={{marginRight:10}}/>
-      </>}} component={AllLessons} name="allvideos" />
 
 {/* Post Video */}
 {/* All Cars */}

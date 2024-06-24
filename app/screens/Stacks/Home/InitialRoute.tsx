@@ -23,7 +23,7 @@ const HomeInital: React.FC<HomeInitalProps> = ({ navigation }) => {
     { title: 'Rent Cars', icon: 'car-rental', route: 'allcars' },
     { title: 'AutoHelp', icon: 'electric-car', route: 'Support' },
     { title: 'Auto Repair', icon: 'electric-car', route: 'Service' },
-    { title: 'Learn Drive', icon: 'school', route: 'allvideos' },
+    { title: 'Learn Drive', icon: 'school', route: 'Service' },
   ];
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const HomeInital: React.FC<HomeInitalProps> = ({ navigation }) => {
       {/* Map Video Recommendations here */}
       <ScrollView contentContainerStyle={Style.horizontalScroll} horizontal={true}>
         {[DrvingVideoImage, pakImage, pakleasson].map((image, index) => (
-          <Pressable key={index} style={Style.videoPressable} onPress={() => navigation.navigate('viewvideo')}>
+          <Pressable key={index} style={Style.videoPressable}>
             <View style={Style.videoContainer}>
               <Avatar containerStyle={Style.avatarContainer} avatarStyle={Style.avatarStyle} source={{ uri: image }} />
               <Icon containerStyle={Style.iconContainer} name="play-arrow" type="material" size={90} color="white" />

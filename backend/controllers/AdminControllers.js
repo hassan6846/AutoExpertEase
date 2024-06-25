@@ -236,10 +236,10 @@ const GetLatestUsers = async (req, res, next) => {
 const GetExpertApplications = async (req, res, next) => {
 
     try {
-     
 
-        const getApplicationsExpert = await Expert.find({ isExpert:false });
-       
+
+        const getApplicationsExpert = await Expert.find({ isExpert: false });
+
         res.status(200).json(getApplicationsExpert);
     }
     catch (error) {
@@ -248,4 +248,41 @@ const GetExpertApplications = async (req, res, next) => {
     }
 
 }
-module.exports = { AdminLoginFunction, GetUsersNo, GetProductNo, GetAllUsers, GetAllCars, RecentSignups, DeleteUser, GetUnapprovedProducts, ApproveProduct, GetTodayRegistration, CountApprovedVendors, CountApprovedExperts, GetLatestUsers, GetExpertApplications, }
+const ApproveExpert = async (req, res, next) => {
+    const { id } = req.body;
+    if (!id) {
+
+        return res.status(400).json({
+            success: false,
+            msg: "User does not exist in the database"
+        });
+    }
+    try {
+        const findUser = await User.findOne({ _id: id });
+        if (!findUser) {
+            return res.status(404).json({ message: "User not found" })
+        }
+        //Insert One more field string
+        findUser.role.push("expert")
+        const expert = await Expert.findOne({ user: id })
+        expert.isExpert = true
+        await findUser.save()
+        await expert.save()
+        res.status(200).json({
+            sucess: true,
+            findUser,
+            expert
+
+        })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
+const ApproveVendor=async(req,res,next)=>{
+
+}
+const ApproveRental=async(req,res,next)=>{
+    
+}
+module.exports = { AdminLoginFunction, GetUsersNo, GetProductNo, GetAllUsers, GetAllCars, RecentSignups, DeleteUser, GetUnapprovedProducts, ApproveProduct, GetTodayRegistration, CountApprovedVendors, CountApprovedExperts, GetLatestUsers, GetExpertApplications, ApproveExpert }

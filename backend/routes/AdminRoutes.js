@@ -3,7 +3,7 @@ const router=express.Router()
 //middlewares
 const { AdminLoginLimit } = require("../middlewares/RequestRateLimit")
 ///controllers
-const { AdminLoginFunction,GetUsersNo,GetProductNo,GetAllUsers,GetAllCars,RecentSignups,DeleteUser,GetUnapprovedProducts,ApproveProduct,GetTodayRegistration,CountApprovedVendors,CountApprovedExperts,GetLatestUsers,GetExpertApplications} = require("../controllers/AdminControllers")
+const { AdminLoginFunction,GetUsersNo,GetProductNo,GetAllUsers,GetAllCars,RecentSignups,DeleteUser,GetUnapprovedProducts,ApproveProduct,GetTodayRegistration,CountApprovedVendors,CountApprovedExperts,GetLatestUsers,GetExpertApplications,ApproveExpert} = require("../controllers/AdminControllers")
 
 //routes links 
 
@@ -21,4 +21,5 @@ router.route('/admin/approved-vendors').get(CountApprovedVendors) //count approv
 router.route('/admin/approved-experts').get(CountApprovedExperts) //count Experts Approved
 router.route('/admin/latest-users').get(GetLatestUsers) //get latest 10 users
 router.route('/admin/expert-applications').get(GetExpertApplications) //get expert
+router.route('/admin/expert-applications/approve').post(ApproveExpert) //approve expert application
 module.exports=router

@@ -28,11 +28,6 @@ const sidebarItems = [
     icon: <BiCar />,
     link: '/cars',
   },
-  {
-    title: 'Approve Cars.',
-    icon: <BiAddToQueue />,
-    link: '/carapproval',
-  },
 
   {
     title: 'Product Requests',

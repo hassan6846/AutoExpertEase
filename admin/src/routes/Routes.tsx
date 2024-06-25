@@ -16,7 +16,6 @@ import ExpertRequests from "../pages/dashboard/nested/ExpertRequests/ExpertReque
 import Logout from "../pages/dashboard/nested/Logout/Logout";
 
 import AllCars from "../pages/dashboard/nested/AllCars/AllCars";
-import ApproveCars from "../pages/dashboard/nested/ApproveCars/ApproveCars";
 import UserManegment from "../pages/dashboard/nested/UserManegment/UserManegment";
 import RentalRequest from "../pages/dashboard/nested/CarRentalRequest/RentalRequest";
 
@@ -32,7 +31,6 @@ const Routing = () => {
           <Route path="/products" element={<AllProducts />} />
           <Route path="/products/add" element={<ProductRequests />} />
           <Route path="/cars" element={<AllCars />} />
-          <Route path="/carapproval" element={<ApproveCars />} />
           <Route path="/users" element={<UserManegment />} />
           <Route path="/vendorrequest" element={<VendorRequest />} />
           <Route path="/expertrequests" element={<ExpertRequests />} />

@@ -47,7 +47,7 @@ const ProductViewPage = () => {
     }
   ];
   const handleAddToCart = (item: any) => {
-  setButtonTitle("Added to Cart");
+  setButtonTitle("Added");
     dispatch(addItemToCart(item)); // Dispatch action to add item to Redux cart
 };
 const isItemAddedToCart = (_id: string) => {

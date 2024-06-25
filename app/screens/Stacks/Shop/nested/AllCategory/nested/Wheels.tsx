@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, RefreshControl } from 'react-native';
-import { Avatar, Button } from "@rneui/themed"; // Ensure Button is imported correctly
+import { Avatar } from "@rneui/themed"; // Ensure Button is imported correctly
 import ThemeProviderColors from '../../../../../../provider/ThemeProvider';
 import { getWidth } from '../../../../../../utils/GetDimension';
 
@@ -24,6 +24,7 @@ const Wheels = ({ navigation }: { navigation: any }) => {
       });
       const data = await response.json();
       setProducts(data.products);
+      
       setIsLoading(false);
       setIsRefreshing(false); // Ensure to set refreshing state to false after data is fetched
     } catch (error) {
@@ -69,7 +70,6 @@ const Wheels = ({ navigation }: { navigation: any }) => {
           <Text style={{ fontSize: 10, fontWeight: "500", padding: 4, color: ThemeProviderColors.Light.FontSubHeading }}>
             {item.name.length > 30 ? `${item.name.substring(0, 30)}...` : item.name}
           </Text>
-          <Button titleStyle={{ fontSize: 12 }} buttonStyle={{ marginTop: 3 }} color={ThemeProviderColors.Light.Primary} title="Add to Cart" />
         </TouchableOpacity>
       )}
       keyExtractor={(item) => item._id}

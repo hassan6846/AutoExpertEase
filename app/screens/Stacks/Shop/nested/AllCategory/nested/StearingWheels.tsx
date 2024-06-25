@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, RefreshControl } from 'react-native';
-import { Avatar, Button } from "@rneui/themed"; // Ensure Button is imported correctly
+import { Avatar } from "@rneui/themed"; // Ensure Button is imported correctly
 import ThemeProviderColors from '../../../../../../provider/ThemeProvider';
 import { getWidth } from '../../../../../../utils/GetDimension';
 

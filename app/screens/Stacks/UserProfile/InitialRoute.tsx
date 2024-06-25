@@ -53,10 +53,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                 },
                 body: JSON.stringify({id:id,image:image}) // Send image data in the request body
             });
-    
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+
     
             // Handle success response here if needed
             const data = await response.json();

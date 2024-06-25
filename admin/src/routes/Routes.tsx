@@ -18,7 +18,6 @@ import Logout from "../pages/dashboard/nested/Logout/Logout";
 import AllCars from "../pages/dashboard/nested/AllCars/AllCars";
 import ApproveCars from "../pages/dashboard/nested/ApproveCars/ApproveCars";
 import UserManegment from "../pages/dashboard/nested/UserManegment/UserManegment";
-import ApproveAgency from "../pages/dashboard/nested/ApproveAgency/ApproveAgency";
 import RentalRequest from "../pages/dashboard/nested/CarRentalRequest/RentalRequest";
 
 const Routing = () => {

@@ -1,123 +1,151 @@
-import React from 'react';
-import { View, StyleSheet, ScrollView,  Text, TouchableWithoutFeedback } from 'react-native';
-import { Icon, Avatar } from "@rneui/themed";
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
+import { Avatar, Icon } from '@rneui/themed';
+
+import { useSelector } from 'react-redux';
 import { AvatarSrc } from '../../../../constants/ImagesConstants';
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
 
 const OrderHistory = () => {
+  const id = useSelector((state: any) => state.auth.userid);
+  const [orders, setOrders] = useState<any[]>([]); // Initialize orders state as an empty array
+  const [loading, setLoading] = useState<boolean>(true); // Loading state
+  const [error, setError] = useState<string>(''); // Error state
 
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch(`http://10.0.2.2:4001/api/order/history/${id}`, {
+          method: 'GET',
+        });
 
- 
+        if (!response.ok) {
+          throw new Error('Failed to fetch orders');
+        }
 
+        const data = await response.json();
 
+        // Check if data.order is an array before setting state
+        if (Array.isArray(data.order)) {
+          setOrders(data.order);
+        } else {
+          throw new Error('Unexpected response format');
+        }
 
+        setLoading(false); // Set loading to false after successful fetch
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+        setError('Failed to fetch orders. Please try again.'); // Set error message on error
+        setLoading(false); // Set loading to false on error
+      }
+    };
 
+    fetchOrders();
+  }, [id]);
 
- 
+  if (loading) {
+    return (
+      <View style={Styles.loadingContainer}>
+        <ActivityIndicator size="large" color={ThemeProviderColors.Light.Primary} />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={Styles.errorContainer}>
+        <Text style={Styles.errorText}>{error}</Text>
+      </View>
+    );
+  }
+
   return (
-    <TouchableWithoutFeedback>
-      <View style={Styles.container}>
-        <ScrollView style={Styles.History}>
-          {/* Card for orders */}
-          <View style={Styles.HistoryCard}>
+    <ScrollView style={Styles.OrderWrapper}>
+      {orders.length === 0 ? (
+        <View style={Styles.noOrdersContainer}>
+          <Text>No orders found</Text>
+        </View>
+      ) : (
+        orders.map((order: any) => (
+          <View key={order._id} style={Styles.HistoryCard}>
             <View style={Styles.OrderTxtDetails}>
-              <Text style={{ fontSize: 12, fontWeight: "bold", color: ThemeProviderColors.Light.FontSubHeading }}>Order Id :#3801231</Text>
-              <Text style={{ fontSize: 12, color: ThemeProviderColors.Light.FontSubHeading }}>11-Apr-2024 7:59</Text>
-              <Text style={{ color: "green", fontSize: 12 }}>Completed <Icon type='material' name='done' size={10} color="green" /></Text>
+              <Text style={{ fontSize: 12, fontWeight: 'bold', color: ThemeProviderColors.Light.FontSubHeading }}>
+                Order Id :#{order.OrderId}
+              </Text>
+              <Text style={{ fontSize: 12, color: ThemeProviderColors.Light.FontSubHeading }}>
+                {order.orderedAt}
+              </Text>
+              <Text style={{ color: order.orderState ? 'green' : 'green', fontSize: 12 }}>
+                {order.orderState ? 'Completed' : 'Completed'}{order.orderState}
+                <Icon
+                  type='material'
+                  name={order.orderState ? 'check-circle' : 'schedule'}
+                  size={10}
+                  color={order.orderState ? 'green' : 'green'}
+                />
+              </Text>
             </View>
-            <ScrollView horizontal={true} contentContainerStyle={{ flexDirection: 'row', columnGap: 5 }}>
-              {Array.from({ length: 10 }).map((_, index) => (
-                <Avatar key={index} size={60} containerStyle={{ borderRadius: 5 }} avatarStyle={{ borderRadius: 5 }} source={{ uri: AvatarSrc }} />
+
+            <ScrollView horizontal contentContainerStyle={{ flexDirection: 'row', paddingVertical: 10 }}>
+              {order.products.map((product: any) => (
+                <Avatar
+                  key={product._id}
+                  size={60}
+                  containerStyle={{ borderRadius: 5, marginRight: 10 }}
+                  avatarStyle={{ borderRadius: 5 }}
+                  source={{ uri: product.image[0] }}
+                />
               ))}
             </ScrollView>
-            {/* Ends */}
-            <View style={{ flexDirection: "row", justifyContent: 'space-between', marginTop: 10 }}>
-              <Text style={{ fontWeight: "bold", fontSize: 15 }}>Rs 489.00</Text>
 
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
+              <Text style={{ fontWeight: 'bold', fontSize: 15 }}>Rs {order.TotalAmount} </Text>
+  
             </View>
           </View>
-          {/* Ends */}
-        </ScrollView>
-
-      </View>
-    </TouchableWithoutFeedback>
+        ))
+      )}
+    </ScrollView>
   );
-}
+};
 
 const Styles = StyleSheet.create({
-  container: {
+  OrderWrapper: {
+    backgroundColor: '#f9f9f9',
     flex: 1,
+    padding: 10,
   },
-  History: {
-    paddingHorizontal: 10,
+  loadingContainer: {
     flex: 1,
-    backgroundColor: "#f9f9f9"
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorText: {
+    fontSize: 16,
+    color: 'red',
+  },
+  noOrdersContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  HistoryCard: {
+    marginTop: 10,
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: '#fff',
+    marginBottom: 10,
   },
   OrderTxtDetails: {
     flexDirection: 'row',
     marginBottom: 5,
-    justifyContent: "space-between"
-  },
-  HistoryCard: {
-    marginTop: 10,
-    borderRadius: 5,
-    padding: 10,
-    backgroundColor: "#fff"
-  },
-  rateButton: {
-    backgroundColor: ThemeProviderColors.Light.Primary,
-    color: "#fff",
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 6,
-    fontSize: 12
-  },
-  bottomSheetContent: {
-    flex: 1,
-    alignItems: 'center',
-    padding: 20,
-  },
-  sheetTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  commentInput: {
-    width: '100%',
-    height: 100,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 8,
-    padding: 10,
-    marginTop: 20,
-    textAlignVertical: 'top',
-  },
-  submitButton: {
-    marginTop: 20,
-    backgroundColor: ThemeProviderColors.Light.Primary,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-  },
-  submitButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  toastContainer: {
-    position: 'absolute',
-    bottom: 50,
-    left: 20,
-    right: 20,
-    backgroundColor: 'black',
-    padding: 10,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  toastText: {
-    color: 'white',
-    fontSize: 16,
+    justifyContent: 'space-between',
   },
 });
 

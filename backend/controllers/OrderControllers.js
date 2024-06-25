@@ -16,10 +16,10 @@ const User = require("../models/UserModel")
 //required controllers
 
 const CreateProductOrder = async (req, res, next) => {
-    const { products, address, orderbyid, paymentmethod, phone,total } = req.body;
+    const { products, address, orderbyid, paymentmethod, phone, total } = req.body;
 
     // Check if any required field is missing
-    if (!products || !address || !orderbyid || !paymentmethod || !phone|| !total) {
+    if (!products || !address || !orderbyid || !paymentmethod || !phone || !total) {
         return res.status(400).json({
             success: false,
             message: "All fields are required"
@@ -62,11 +62,11 @@ const CreateProductOrder = async (req, res, next) => {
 const GetUserOrders = async (req, res, next) => {
     const { id } = req.params;
     try {
-        const findOrder = await Order.find({ orderedBy: id });
+        const findOrder = await Order.find({ orderedBy: id,orderState:false});
 
         return res.status(200).json({
             success: true,
-            orders: findOrder
+           order: findOrder
         });
     } catch (err) {
         console.error(err);
@@ -76,5 +76,24 @@ const GetUserOrders = async (req, res, next) => {
         });
     }
 };
-
-module.exports = { CreateProductOrder,GetUserOrders }
+const fetchCompletedOrdersUser = async (req, res, next) => {
+    const { id } = req.params;
+    try {
+        const findOrder = await Order.find({ orderedBy: id, orderState: true });
+        res.json({ success: true, order: findOrder });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+}
+const GetOrderDetails = async (req, res, next) => {
+    const { id } = req.params;
+    try {
+     const FindOrderDetails = await Order.findById(id);
+     res.json({ success: true, order: FindOrderDetails });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+}
+module.exports = { CreateProductOrder, GetUserOrders, fetchCompletedOrdersUser,GetOrderDetails }

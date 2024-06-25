@@ -42,15 +42,15 @@ const OrderSchema = new mongoose.Schema({
     },
     orderedAt: {
         type: Date,
-        default: Date.now,
+        default: Date.now(),
     },
     orderStatus: {
-        type: [String],
-        default: ['pending'],
+        type: String,
+    
     },
     PaymentMethod: {
-        type: [String],
-        default: ['COD'],
+        type: String,
+       
     },
     orderState: {
         type: Boolean,

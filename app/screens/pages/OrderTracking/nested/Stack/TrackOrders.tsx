@@ -5,14 +5,12 @@ import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/
 
 const OrdersDetails = createStackNavigator()
 //Child Screen
-import OrdersDetail from './nested/OrdersDetail'
 import AllOrders from './nested/AllOrders'
 
 const TrackOrders = () => {
   return (
     <OrdersDetails.Navigator>
       <OrdersDetails.Screen name='OrderStack' options={{headerShown:false}} component={AllOrders} />
-      <OrdersDetails.Screen name='OrderDetail' options={{headerShown:false}} component={OrdersDetail} />
 
     </OrdersDetails.Navigator>
   )

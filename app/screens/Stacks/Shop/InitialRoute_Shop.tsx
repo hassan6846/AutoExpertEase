@@ -3,14 +3,12 @@ import { View, StyleSheet, Pressable, FlatList, ScrollView, TouchableOpacity } f
 import { Text, Icon, Avatar, Button } from "@rneui/themed";
 import { getHeight as GetHeight, getWidth } from "../../../utils/GetDimension";
 import ThemeProviderColors from "../../../provider/ThemeProvider";
-import { useDispatch, useSelector } from "react-redux";
-import { addItemToCart } from "../../../slices/CartSlice";
+import { useDispatch, } from "react-redux";
 
 const ShopInitialRoute = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch();
     const [selectedBannerIndex, setSelectedBannerIndex] = useState(0);
     const [products, setProducts] = useState<any[]>([]);
-    const addedToCartItems = useSelector((state: any) => state.cart.items); // Redux state for added items
 
     // Fetching Products
     useEffect(() => {
@@ -37,14 +35,7 @@ const ShopInitialRoute = ({ navigation }: { navigation: any }) => {
     };
 
     // Handle Add to Cart
-    const handleAddToCart = (item: any) => {
-        dispatch(addItemToCart(item)); // Dispatch action to add item to Redux cart
-    };
 
-    // Determine if item is added to cart check in Items state
-    const isItemAddedToCart = (_id: string) => {
-        return addedToCartItems.includes(_id);
-    };
  
     // Category Image URLs
     const CategoryImageUrls = [
@@ -194,15 +185,8 @@ const ShopInitialRoute = ({ navigation }: { navigation: any }) => {
                             <Text style={{ fontSize: 16, fontWeight: "900", marginTop: 4 }}>{product.price.saleprice} Rs</Text>
                             <Text style={{ textDecorationLine: "line-through", fontSize: 12, color: "red", marginLeft: 5 }}>{product.price.beforePrice}</Text>
                         </View>
-                        <Text style={{ fontSize: 10, fontWeight: "500", padding: 4, color: ThemeProviderColors.Light.FontSubHeading }}>{product.name.length > 30 ? `${product.name.substring(0, 30)}...` : product.name}</Text>
-                        <Button
-                            disabled={isItemAddedToCart(product._id)} // Disable button if item is already added to cart
-                            onPress={() => handleAddToCart(product)}
-                            titleStyle={{ fontSize: 12 }}
-                            buttonStyle={{ marginTop: 3 }}
-                            color={ThemeProviderColors.Light.Primary}
-                            title={isItemAddedToCart(product._id) ? "Added" : "Add to Cart"} // Change button text dynamically based on cart status
-                        />
+                        <Text style={{ fontSize: 10, fontWeight: "500", padding: 4, color: ThemeProviderColors.Light.FontSubHeading }}>{product.name.length > 40 ? `${product.name.substring(0, 50)}...` : product.name}</Text>
+
                     </TouchableOpacity>
                 ))}
             </ScrollView>

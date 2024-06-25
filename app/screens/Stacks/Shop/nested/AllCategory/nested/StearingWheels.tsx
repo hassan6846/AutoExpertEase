@@ -67,9 +67,8 @@ const StearingWheels = ({ navigation }: { navigation: any }) => {
             <Text style={{ textDecorationLine: "line-through", fontSize: 12, color: "red", marginLeft: 5 }}>{item.price.beforePrice}</Text>
           </View>
           <Text style={{ fontSize: 10, fontWeight: "500", padding: 4, color: ThemeProviderColors.Light.FontSubHeading }}>
-            {item.name.length > 30 ? `${item.name.substring(0, 30)}...` : item.name}
+            {item.name.length > 40 ? `${item.name.substring(0, 40)}...` : item.name}
           </Text>
-          <Button titleStyle={{ fontSize: 12 }} buttonStyle={{ marginTop: 3 }} color={ThemeProviderColors.Light.Primary} title="Add to Cart" />
         </TouchableOpacity>
       )}
       keyExtractor={(item) => item._id}

@@ -15,7 +15,7 @@ const ProductViewPage = () => {
   const [product, setProduct] = useState<any>(null); // State to hold product details
   const [loading, setLoading] = useState<boolean>(true); // Loading state
   const [selectedIndex, setSelectedIndex] = useState<number>(0); // State to track selected image index
-
+ const [buttonTitle,setButtonTitle] = useState<string>("Add to Cart");
   const FeaturesArray = [
     {
       name: 'Free Delivery',
@@ -47,6 +47,7 @@ const ProductViewPage = () => {
     }
   ];
   const handleAddToCart = (item: any) => {
+  setButtonTitle("Added to Cart");
     dispatch(addItemToCart(item)); // Dispatch action to add item to Redux cart
 };
 const isItemAddedToCart = (_id: string) => {
@@ -159,7 +160,7 @@ const isItemAddedToCart = (_id: string) => {
       <Button 
                  disabled={isItemAddedToCart(product._id)} // Disable button if item is already added to cart
                  onPress={() => handleAddToCart(product)}
-      color="#E04E2F" title="Add to Cart" containerStyle={styles.button} />
+      color="#E04E2F" title={buttonTitle} containerStyle={styles.button} />
     </View>
   );
 };

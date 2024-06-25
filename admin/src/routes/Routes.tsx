@@ -36,7 +36,6 @@ const Routing = () => {
           <Route path="/carapproval" element={<ApproveCars />} />
           <Route path="/users" element={<UserManegment />} />
           <Route path="/vendorrequest" element={<VendorRequest />} />
-          <Route path="/caragencyrequests" element={<ApproveAgency />} />
           <Route path="/expertrequests" element={<ExpertRequests />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/carrentalrequests" element={<RentalRequest />} />

@@ -10,43 +10,60 @@ const ExpertRequests = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
-
+  const [loading, setLoading] = useState(false); // State for loading indicator
+  const [applications, Setapplications] = useState([])
   const handleOpen = (userId) => {
     setSelectedUserId(userId);
     setOpenModal(true);
   };
 
   const handleClose = () => setOpenModal(false);
-////////////////////
-useEffect(() => {
-  const fetchApplications = async () => {
-    try {
-      const response = await axios.get('http://localhost:4001/api/admin/expert-applications');
-      console.log(response.data);
+  ////////////////////
+  useEffect(() => {
+    const fetchApplications = async () => {
+      try {
+        const response = await axios.get('http://localhost:4001/api/admin/expert-applications');
+        console.log(response.data);
+        Setapplications(response.data);
+      } catch (error) {
+        console.error('Error fetching applications:', error);
+        setError(error.message);
+      }
+    };
 
-    } catch (error) {
-      console.error('Error fetching applications:', error);
-      setError(error.message);
-    }
-  };
-
-  fetchApplications();
-}, []);
-///////////
+    fetchApplications();
+  }, []);
+  ///////////
   return (
     <div style={{ flex: 1, backgroundColor: "#fff" }}>
       <Header title="Expert Requests" />
       <section style={{ marginTop: '10px', cursor: "pointer" }}>
-        <div className='ExpertReqCard' onClick={() => handleOpen('randomUserID')}>
-          <div className='TextContainerReq'>
-            <Avatar style={{ marginRight: '5px' }} src={defaultUserImg} />
-            <div>
-              <p><span style={{ fontWeight: "bold", marginBottom: 0 }}>Hassan Shehriyar's   </span>Applied for Expert/Business partner approval.</p>
-              <p style={{ fontSize: '10px', marginTop: 0, marginBottom: 0 }}>2hrs Ago</p>
+        {
+          applications.map((application, index) => (
+            <div key={index} className='ExpertReqCard' style={{ backgroundColor: "#f5f5f5" }} onClick={() => handleOpen(application)}>
+              <div className='TextContainerReq'>
+                <Avatar style={{ marginRight: '5px' }} src={defaultUserImg} />
+                <div>
+                  <p>
+                    <span style={{ fontWeight: "bold", marginBottom: 0 }}>
+                     {application.firstName}   {application.LastName}
+                    </span> Applied for Expert/Business partner approval.
+                  </p>
+                  <p style={{ fontSize: '10px', marginTop: 0, marginBottom: 0 }}> {new Date(application.createdAt).toLocaleString('en-US', {
+              month: '2-digit',
+              day: '2-digit',
+              year: '2-digit',
+              hour: 'numeric',
+              minute: 'numeric',
+              hour12: true
+            }).replace(',', ' At')}</p>
+                </div>
+              </div>
+              <NavigateNextIcon />
             </div>
-          </div>
-          <NavigateNextIcon />
-        </div>
+          ))
+        }
+
       </section>
 
       <Modal

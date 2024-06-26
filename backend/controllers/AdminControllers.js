@@ -279,10 +279,43 @@ const ApproveExpert = async (req, res, next) => {
         res.status(500).json({ error: "Internal server error" });
     }
 }
+//Get Vendor Applications
+const GetVendorApplications = async (req, res, next) => {
+    try {
+        const getApplicationsVendor = await Vendor.find({ isVendor: false });
+        res.status(200).json(getApplicationsVendor);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
 const ApproveVendor=async(req,res,next)=>{
+  
+}
+//Get Rental Applications
 
-}
+
 const ApproveRental=async(req,res,next)=>{
+    try{
+    }catch(error){
     
+
+    }
 }
-module.exports = { AdminLoginFunction, GetUsersNo, GetProductNo, GetAllUsers, GetAllCars, RecentSignups, DeleteUser, GetUnapprovedProducts, ApproveProduct, GetTodayRegistration, CountApprovedVendors, CountApprovedExperts, GetLatestUsers, GetExpertApplications, ApproveExpert }
+module.exports = { 
+    AdminLoginFunction,
+    GetVendorApplications,
+     GetUsersNo,
+      GetProductNo, 
+      GetAllUsers,
+       GetAllCars,
+        RecentSignups,
+         DeleteUser, 
+         GetUnapprovedProducts,
+          ApproveProduct,
+           GetTodayRegistration,
+            CountApprovedVendors,
+             CountApprovedExperts,
+              GetLatestUsers, 
+              GetExpertApplications, 
+              ApproveExpert }

@@ -4,13 +4,13 @@ const bcrypt = require("bcrypt")
 const UserSchema = new mongoose.Schema({
     // userName (for Kyc purposes E.g Real Cnic Name )
 
-    firstName:{
+    firstName: {
         type: String,
         require: [true, "Kindly Enter your Name"],
         maxLength: [30, "Name cannot exceed 30 characters"],//setting max length
         minLength: [2, "Name should have more than 4 characters"],//setting min length
     },
-    lastName:{
+    lastName: {
         type: String,
         require: [true, "Kindly Enter your Name"],
         maxLength: [30, "Name cannot exceed 30 characters"],//setting max length
@@ -38,44 +38,44 @@ const UserSchema = new mongoose.Schema({
         default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
     },
 
-        AddressInfo: {
-            //Address
-            Address:{
-                type: String,
-                default: "Address for billing and parcel",
-            },
-            //Country..
-            Country: {
-                type: String,
-                default: "Pakistan",
-            },
-            //City..
-            City: {
-                type: String,
-                default: "Lahore"
-            },
-            State: {
-                type: String,
-                default: "Punjab"
-            },
-            //ZipCode.
-            ZipCode: {
-                type: Number,
-                default: 54000,
-            }
+    AddressInfo: {
+        //Address
+        Address: {
+            type: String,
+            default: "Address for billing and parcel",
         },
-        // Contain Info About Device Info of the User Device which is primarly used
-        //We can Write Algorithms to compare device with new auth device and warn them
-        //about suspecius activity.
+        //Country..
+        Country: {
+            type: String,
+            default: "Pakistan",
+        },
+        //City..
+        City: {
+            type: String,
+            default: "Lahore"
+        },
+        State: {
+            type: String,
+            default: "Punjab"
+        },
+        //ZipCode.
+        ZipCode: {
+            type: Number,
+            default: 54000,
+        }
+    },
+    // Contain Info About Device Info of the User Device which is primarly used
+    //We can Write Algorithms to compare device with new auth device and warn them
+    //about suspecius activity.
 
-        
+
 
 
     DeviceInfo: {
- 
+
         Brand: { type: String, default: "Unknown" },
         DeviceName: { type: String, default: "Unknown" },
-   
+
     },
 
     isVerifiedEmail: {
@@ -92,16 +92,16 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "Pending",
     },
-    fatherName:{
-        type:String,
-        default:"",
+    fatherName: {
+        type: String,
+        default: "",
     },
-createdAt:{
-    type: Date,
-    default: Date.now(),
-}
+    createdAt: {
+        type: Date,
+        default: Date.now(),
+    }
 
-},{timestamps:true})
+}, { timestamps: true })
 //setting index
 
 //hash password before saving it....

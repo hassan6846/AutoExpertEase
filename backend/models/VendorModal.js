@@ -6,14 +6,6 @@ const VendorSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    products: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-    }],
-    orders: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Order',
-    }],
     location: {
         type: String,
         required: true,
@@ -26,18 +18,20 @@ const VendorSchema = new mongoose.Schema({
             lowercase: true,
             unique: true,
         },
+        phone: {
+            type:String,
+            required:true
+        },
         // Reference to user's phone number
         user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User', // Reference to UserSchema
+            type:String,
             required: true,
         },
     },
     ntnNumber: {
         type: String,
         required: true,
-        unique: true,
-        trim: true,
+
         // You may add validation for NTN format here
     },
     vendorDetails: {
@@ -58,11 +52,7 @@ const VendorSchema = new mongoose.Schema({
             trim: true,
             // You may add validation for CNIC format here
         },
-        cnicImage: {
-            type: String, // Assuming the image is stored as a URL
-            required: true,
-            trim: true,
-        },
+
         // Other vendor details such as date of birth, nationality, etc.
     },
     isVendor:{

@@ -64,7 +64,20 @@ const ExpertVerification = () => {
       }
     }
   };
-
+  //Handle Clear Statess..
+  const clearStates = () => {
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPhoneNumber('');
+    setDob(new Date());
+    setCnic('');
+    setFrontCnicUri('');
+    setBackCnicUri('');
+    setSelfieUri('');
+    setShowDatePicker(false);
+    setIsDateSelected(false);
+  }
   // Function to handle form submission
   const handleSubmit = async () => {
     const response = await fetch('http://10.0.2.2:4001/api/apply-expert', {
@@ -81,20 +94,23 @@ const ExpertVerification = () => {
         dateofbirth: dob.toISOString(),
         cnicno: cnic,
         cnicfront: frontCnicUri,
-        photo: selfieUri,
         cnicback: backCnicUri,
+        photo: selfieUri,
+
       })
     });
-
-    const data = await response.json();
-    console.log(data);
     if(response.status===409){
       Alert.alert('Error', 'You have already applied for Expert we will notify you after approval');
       return;
     }
+    const data = await response.json();
+    console.log(data);
+
     // Handle response as needed
     // For example, show an alert or navigate to a new screen
-    Alert.alert('Form Submitted', 'Your expert application has been submitted successfully!');
+    Alert.alert('Form Submitted', 'Your expert application has been submitted successfully! Wait for approval',[
+      { text: 'Ok', onPress: () => clearStates() },
+    ]);
   };
 
   // Check if all form fields are complete

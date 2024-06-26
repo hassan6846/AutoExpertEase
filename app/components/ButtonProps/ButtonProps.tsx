@@ -1,5 +1,4 @@
-import { StyleSheet } from "react-native"
-import { Button, IconProps } from "@rneui/themed"
+import { Button } from "@rneui/themed"
 import { ReactElement, JSXElementConstructor } from "react"
 
 
@@ -17,9 +16,10 @@ interface ButtonProps {
 
 }
 //Main Prop
-const CustomButton = (props: ButtonProps) => {
+const CustomButton = (props:any) => {
     return (
         <Button
+        disabled={props.disabled}
         
             onPress={props.function}
             icon={props.icon}

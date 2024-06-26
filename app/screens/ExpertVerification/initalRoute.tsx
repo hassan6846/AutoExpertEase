@@ -2,7 +2,6 @@ import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/
 
 import SelectRole from "./nested/SelectRole";
 import ExpertVerification from "./nested/ExpertVerification/ExpertVerification";
-import CarRentalVerification from "./nested/ExpertVerification/CarRentalVerification";
 import VendorVerfication from "./nested/ExpertVerification/VendorVerfication";
 
 const Verify = createStackNavigator();
@@ -27,11 +26,7 @@ const VerficationStack = () => {
             />
 
             {/* Rental Verification */}
-            <Verify.Screen
-                name="rentalverification"
-                component={CarRentalVerification}
-                options={{ title: "Rental Car Verification", headerTitleAlign: "center", headerLeft: () => (<></>) }}
-            />
+
             {/* Car Posting Verification. */}
   
             <Verify.Screen

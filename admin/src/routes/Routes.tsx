@@ -17,7 +17,6 @@ import Logout from "../pages/dashboard/nested/Logout/Logout";
 
 import AllCars from "../pages/dashboard/nested/AllCars/AllCars";
 import UserManegment from "../pages/dashboard/nested/UserManegment/UserManegment";
-import RentalRequest from "../pages/dashboard/nested/CarRentalRequest/RentalRequest";
 
 const Routing = () => {
   const { isAuthenticated } = useAuth();
@@ -35,7 +34,6 @@ const Routing = () => {
           <Route path="/vendorrequest" element={<VendorRequest />} />
           <Route path="/expertrequests" element={<ExpertRequests />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/carrentalrequests" element={<RentalRequest />} />
           <Route path="*" element={<ErrorPage />} /> {/* Redirect to 404 page for unknown routes */}
         </Route>
       ) : (

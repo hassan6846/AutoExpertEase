@@ -42,23 +42,29 @@ const SelectRole = ({ navigation }: { navigation: any }) => {
       {/* Vehicle Post VErification */}
       {/* Rental Verification  */}
       {/* Work As Vendor */}
-  
-      <Pressable  onPress={()=>navigation.navigate('expertverification')} style={Styles.VerificationCard}>
+
+      <Pressable onPress={() => navigation.navigate('expertverification')} style={Styles.VerificationCard}>
         <Avatar avatarStyle={{ objectFit: "contain" }} size={50} source={{ uri: MechanicVerifiction }} />
-        <Text>Expert Verification</Text>
+        <View style={{ display: "flex", flexDirection: "column" }}>
+          <Text>Expert Verification</Text>
+
+          <Text style={{ fontSize: 12 }}>for Mechanic & Renting and Posting Cars</Text>
+        </View>
       </Pressable>
 
       {/* Verification Rental */}
-      <Pressable onPress={()=>navigation.navigate('rentalverification')} style={Styles.VerificationCard}>
-        <Avatar avatarStyle={{ objectFit: "contain" }} size={50} source={{ uri: VehicleRental }} />
-        <Text>Vehicle Rental Verification</Text>
-      </Pressable>
+
       {/* Listing Verification */}
 
       {/* Work as Vendor */}
-      <Pressable onPress={()=>navigation.navigate('vendorverification')} style={Styles.VerificationCard}>
+      <Pressable onPress={() => navigation.navigate('vendorverification')} style={Styles.VerificationCard}>
         <Avatar size={50} source={{ uri: vendor }} />
+
+        <View style={{ display: "flex", flexDirection: "column" }}>
         <Text>Work As Vendor</Text>
+
+          <Text style={{ fontSize: 12 }}>for Selling Products.</Text>
+        </View>
       </Pressable>
 
     </ScrollView>

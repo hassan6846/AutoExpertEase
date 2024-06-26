@@ -264,6 +264,8 @@ const ApproveExpert = async (req, res, next) => {
         }
         //Insert One more field string
         findUser.role.push("expert")
+        findUser.role.push("postal")
+        findUser.role.push("rental")
         const expert = await Expert.findOne({ user: id })
         expert.isExpert = true
         await findUser.save()

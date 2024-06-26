@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, ScrollView, Alert } from 'react-native';
 import { Text, Avatar, Button } from "@rneui/themed";
 import * as ImagePicker from 'expo-image-picker';
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -197,6 +197,7 @@ const ExpertVerification = () => {
 
         {/* Submit Button */}
         <Button
+        
           color={ThemeProviderColors.Light.Primary}
           buttonStyle={Styles.submitButton}
           title="Submit Form"

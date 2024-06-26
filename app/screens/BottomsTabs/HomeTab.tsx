@@ -41,12 +41,12 @@ const CanPostCars = async () => {
     if (!data.canPostCars) {
       Alert.alert(
         "Sorry",
-        "You can't post new cars right now. Please check your role and permissions or Request to become a Car Poster Agency",
+        "You can't post new cars right now. Please check your role and permissions or Request to become a Car Poster Agency Verify YOur self with kyc information",
         [
           {
             text: "Request Now",
             onPress: () => {
-              navigation.navigate("expertverify",{screen:"rentalverification"});
+              navigation.navigate("expertverify",{screen:"expertverification"});
               // Handle the "Request Now" action here
             },
           },

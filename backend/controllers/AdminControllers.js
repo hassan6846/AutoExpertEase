@@ -290,7 +290,32 @@ const GetVendorApplications = async (req, res, next) => {
     }
 }
 const ApproveVendor=async(req,res,next)=>{
-  
+   const { id } = req.body;
+    if (!id) {
+        return res.status(400).json({
+            success: false,
+            msg: "User does not exist in the database"
+        });
+    }
+    try {
+        const findUser = await User.findOne({ _id: id });
+        if (!findUser) {
+            return res.status(404).json({ message: "User not found" })
+        }
+        
+        findUser.role.push("vendor")
+        const vendor = await Vendor.findOne({ user: id })
+        vendor.isVendor = true
+        await findUser.save()
+        await vendor.save() 
+        res.status(200).json({
+            sucess: true,
+            message:"User approved as vendor successfully",
+        })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
 }
 //Get Rental Applications
 
@@ -318,4 +343,5 @@ module.exports = {
              CountApprovedExperts,
               GetLatestUsers, 
               GetExpertApplications, 
-              ApproveExpert }
+              ApproveExpert,
+              ApproveVendor }

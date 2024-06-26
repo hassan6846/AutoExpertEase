@@ -40,7 +40,7 @@ const ApplyForVendor = async (req, res) => {
             contactInfo: {
                 email: email,
                 phone: buisnessphone,
-                user: userid,
+              
             },
             ntnNumber: ntnno,
             vendorDetails: {
@@ -49,6 +49,8 @@ const ApplyForVendor = async (req, res) => {
                 address: address,
                 accountno: accountno
             },
+            user: userid,
+            avatar:user.avatar
         });
         
         await vendor.save();
@@ -62,7 +64,7 @@ const ApplyForVendor = async (req, res) => {
         console.error(err);
         return res.status(500).json({
             success: false,
-            msg: "Server Error"
+            msg:  "Application Already Exists Wait for Approval"
         });
     }
 };

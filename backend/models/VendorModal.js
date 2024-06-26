@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const VendorSchema = new mongoose.Schema({
+    user: {
+        type:String,
+        required: true,
+    },
     shopName: {
         type: String,
         required: true,
@@ -23,10 +27,7 @@ const VendorSchema = new mongoose.Schema({
             required:true
         },
         // Reference to user's phone number
-        user: {
-            type:String,
-            required: true,
-        },
+
     },
     ntnNumber: {
         type: String,
@@ -55,10 +56,18 @@ const VendorSchema = new mongoose.Schema({
 
         // Other vendor details such as date of birth, nationality, etc.
     },
+    avatar:{
+        type: String,
+    
+    },
     isVendor:{
         type:Boolean,
         default:false,
     
+    },
+    createdAt:{
+        type: Date,
+        default: Date.now(),
     }
     
 });

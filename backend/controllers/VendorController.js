@@ -14,6 +14,13 @@ const ApplyForVendor = async (req, res) => {
         //find if application already exists
         const findApplication=await Vendor.findOne({vendorDetails:{user:userid}})
         //find user by id
+        if(findApplication){
+            return res.status(400).json({
+                success: false,
+                msg: "You have already applied for a vendor."
+            });  
+
+
         const user = await User.findById(userid);
         if(!user){
             return res.status(404).json({
@@ -21,13 +28,9 @@ const ApplyForVendor = async (req, res) => {
                 msg: "User not found."
             });
         }
-       if(findApplication){
-        return res.status(400).json({
-            success: false,
-            msg: "You have already applied for a vendor."
-        });  
+
  
-       }
+       
         //create new Vendor
         const vendor=new Vendor({
             shopName:shopname,
@@ -52,7 +55,7 @@ const ApplyForVendor = async (req, res) => {
             success: true,
             vendor
         });
-    }
+    }}
     catch(err){
         console.error(err);
         return res.status(500).json({

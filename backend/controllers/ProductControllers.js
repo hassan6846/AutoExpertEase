@@ -1,6 +1,5 @@
 const Product = require("../models/ProductModel");
-const User = require("../models/UserModel");
-const Vendor = require("../models/VendorModal");
+
 //Utils
 const cloudinaryInstance = require("../utils/Cloudinary");
 

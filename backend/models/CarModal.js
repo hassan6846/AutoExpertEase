@@ -53,13 +53,15 @@ const CarSchema = new mongoose.Schema({
         default: true,
     },
     images: [{
-        type: String,
+        type: [String],
+        required: [true, "Kindly Add Some Images to Preview (minimum limit is 3)"],
         validate: {
-            validator: function(v) {
-                return validator.isURL(v);
+            validator: function(array) {
+                return array.length >= 1 && array.length <= 9;
             },
-            message: props => `${props.value} is not a valid URL!`
+            message: "Image array should have between 3 and 9 items."
         }
+
     }],
     description: {
         type: String,
@@ -86,7 +88,7 @@ const CarSchema = new mongoose.Schema({
     },
     IsApproved:{
         type:Boolean,
-        default:false,
+        default:true,
     },
     // Owner details
     

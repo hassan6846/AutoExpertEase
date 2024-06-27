@@ -151,16 +151,23 @@ const AddTopup = async (req, res) => {
 
 const PostTask = async (req, res, next) => {
 
-  const { title, vehciletype, description, coordinates, county } = req.body;
-  if (!title || !vehciletype || !description || !coordinates || !county) {
+  const { title, vehciletype, description, coordinates, county,id,imageone,imagetwo} = req.body;
+  if (!title || !vehciletype || !description || !coordinates || !county||id||!imageone||!imagetwo) {
     return res.status(400).json({
       success: false,
       msg: "Please fill all the fields.",
     });
   }
+  try{
+   res.send("hello")
+  }catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      msg: "Internal Server Error",
+    });
+  }
 }
-
-//rate and comment expert
 
 
 

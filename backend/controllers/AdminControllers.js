@@ -1,4 +1,3 @@
-const express = require("express")
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt')
 //models
@@ -7,6 +6,8 @@ const Product = require("../models/ProductModel")
 const Car = require("../models/CarModal")
 const Vendor = require("../models/VendorModal")
 const Expert = require("../models/ExpertModel")
+const { SendOtpMail } = require("../utils/SendMail")
+//utils
 
 const AdminLoginFunction = async (req, res, next) => {
     const { email, password } = req.body;
@@ -279,6 +280,7 @@ const ApproveExpert = async (req, res, next) => {
         findUser.role.push("rental")
         const expert = await Expert.findOne({ user: id })
         expert.isExpert = true
+        await SendOtpMail(findUser.email,'Request Approved','Your expert account has been approved YOu can now access the following features e.g car fixing, car rental and postal',)
         await findUser.save()
         await expert.save()
         res.status(200).json({
@@ -321,6 +323,7 @@ const ApproveVendor=async(req,res,next)=>{
         vendor.isVendor = true
         await findUser.save()
         await vendor.save() 
+        await sendma
         res.status(200).json({
             sucess: true,
             message:"User approved as vendor successfully",

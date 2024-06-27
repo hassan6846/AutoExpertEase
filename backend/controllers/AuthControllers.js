@@ -1,6 +1,5 @@
 // Models
 const OTP = require("../models/EmailOtpModel");
-const User = require('../models/UserModel')
 // Utils
 const { GenerateOtp } = require("../utils/GenerateOtp");
 // Senders

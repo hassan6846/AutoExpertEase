@@ -120,7 +120,7 @@ const CarSchema = new mongoose.Schema({
     },
     IsApproved:{
         type:Boolean,
-        default:false,
+        default:true,
     },
     // Owner details
     

@@ -333,13 +333,7 @@ const ApproveVendor=async(req,res,next)=>{
 //Get Rental Applications
 
 
-const ApproveRental=async(req,res,next)=>{
-    try{
-    }catch(error){
-    
 
-    }
-}
 module.exports = { 
     AdminLoginFunction,
     GetVendorApplications,

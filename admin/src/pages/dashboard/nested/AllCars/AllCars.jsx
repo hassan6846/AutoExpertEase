@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './AllCars.css';
 import { Avatar, Chip } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { defaultUserImg } from '../../../../constants/ImageConstants';
 import Header from '../../../../components/Header/Header';
 import axios from 'axios';
@@ -12,9 +11,9 @@ const AllCars = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:4001/api/product');
-        setProducts(response.data.products);
-        console.log(response.data.products); // Log the fetched products
+        const response = await axios.get('http://localhost:4001/api/car');
+        console.log(response.data); // Log the fetched products
+        setProducts(response.data); // Store the entire array of cars
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -25,8 +24,8 @@ const AllCars = () => {
 
   return (
     <div style={{ flex: 1, backgroundColor: '#fff' }}>
-      <Header title="All Listed Cars(active)." />
-      <p style={{ fontSize: 20 }}>Products</p>
+      <Header title="All Listed Cars (active)." />
+      <p style={{ fontSize: 20 }}>Available Cars</p>
 
       <div className="product-wrapper">
         {products.map((product) => (
@@ -44,24 +43,25 @@ const AllCars = () => {
               margin: '10px',
             }}
           >
-
             <img
               style={{
                 borderRadius: 5,
                 height: '40vh',
                 objectFit: 'cover',
-            
                 width: '100%'
               }}
-              src={product.image[0]} // Use the first image from the array
+              src={product.images[0][0]} // Use the first image from the array
               alt={product.name}
             />
             <div style={{ flexDirection: 'row', display: 'flex', alignItems: 'center' }}>
               <Avatar src={defaultUserImg} />
               <div>
-              <p style={{ fontSize: 12, marginLeft: 5, marginBottom: 2 }}>{product.name.length > 20 ? product.name.substring(0, 50) + '...' : product.name}</p>
-              <Chip style={{ fontSize: 9, marginLeft: 2, marginBottom: 2 }} label={product.productcategory.category} />
-                <Chip style={{ fontSize: 9, marginLeft: 2, marginBottom: 2 }} label={product.productcategory.subcategory} />
+                <p style={{ fontSize: 12, marginLeft: 5, marginBottom: 2 }}>
+                  {product.name.length > 20 ? product.name.substring(0, 20) + '...' : product.name}
+                </p>
+                {/* You can customize the Chip labels based on your data */}
+                <Chip style={{ fontSize: 9, marginLeft: 2, marginBottom: 2 }} label="Category" />
+                <Chip style={{ fontSize: 9, marginLeft: 2, marginBottom: 2 }} label="Subcategory" />
               </div>
             </div>
           </div>

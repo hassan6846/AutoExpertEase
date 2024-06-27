@@ -95,7 +95,7 @@ const PostCar = () => {
         <InputComponent placeholder="No Plate" value={plate} onChangeText={setPlate} />
         <InputComponent placeholder="Vehicle Registration No" value={registration} onChangeText={setRegistration} />
         <InputComponent placeholder="Color" value={color} onChangeText={setColor} />
-        <InputComponent placeholder="Car type sedan or any" value={carType} onChangeText={setCarType} />
+        <InputComponent placeholder="Car type manual /automatic" value={carType} onChangeText={setCarType} />
       </View>
 
       <View style={styles.ChildWrapper}>

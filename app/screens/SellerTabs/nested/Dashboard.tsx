@@ -81,20 +81,20 @@ const Dashboard = () => {
     <View style={styles.container}>
       {/* Flex Row */}
       <View style={{ width: "100%", flexDirection: 'row', columnGap: 5 }}>
-        <View style={{ backgroundColor: "red", width: "50%", paddingVertical: 30, borderRadius: 5 }}>
-          <Text style={{ textAlign: 'center' }}>Product Uploaded</Text>
-          <Text h3 style={{ textAlign: 'center' }}>0</Text>
+        <View style={{ backgroundColor: "#EBF4F6", width: "50%", paddingVertical: 30, borderRadius: 5 }}>
+          <Text style={{ textAlign: 'center',color:"#007787" }}>Product Uploaded</Text>
+          <Text h3 style={{ textAlign: 'center',color:"#007787" }}>0</Text>
         </View>
-        <View style={{ backgroundColor: "red", width: "50%", paddingVertical: 30, borderRadius: 5 }}>
-          <Text style={{ textAlign: 'center' }}>Orders</Text>
-          <Text h3 style={{ textAlign: 'center' }}>0</Text>
+        <View style={{ backgroundColor: "#E04E2F", width: "50%", paddingVertical: 30, borderRadius: 5 }}>
+          <Text style={{ textAlign: 'center',color:"#f5f5f5" }}>Orders</Text>
+          <Text h3 style={{ textAlign: 'center',color:"#f5f5f5" }}>0</Text>
         </View>
       </View>
 
       {/* Earnings */}
-      <View style={{ width: '100%', backgroundColor: "navy", paddingVertical: 30, marginTop: 10, borderRadius: 5 }}>
-        <Text style={{ textAlign: 'center' }}>Income</Text>
-        <Text h3 style={{ textAlign: 'center' }}>0</Text>
+      <View style={{ width: '100%', backgroundColor: "#BEDAED", paddingVertical: 30, marginTop: 10, borderRadius: 5 }}>
+        <Text style={{ textAlign: 'center' ,color:"#0675BB"}}>Income</Text>
+        <Text h3 style={{ textAlign: 'center',color:"#0675BB" }}>0</Text>
       </View>
 
       {/* Active Products Section */}

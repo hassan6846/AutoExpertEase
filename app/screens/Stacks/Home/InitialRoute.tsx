@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import React, { useEffect,useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, View,Alert } from 'react-native';
 
 // Utils libraries
 import { Text, Avatar, Icon } from '@rneui/themed';
 import { DrvingVideoImage, pakImage, pakleasson, Sedan } from '../../../constants/ImagesConstants';
 import ThemeProviderColors from '../../../provider/ThemeProvider';
+import * as Location from 'expo-location';
 
 // State management
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,6 +19,8 @@ const HomeInital: React.FC<HomeInitalProps> = ({ navigation }) => {
   // State management
   const id = useSelector((state: any) => state.auth.userid);
   const dispatch = useDispatch();
+  const [errorMsg, setErrorMsg] = useState<any>(null);
+  const [location, setLocation] = useState<any>(null);
 
   const serviceArray = [
     { title: 'Rent Cars', icon: 'car-rental', route: 'allcars' },
@@ -45,6 +48,19 @@ const HomeInital: React.FC<HomeInitalProps> = ({ navigation }) => {
         console.log('Error fetching avatar:', error);
       }
     };
+
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        Alert.alert('Permission Denied', 'Permission to access location was denied');
+        return;
+      }
+  
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
 
     fetchAvatar();
   }, [id, dispatch]);

@@ -7,27 +7,49 @@ const CarSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    brand: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    modelYear: {
-        type: Number,
-        required: true,
-        min: 1886, // Year of the first automobile
-    },
     licensePlate: {
         type: String,
         required: true,
         trim: true,
         unique: true,
     },
-    owner: {
+    RegistrationNo:{
+        type: String,
+        required: true,
+    
+    },
+    color:{
         type:String,
+        default:"undefined",
+    },
+    Cartype: {
+        type: [String],
+        enum: ['Manual', 'Automatic'],
         required: true,
     },
-
+    EngineType:{
+        type:String,
+        defualt:"Gasoline Engine"
+    },
+    fuelType: {
+        type: [String],
+        enum: ['Petrol', 'Diesel', 'Electric', 'Hybrid'],
+        required: true,
+    },
+    YearOfManufacture: {
+        type: Number,
+        required: true,
+        min: 1886, // Year of the first automobile
+    },
+    Milage:{
+        type: Number,
+        required: true,
+        min: 0,
+    },
+    condition: {
+        type: String,
+        trim: true,
+    },
     seats: {
         type: Number,
         required: true,
@@ -38,6 +60,22 @@ const CarSchema = new mongoose.Schema({
         required: true,
         default: false,
     },
+    hasTraker:{
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    WorkingSoundSystem:{
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    LegalDocuments:{
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    
     pricePerDay: {
         type: Number,
         required: true,
@@ -45,6 +83,14 @@ const CarSchema = new mongoose.Schema({
     },
     location: {
         type: String,
+        required: true,
+    },
+    Address:{
+        type: String,
+        required: true,
+    },
+    owner: {
+        type:String,
         required: true,
     },
     availability: {
@@ -63,23 +109,9 @@ const CarSchema = new mongoose.Schema({
         }
 
     }],
-    description: {
-        type: String,
-        trim: true,
-    },
-    fuelType: {
-        type: [String],
-        enum: ['Petrol', 'Diesel', 'Electric', 'Hybrid'],
-        required: true,
-    },
-    transmission: {
-        type: [String],
-        enum: ['Manual', 'Automatic'],
-        required: true,
-    },
-    features: [{
-        type: String,
-    }],
+
+
+
 
 
     createdAt: {

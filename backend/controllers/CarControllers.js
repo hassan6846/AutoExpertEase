@@ -36,7 +36,11 @@ try {
     ]);
     // Create a new car
     const newCar = new Car({
-       
+        name: carname,
+        licensePlate: noplate,
+        RegistrationNo:registrationno,
+        color: color,
+ 
     });
     // Save the car to the database
     await newCar.save();

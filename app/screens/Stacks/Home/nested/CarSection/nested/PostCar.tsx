@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { View, ScrollView, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native';
 import { Text, CheckBox, Avatar, Button } from "@rneui/themed";
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
@@ -40,8 +40,8 @@ const PostCar = () => {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-        const data=location.coords.latitude+','+location.coords.longitude
-       setLocation(location);
+      const data = location.coords.latitude + ',' + location.coords.longitude
+      setLocation(location);
     })();
   }, []);
 
@@ -63,37 +63,44 @@ const PostCar = () => {
   };
 
   const handlePostCar = async () => {
-    const response=await fetch('http://10.0.2.2:4001/api/car/upload',{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: id,
-        carname:name,
-        noplate:plate,
-        registrationno:registration,
-        color:color,
-        cartype:carType,
-        enginetype:engineType,
-        fueltype:fuelType,
-        yearofmanufacture:yearOfManufacture,
-        milage:mileage,
-        carcondition:carCondition,
-        seats:seats,
-        ac:ac,
-        tracker:tracker,
-        legaldocuments:legalDocuments,
-        workingsound:workSoundSystem,
-        pickupAddress:pickedLocation,
-        image:images[0],
-        imagetwo:images[1],
-        usercoords:location,
-        price:pricePerDay,
+    try {
+      const response = await fetch('http://10.0.2.2:4001/api/car/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: id,
+          carname: name,
+          noplate: plate,
+          registrationno: registration,
+          color: color,
+          cartype: carType,
+          enginetype: engineType,
+          fueltype: fuelType,
+          yearofmanufacture: yearOfManufacture,
+          milage: mileage,
+          carcondition: carCondition,
+          seats: seats,
+          ac: ac,
+          tracker: tracker,
+          legaldocuments: legalDocuments,
+          workingsound: workSoundSystem,
+          pickupAddress: pickedLocation,
+          image: images[0],
+          imagetwo: images[1],
+          usercoords: location,
+          price: pricePerDay,
+        })
       })
-    })
-    const data=await response.json();
-    console.log(data);
+      const data = await response.json();
+      Alert.alert('Car Posted Successfully','Wait for approval and review');
+      console.log(data);
+    } catch (error) {
+      console.error('Error creating product:', error.message);
+      Alert.alert('Failed to create product', error.message);
+
+    }
   }
 
   return (
@@ -158,7 +165,9 @@ const PostCar = () => {
         </TouchableOpacity>
       </View>
 
-      <Button buttonStyle={{ marginBottom: 50, marginTop: 10 }} title="Post Car" onPress={handlePostCar} />
+      <Button
+        color="#E04E2F"
+        buttonStyle={{ marginBottom: 50, marginTop: 10 }} title="Post Car" onPress={handlePostCar} />
     </ScrollView>
   );
 }

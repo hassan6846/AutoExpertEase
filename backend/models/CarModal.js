@@ -24,7 +24,7 @@ const CarSchema = new mongoose.Schema({
     },
     Cartype: {
         type: [String],
-        enum: ['Manual', 'Automatic'],
+  
         required: true,
     },
     EngineType:{
@@ -33,7 +33,7 @@ const CarSchema = new mongoose.Schema({
     },
     fuelType: {
         type: [String],
-        enum: ['Petrol', 'Diesel', 'Electric', 'Hybrid'],
+       
         required: true,
     },
     YearOfManufacture: {

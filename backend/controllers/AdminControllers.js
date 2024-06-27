@@ -115,6 +115,17 @@ const GetAllCars = async (req, res, next) => {
         res.status(500).json({ error: "Internal server error" });
     }
 }
+//Get UnApprove Cars
+const GetUnapprovedCars = async (req, res, next) => {
+    try{
+        const unapprovedCars = await Car.find({IsApproved:false});
+        res.status(200).json(unapprovedCars);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
 //Get Recent SignUps.
 const RecentSignups = async (req, res, next) => {
     try {
@@ -346,4 +357,5 @@ module.exports = {
               GetLatestUsers, 
               GetExpertApplications, 
               ApproveExpert,
+              GetUnapprovedCars,
               ApproveVendor }

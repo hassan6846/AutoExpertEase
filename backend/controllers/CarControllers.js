@@ -7,10 +7,10 @@ const cloudinaryInstance = require("../utils/Cloudinary");
 
 const UploadCar = async (req, res, next) => {
     const { id, carname, noplate, registrationno, color, cartype, enginetype, fueltype,
-        yearofmanufacture, milage, carcondition, seats, ac, tracker, legaldocuments, workingsound, pickupAddress, image, imagetwo,usercoords} = req.body;
+        yearofmanufacture, milage, carcondition, seats, ac, tracker, legaldocuments, workingsound, pickupAddress, image, imagetwo,usercoords,price} = req.body;
   
          //if request empty
-         if(!id||!carname||!noplate||!registrationno||!color||!cartype||!enginetype||!fueltype||!yearofmanufacture||!milage||!carcondition||!seats||!ac||!tracker||!legaldocuments||!workingsound||!pickupAddress||!image1||!image2||!usercoords){
+         if(!id||!carname||!noplate||!registrationno||!color||!cartype||!enginetype||!fueltype||!yearofmanufacture||!milage||!carcondition||!seats||!ac||!tracker||!legaldocuments||!workingsound||!pickupAddress||!image||!imagetwo||!usercoords||!price){
   
             return res.status(400).json({
                 success: false,
@@ -40,6 +40,23 @@ try {
         licensePlate: noplate,
         RegistrationNo:registrationno,
         color: color,
+        Cartype: cartype,
+        EngineType:enginetype,
+        fuelType:fueltype,
+        YearOfManufacture:yearofmanufacture,
+        Milage:milage,
+        condition:carcondition,
+        seats:seats,
+         haveAc:ac,
+         hasTraker:tracker,
+         WorkingSoundSystem:workingsound,
+         LegalDocuments:legaldocuments,
+         pricePerDay:price,
+         location:usercoords,
+         Address:pickupAddress,
+         owner:id,
+         images: [uploadedImage1, uploadedImage2],
+         
  
     });
     // Save the car to the database

@@ -82,7 +82,7 @@ const CarSchema = new mongoose.Schema({
         min: 0,
     },
     location: {
-        type: String,
+        type: Object,
         required: true,
     },
     Address:{
@@ -120,7 +120,7 @@ const CarSchema = new mongoose.Schema({
     },
     IsApproved:{
         type:Boolean,
-        default:true,
+        default:false,
     },
     // Owner details
     

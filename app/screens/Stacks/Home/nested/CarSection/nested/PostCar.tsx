@@ -5,8 +5,11 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
 import InputComponent from '../../../../../../components/InputComponent/InputComponent';
 import { selectPhoto } from '../../../../../../constants/ImagesConstants';
+import { useSelector } from 'react-redux';
 
 const PostCar = () => {
+  const id = useSelector((state: any) => state.auth.userid);
+
   const [images, setImages] = useState<string[]>([]);
   const [name, setName] = useState('');
   const [plate, setPlate] = useState('');
@@ -38,7 +41,7 @@ const PostCar = () => {
 
       let location = await Location.getCurrentPositionAsync({});
         const data=location.coords.latitude+','+location.coords.longitude
-      
+       setLocation(location);
     })();
   }, []);
 
@@ -59,31 +62,39 @@ const PostCar = () => {
     }
   };
 
-  const handlePostCar = () => {
-    // Handle posting car details logic here
-    console.log('Posting car details...');
-    console.log({
-      name,
-      plate,
-      registration,
-      color,
-      carType,
-      engineType,
-      fuelType,
-      yearOfManufacture,
-      mileage,
-      carCondition,
-      seats,
-      pricePerDay,
-      ac,
-      tracker,
-      workSoundSystem,
-      legalDocuments,
-      pickedLocation,
-      location,
-      images
-    });
-  };
+  const handlePostCar = async () => {
+    const response=await fetch('http://10.0.2.2:4001/api/car/upload',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: id,
+        carname:name,
+        noplate:plate,
+        registrationno:registration,
+        color:color,
+        cartype:carType,
+        enginetype:engineType,
+        fueltype:fuelType,
+        yearofmanufacture:yearOfManufacture,
+        milage:mileage,
+        carcondition:carCondition,
+        seats:seats,
+        ac:ac,
+        tracker:tracker,
+        legaldocuments:legalDocuments,
+        workingsound:workSoundSystem,
+        pickupAddress:pickedLocation,
+        image:images[0],
+        imagetwo:images[1],
+        usercoords:location,
+        price:pricePerDay,
+      })
+    })
+    const data=await response.json();
+    console.log(data);
+  }
 
   return (
     <ScrollView style={styles.container}>

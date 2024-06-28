@@ -19,29 +19,20 @@ const BookingSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    totalPrice: {
-        type: Number,
-        required: true,
-    },
+
     paymentStatus: {
         type: String,
-        enum: ['pending', 'completed', 'cancelled'],
-        default: 'pending',
+        default: 'paid',
     },
     createdAt: {
         type: Date,
         default: Date.now(),
     },
-    owner:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User",
-        required: true,
-    },
-    ownerUserDetails:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User",
-        required: true,
 
+
+    isActive:{
+        type: Boolean,
+        default: true,
     }
 });
 

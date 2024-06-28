@@ -46,6 +46,7 @@ const expert=require("./routes/ExpertRoute")
 const location=require("./routes/LocationRoutes")
 const order=require("./routes/OrderRoutes")
 const vendor=require("./routes/VendorRoutes")
+const booking=require("./routes/BookingRoute")
 // Endpoints middlewares
 app.use("/api", user);
 app.use("/api", product);
@@ -57,8 +58,8 @@ app.use("/api",car);
 app.use("/api",expert);
 app.use("/api",location);
 app.use('/api',order);
-
-app.use('/api',vendor)
+app.use('/api',vendor);
+app.use('/api',booking);
 // Create HTTP server
 const server = http.createServer(app);
 

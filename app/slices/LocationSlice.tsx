@@ -44,6 +44,11 @@ export const locationSlice = createSlice({
     },
 });
 
-export const { setDestination,setDistanceTravelTime,setExpertArrivalTime,setExpertCurrentLocation,setLatitude,setLongitude,SetNearbyPlace} = locationSlice.actions;
+export const { setDestination,
+    setDistanceTravelTime,
+    setExpertArrivalTime,
+    setExpertCurrentLocation,
+    setLatitude,
+    setLongitude,SetNearbyPlace} = locationSlice.actions;
 
 export default locationSlice.reducer;

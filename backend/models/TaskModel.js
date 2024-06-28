@@ -27,7 +27,8 @@ const TaskSchema = new mongoose.Schema({
         }
     },
     NearbyPlace: {
-
+        type:"String",
+        required: false,
     },
     Postedby: {
         type: String,
@@ -38,18 +39,10 @@ const TaskSchema = new mongoose.Schema({
         default: Date.now
     },
     //Offers should be array of objects
-    Offers: {
-        price: {
 
-        },
-        distance: {
-
-        },
-        time: {
-
-        }
-    },
     isArrived: {
+        type: Boolean,
+        default: false
     },
     AcceptedBy: {
         type: String,
@@ -58,5 +51,11 @@ const TaskSchema = new mongoose.Schema({
     finalPrice:{
         type: Number,
         default: null
+    },
+    isTaskActive:{
+        type: Boolean,
+        default:true
     }
 },{timestamps: true});
+const Task = mongoose.model("Task", TaskSchema);
+module.exports=Task

@@ -7,12 +7,21 @@ import { bike, Sedan, truck, selectPhoto } from '../../../../constants/ImagesCon
 //Library 
 import { Input, Text, Button, Avatar } from '@rneui/themed';
 import * as ImagePicker from 'expo-image-picker';
+//States
+import { useSelector } from 'react-redux';
+import { Alert } from 'react-native';
 
 const TaskDescription = ({ navigation }: { navigation: any }) => {
+  const NearbyPlace = useSelector((state: any) => state.location.nearbyplace);
+  const Latitude = useSelector((state: any) => state.location.latitude);
+  const Longitude = useSelector((state: any) => state.location.longitude);
+  const id = useSelector((state: any) => state.auth.userid); //posted by....
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [images, setImages] = useState<string[]>([]);
   const [carType, setCarType] = useState('');
+  const [loading, setLoading] = useState(false); // Loading state
 
   const handleTitleChange = (text: string) => {
     setTitle(text);
@@ -42,12 +51,46 @@ const TaskDescription = ({ navigation }: { navigation: any }) => {
     if (!result.canceled) {
       const base64Images = result.assets.map((asset) => asset.base64!);
       setImages(base64Images);
+
     }
   };
 
-  const handlePostNow = () => {
-    // Logic to post task
-    navigation.navigate('hailing_page');
+  const handlePostNow = async () => {
+    setLoading(true); // Set loading to true when starting the request
+
+    try {
+      const response = await fetch("http://10.0.2.2:4001/api/post-task", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title,
+          vehciletype: carType,
+          description: description,
+          longitude: Longitude,
+          latitude: Latitude,
+          county: NearbyPlace,
+          id: id,
+          imageone: images[0],
+          imagetwo: images[1]
+        }),
+      });
+
+  
+
+      const data = await response.json();
+      console.log(data);
+if(response.ok){
+  navigation.navigate("hailing_page")
+}
+    } catch (error) {
+      console.error('Error:', error.message);
+      Alert.alert("Ooops","It's Looks Like we are having a problem please Try again later!")
+    }finally{
+      setLoading(false); // Set loading to false when the request is completed
+
+    }
   };
 
   const isButtonDisabled = !title || !description || description.length < 30 || images.length < 2;
@@ -69,32 +112,32 @@ const TaskDescription = ({ navigation }: { navigation: any }) => {
         </View>
         {/* Input MainVOid*/}
         {/* Vehicle type */}
-        <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>Vehicle Type:{carType}</Text>
-        <ScrollView  horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: "row", columnGap: 10,marginBottom:10}}>
-         {
-          cartypeData.map((item, index) => (
-            <TouchableOpacity 
-              key={index} 
-              onPress={() => setCarType(item.title)}
-              style={[Styles.avatarContainer, carType === item.title && Styles.selectedAvatar]}
-            >
-              <Avatar size={getHeight / 8} avatarStyle={Styles.avatar} source={{ uri: item.image }} />
-            </TouchableOpacity>
-          ))    
-         }
+        <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>Vehicle Type: {carType}</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: "row", columnGap: 10, marginBottom: 10 }}>
+          {
+            cartypeData.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => setCarType(item.title)}
+                style={[Styles.avatarContainer, carType === item.title && Styles.selectedAvatar]}
+              >
+                <Avatar size={getHeight / 8} avatarStyle={Styles.avatar} source={{ uri: item.image }} />
+              </TouchableOpacity>
+            ))
+          }
         </ScrollView>
 
         {/* Upload Video */}
-        <TouchableOpacity onPress={selectImage}  style={{ padding: 10, backgroundColor: "#f8f8f8", borderRadius: 5 }}>
-          <Text style={{fontSize:12,marginBottom:10}}>Select Max 3 Images only and min 2</Text>
+        <TouchableOpacity onPress={selectImage} style={{ padding: 10, backgroundColor: "#f8f8f8", borderRadius: 5 }}>
+          <Text style={{ fontSize: 12, marginBottom: 10 }}>Select Max 3 Images only and min 2</Text>
           {
             images.length > 0 ? (
               <FlatList
-                contentContainerStyle={{gap:10}}
+                contentContainerStyle={{ gap: 10 }}
                 data={images}
                 horizontal
                 renderItem={({ item }) => (
-                  <Avatar avatarStyle={{ borderRadius: 5 }} containerStyle={{borderRadius:5}} source={{ uri: `data:image/jpeg;base64,${item}` }} size={50} />
+                  <Avatar avatarStyle={{ borderRadius: 5 }} containerStyle={{ borderRadius: 5 }} source={{ uri: `data:image/jpeg;base64,${item}` }} size={50} />
                 )}
                 keyExtractor={(item, index) => index.toString()}
                 ListEmptyComponent={<Avatar avatarStyle={{ borderRadius: 5 }} source={{ uri: selectPhoto }} size={50} />}
@@ -120,7 +163,7 @@ const TaskDescription = ({ navigation }: { navigation: any }) => {
           onPress={handlePostNow}
           color="#E04E2F"
           buttonStyle={[Styles.ButtonStyle, isButtonDisabled && { backgroundColor: 'gray' }]}
-          title="Post Now"
+          title={loading ? "Posting..." : "Post Now"}
           disabled={isButtonDisabled}
         />
       </ScrollView>
@@ -171,7 +214,7 @@ const Styles = StyleSheet.create({
   },
   selectedAvatar: {
     borderWidth: 2,
-    borderRadius:5,
+    borderRadius: 5,
     borderColor: "#E04E2F",
   },
   uploadContainer: {

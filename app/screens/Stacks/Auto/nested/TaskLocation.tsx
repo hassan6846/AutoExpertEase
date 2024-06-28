@@ -8,7 +8,8 @@ import { useSelector } from 'react-redux';
 const TaskLocation = ({ navigation }: { navigation: any }) => {
   const [pickedLocation, setPickedLocation] = useState<any>(null); // State to hold picked location
   const NearbyPlace=useSelector((state:any)=>state.location.nearbyplace)
-  
+
+
   const handleMapPress = (event: any) => {
     // Extract latitude and longitude from the pressed location
     const { latitude, longitude } = event.nativeEvent.coordinate;

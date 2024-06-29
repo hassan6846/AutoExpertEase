@@ -1,9 +1,16 @@
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native';
 import React, { useState, useEffect } from 'react';
+import { useRoute } from "@react-navigation/native";
+
 import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { useStripe } from "@stripe/stripe-react-native";
-
+import { useSelector } from 'react-redux';
 const BookingSteps = () => {
+  const route = useRoute();
+  const { car } = route.params as { car: any }; // Type assertion to specify the shape of route.params
+
+  const id = useSelector((state: any) => state.auth.userid)
+
   const [emergencyPhone, setEmergencyPhone] = useState('');
   const [amount, setAmount] = useState(100);
   const [startDate, setStartDate] = useState(new Date());
@@ -25,7 +32,7 @@ const BookingSteps = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ amount: Number(amount) * 100 }), // Amount in cents
+        body: JSON.stringify({ amount: Number(car.pricePerDay) * totalDays }), // Amount in cents
       });
 
       console.log('Received response from server:', response.status);
@@ -71,13 +78,39 @@ const BookingSteps = () => {
       }
 
       Alert.alert('Payment successful', 'Your payment was successful! Your can Now view your booking details.');
+      await createBooking()
     } catch (error) {
       console.error('Error processing payment:', error.message);
       Alert.alert('Payment failed', 'There was an error processing your payment.');
     }
   };
 
+  const createBooking = async () => {
+
+    const response = await fetch('http://10.0.2.2:4001/api/booking', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        car: car,
+        bookerId: id,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        totaldays: totalDays,
+        bookerPhone: emergencyPhone,
+        pickuptime: pickupTime.toISOString()
+      }),
+    });
+
+
+    const data = await response.json();
+    console.log(data);
+
+
+};
   useEffect(() => {
+console.log(car.pricePerDay)
     validateFields();
     calculateTotalDays();
   }, [emergencyPhone, startDate, endDate, pickupTime]);

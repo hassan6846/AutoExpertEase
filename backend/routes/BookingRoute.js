@@ -2,10 +2,11 @@ const express = require('express');
 const router=express.Router();
 
 // controllers
-const { CreateBooking } = require('../controllers/BookingControllers');
+const { CreateBooking,GetUserBookings } = require('../controllers/BookingControllers');
 ///
 
 router.route('/booking').post(CreateBooking);
+router.route('/booking/:id').get(GetUserBookings)
 
 module.exports = router;
 

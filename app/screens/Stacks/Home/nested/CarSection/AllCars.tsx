@@ -25,7 +25,6 @@ const AllCars = ({ navigation }: { navigation: any }) => {
       });
       const data = await response.json();
       setCars(data);
-      console.log(data);
       setIsLoading(false);
       setIsRefreshing(false);
     } catch (error) {

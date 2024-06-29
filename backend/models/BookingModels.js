@@ -2,14 +2,12 @@ const mongoose = require('mongoose');
 
 const BookingSchema = new mongoose.Schema({
     car: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Car', // Reference to the car model
+        type: Object,
         required: true,
     },
     bookedby: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Reference to the user model
-        required: true,
+        type: String,
+
     },
     startDate: {
         type: Date,
@@ -19,7 +17,13 @@ const BookingSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-
+    BookerContact:{
+        type: String,
+    },
+    RentalDays:{
+        type: Number,
+        required: true,
+    },
     paymentStatus: {
         type: String,
         default: 'paid',
@@ -28,7 +32,10 @@ const BookingSchema = new mongoose.Schema({
         type: Date,
         default: Date.now(),
     },
-
+    PickupTime:{
+     type:String,
+     required:true,
+    },
 
     isActive:{
         type: Boolean,

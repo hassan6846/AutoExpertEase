@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
-import { Button, Text, Avatar, Icon } from "@rneui/themed";
+import { Button, Text, Avatar } from "@rneui/themed";
 import { useRoute } from "@react-navigation/native";
 
-const ViewCarDetails = () => {
+const ViewCarDetails = ({ navigation }: { navigation: any }) => {
   const route = useRoute();
   const { carId } = route.params as { carId: string }; // Type assertion to specify the shape of route.params
 
@@ -36,6 +36,12 @@ const ViewCarDetails = () => {
 
     fetchCarDetails();
   }, [carId]);
+
+  useEffect(() => {
+    if (car) {
+      console.log(car);
+    }
+  }, [car]);
 
   const handleAvatarPress = (index: number) => {
     setSelectedIndex(index); // Update selectedIndex when Avatar is pressed
@@ -103,7 +109,7 @@ const ViewCarDetails = () => {
           </Text>
         </View>
       </ScrollView>
-      <Button color="#E04E2F" title="Book Now" containerStyle={styles.button} />
+      <Button color="#E04E2F" onPress={()=>navigation.navigate('bookingsteps',{car})} title="Book Now" containerStyle={styles.button} />
     </View>
   );
 };

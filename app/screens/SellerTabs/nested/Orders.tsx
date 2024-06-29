@@ -62,7 +62,7 @@ const Orders = () => {
               <View style={styles.productDetails}>
                 <Text style={styles.productName}>{product.name}</Text>
                 <Text style={styles.productDescription}>{truncateDescription(product.description, 100)}</Text>
-                <Text style={styles.productPrice}>${product.price.saleprice}</Text>
+                <Text style={styles.productPrice}>Rs{product.price.saleprice}</Text>
                 <Text style={styles.productQuantity}>Quantity: {product.quantity}</Text>
               </View>
             </View>
@@ -78,7 +78,7 @@ const Orders = () => {
             </View>
             <View style={styles.detailItem}>
               <Icon type="material" name="attach-money" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-              <Text style={styles.detailText}>Total Amount: ${order.TotalAmount}</Text>
+              <Text style={styles.detailText}>Total Amount: Rs{order.TotalAmount}</Text>
             </View>
           </View>
         </View>

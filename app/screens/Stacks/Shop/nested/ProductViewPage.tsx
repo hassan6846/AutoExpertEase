@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, ScrollView, ActivityIndicator,Alert } from 'react-native';
 import { Button, Text, Avatar, Icon } from "@rneui/themed";
 import { useRoute } from "@react-navigation/native";
 import { addItemToCart } from '../../../../slices/CartSlice';
@@ -11,6 +11,7 @@ const ProductViewPage = () => {
   const dispatch = useDispatch();
   const { productId } = route.params as { productId: string }; // Type assertion to specify the shape of route.params
   const addedToCartItems = useSelector((state: any) => state.cart.items); // Redux state for added items
+  const id = useSelector((state: any) => state.auth.userid);
 
   const [product, setProduct] = useState<any>(null); // State to hold product details
   const [loading, setLoading] = useState<boolean>(true); // Loading state
@@ -47,6 +48,10 @@ const ProductViewPage = () => {
     }
   ];
   const handleAddToCart = (item: any) => {
+    if (id === product.PostedBy) {
+      Alert.alert("OOps", "You cannot order your own items Please Select Another Product Being Posted by another seller.");
+      return;
+    }
   setButtonTitle("Added");
     dispatch(addItemToCart(item)); // Dispatch action to add item to Redux cart
 };

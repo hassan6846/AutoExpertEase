@@ -6,7 +6,6 @@ import ThemeProviderColors from "../../../provider/ThemeProvider";
 import { useDispatch, } from "react-redux";
 
 const ShopInitialRoute = ({ navigation }: { navigation: any }) => {
-    const dispatch = useDispatch();
     const [selectedBannerIndex, setSelectedBannerIndex] = useState(0);
     const [products, setProducts] = useState<any[]>([]);
 

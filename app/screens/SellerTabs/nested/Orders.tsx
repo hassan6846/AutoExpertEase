@@ -1,106 +1,160 @@
-import { View, Text,ScrollView,StyleSheet} from 'react-native'
-import React from 'react'
-//library
-import {Icon,Avatar} from "@rneui/themed"
-//utils
-import ThemeProviderColors from '../../../provider/ThemeProvider'
-import { AvatarSrc } from '../../../constants/ImagesConstants'
+import { View, Text, ScrollView, StyleSheet, Alert, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+// library
+import { Icon, Avatar } from '@rneui/themed';
+// utils
+import ThemeProviderColors from '../../../provider/ThemeProvider';
+// state
+import { useSelector } from 'react-redux';
 
 const Orders = () => {
+  const id = useSelector((state: any) => state.auth.userid);
+  const [orders, setOrders] = useState<any[]>([]);
+
+  useEffect(() => {
+    const getOrders = async () => {
+      try {
+        const response = await fetch(`http://10.0.2.2:4001/api/vendor/get-orders/${id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setOrders(data.order);
+      } catch (error) {
+        Alert.alert('Oops! Something went wrong.', 'Please try again later.');
+        console.log(error);
+      }
+    };
+    getOrders();
+  }, [id]);
+
+  const truncateDescription = (description: string, maxLength: number) => {
+    if (description.length <= maxLength) {
+      return description;
+    }
+    return `${description.substring(0, maxLength)}...`;
+  };
+
   return (
     <ScrollView style={styles.container}>
-            <View style={styles.bookingCard}>
-        {/* Container */}
-        <View>
-        <View style={styles.orderTxtDetails}>
-          <Text style={styles.orderText}>Tracking Id :#3801231</Text>
-          <Text style={styles.orderText}>11-Apr-2024 7:59</Text>
-          <Text style={styles.orderText}>
-            Paid <Icon type='material' name='payment' size={12} color="green" />
-          </Text>
-        </View>
-        <ScrollView horizontal={true} contentContainerStyle={styles.avatarsContainer}>
-          {/* Sample avatars */}
-          {[...Array(10)].map((_, index) => (
-            <Avatar key={index} size={60} containerStyle={styles.avatarContainer} source={{ uri: AvatarSrc }} />
+      {orders.map((order, orderIndex) => (
+        <View key={orderIndex} style={styles.orderCard}>
+          <View style={styles.orderHeader}>
+            <Text style={styles.orderText}>Tracking ID: #{order.OrderId}</Text>
+            <Text style={styles.orderText}>{new Date(order.orderedAt).toLocaleString()}</Text>
+            <Text style={styles.orderText}>
+              {order.PaymentMethod === 'cod' ? (
+                <>
+                  COD <Icon type="material" name="money" size={12} color="orange" />
+                </>
+              ) : (
+                <>
+                  Paid <Icon type="material" name="payment" size={12} color="green" />
+                </>
+              )}
+            </Text>
+          </View>
+          {order.products.map((product:any, productIndex:any) => (
+            <View key={productIndex} style={styles.productCard}>
+              <Image source={{ uri: product.image[0] }} style={styles.productImage} />
+              <View style={styles.productDetails}>
+                <Text style={styles.productName}>{product.name}</Text>
+                <Text style={styles.productDescription}>{truncateDescription(product.description, 100)}</Text>
+                <Text style={styles.productPrice}>${product.price.saleprice}</Text>
+                <Text style={styles.productQuantity}>Quantity: {product.quantity}</Text>
+              </View>
+            </View>
           ))}
-        </ScrollView>
-        <View style={styles.detailsContainer}>
-        <View style={styles.detailItem}>
-            <Icon type="material" name="schedule" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>Pickup Time: 08:00 AM</Text>
+          <View style={styles.orderDetails}>
+            <View style={styles.detailItem}>
+              <Icon type="material" name="phone" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
+              <Text style={styles.detailText}>Buyer Contact: {order.shippingInfo.phoneNo}</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Icon type="material" name="pin-drop" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
+              <Text style={styles.detailText}>Address: {order.shippingInfo.address}</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Icon type="material" name="attach-money" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
+              <Text style={styles.detailText}>Total Amount: ${order.TotalAmount}</Text>
+            </View>
           </View>
-          <View style={styles.detailItem}>
-            <Icon type="material" name="phone" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>Buyer Contact:92333239192</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Icon type="material" name="pin-drop" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>Order Date: 11-Apr-2024</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Icon type="material" name="date-range" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>Estimate Date: 13-Apr-2024</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Icon type="material" name="location-on" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>Pickup Location: 135-c iqbal town lahore</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Icon type="material" name="directions-car" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>Car Number Plate: ABC-123</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Icon type="material" name="timelapse" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>Rental Duration :2 Days.</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Icon type="material" name="attach-money" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>Your Earnings: $100</Text>
-          </View>
-
         </View>
-        </View>
-
-      </View>
+      ))}
     </ScrollView>
-  )
-}
-const styles=StyleSheet.create({
-  container:{
-    flex:1,
-    padding:10,
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
   },
-  bookingCard:{
+  orderCard: {
     marginTop: 10,
     borderRadius: 5,
     padding: 10,
-    backgroundColor: "#fff"
-  },orderTxtDetails:{
+    backgroundColor: '#fff',
+  },
+  orderHeader: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 5,
-    justifyContent: "space-between",
-  },detailText:{
-    marginLeft: 5,
+  },
+  orderText: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: ThemeProviderColors.Light.FontSubHeading,
+  },
+  productCard: {
+    flexDirection: 'row',
+    marginVertical: 5,
+    backgroundColor: '#f9f9f9',
+    padding: 10,
+    borderRadius: 5,
+  },
+  productImage: {
+    width: 60,
+    height: 60,
+    marginRight: 10,
+  },
+  productDetails: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  productName: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: ThemeProviderColors.Light.FontSubHeading,
+  },
+  productDescription: {
     fontSize: 12,
     color: ThemeProviderColors.Light.FontSubHeading,
-  },orderText:{
+  },
+  productPrice: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'green',
+  },
+  productQuantity: {
     fontSize: 12,
-    fontWeight: "bold",
     color: ThemeProviderColors.Light.FontSubHeading,
-  },detailItem:{
+  },
+  orderDetails: {
+    marginTop: 10,
+  },
+  detailItem: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 5,
-  },detailsContainer:{
-    marginTop: 10,
-  },avatarContainer:{
-    borderRadius: 5,
-    marginRight: 5,
-  },avatarsContainer:{
-    flexDirection: 'row',
-    marginTop: 10,
-  }
-})
+  },
+  detailText: {
+    marginLeft: 5,
+    fontSize: 12,
+    color: ThemeProviderColors.Light.FontSubHeading,
+  },
+});
 
-export default Orders
+export default Orders;

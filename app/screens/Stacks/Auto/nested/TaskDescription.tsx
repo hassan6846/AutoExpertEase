@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Alert } from 'react-native';
+
 import { ScrollView, StyleSheet, KeyboardAvoidingView, View, TouchableOpacity, FlatList } from 'react-native';
 //Utils
 import { getHeight } from '../../../../utils/GetDimension';
@@ -9,7 +11,6 @@ import { Input, Text, Button, Avatar } from '@rneui/themed';
 import * as ImagePicker from 'expo-image-picker';
 //States
 import { useSelector } from 'react-redux';
-import { Alert } from 'react-native';
 
 const TaskDescription = ({ navigation }: { navigation: any }) => {
   const NearbyPlace = useSelector((state: any) => state.location.nearbyplace);

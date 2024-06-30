@@ -2,7 +2,7 @@ import axios from "axios"
 
 //AXIOS INSTANCE
 const ApiInstance = axios.create({
-    baseURL: 'http://localhost:4001/api',//Replace with any Current url
+    baseURL: 'https://backend-autoexpertease-production-5fd2.up.railway.app/api',//Replace with any Current url
     header: {
         'Content-Type': 'application/json',
     },

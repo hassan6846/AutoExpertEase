@@ -11,7 +11,7 @@ const AllCars = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:4001/api/car');
+        const response = await axios.get('https://backend-autoexpertease-production-5fd2.up.railway.app/api/car');
         console.log(response.data); // Log the fetched products
         setProducts(response.data); // Store the entire array of cars
       } catch (error) {

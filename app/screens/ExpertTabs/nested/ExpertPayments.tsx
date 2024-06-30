@@ -25,7 +25,7 @@ const ExpertPayments: React.FC = () => {
   const handleConfirmPayment = async () => {
     try {
       console.log('Sending request to create PaymentIntent...');
-      const response = await fetch('http://10.0.2.2:4001/api/intents', {
+      const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/intents', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

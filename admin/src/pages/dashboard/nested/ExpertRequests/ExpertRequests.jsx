@@ -26,7 +26,7 @@ const ExpertRequests = () => {
   const approveRequest = async (userId) => {
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:4001/api/admin/expert-applications/approve', {
+      const response = await axios.post('https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/expert-applications/approve', {
         id: userId
       });
       console.log(response.data);
@@ -44,7 +44,7 @@ const ExpertRequests = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get('http://localhost:4001/api/admin/expert-applications');
+        const response = await axios.get('https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/expert-applications');
         console.log(response.data);
         setApplications(response.data);
       } catch (error) {

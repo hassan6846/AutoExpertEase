@@ -21,7 +21,7 @@ const CarBookings = () => {
   useEffect(() => {
     const getMyBookings = async () => {
       try {
-        const response = await fetch(`http://10.0.2.2:4001/api/booking/${id}`, {
+        const response = await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/booking/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'

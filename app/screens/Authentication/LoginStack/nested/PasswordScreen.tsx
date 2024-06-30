@@ -22,7 +22,7 @@ const PasswordScreen = ({ navigation }: { navigation: any }) => {
   const handleLogin = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://10.0.2.2:4001/api/login', {
+      const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

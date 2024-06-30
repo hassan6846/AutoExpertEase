@@ -80,7 +80,7 @@ const Checkout = ({ navigation }: { navigation: any }) => {
 
   const createOrder = async (PaymentMethod: PaymentMethod) => {
     try {
-      const response = await fetch('http://10.0.2.2:4001/api/create-order', {
+      const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/create-order', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

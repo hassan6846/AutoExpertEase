@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, ScrollView, SafeAreaView, View } from "react-native";
 import { Button, Text } from "@rneui/themed";
 import ThemeProviderColors from "../../../provider/ThemeProvider";

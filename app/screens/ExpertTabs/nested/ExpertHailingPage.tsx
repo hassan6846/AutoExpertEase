@@ -12,7 +12,7 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch("http://10.0.2.2:4001/api/get-tasks", {
+      const response = await fetch("https://backend-autoexpertease-production-5fd2.up.railway.app/api/get-tasks", {
         method: "GET",
       });
       const data = await response.json();

@@ -22,12 +22,12 @@ const Stats = () => {
     const fetchData = async () => {
       try {
         const [userResponse, productResponse, todaysRegistrationResponse, approvedVendorsResponse, approvedExpertsResponse, latestUsersResponse] = await Promise.all([
-          axios.get('http://localhost:4001/api/admin/usercount'),
-          axios.get('http://localhost:4001/api/admin/productscount'),
-          axios.get('http://localhost:4001/api/admin/today-registration'),
-          axios.get('http://localhost:4001/api/admin/approved-vendors'),
-          axios.get('http://localhost:4001/api/admin/approved-experts'),
-          axios.get('http://localhost:4001/api/admin/latest-users')
+          axios.get('https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/usercount'),
+          axios.get('https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/productscount'),
+          axios.get('https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/today-registration'),
+          axios.get('https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/approved-vendors'),
+          axios.get('https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/approved-experts'),
+          axios.get('https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/latest-users')
         ]);
 
         setUserCount(userResponse.data.count);

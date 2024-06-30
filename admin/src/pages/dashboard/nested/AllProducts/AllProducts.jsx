@@ -12,7 +12,7 @@ const AllProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:4001/api/product');
+        const response = await axios.get('https://backend-autoexpertease-production-5fd2.up.railway.app/api/product');
         setProducts(response.data.products);
         console.log(response.data.products); // Log the fetched products
       } catch (error) {

@@ -3,7 +3,6 @@ import { SafeAreaView, ScrollView, KeyboardAvoidingView, StyleSheet, View, Press
 import { useState } from "react";
 import { Button, Text } from "@rneui/themed";
 import CountryFlag from "react-native-country-flag";
-import * as Localization from "expo-localization" //localization Library
 import { getHeight } from "../../../utils/GetDimension";
 import ThemeProviderColors from "../../../provider/ThemeProvider";
 import { setLanguage } from "../../../slices/LanguageSlices";

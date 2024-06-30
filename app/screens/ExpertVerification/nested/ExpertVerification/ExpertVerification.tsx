@@ -80,7 +80,7 @@ const ExpertVerification = () => {
   }
   // Function to handle form submission
   const handleSubmit = async () => {
-    const response = await fetch('http://10.0.2.2:4001/api/apply-expert', {
+    const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/apply-expert', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',

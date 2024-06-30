@@ -1,7 +1,7 @@
 import { View, Text, ScrollView, StyleSheet, Alert, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
 // library
-import { Icon, Avatar } from '@rneui/themed';
+import { Icon } from '@rneui/themed';
 // utils
 import ThemeProviderColors from '../../../provider/ThemeProvider';
 // state

@@ -46,7 +46,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
     const UploadImage = async (image:any) => {
         try {
 
-            const response = await fetch('http://10.0.2.2:4001/api/avatar/', {
+            const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/avatar/', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
      const isExpert=async ()=>{
         try {
             //get request
-            const response = await fetch(`http://10.0.2.2:4001/api/check-expert/${id}`, {
+            const response = await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/check-expert/${id}`, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json'
@@ -110,7 +110,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
      const isVendor=async ()=>{
         try {
             //get request
-            const response = await fetch(`http://10.0.2.2:4001/api/check-vendor/${id}`, {
+            const response = await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/check-vendor/${id}`, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json'

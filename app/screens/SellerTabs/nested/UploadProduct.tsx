@@ -84,7 +84,7 @@ const UploadProduct = ({ navigation }: { navigation: any }) => {
     };
 
     try {
-      const response = await fetch('http://10.0.2.2:4001/api/product/create', {
+      const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/product/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

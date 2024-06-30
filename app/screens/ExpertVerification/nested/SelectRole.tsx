@@ -3,7 +3,7 @@ import React from 'react';
 import { Avatar, Text, Icon } from '@rneui/themed';
 import { getHeight } from '../../../utils/GetDimension';
 import ThemeProviderColors from '../../../provider/ThemeProvider';
-import { moneyman, vendor, VehicleRental, MechanicVerifiction } from '../../../constants/ImagesConstants'; // Make sure this imports the correct image URI
+import { moneyman, vendor, MechanicVerifiction } from '../../../constants/ImagesConstants'; // Make sure this imports the correct image URI
 
 
 const SelectRole = ({ navigation }: { navigation: any }) => {

@@ -20,7 +20,7 @@ const ProductRequests = () => {
   const fetchProductRequests = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:4001/api/admin/get-unapprovedproducts');
+      const response = await axios.get('https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/get-unapprovedproducts');
       setProducts(response.data.products);
     } catch (error) {
       console.error('Error fetching product requests:', error);
@@ -41,7 +41,7 @@ const ProductRequests = () => {
 
   const approveProduct = async (productId) => {
     try {
-      await axios.put(`http://localhost:4001/api/admin/approve-product/${productId}`);
+      await axios.put(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/admin/approve-product/${productId}`);
       // Update local state after approval
       const updatedProducts = products.filter(product => product._id !== productId);
       setProducts(updatedProducts);

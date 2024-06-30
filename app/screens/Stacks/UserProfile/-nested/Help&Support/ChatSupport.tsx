@@ -41,9 +41,6 @@ const ChatSupport: React.FC = () => {
         body: JSON.stringify({ prompt: userMessage }),
       });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
 
       const data = await response.json();
       const botReply = data.data;

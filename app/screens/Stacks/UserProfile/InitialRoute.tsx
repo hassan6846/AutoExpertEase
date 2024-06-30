@@ -19,6 +19,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
     const avatar = useSelector((state: any) => state.user.avatar)
     const userFirstName=useSelector((state:any)=>state.auth.firstName)
     const UserLast=useSelector((state:any)=>state.auth.lastName)
+    const [avatarString,setAvatarString]=useState(avatar)
     const dispatch = useDispatch()
     //states
     const [isShowBottomSheet, SetisShowBottomSheet] = useState(false)
@@ -143,7 +144,25 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
      }
     // Log imageUri whenever it changes
     useEffect(() => {
-
+        const fetchAvatar = async () => {
+            try {
+              const response = await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/getavatar/${id}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              });
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              const data = await response.json();
+              const avatar = data.avatar;
+                setAvatarString(avatar)
+            } catch (error) {
+              console.log('Error fetching avatar:', error);
+            }
+          };
+      fetchAvatar()
     }, [imageUri]);
 
     return (
@@ -161,7 +180,7 @@ const ProfileInitial = ({ navigation }: { navigation: any }) => {
                 </Overlay>
                 {/* Avatar container bois to alignItems to the center */}
                 <View style={Styles.AvatarContainer} >
-                    <Avatar onPress={() => navigation.navigate("ViewProfile")} rounded size={100} source={{ uri: avatar }} ><Avatar.Accessory onPress={() => SetisShowBottomSheet(true)} size={25} /></Avatar>
+                    <Avatar onPress={() => navigation.navigate("ViewProfile")} rounded size={100} source={{ uri: avatarString }} ><Avatar.Accessory onPress={() => SetisShowBottomSheet(true)} size={25} /></Avatar>
                     <Text>{userFirstName} {UserLast} <CountryFlag size={12} isoCode="pk" /> </Text>
                 </View>
                 {/* List Items Will be map Below ok */}

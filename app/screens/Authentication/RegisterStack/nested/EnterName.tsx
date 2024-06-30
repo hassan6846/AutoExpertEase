@@ -45,7 +45,7 @@ const EnterName = ({ navigation }: { navigation: any }) => {
     dispatch(SetPassword(password));
 
     try {
-      const response = await fetch('http://10.0.2.2:4001/api/sendemail', {
+      const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/sendemail', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

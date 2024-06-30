@@ -60,7 +60,7 @@ const TaskDescription = ({ navigation }: { navigation: any }) => {
     setLoading(true); // Set loading to true when starting the request
 
     try {
-      const response = await fetch("http://10.0.2.2:4001/api/post-task", {
+      const response = await fetch("https://backend-autoexpertease-production-5fd2.up.railway.app/api/post-task", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

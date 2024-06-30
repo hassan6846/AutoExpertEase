@@ -16,7 +16,7 @@ const Search = ({ navigation }: { navigation: any }) => {
     if (searchTerm.length > 2) {
       const fetchSearchResults = async () => {
         try {
-          const response = await fetch(`http://10.0.2.2:4001/api/products/search/${searchTerm}`);
+          const response = await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/products/search/${searchTerm}`);
           const data = await response.json();
           setSearchResults(data.products);
         } catch (error) {

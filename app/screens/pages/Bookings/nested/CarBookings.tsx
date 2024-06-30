@@ -56,7 +56,6 @@ const CarBookings = () => {
             {Object.entries(booking).map(([key, value]) => (
               <View key={key} style={styles.detailItem}>
                 <Icon type="material" name="schedule" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-                <Text style={styles.detailText}>{key}: {typeof value === 'object' ? JSON.stringify(value) : value}</Text>
               </View>
             ))}
             <Text style={styles.detailText}>

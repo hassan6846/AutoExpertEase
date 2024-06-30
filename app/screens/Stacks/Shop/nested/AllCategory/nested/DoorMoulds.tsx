@@ -16,7 +16,7 @@ const DoorMoulds = ({ navigation }: { navigation: any }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch(`http://10.0.2.2:4001/api/products/category/${QueryString}`, {
+      const response = await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/products/category/${QueryString}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

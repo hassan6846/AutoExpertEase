@@ -31,7 +31,7 @@ const HomeTab = ({ navigation }: { navigation: any }) => {
 //Check Can PostCars..
 const CanPostCars = async () => {
   try {
-    const response = await fetch(`http://10.0.2.2:4001/api/can-post/${id}`);
+    const response = await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/can-post/${id}`);
     if (!response.ok) {
       throw new Error('Failed to fetch products');
     }

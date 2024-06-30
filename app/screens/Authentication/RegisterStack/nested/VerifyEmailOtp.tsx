@@ -29,7 +29,7 @@ const VerifyEmailOtp = ({ navigation }: { navigation: any }) => {
     setError('');
 
     try {
-      const response = await fetch('http://10.0.2.2:4001/api/verifyemail', {
+      const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/verifyemail', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const VerifyEmailOtp = ({ navigation }: { navigation: any }) => {
 
       if (response.ok) {
         // OTP verified, now proceed to register the user
-        const registerResponse = await fetch('http://10.0.2.2:4001/api/register', {
+        const registerResponse = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

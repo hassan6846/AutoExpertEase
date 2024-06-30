@@ -33,7 +33,7 @@ const ChatSupport: React.FC = () => {
     dispatch(appendMessage(newMessages[0]));
 
     try {
-      const response = await fetch('http://10.0.2.2:4001/api/help', {
+      const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/help', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

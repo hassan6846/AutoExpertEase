@@ -32,7 +32,7 @@ const HomeInital: React.FC<HomeInitalProps> = ({ navigation }) => {
   useEffect(() => {
     const fetchAvatar = async () => {
       try {
-        const response = await fetch(`http://10.0.2.2:4001/api/getavatar/${id}`, {
+        const response = await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/getavatar/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

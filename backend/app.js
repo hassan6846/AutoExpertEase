@@ -69,8 +69,8 @@ const server = http.createServer(app);
 ConnectMongodb();
 
 // Listen for both HTTP and WebSocket connections
-const Port = process.env.PORT || 4001;
-server.listen(Port, () => {
+const Port = process.env.PORT || 3000;
+server.listen(Port,'0.0.0.0', () => {
   console.log(`App is running on Port ${Port}`);
 });
 

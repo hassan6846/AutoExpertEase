@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const http = require("http");
 const { ConnectMongodb } = require("./db/ConnectionDb");
-const { initSocket } = require("./utils/initSockets");
+
 
 // Initialize the app
 const app = express();
@@ -64,7 +64,6 @@ app.use('/api',booking);
 const server = http.createServer(app);
 
 // Initialize Socket.IO
-const io = initSocket(server);
 
 // Connection to MongoDB
 ConnectMongodb();

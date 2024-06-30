@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 //main DBConnnect Function..
 async function ConnectMongodb() {
   try {
-    await mongoose.connect(process.env.MONGO_LOCALCONNECTION, {
+    await mongoose.connect(process.env.CONNECTION_STRING_MONGO, {
       // We'll Add database configs here in the future....
 
 

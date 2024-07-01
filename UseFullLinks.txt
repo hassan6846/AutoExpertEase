@@ -13,3 +13,8 @@ https://support.google.com/maps/answer/7326816?hl=en&co=GENIE.Platform%3DAndroid
 https://github.com/vonovak/react-navigation-props-mapper
 //nestd route navigation
 https://reactnavigation.org/docs/tab-based-navigation 
+
+///////////////////////////////////////////
+Deployed Urls
+BackendApiEntryPoint=https://backend-autoexpertease-production-5fd2.up.railway.app/api
+admin panel:https://backend-autoexpertease-production-5fd2.up.railway.app/

@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
+
 import { GiftedChat, IMessage, Send } from 'react-native-gifted-chat';
 import { Icon } from "@rneui/themed";
 import { ChatbotAvatar } from '../../../../../constants/ImagesConstants';
+//state
 import { useDispatch, useSelector } from 'react-redux';
 import { saveMessages, appendMessage } from '../../../../../slices/ChatBotSlice';
 

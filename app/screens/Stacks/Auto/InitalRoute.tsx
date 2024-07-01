@@ -1,16 +1,22 @@
 import { StyleSheet, SafeAreaView, View } from "react-native";
 import { useEffect, useState } from "react";
+//sdks
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
+//lib
 import { Text, Icon } from "@rneui/themed";
+//component
 import CustomButton from "../../../components/ButtonProps/ButtonProps";
+//state
 import { setLatitude, setLongitude } from "../../../slices/LocationSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
-    const Latitude=useSelector((state:any)=>state.location.latitude)
-    const Longitude=useSelector((state:any)=>state.location.longitude)
   const dispatch = useDispatch();
+  const API_KEY = "AIzaSyB0QWaVmpZyDejTE9ybNN3SeUM-Bh8bawA";
+  
+  const Latitude = useSelector((state: any) => state.location.latitude);
+  const Longitude = useSelector((state: any) => state.location.longitude);
   const [location, setLocation] = useState<any>(null);
   const [errorMsg, setErrorMsg] = useState<any>(null);
 
@@ -33,6 +39,7 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
   return (
     <SafeAreaView style={Styles.map}>
       <MapView
+        key={API_KEY}
         initialRegion={{
           latitude: Latitude, // Default value for Pakistan
           longitude: Longitude, // Default value for Pakistan

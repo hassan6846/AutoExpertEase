@@ -4,8 +4,25 @@ import { Text, Button, Avatar, LinearProgress } from "@rneui/themed";
 import { AvatarSrc } from '../../../../constants/ImagesConstants';
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
 import { useFocusEffect } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 const HailingPage = ({ navigation }: { navigation: any }) => {
+  const taskid = useSelector((state: any) => state.task.taskid);
+  const HandleConfirm=async()=>{
+    try {
+      const response=await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api//delete-task/${taskid}`,{
+        method:'DELETE',
+        headers:{
+          'Content-Type':'application/json'
+        }
+      })
+      const data=await response.json()
+      console.log(data)
+      navigation.navigate('inital_service')
+    } catch (error) {
+      console.log(error)
+    }
+  }
   useFocusEffect(
     useCallback(() => {
       const onBeforeRemove = (e: any) => {
@@ -19,7 +36,7 @@ const HailingPage = ({ navigation }: { navigation: any }) => {
               onPress: () => null,
               style: "cancel"
             },
-            { text: "Yes", onPress: () => navigation.dispatch(e.data.action) }
+            { text: "Yes", onPress: () => HandleConfirm()}
           ]
         );
       };
@@ -43,11 +60,11 @@ const HailingPage = ({ navigation }: { navigation: any }) => {
 
             <View style={{ flexDirection: "row", alignItems: 'center' }}>
               <Avatar size={50} containerStyle={{ borderRadius: 60 }} avatarStyle={{ borderRadius: 60 }} source={{ uri: AvatarSrc }} />
-              <Text style={{ marginLeft: 5 }} h4>Ahmed Ali Shah</Text>
+              <Text style={{ marginLeft: 5 }} h4>{taskid}</Text>
             </View>
 
             <View style={{ alignItems: "flex-end" }}>
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>5000Rs</Text>
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>5000Rs {taskid._id}</Text>
               <Text style={{ fontWeight: "bold" }}>5min</Text>
               <Text style={{ fontWeight: "bold" }}>1.3km</Text>
             </View>

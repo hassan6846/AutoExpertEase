@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View, Linking, RefreshControl, ActivityIndicator } from "react-native";
+//lib
 import { Avatar, Icon, Button, Text } from "@rneui/themed";
+//states
+import { useSelector } from "react-redux";
+
+const Latitude = useSelector((state: any) => state.location.latitude);//user coordinates.. my coordinate
+const Longitude = useSelector((state: any) => state.location.longitude); //user coordinates ..my coordinates
 
 const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
   const [tasks, setTasks] = useState([]);
@@ -69,6 +75,7 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
                   </Text>
                 </View>
               </View>
+              <Text></Text>
               <Button
                 color="#D9D9D9"
                 containerStyle={styles.buttonContainer}

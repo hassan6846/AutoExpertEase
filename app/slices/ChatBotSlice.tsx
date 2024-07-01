@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IMessage } from 'react-native-gifted-chat';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IMessage } from "react-native-gifted-chat";
 
 interface ChatBotState {
   messages: IMessage[];
@@ -10,7 +10,7 @@ const initialState: ChatBotState = {
 };
 
 const ChatBotSlice = createSlice({
-  name: 'chatbot',
+  name: "chatbot",
   initialState,
   reducers: {
     saveMessages: (state, action: PayloadAction<IMessage[]>) => {
@@ -25,5 +25,6 @@ const ChatBotSlice = createSlice({
   },
 });
 
-export const { saveMessages, appendMessage, clearMessages } = ChatBotSlice.actions;
+export const { saveMessages, appendMessage, clearMessages } =
+  ChatBotSlice.actions;
 export default ChatBotSlice.reducer;

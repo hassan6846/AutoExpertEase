@@ -1,14 +1,18 @@
 // modules
 import { SafeAreaView, ScrollView, KeyboardAvoidingView, StyleSheet, View, Pressable } from "react-native";
 import { useState } from "react";
+//libary
 import { Button, Text } from "@rneui/themed";
 import CountryFlag from "react-native-country-flag";
+//utils
 import { getHeight } from "../../../utils/GetDimension";
 import ThemeProviderColors from "../../../provider/ThemeProvider";
+//state
 import { setLanguage } from "../../../slices/LanguageSlices";
-
+import { useDispatch } from "react-redux";
 // main void Function
 const SelectLanguage = ({ navigation }: { navigation: any }) => {
+  const dispatch = useDispatch();
   // ButtonState for Selecting Language
   const [selectedLanguage, setSelectedLanguage] = useState<string>(''); // State to track selected language
   const [isButtonDisabled, setIsDisabled] = useState<boolean>(true)
@@ -124,6 +128,7 @@ const SelectLanguage = ({ navigation }: { navigation: any }) => {
   };
   //handle Language Select Confirm from button
   const HandleLanguageCHange=()=>{
+    dispatch(setLanguage(selectedLanguage))
     alert("You selected Lanuage "+selectedLanguage)
   }
   return (

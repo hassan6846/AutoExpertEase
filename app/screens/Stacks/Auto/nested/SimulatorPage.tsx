@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapView, { Polyline, Marker } from 'react-native-maps';
-import GoogleMapDesign from '../../../../utils/GoogleMapDesign';
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 
@@ -13,7 +12,6 @@ const SimulatorPage = ({navigation}:{navigation:any}) => {
   return (
     <View style={{ flex: 1 }}>
       <MapView
-        customMapStyle={GoogleMapDesign}
         style={{ flex: 1 }}
         initialRegion={{
           latitude: 33.6844, // Center the map at a specific location (Islamabad)

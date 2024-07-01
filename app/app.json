@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#f04e2b"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -41,6 +39,12 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsDownloadToken": "sk.eyJ1IjoiaGFzc2Fuc2hlcml5YXIiLCJhIjoiY2x5MzdzYXNzMDYyeDJscXZ5NmRycnVkNiJ9.ZcgOumNb9XX_YP06x9QlMg"
+        }
+      ],
       [
         "expo-image-picker",
         {

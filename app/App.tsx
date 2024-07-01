@@ -147,7 +147,7 @@ const Main = () => {
 }
 
 
-import {registerRootComponent} from "expo";
+import { registerRootComponent } from "expo";
 
 //Main       
 export default function App() {

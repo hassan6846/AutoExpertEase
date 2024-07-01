@@ -5,13 +5,13 @@ import { Avatar, Icon, Button, Text } from "@rneui/themed";
 //states
 import { useSelector } from "react-redux";
 
-const Latitude = useSelector((state: any) => state.location.latitude);//user coordinates.. my coordinate
-const Longitude = useSelector((state: any) => state.location.longitude); //user coordinates ..my coordinates
-
 const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<any>([]);
   const [loading, setLoading] = useState(true); // State to manage loading indicator
 
+  const Latitude = useSelector((state: any) => state.location.latitude);//user coordinates.. my coordinate
+  const Longitude = useSelector((state: any) => state.location.longitude); //user coordinates ..my coordinates
+  
   useEffect(() => {
     fetchTasks(); // Initial fetch on component mount
   }, []);

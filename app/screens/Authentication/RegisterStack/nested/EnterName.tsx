@@ -4,7 +4,7 @@ import { Button, Icon, Text, Input } from "@rneui/themed";
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
 import { getHeight } from '../../../../utils/GetDimension';
 import { deviceName, brand } from "expo-device";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { SetFirstName, SetLastName, SetEmail, SetPhone, SetDeviceName, SetDeivceBrand, SetPassword } from "../../../../slices/AuthSlice";
 
 const EnterName = ({ navigation }: { navigation: any }) => {

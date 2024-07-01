@@ -1,7 +1,6 @@
 import { StyleSheet, SafeAreaView, View } from "react-native";
 import { useEffect, useState } from "react";
 //sdks
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 //lib
 import { Text, Icon } from "@rneui/themed";
@@ -13,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
   const dispatch = useDispatch();
-  const API_KEY = "AIzaSyB0QWaVmpZyDejTE9ybNN3SeUM-Bh8bawA";
   
   const Latitude = useSelector((state: any) => state.location.latitude);
   const Longitude = useSelector((state: any) => state.location.longitude);
@@ -38,25 +36,7 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
 
   return (
     <SafeAreaView style={Styles.map}>
-      <MapView
-        key={API_KEY}
-        initialRegion={{
-          latitude: Latitude, // Default value for Pakistan
-          longitude: Longitude, // Default value for Pakistan
-          latitudeDelta: 0.03, // Adjust the value for the desired zoom level
-          longitudeDelta: 0.02, // Adjust the value for the desired zoom level
-        }}
-        zoomControlEnabled
-        loadingEnabled={true}
-        showsIndoors={true}
-        provider={PROVIDER_GOOGLE}
-        userLocationCalloutEnabled
-        showsCompass={false}
-        showsUserLocation={true}
-        showsPointsOfInterest
-        showsMyLocationButton={true}
-        style={{ flex: 1, position: "relative" }}
-      />
+
       <View
         style={{
           height: 250,

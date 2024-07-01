@@ -2,6 +2,9 @@ import { StyleSheet, SafeAreaView, View } from "react-native";
 import { useEffect, useState } from "react";
 //sdks
 import * as Location from "expo-location";
+import Mapbox from "@rnmapbox/maps";
+Mapbox.setAccessToken('pk.eyJ1IjoiaGFzc2Fuc2hlcml5YXIiLCJhIjoiY2xybnIxam00MTg0djJscXI1bXVxNTR3aCJ9.4r9apA2hHuxU3tOoGDVZbQ');
+
 //lib
 import { Text, Icon } from "@rneui/themed";
 //component
@@ -12,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
   const dispatch = useDispatch();
-  
+
   const Latitude = useSelector((state: any) => state.location.latitude);
   const Longitude = useSelector((state: any) => state.location.longitude);
   const [location, setLocation] = useState<any>(null);
@@ -36,7 +39,9 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
 
   return (
     <SafeAreaView style={Styles.map}>
-
+      <Mapbox.MapView
+      focusable={true}
+      style={Styles.mapView} />
       <View
         style={{
           height: 250,
@@ -70,6 +75,12 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
 };
 
 const Styles = StyleSheet.create({
+  mapView: {
+    flex: 1,
+
+    width: "100%",
+    height: "100%",
+  },
   map: {
     flex: 1,
     width: "100%",

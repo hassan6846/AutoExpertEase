@@ -13,6 +13,9 @@ import { useSelector } from "react-redux";
 
 const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
   const [tasks, setTasks] = useState<any>([]);
+  const [location, setLocation] = useState(null);
+  const [watcher, setWatcher] = useState(null);
+
   const [loading, setLoading] = useState(true);
   const [selectedTask, setSelectedTask] = useState<any>(null); // State to hold selected task details
   const [modalVisible, setModalVisible] = useState(false); // State to manage modal visibility

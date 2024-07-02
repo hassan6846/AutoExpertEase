@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Alert } from "react-native";
-
 import {
   ScrollView,
   StyleSheet,
@@ -9,25 +8,30 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
+
 //Utils
 import { getHeight } from "../../../../utils/GetDimension";
-import {bike,Sedan,truck, selectPhoto,} from "../../../../constants/ImagesConstants";
+import { bike, Sedan, truck, selectPhoto } from "../../../../constants/ImagesConstants";
 
 //Library
 import { Input, Text, Button, Avatar } from "@rneui/themed";
 import * as ImagePicker from "expo-image-picker";
+
 //States
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { settaskId } from "../../../../slices/TaskSlice";
+
 const TaskDescription = ({ navigation }: { navigation: any }) => {
   //dispatch
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
+
   //selectors
   const NearbyPlace = useSelector((state: any) => state.location.nearbyplace);
   const Latitude = useSelector((state: any) => state.location.latitude);
   const Longitude = useSelector((state: any) => state.location.longitude);
   const id = useSelector((state: any) => state.auth.userid); //posted by....
-//states
+
+  //states
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [images, setImages] = useState<string[]>([]);
@@ -92,10 +96,13 @@ const TaskDescription = ({ navigation }: { navigation: any }) => {
 
       const data = await response.json();
 
-      console.log(data.taskid)
+      console.log(data.taskid);
       if (response.ok) {
         navigation.navigate("hailing_page");
         dispatch(settaskId(data.taskid));
+      } else {
+        console.error("Server error:", data);
+        Alert.alert("Error", data.message || "Server error");
       }
     } catch (error) {
       console.error("Error:", error.message);

@@ -11,13 +11,12 @@ import { Text, Icon } from "@rneui/themed";
 import CustomButton from "../../../components/ButtonProps/ButtonProps";
 //state
 import { setLatitude, setLongitude } from "../../../slices/LocationSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
   const dispatch = useDispatch();
 
-  const Latitude = useSelector((state: any) => state.location.latitude);
-  const Longitude = useSelector((state: any) => state.location.longitude);
+
   const [location, setLocation] = useState<any>(null);
   const [errorMsg, setErrorMsg] = useState<any>(null);
 

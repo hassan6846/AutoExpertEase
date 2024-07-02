@@ -8,7 +8,7 @@ import React from 'react'
 const ExpertRatings = () => {
   return (
     <View style={Styles.container}>
-      <Text>ExpertRatings</Text>
+      <Text>Nothing to Show!</Text>
     </View>
   )
 }
@@ -17,6 +17,8 @@ const ExpertRatings = () => {
 const Styles=StyleSheet.create({
   container:{
     flex:1,
+    justifyContent:"center",
+    alignItems:"center",
     backgroundColor:"#fff"
   }
 })

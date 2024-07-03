@@ -1,10 +1,10 @@
-import { View, StyleSheet, Image, KeyboardAvoidingView, ActivityIndicator,ToastAndroid} from 'react-native';
+import { View, StyleSheet, Image, KeyboardAvoidingView, ActivityIndicator, ToastAndroid } from 'react-native';
 import React, { useState } from 'react';
 
-//library
+// library
 import { Button, Text } from "@rneui/themed";
 import Input from "react-native-otp-textinput";
-//utils
+// utils
 import { EmailOtp } from '../../../../constants/ImagesConstants';
 import { getHeight } from '../../../../utils/GetDimension';
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
@@ -14,9 +14,9 @@ import { useSelector } from 'react-redux';
 const VerifyEmailOtp = ({ navigation }: { navigation: any }) => {
   const firstname = useSelector((state: any) => state.auth.firstName);
   const lastname = useSelector((state: any) => state.auth.lastName);
-  const phone = useSelector((state: any) => state.auth.phone); //Email
+  const phone = useSelector((state: any) => state.auth.phone); // Email
   const password = useSelector((state: any) => state.auth.password);
-  const email = useSelector((state: any) => state.auth.Email); //Email
+  const email = useSelector((state: any) => state.auth.Email); // Email
   const brand = useSelector((state: any) => state.auth.deviceBrand);
   const deviceName = useSelector((state: any) => state.auth.deviceName);
 
@@ -37,39 +37,45 @@ const VerifyEmailOtp = ({ navigation }: { navigation: any }) => {
         body: JSON.stringify({ email, otp }),
       });
 
+      const responseData = await response.json();
+
       if (response.ok) {
-        // OTP verified, now proceed to register the user
-        const registerResponse = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            firstname,
-            lastname,
-            phone,
-            password,
-            email,
-            brand,
-            devicename: deviceName,
-          }),
-        });
-       //Error Data
-        if (registerResponse.ok) {
-          // Registration successful, navigate to login
-          console.log("User Created")
-          ToastAndroid.show('Account created successfully. You can login now.', ToastAndroid.SHORT);
-          navigation.navigate('LoginStack');
+        if (responseData.message === "OTP verified successfully") {
+          // OTP verified, now proceed to register the user
+          const registerResponse = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              firstname,
+              lastname,
+              phone,
+              password,
+              email,
+              brand,
+              devicename: deviceName,
+            }),
+          });
+
+          const registerData = await registerResponse.json();
+
+          if (registerResponse.ok) {
+            console.log("User Created");
+            ToastAndroid.show('Account created successfully. You can login now.', ToastAndroid.SHORT);
+            navigation.navigate('LoginStack');
+          } else {
+            console.log('Registration error data:', registerData);
+            setError(registerData.msg || 'An error occurred during registration.');
+          }
         } else {
-         
-          setError("Invalid Credientials Typed..");
+          setError(responseData.message || 'Invalid OTP. Please try again.');
         }
       } else {
-        console.log(error)
-        setError('Invalid OTP. Please try again.');
+        setError(responseData.message || 'Invalid OTP. Please try again.');
       }
     } catch (error) {
-      console.error('Error:', );
+      console.error('Error:', error);
       setError('An error occurred. Please try again.');
     } finally {
       setLoading(false);
@@ -104,7 +110,7 @@ const VerifyEmailOtp = ({ navigation }: { navigation: any }) => {
         {/* STARTOVER CONTAINER */}
         <View style={Styles.StartOver}>
           <Text style={{ color: "#97ADB6" }}>Didn't Receive Code in E-Mail?</Text>
-          <Text style={{ color: ThemeProviderColors.Light.Primary }} >StartOver</Text>
+          <Text style={{ color: ThemeProviderColors.Light.Primary }}>StartOver</Text>
         </View>
         {/* STARTOVER CONTAINER */}
       </ScrollView>

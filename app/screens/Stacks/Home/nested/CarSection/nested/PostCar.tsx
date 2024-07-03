@@ -27,7 +27,7 @@ const PostCar = () => {
   const [tracker, setTracker] = useState(false);
   const [workSoundSystem, setWorkSoundSystem] = useState(false);
   const [legalDocuments, setLegalDocuments] = useState(false);
-  const [pickedLocation, setPickedLocation] = useState(null);
+  const [pickedLocation, setPickedLocation] = useState('');
   const [location, setLocation] = useState<any>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -40,7 +40,6 @@ const PostCar = () => {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      const data = location.coords.latitude + ',' + location.coords.longitude
       setLocation(location);
     })();
   }, []);
@@ -57,51 +56,81 @@ const PostCar = () => {
     });
 
     if (!result.canceled) {
-      const base64Images = result.assets.map((asset) => asset.base64!); // Use non-null assertion operator
+      const base64Images = result.assets.map((asset) => asset.base64!);
       setImages(base64Images);
     }
   };
 
   const handlePostCar = async () => {
     try {
+      console.log({
+        id,
+        carname: name,
+        noplate: plate,
+        registrationno: registration,
+        color,
+        cartype: carType,
+        enginetype: engineType,
+        fueltype: fuelType,
+        yearofmanufacture: yearOfManufacture,
+        milage: mileage,
+        carcondition: carCondition,
+        seats,
+        ac,
+        tracker,
+        legaldocuments: legalDocuments,
+        workingsound: workSoundSystem,
+        pickupAddress: pickedLocation,
+        image: images[0],
+        imagetwo: images[1],
+        usercoords: location ? { latitude: location.coords.latitude, longitude: location.coords.longitude } : null,
+        price: pricePerDay,
+      });
+
       const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/car/upload', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
-          id: id,
+          id,
           carname: name,
           noplate: plate,
           registrationno: registration,
-          color: color,
+          color,
           cartype: carType,
           enginetype: engineType,
           fueltype: fuelType,
           yearofmanufacture: yearOfManufacture,
           milage: mileage,
           carcondition: carCondition,
-          seats: seats,
-          ac: ac,
-          tracker: tracker,
+          seats,
+          ac,
+          tracker,
           legaldocuments: legalDocuments,
           workingsound: workSoundSystem,
           pickupAddress: pickedLocation,
           image: images[0],
           imagetwo: images[1],
-          usercoords: location,
+          usercoords: location ? { latitude: location.coords.latitude, longitude: location.coords.longitude } : null,
           price: pricePerDay,
-        })
-      })
+        }),
+      });
+
       const data = await response.json();
-      Alert.alert('Car Posted Successfully','Wait for approval and review');
-      console.log(data);
+      console.log('Response:', data);
+
+      if (response.ok) {
+        Alert.alert('Car Posted Successfully', 'Wait for approval and review');
+      } else {
+        Alert.alert('Failed to create product', data.message || 'Unknown error');
+      }
     } catch (error) {
       console.error('Error creating product:', error.message);
       Alert.alert('Failed to create product', error.message);
-
     }
-  }
+  };
 
   return (
     <ScrollView style={styles.container}>

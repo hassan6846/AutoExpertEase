@@ -33,10 +33,8 @@ const PasswordScreen = ({ navigation }: { navigation: any }) => {
       if (!response.ok) {
         // Handle non-successful response status codes (e.g., 401 Unauthorized)
         if (response.status === 401) {
-          setError('Invalid credentials');
-        } else {
-          setError('An error occurred. Please try again later.');
-        }
+          setError(await response.json());
+        } 
         setLoading(false);
         return; // Stop execution if response status is not ok
       }

@@ -93,7 +93,7 @@ const PostCar = () => {
       price:pricePerDay,
     }
    try {
-    const response=await fetch('http://10.0.2.2:4001/api/car/upload',{
+    const response=await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/car/upload',{
       method:"POST",
       headers: {
         'Content-Type': 'application/json',
@@ -114,8 +114,8 @@ const PostCar = () => {
     console.log('Product created:', data);
 
    } catch (error) {
-    console.error('Error creating Car Post:', error);
-    Alert.alert('Failed to create Car', error);
+    console.error('Error creating Car Post:', error.message);
+    Alert.alert('Failed to create Car', error.message);
    }
   };
 

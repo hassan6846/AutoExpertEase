@@ -23,6 +23,26 @@ const BookingSteps = () => {
   const [totalDays, setTotalDays] = useState(0);
   const { initPaymentSheet, presentPaymentSheet } = useStripe(); // Handle Payment Sheet
 
+///Set Car Status
+const RemoveCar=async()=>{
+  const id=car._id
+  try {
+    const response=await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/car/update/${id}`,{
+      method:"PUT",
+      headers:{
+        'Content-Type': 'application/json',
+      }
+    })
+    if(!response.ok){
+      throw new Error('Failed to remove car')
+    }
+    Alert.alert('Car removed successfully')
+    console.log(response)
+  } catch (error) {
+console.log(error)    
+  }
+}
+
   // Handle Payment Sheet
   const handleConfirmPayment = async () => {
     try {
@@ -79,6 +99,7 @@ const BookingSteps = () => {
 
       Alert.alert('Payment successful', 'Your payment was successful! Your can Now view your booking details.');
       await createBooking()
+      await RemoveCar()
     } catch (error) {
       console.error('Error processing payment:', error.message);
       Alert.alert('Payment failed', 'There was an error processing your payment.');
@@ -110,9 +131,11 @@ const BookingSteps = () => {
 
 };
   useEffect(() => {
+  
 console.log(car.pricePerDay)
     validateFields();
     calculateTotalDays();
+    console.log(car)
   }, [emergencyPhone, startDate, endDate, pickupTime]);
 
   const handleStartDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {

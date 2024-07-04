@@ -29,7 +29,7 @@ const CarBookings = () => {
         });
         const data = await response.json();
         setCarData(data.bookings);
-        console.log(data);
+        console.log(data.bookings);
       } catch (error) {
         console.error('Error fetching bookings:', error);
       }
@@ -42,23 +42,57 @@ const CarBookings = () => {
       {carData.map((booking: any, index: number) => (
         <View key={index} style={styles.bookingCard}>
           <View style={styles.orderTxtDetails}>
-            <Text style={styles.orderText}>{new Date(carData[0].createdAt).toLocaleDateString()}</Text>
+            <Text style={styles.orderText}>{new Date(booking.createdAt).toLocaleDateString()}</Text>
             <Text style={styles.orderText}>
               Paid <Icon type='material' name='payment' size={12} color="green" />
             </Text>
           </View>
           <ScrollView horizontal={true} contentContainerStyle={styles.avatarsContainer}>
-            {[...Array(10)].map((_, avatarIndex) => (
-              <Avatar key={avatarIndex} size={60} containerStyle={styles.avatarContainer} source={{ uri: AvatarSrc }} />
-            ))}
+          {
+  booking.car.images.flat().map((image: string, index: number) => (
+    <Avatar key={index} size={60} containerStyle={styles.avatarContainer} source={{ uri: image }} />
+  ))
+}
           </ScrollView>
           <View style={styles.detailsContainer}>
-            {Object.entries(booking).map(([key, value]) => (
-              <View key={key} style={styles.detailItem}>
-                <Icon type="material" name="schedule" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-              </View>
-            ))}
+          <View style={styles.detailItem}>
+                <Icon type="material" name="timer" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
             <Text style={styles.detailText}>
+             Pickup Time/drop time:{new Date(booking.PickupTime).toLocaleDateString()} 
+              </Text>
+              </View>
+
+              <View style={styles.detailItem}>
+                <Icon type="material" name="schedule" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
+            <Text style={styles.detailText}>
+             Start Date:{new Date(booking.startDate).toLocaleDateString()} 
+              </Text>
+              </View>
+              <View style={styles.detailItem}>
+                <Icon type="material" name="keyboard-return" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
+            <Text style={styles.detailText}>
+             return Date:{new Date(booking.endDate).toLocaleDateString()} 
+              </Text>
+              </View>
+              <View style={styles.detailItem}>
+                <Icon type="material" name="home" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
+            <Text style={styles.detailText}>
+             Pickup  Address:{booking.car.Address} 
+              </Text>
+              </View>
+              <View style={styles.detailItem}>
+                <Icon type="material" name="history" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
+            <Text style={styles.detailText}>
+             Rental Duration:{booking.RentalDays} 
+              </Text>
+              </View>
+              <View style={styles.detailItem}>
+                <Icon type="material" name="history" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
+            <Text style={styles.detailText}>
+             Lisence Plate:{booking.car.licensePlate} 
+              </Text>
+              </View>
+              <Text style={styles.detailText}>
               Note: Make sure that you Stay Inside the restricted area (Lahore Only) so Owner can see through Tracker
             </Text>
           </View>

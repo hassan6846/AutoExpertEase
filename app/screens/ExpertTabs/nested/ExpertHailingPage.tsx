@@ -13,8 +13,6 @@ import { useSelector } from "react-redux";
 
 const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
   const [tasks, setTasks] = useState<any>([]);
-  const [location, setLocation] = useState(null);
-  const [watcher, setWatcher] = useState(null);
 
   const [loading, setLoading] = useState(true);
   const [selectedTask, setSelectedTask] = useState<any>(null); // State to hold selected task details
@@ -101,7 +99,15 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
       userid: userId,
     });
 
-    if (!selectedTask._id || !price || !Latitude || !Longitude || !time || !distance || !userId) {
+    if (
+      !selectedTask._id ||
+      !price ||
+      !Latitude ||
+      !Longitude ||
+      !time ||
+      !distance ||
+      !userId
+    ) {
       console.error("Missing required fields:", {
         taskid: selectedTask._id,
         price,
@@ -114,20 +120,23 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
     }
 
     try {
-      const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/sendoffer', {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          taskid: selectedTask._id,
-          price,
-          coordinates: `${Latitude},${Longitude}`,
-          time,
-          distance,
-          userid: userId,
-        }),
-      });
+      const response = await fetch(
+        "https://backend-autoexpertease-production-5fd2.up.railway.app/api/sendoffer",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            taskid: selectedTask._id,
+            price,
+            coordinates: `${Latitude},${Longitude}`,
+            time,
+            distance,
+            userid: userId,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -174,32 +183,47 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
           />
         </View>
       ) : (
-        tasks.map((task: any, index: any) => (
-          <View key={index} style={styles.card}>
-            <Avatar
-              containerStyle={{ width: "24%", height: 100, borderRadius: 5 }}
-              avatarStyle={{ borderRadius: 5 }}
-              source={{ uri: task.image[0] }} // Assuming the first image URL in the array
-            />
-            <View style={styles.content}>
-              <View>
-                <Text style={styles.title}>{task.title}</Text>
-                <View style={styles.subtitle}>
-                  <Icon size={15} color="#E04E2F" name="pin-drop" />
-                  <Text
-                    style={styles.subtitleText}
-                    onPress={() =>
-                      openMapApp(
-                        task.LocationCoordinates.Latitude,
-                        task.LocationCoordinates.Longitude
-                      )
-                    }
-                  >
-                    {task.NearbyPlace}
-                  </Text>
+        tasks
+          .filter((task: any) => task.Postedby !== userId)
+
+          .map((task: any, index: any) => (
+            <View key={index} style={styles.card}>
+              <Avatar
+                containerStyle={{ width: "24%", height: 100, borderRadius: 5 }}
+                avatarStyle={{ borderRadius: 5 }}
+                source={{ uri: task.image[0] }} // Assuming the first image URL in the array
+              />
+              <View style={styles.content}>
+                <View>
+                  <View style={{display:"flex",flexDirection:'row',justifyContent:"space-between"}}>
+                    <Text style={styles.title}>
+                      {task.title.length > 20
+                        ? task.title.substring(0, 90) + "..."
+                        : task.title}
+                    </Text>
+                    <Text style={styles.subtitle}>{new Date(task.createdAt).toLocaleTimeString()}</Text>
+                    </View>
+
+                  <View style={styles.subtitle}>
+                    <Icon size={15} color="#E04E2F" name="pin-drop" />
+                    <Text
+                      style={styles.subtitleText}
+                      onPress={() =>
+                        openMapApp(
+                          task.LocationCoordinates.Latitude,
+                          task.LocationCoordinates.Longitude
+                        )
+                      }
+                    >
+                      {task.NearbyPlace.length > 20
+                        ? task.NearbyPlace.substring(0, 60) + "..."
+                        : task.NearbyPlace}
+                    </Text>
+                  </View>
                 </View>
               </View>
               <Button
+                buttonStyle={{ marginBottom: 10, marginRight: 10 }}
                 titleStyle={{ fontSize: 12 }}
                 color="#D9D9D9"
                 containerStyle={styles.buttonContainer}
@@ -207,8 +231,7 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
                 onPress={() => fetchSingleTask(task._id)}
               />
             </View>
-          </View>
-        ))
+          ))
       )}
 
       {/* Modal to display task details */}
@@ -227,7 +250,7 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
                 <Text style={styles.modalText}>{selectedTask.description}</Text>
                 <View style={{ flexDirection: "row", gap: 10 }}>
                   <Avatar
-                    containerStyle={{ width: 150, height: 200 }}
+                    containerStyle={{ width: "50%", height: 200 }}
                     avatarStyle={{ borderRadius: 5 }}
                     source={{ uri: selectedTask.image[0] }}
                   />
@@ -280,7 +303,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#F4F4F4",
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 15,
     borderRadius: 5,
     marginBottom: 10,
   },
@@ -298,7 +322,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   subtitleText: {
-    fontSize: 12,
+    fontSize: 10,
     color: "#E04E2F",
     marginLeft: 5,
   },

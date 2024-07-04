@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native';
+import { View, ScrollView, StyleSheet, TouchableOpacity, FlatList, Alert, ActivityIndicator } from 'react-native';
 import { Text, CheckBox, Avatar, Button } from "@rneui/themed";
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
-import InputComponent from '../../../../../../components/InputComponent/InputComponent';
-import { selectPhoto } from '../../../../../../constants/ImagesConstants';
+import InputComponent from '../../../../../../components/InputComponent/InputComponent'; // Adjust path as per your project
+import { selectPhoto } from '../../../../../../constants/ImagesConstants'; // Adjust path as per your project
 import { useSelector } from 'react-redux';
 
 const PostCar = () => {
@@ -30,6 +30,7 @@ const PostCar = () => {
   const [pickedLocation, setPickedLocation] = useState('');
   const [location, setLocation] = useState<any>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -39,8 +40,14 @@ const PostCar = () => {
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      try {
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
+        console.log(location.coords.longitude)
+      } catch (error) {
+        console.error('Error fetching location:', error);
+        setErrorMsg('Error fetching location');
+      }
     })();
   }, []);
 
@@ -50,103 +57,83 @@ const PostCar = () => {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsMultipleSelection: true,
       aspect: [4, 3],
-      quality: 0.6,
+      quality: 0.2,
       base64: true,
       selectionLimit: 2,
     });
-
     if (!result.canceled) {
-      const base64Images = result.assets.map((asset) => asset.base64!);
+      const base64Images = result.assets.map((asset) => asset.base64!); // Use non-null assertion operator
+
       setImages(base64Images);
+      console.log(base64Images[0]);
     }
   };
-
   const handlePostCar = async () => {
-    try {
-      console.log({
-        id,
-        carname: name,
-        noplate: plate,
-        registrationno: registration,
-        color,
-        cartype: carType,
-        enginetype: engineType,
-        fueltype: fuelType,
-        yearofmanufacture: yearOfManufacture,
-        milage: mileage,
-        carcondition: carCondition,
-        seats,
-        ac,
-        tracker,
-        legaldocuments: legalDocuments,
-        workingsound: workSoundSystem,
-        pickupAddress: pickedLocation,
-        image: images[0],
-        imagetwo: images[1],
-        usercoords: location ? { latitude: location.coords.latitude, longitude: location.coords.longitude } : null,
-        price: pricePerDay,
-      });
-
-      const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/car/upload', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          id,
-          carname: name,
-          noplate: plate,
-          registrationno: registration,
-          color,
-          cartype: carType,
-          enginetype: engineType,
-          fueltype: fuelType,
-          yearofmanufacture: yearOfManufacture,
-          milage: mileage,
-          carcondition: carCondition,
-          seats,
-          ac,
-          tracker,
-          legaldocuments: legalDocuments,
-          workingsound: workSoundSystem,
-          pickupAddress: pickedLocation,
-          image: images[0],
-          imagetwo: images[1],
-          usercoords: location ? { latitude: location.coords.latitude, longitude: location.coords.longitude } : null,
-          price: pricePerDay,
-        }),
-      });
-
-      const data = await response.json();
-      console.log('Response:', data);
-
-      if (response.ok) {
-        Alert.alert('Car Posted Successfully', 'Wait for approval and review');
-      } else {
-        Alert.alert('Failed to create product', data.message || 'Unknown error');
-      }
-    } catch (error) {
-      console.error('Error creating product:', error.message);
-      Alert.alert('Failed to create product', error.message);
+    const cardata={
+      id:id,
+      carname:name,
+      noplate:plate,
+      registrationno:registration,
+      color:color,
+      cartype:carType,
+      enginetype:engineType,
+      fueltype:fuelType,
+      yearofmanufacture:yearOfManufacture,
+      milage:mileage,
+      carcondition:carCondition,
+      seats:seats,
+      ac:ac,
+      tracker: tracker.toString(),
+      legaldocuments: legalDocuments.toString(),
+      workingsound: workSoundSystem.toString(),
+      pickupAddress:pickedLocation,
+      image:images[0],
+      imagetwo:images[1],
+      usercoords:location,
+      price:pricePerDay,
     }
+   try {
+    const response=await fetch('http://10.0.2.2:4001/api/car/upload',{
+      method:"POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cardata),
+
+    })
+    if (!response.ok) {
+      throw new Error('Failed to Upload Car');
+    }
+    Alert.alert(
+      'Car Post created Successfully',
+      'Your Car has been created successfully.👀',
+    //ading buton
+
+    );
+    const data = await response.json();
+    console.log('Product created:', data);
+
+   } catch (error) {
+    console.error('Error creating Car Post:', error);
+    Alert.alert('Failed to create Car', error);
+   }
   };
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.ChildWrapper}>
-        <Text style={{ textAlign: "center", marginBottom: 20, marginTop: 5 }} h4>Car Info</Text>
-        <Text style={{ textAlign: "center", marginBottom: 20, marginTop: 5, fontStyle: 'italic' }}>Note: Please ensure that you fill out the form from the same location where the rental car will be picked up.</Text>
+      <View style={styles.childWrapper}>
+        <Text style={styles.heading}>Car Info</Text>
+        <Text style={styles.italicText}>Note: Please fill out the form from the pickup location.</Text>
 
         <InputComponent placeholder="Name" value={name} onChangeText={setName} />
         <InputComponent placeholder="No Plate" value={plate} onChangeText={setPlate} />
-        <InputComponent placeholder="Vehicle Registration No" value={registration} onChangeText={setRegistration} />
+        <InputComponent placeholder="Registration No" value={registration} onChangeText={setRegistration} />
         <InputComponent placeholder="Color" value={color} onChangeText={setColor} />
-        <InputComponent placeholder="Car type manual /automatic" value={carType} onChangeText={setCarType} />
+        <InputComponent placeholder="Car Type (Manual/Automatic)" value={carType} onChangeText={setCarType} />
       </View>
 
-      <View style={styles.ChildWrapper}>
-        <Text style={{ textAlign: "center", marginBottom: 20, marginTop: 5 }} h4>Car Details</Text>
+      <View style={styles.childWrapper}>
+        <Text style={styles.heading}>Car Details</Text>
         <InputComponent placeholder="Engine Type" value={engineType} onChangeText={setEngineType} />
         <InputComponent placeholder="Fuel Type" value={fuelType} onChangeText={setFuelType} />
         <InputComponent placeholder="Year of Manufacture" value={yearOfManufacture} onChangeText={setYearOfManufacture} />
@@ -155,62 +142,114 @@ const PostCar = () => {
         <InputComponent placeholder="Seats" value={seats} onChangeText={setSeats} />
       </View>
 
-      <View style={styles.ChildWrapper}>
-        <Text style={{ textAlign: "center", marginBottom: 20, marginTop: 5 }} h4>Features</Text>
-        <CheckBox checked={ac} title="Ac" onPress={() => setAc(!ac)} />
+      <View style={styles.childWrapper}>
+        <Text style={styles.heading}>Features</Text>
+        <CheckBox checked={ac} title="AC" onPress={() => setAc(!ac)} />
         <CheckBox checked={tracker} title="Tracker" onPress={() => setTracker(!tracker)} />
-        <CheckBox checked={workSoundSystem} title="Working Sound System" onPress={() => setWorkSoundSystem(!workSoundSystem)} />
+        <CheckBox checked={workSoundSystem} title="Sound System" onPress={() => setWorkSoundSystem(!workSoundSystem)} />
         <CheckBox checked={legalDocuments} title="Legal Documents" onPress={() => setLegalDocuments(!legalDocuments)} />
       </View>
 
-      <View style={styles.ChildWrapper}>
-        <Text style={{ textAlign: "center", marginBottom: 20, marginTop: 5 }} h4>Set Pricing / Day</Text>
-        <InputComponent placeholder="Pricing Per Day" value={pricePerDay} onChangeText={setPricePerDay} />
-        <Text style={{ marginLeft: 8, fontSize: 12 }}>Your Earning / Day Will Be</Text>
+      <View style={styles.childWrapper}>
+        <Text style={styles.heading}>Pricing</Text>
+        <InputComponent placeholder="Price per Day" value={pricePerDay} onChangeText={setPricePerDay} />
+        <Text style={styles.earningsText}>Your Earnings per Day</Text>
       </View>
 
-      <View style={styles.ChildWrapper}>
-        <Text style={{ textAlign: "center", marginBottom: 20, marginTop: 5 }} h4>Location</Text>
-        <InputComponent placeholder="Enter Pickup Address" value={pickedLocation} onChangeText={setPickedLocation} />
-        <Text>Coordinates: {location ? `${location.coords.latitude}, ${location.coords.longitude}` : 'Fetching coordinates...'}</Text>
+      <View style={styles.childWrapper}>
+        <Text style={styles.heading}>Location</Text>
+        <InputComponent placeholder="Pickup Address" value={pickedLocation} onChangeText={setPickedLocation} />
+        <Text style={styles.coordinatesText}>Coordinates: {location ? `${location.coords.latitude}, ${location.coords.longitude}` : 'Fetching coordinates...'}</Text>
       </View>
 
-      <View style={styles.ChildWrapper}>
-        <TouchableOpacity onPress={selectImage} style={{ padding: 10, backgroundColor: "#fff", borderRadius: 5 }}>
+      <View style={styles.childWrapper}>
+        <TouchableOpacity onPress={selectImage} style={styles.imagePicker}>
           {images.length > 0 ? (
             <FlatList
-              contentContainerStyle={{ gap: 10 }}
+              contentContainerStyle={styles.imageList}
               data={images}
               horizontal
               renderItem={({ item }) => (
-                <Avatar avatarStyle={{ borderRadius: 5 }} source={{ uri: `data:image/jpeg;base64,${item}` }} size={50} />
+                <Avatar avatarStyle={styles.avatar} source={{ uri: `data:image/jpeg;base64,${item}` }} size={50} />
               )}
               keyExtractor={(item, index) => index.toString()}
-              ListEmptyComponent={<Avatar avatarStyle={{ borderRadius: 5 }} source={{ uri: selectPhoto }} size={50} />}
+              ListEmptyComponent={<Avatar avatarStyle={styles.avatar} source={{ uri: selectPhoto }} size={50} />}
             />
           ) : (
-            <Avatar avatarStyle={{ borderRadius: 5 }} source={{ uri: selectPhoto }} size={50} />
+            <Avatar avatarStyle={styles.avatar} source={{ uri: selectPhoto }} size={50} />
           )}
         </TouchableOpacity>
       </View>
 
       <Button
         color="#E04E2F"
-        buttonStyle={{ marginBottom: 50, marginTop: 10 }} title="Post Car" onPress={handlePostCar} />
+        buttonStyle={styles.postButton}
+        title="Post Car"
+        onPress={handlePostCar}
+        disabled={loading}
+      />
+
+      {loading && (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#E04E2F" />
+        </View>
+      )}
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
   },
-  ChildWrapper: {
+  childWrapper: {
     backgroundColor: "#fff",
-    padding: 5,
+    padding: 10,
     borderRadius: 5,
     marginBottom: 20,
+    elevation: 2,
+  },
+  heading: {
+    textAlign: "center",
+    marginBottom: 10,
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  italicText: {
+    textAlign: "center",
+    marginBottom: 10,
+    fontStyle: 'italic',
+  },
+  earningsText: {
+    marginLeft: 8,
+    fontSize: 12,
+    marginBottom: 10,
+  },
+  coordinatesText: {
+    marginBottom: 10,
+  },
+  imagePicker: {
+    padding: 10,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+  },
+  imageList: {
+    gap: 10,
+  },
+  avatar: {
+    borderRadius: 5,
+  },
+  postButton: {
+    marginTop: 20,
+    marginBottom: 50,
+  },
+  loadingContainer: {
+    position: 'absolute',
+    top: 0, bottom: 0, left: 0, right: 0,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

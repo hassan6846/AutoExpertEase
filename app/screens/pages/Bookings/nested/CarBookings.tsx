@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View, Linking } from 'react-native';
 import { Avatar, Text, Icon } from '@rneui/themed';
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
-import { AvatarSrc } from '../../../../constants/ImagesConstants';
 import { useSelector } from 'react-redux';
 
 
@@ -29,7 +28,7 @@ const CarBookings = () => {
         });
         const data = await response.json();
         setCarData(data.bookings);
-        console.log(data.bookings);
+        console.log(data.bookings[0].car.location);
       } catch (error) {
         console.error('Error fetching bookings:', error);
       }
@@ -55,6 +54,7 @@ const CarBookings = () => {
 }
           </ScrollView>
           <View style={styles.detailsContainer}>
+
           <View style={styles.detailItem}>
                 <Icon type="material" name="timer" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
             <Text style={styles.detailText}>

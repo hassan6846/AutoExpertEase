@@ -72,7 +72,7 @@ const AllOrders = ({ navigation }: { navigation: any }) => {
                 Order Id :#{order.OrderId}
               </Text>
               <Text style={{ fontSize: 12, color: ThemeProviderColors.Light.FontSubHeading }}>
-                {order.orderedAt}
+              {new Date(order.orderedAt).toLocaleDateString()} {new Date(order.orderedAt).toLocaleTimeString()}
               </Text>
               <Text style={{ color: order.orderState ? 'green' : 'red', fontSize: 12 }}>
                 {order.orderState ? 'Completed' : 'Processing'}{' '}

@@ -21,8 +21,11 @@ const HailingPage = ({ navigation }: { navigation: any }) => {
       );
       const data = await response.json();
       console.log(data);
+
       navigation.navigate("inital_service");
     } catch (error) {
+      navigation.navigate("inital_service");
+
       console.log(error);
     }
   };
@@ -36,7 +39,7 @@ const HailingPage = ({ navigation }: { navigation: any }) => {
             onPress: () => null,
             style: "cancel",
           },
-          { text: "Yes", onPress: () => HandleConfirm() },
+          { text: "Yes", onPress:async () => await HandleConfirm() },
         ]);
       };
 

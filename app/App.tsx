@@ -87,7 +87,9 @@ function HomePageActivity() {
 const Main = () => {
   const dispatch=useDispatch()
   const Auth=useSelector((state:any)=>state.auth.Isauth)
-
+  useEffect(()=>{
+    
+  })
   return (
     <NavigationContainer >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -147,6 +149,10 @@ const Main = () => {
 
 
 import { registerRootComponent } from "expo";
+import { useEffect } from "react"
+import { requestPermissions } from "./utils/LocationTracker"
+
+//Task Maneger
 
 //Main       
 export default function App() {

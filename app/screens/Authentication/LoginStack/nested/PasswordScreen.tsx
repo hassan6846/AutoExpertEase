@@ -33,14 +33,15 @@ const PasswordScreen = ({ navigation }: { navigation: any }) => {
       if (!response.ok) {
         // Handle non-successful response status codes (e.g., 401 Unauthorized)
         if (response.status === 401) {
-          setError(await response.json());
+
+          setError(await ("Error Invalid Password") );
         } 
         setLoading(false);
         return; // Stop execution if response status is not ok
       }
 
       const data = await response.json();
-      console.log('Login response:', data);
+      console.log('Login response:', data.success);
       dispatch(SetUserId(data.user._id))
       dispatch(SetAuthState(true));
       navigation.navigate('Home');
@@ -48,8 +49,9 @@ const PasswordScreen = ({ navigation }: { navigation: any }) => {
       // Show success toast
       ToastAndroid.show('Login Successful', ToastAndroid.SHORT);
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error('Login failed:', error.message);
       setError('An error occurred. Please try again later.');
+      
     } finally {
       setLoading(false);
     }

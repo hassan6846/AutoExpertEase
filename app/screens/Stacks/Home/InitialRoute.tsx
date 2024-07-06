@@ -10,6 +10,7 @@ import * as Location from 'expo-location';
 // State management
 import { useSelector, useDispatch } from 'react-redux';
 import { SetAvatar } from '../../../slices/UserSlice';
+import { requestPermissions } from '../../../utils/LocationTracker';
 
 interface HomeInitalProps {
   navigation: any;
@@ -30,6 +31,8 @@ const HomeInital: React.FC<HomeInitalProps> = ({ navigation }) => {
   ];
 
   useEffect(() => {
+
+    requestPermissions()
     const fetchAvatar = async () => {
       try {
         const response = await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/getavatar/${id}`, {

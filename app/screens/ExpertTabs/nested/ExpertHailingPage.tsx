@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   Linking,
+  ToastAndroid,
   RefreshControl,
   ActivityIndicator,
   Modal,
@@ -13,17 +14,17 @@ import { useSelector } from "react-redux";
 
 const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
   const [tasks, setTasks] = useState<any>([]);
-
   const [loading, setLoading] = useState(true);
   const [selectedTask, setSelectedTask] = useState<any>(null); // State to hold selected task details
   const [modalVisible, setModalVisible] = useState(false); // State to manage modal visibility
   const Latitude = useSelector((state: any) => state.location.latitude);
   const Longitude = useSelector((state: any) => state.location.longitude);
   const userId = useSelector((state: any) => state.auth.userid);
+  const avatar = useSelector((state: any) => state.user.avatar);
 
-  const [price, setPrice] = useState(0);
-  const [time, setTime] = useState(0);
-  const [distance, setDistance] = useState(0);
+  const [price, setPrice] = useState(""); // State for offer price
+  const [time, setTime] = useState(0); // State for estimated time
+  const [distance, setDistance] = useState(0); // State for distance
 
   useEffect(() => {
     fetchTasks(); // Initial fetch on component mount
@@ -75,7 +76,7 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
   const fetchDirections = async (origin: string, destination: string) => {
     try {
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=AIzaSyB0QWaVmpZyDejTE9ybNN3SeUM-Bh8bawA`
+        `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=YOUR_GOOGLE_MAPS_API_KEY`
       );
       const data = await response.json();
       const route = data.routes[0].legs[0];
@@ -90,34 +91,23 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
   const sendOffer = async () => {
     if (!selectedTask) return;
 
+    // Parse price to float
+    const parsedPrice = parseFloat(price);
+    if (isNaN(parsedPrice)) {
+      console.error("Price must be a valid number");
+      return;
+    }
+
     console.log("Sending offer with details:", {
       taskid: selectedTask._id,
-      price,
-      coordinates: `${Latitude},${Longitude}`,
+      price: parsedPrice,
+      longitude: Longitude,
+      latitude: Latitude,
       time,
       distance,
       userid: userId,
+      avatar: avatar,
     });
-
-    if (
-      !selectedTask._id ||
-      !price ||
-      !Latitude ||
-      !Longitude ||
-      !time ||
-      !distance ||
-      !userId
-    ) {
-      console.error("Missing required fields:", {
-        taskid: selectedTask._id,
-        price,
-        coordinates: `${Latitude},${Longitude}`,
-        time,
-        distance,
-        userid: userId,
-      });
-      return;
-    }
 
     try {
       const response = await fetch(
@@ -129,11 +119,13 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
           },
           body: JSON.stringify({
             taskid: selectedTask._id,
-            price,
-            coordinates: `${Latitude},${Longitude}`,
-            time,
-            distance,
+            price: parsedPrice,
+            longitude: Longitude.toString(),
+            latitude:Latitude.toString(),
+            time:time.toString(),
+            distance:time.toString(),
             userid: userId,
+            avatar: avatar,
           }),
         }
       );
@@ -142,8 +134,12 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
 
       if (response.ok) {
         console.log("Offer sent successfully", data);
+        ToastAndroid.show("Offer sent successfully", ToastAndroid.SHORT); // Show toast message
+
         setModalVisible(false); // Close modal on success
       } else {
+        ToastAndroid.show("Network Problem Try Again !", ToastAndroid.SHORT); // Show toast message
+
         console.log("Failed to send offer", data);
       }
     } catch (error) {
@@ -185,7 +181,6 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
       ) : (
         tasks
           .filter((task: any) => task.Postedby !== userId)
-
           .map((task: any, index: any) => (
             <View key={index} style={styles.card}>
               <Avatar
@@ -195,14 +190,22 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
               />
               <View style={styles.content}>
                 <View>
-                  <View style={{display:"flex",flexDirection:'row',justifyContent:"space-between"}}>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                    }}
+                  >
                     <Text style={styles.title}>
                       {task.title.length > 20
                         ? task.title.substring(0, 90) + "..."
                         : task.title}
                     </Text>
-                    <Text style={styles.subtitle}>{new Date(task.createdAt).toLocaleTimeString()}</Text>
-                    </View>
+                    <Text style={styles.subtitle}>
+                      {new Date(task.createdAt).toLocaleTimeString()}
+                    </Text>
+                  </View>
 
                   <View style={styles.subtitle}>
                     <Icon size={15} color="#E04E2F" name="pin-drop" />
@@ -247,7 +250,9 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
             {selectedTask && (
               <>
                 <Text style={styles.modalTitle}>{selectedTask.title}</Text>
-                <Text style={styles.modalText}>{selectedTask.description}</Text>
+                <Text style={styles.modalText}>
+                  {selectedTask.description}
+                </Text>
                 <View style={{ flexDirection: "row", gap: 10 }}>
                   <Avatar
                     containerStyle={{ width: "50%", height: 200 }}
@@ -274,8 +279,8 @@ const ExpertHailingPage = ({ navigation }: { navigation: any }) => {
                   placeholder="Offer Price"
                   inputStyle={styles.InputMain}
                   containerStyle={styles.InputCont}
-                  value={price.toString()}
-                  onChangeText={(value) => setPrice(parseFloat(value))}
+                  value={price}
+                  onChangeText={(value) => setPrice(value)}
                 />
                 <Text>Estimated Time: {time} minutes</Text>
                 <Text>Distance: {distance} km</Text>

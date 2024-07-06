@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, ScrollView, StyleSheet, TouchableOpacity, FlatList, Alert, ActivityIndicator } from 'react-native';
-import { Text, CheckBox, Avatar, Button } from "@rneui/themed";
+import { Text, CheckBox, Avatar, Button } from "@rneui/themed"; // Adjust import as per your project
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
 import InputComponent from '../../../../../../components/InputComponent/InputComponent'; // Adjust path as per your project
@@ -8,9 +8,9 @@ import { selectPhoto } from '../../../../../../constants/ImagesConstants'; // Ad
 import { useSelector } from 'react-redux';
 
 const PostCar = () => {
-  const id = useSelector((state: any) => state.auth.userid);
+  const id = useSelector((state:any) => state.auth.userid); // Ensure correct useSelector usage
 
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<any>([]);
   const [name, setName] = useState('');
   const [plate, setPlate] = useState('');
   const [registration, setRegistration] = useState('');
@@ -29,7 +29,7 @@ const PostCar = () => {
   const [legalDocuments, setLegalDocuments] = useState(false);
   const [pickedLocation, setPickedLocation] = useState('');
   const [location, setLocation] = useState<any>(null);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [errorMsg, setErrorMsg] = useState <any>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -43,12 +43,12 @@ const PostCar = () => {
       try {
         let location = await Location.getCurrentPositionAsync({});
         setLocation(location);
-        console.log(location.coords.longitude)
       } catch (error) {
         console.error('Error fetching location:', error);
         setErrorMsg('Error fetching location');
       }
     })();
+
   }, []);
 
   const selectImage = async () => {
@@ -62,74 +62,79 @@ const PostCar = () => {
       selectionLimit: 2,
     });
     if (!result.canceled) {
-      const base64Images = result.assets.map((asset) => asset.base64!); // Use non-null assertion operator
+      const base64Images = result.assets.map((asset) => asset.base64);
 
       setImages(base64Images);
-      console.log(base64Images[0]);
     }
   };
+ const coordinates={
+  latitude: location?.coords.latitude,
+  longitude: location?.coords.longitude,
+ }
   const handlePostCar = async () => {
-    const cardata={
+    const carData = {
       id:id,
-      carname:name,
-      noplate:plate,
-      registrationno:registration,
-      color:color,
-      cartype:carType,
-      enginetype:engineType,
-      fueltype:fuelType,
-      yearofmanufacture:yearOfManufacture,
-      milage:mileage,
-      carcondition:carCondition,
-      seats:seats,
-      ac:ac,
-      tracker: tracker.toString(),
-      legaldocuments: legalDocuments.toString(),
-      workingsound: workSoundSystem.toString(),
+      carname:name.toString(),
+      noplate:plate.toString(),
+      registrationno:registration.toString(),
+      color:color.toString(),
+      cartype:carType.toString(),
+      enginetype:engineType.toString(),
+      fueltype:fuelType.toString(),
+      yearofmanufacture:yearOfManufacture.toString(),
+      milage:mileage.toString(),
+      carcondition:carCondition.toString(),
+      seats:seats.toString(),
+      ac:ac.toString(),
+      tracker:tracker.toString(),
+      workingsound:workSoundSystem.toString(),
+      legaldocuments:legalDocuments.toString(),
       pickupAddress:pickedLocation,
-      image:images[0],
-      imagetwo:images[1],
-      usercoords:location,
-      price:pricePerDay,
+      image: images[0],
+      imagetwo: images[1],
+      usercoords:coordinates,
+      
+     price:pricePerDay.toString(),
+    };
+
+    try {
+      setLoading(true);
+      const response = await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/car/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body:JSON.stringify(carData),
+      });
+      setLoading(false);
+
+
+      Alert.alert(
+        'Car posted successfully',
+        'Your car has been posted successfully.'
+      );
+      if (!response.ok) {
+        throw new Error('Failed to upload car');
+      }
+
+      const data = await response.json();
+      console.log('Car posted:', data);
+    } catch (error) {
+      console.error('Error posting car:', error.message);
+      Alert.alert('Failed to post car', error.message);
+      console.log(JSON.stringify(carData))
     }
-   try {
-    const response=await fetch('https://backend-autoexpertease-production-5fd2.up.railway.app/api/car/upload',{
-      method:"POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(cardata),
-
-    })
-    if (!response.ok) {
-      throw new Error('Failed to Upload Car');
-    }
-    Alert.alert(
-      'Car Post created Successfully',
-      'Your Car has been created successfully.👀',
-    //ading buton
-
-    );
-    const data = await response.json();
-    console.log('Product created:', data);
-
-   } catch (error) {
-    console.error('Error creating Car Post:', error.message);
-    Alert.alert('Failed to create Car', error.message);
-   }
   };
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.childWrapper}>
-        <Text style={styles.heading}>Car Info</Text>
-        <Text style={styles.italicText}>Note: Please fill out the form from the pickup location.</Text>
-
+        <Text style={styles.heading}>Car Information</Text>
         <InputComponent placeholder="Name" value={name} onChangeText={setName} />
-        <InputComponent placeholder="No Plate" value={plate} onChangeText={setPlate} />
-        <InputComponent placeholder="Registration No" value={registration} onChangeText={setRegistration} />
+        <InputComponent placeholder="Plate Number" value={plate} onChangeText={setPlate} />
+        <InputComponent placeholder="Registration Number" value={registration} onChangeText={setRegistration} />
         <InputComponent placeholder="Color" value={color} onChangeText={setColor} />
-        <InputComponent placeholder="Car Type (Manual/Automatic)" value={carType} onChangeText={setCarType} />
+        <InputComponent placeholder="Car Type" value={carType} onChangeText={setCarType} />
       </View>
 
       <View style={styles.childWrapper}>
@@ -153,7 +158,6 @@ const PostCar = () => {
       <View style={styles.childWrapper}>
         <Text style={styles.heading}>Pricing</Text>
         <InputComponent placeholder="Price per Day" value={pricePerDay} onChangeText={setPricePerDay} />
-        <Text style={styles.earningsText}>Your Earnings per Day</Text>
       </View>
 
       <View style={styles.childWrapper}>
@@ -170,7 +174,11 @@ const PostCar = () => {
               data={images}
               horizontal
               renderItem={({ item }) => (
-                <Avatar avatarStyle={styles.avatar} source={{ uri: `data:image/jpeg;base64,${item}` }} size={50} />
+                <Avatar
+                  avatarStyle={styles.avatar}
+                  source={{ uri: `data:image/jpeg;base64,${item}` }}
+                  size={50}
+                />
               )}
               keyExtractor={(item, index) => index.toString()}
               ListEmptyComponent={<Avatar avatarStyle={styles.avatar} source={{ uri: selectPhoto }} size={50} />}
@@ -204,34 +212,24 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   childWrapper: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     padding: 10,
     borderRadius: 5,
     marginBottom: 20,
     elevation: 2,
   },
   heading: {
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 10,
     fontSize: 18,
-    fontWeight: "bold",
-  },
-  italicText: {
-    textAlign: "center",
-    marginBottom: 10,
-    fontStyle: 'italic',
-  },
-  earningsText: {
-    marginLeft: 8,
-    fontSize: 12,
-    marginBottom: 10,
+    fontWeight: 'bold',
   },
   coordinatesText: {
     marginBottom: 10,
   },
   imagePicker: {
     padding: 10,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 5,
   },
   imageList: {

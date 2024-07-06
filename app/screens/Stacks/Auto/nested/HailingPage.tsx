@@ -1,5 +1,5 @@
 import { View, ScrollView, StyleSheet, Alert } from "react-native";
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import { Text, Button, Avatar, LinearProgress } from "@rneui/themed";
 import { AvatarSrc } from "../../../../constants/ImagesConstants";
 import ThemeProviderColors from "../../../../provider/ThemeProvider";
@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const HailingPage = ({ navigation }: { navigation: any }) => {
   const taskid = useSelector((state: any) => state.task.taskid);
-
+  const [offers,setoffers]=useState<any>([])
   const HandleConfirm = async () => {
     try {
       const response = await fetch(
@@ -57,7 +57,24 @@ const HailingPage = ({ navigation }: { navigation: any }) => {
       };
     }, [navigation])
   );
+  useEffect(()=>{
+    //Fetch Offers After interval
+    const FetchOffers=async()=>{
+      const response=await fetch(`https://backend-autoexpertease-production-5fd2.up.railway.app/api/offers/${taskid}`,{
+        method:"GET",
+        headers:{
+          "Content-Type": "application/json",
+        }
+      })
+      const data=await response.json()
+      setoffers(data.offers)
+      console.log(offers)
+    }
 
+    
+FetchOffers()
+
+  },[])
   return (
     <View style={{ flex: 1 }}>
       <LinearProgress />

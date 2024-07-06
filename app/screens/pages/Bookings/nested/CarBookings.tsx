@@ -4,7 +4,6 @@ import { Avatar, Text, Icon } from '@rneui/themed';
 import ThemeProviderColors from '../../../../provider/ThemeProvider';
 import { useSelector } from 'react-redux';
 
-
 const CarBookings = () => {
   const id = useSelector((state: any) => state.auth.userid);
   const [carData, setCarData] = useState<any>([]);
@@ -27,80 +26,79 @@ const CarBookings = () => {
           }
         });
         const data = await response.json();
-        setCarData(data.bookings);
-        console.log(data.bookings[0].car.location);
+        setCarData(data.bookings || []);
       } catch (error) {
         console.error('Error fetching bookings:', error);
       }
     };
     getMyBookings();
-  }, []);
+  }, [id]);
 
   return (
     <ScrollView style={styles.container}>
-      {carData.map((booking: any, index: number) => (
-        <View key={index} style={styles.bookingCard}>
-          <View style={styles.orderTxtDetails}>
-            <Text style={styles.orderText}>{new Date(booking.createdAt).toLocaleDateString()}</Text>
-            <Text style={styles.orderText}>
-              Paid <Icon type='material' name='payment' size={12} color="green" />
-            </Text>
-          </View>
-          <ScrollView horizontal={true} contentContainerStyle={styles.avatarsContainer}>
-          {
-  booking.car.images.flat().map((image: string, index: number) => (
-    <Avatar key={index} size={60} containerStyle={styles.avatarContainer} source={{ uri: image }} />
-  ))
-}
-          </ScrollView>
-          <View style={styles.detailsContainer}>
-
-          <View style={styles.detailItem}>
-                <Icon type="material" name="timer" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>
-             Pickup Time/drop time:{new Date(booking.PickupTime).toLocaleDateString()} 
+      {carData.length === 0 ? (
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyText}>Nothing to show yet</Text>
+        </View>
+      ) : (
+        carData.map((booking: any, index: number) => (
+          <View key={index} style={styles.bookingCard}>
+            <View style={styles.orderTxtDetails}>
+              <Text style={styles.orderText}>{new Date(booking.createdAt).toLocaleDateString()}</Text>
+              <Text style={styles.orderText}>
+                Paid <Icon type='material' name='payment' size={12} color="green" />
               </Text>
+            </View>
+            <ScrollView horizontal={true} contentContainerStyle={styles.avatarsContainer}>
+              {booking.car?.images?.flat()?.map((image: string, index: number) => (
+                <Avatar key={index} size={60} containerStyle={styles.avatarContainer} source={{ uri: image }} />
+              ))}
+            </ScrollView>
+            <View style={styles.detailsContainer}>
+              <View style={styles.detailItem}>
+                <Icon type="material" name="timer" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
+                <Text style={styles.detailText}>
+                  Pickup Time/drop time: {new Date(booking.PickupTime).toLocaleDateString()}
+                </Text>
               </View>
-
               <View style={styles.detailItem}>
                 <Icon type="material" name="schedule" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>
-             Start Date:{new Date(booking.startDate).toLocaleDateString()} 
-              </Text>
+                <Text style={styles.detailText}>
+                  Start Date: {new Date(booking.startDate).toLocaleDateString()}
+                </Text>
               </View>
               <View style={styles.detailItem}>
                 <Icon type="material" name="keyboard-return" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>
-             return Date:{new Date(booking.endDate).toLocaleDateString()} 
-              </Text>
+                <Text style={styles.detailText}>
+                  Return Date: {new Date(booking.endDate).toLocaleDateString()}
+                </Text>
               </View>
               <View style={styles.detailItem}>
                 <Icon type="material" name="home" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>
-             Pickup  Address:{booking.car.Address} 
-              </Text>
+                <Text style={styles.detailText}>
+                  Pickup Address: {booking.car?.Address}
+                </Text>
               </View>
               <View style={styles.detailItem}>
                 <Icon type="material" name="history" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>
-             Rental Duration:{booking.RentalDays} 
-              </Text>
+                <Text style={styles.detailText}>
+                  Rental Duration: {booking.RentalDays}
+                </Text>
               </View>
               <View style={styles.detailItem}>
                 <Icon type="material" name="history" size={18} color={ThemeProviderColors.Light.FontSubHeading} />
-            <Text style={styles.detailText}>
-             Lisence Plate:{booking.car.licensePlate} 
-              </Text>
+                <Text style={styles.detailText}>
+                  License Plate: {booking.car?.licensePlate}
+                </Text>
               </View>
               <Text style={styles.detailText}>
-              Note: Make sure that you Stay Inside the restricted area (Lahore Only) so Owner can see through Tracker
-            </Text>
+                Note: Make sure that you stay inside the restricted area (Lahore Only) so the owner can see through the tracker.
+              </Text>
+            </View>
+            <Icon onPress={handleDirections} containerStyle={styles.directionsButton} color="#fff" name='directions' type='material' />
           </View>
-          {/* Button */}
-          <Icon onPress={handleDirections} containerStyle={styles.directionsButton} color="#fff" name='directions' type='material' />
-          {/* Button */}
-        </View>
-      ))}
+        ))
+      )}
     </ScrollView>
   );
 };
@@ -155,6 +153,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#E04E2F",
     padding: 5,
     borderRadius: 20,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+  },
+  emptyText: {
+    fontSize: 18,
+    color: ThemeProviderColors.Light.FontSubHeading,
   },
 });
 

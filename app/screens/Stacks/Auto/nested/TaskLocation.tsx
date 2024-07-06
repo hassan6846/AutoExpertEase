@@ -60,7 +60,7 @@ const TaskLocation = ({ navigation }: { navigation: any }) => {
             coordinate={[pickedLocation.longitude, pickedLocation.latitude]}
           >
             <View style={styles.annotationContainer}>
-              <View style={styles.annotationFill} />
+              <Icon color={ThemeProviderColors.Light.Primary} name="location-on" type="material"/>
             </View>
           </MapboxGL.PointAnnotation>
         )}

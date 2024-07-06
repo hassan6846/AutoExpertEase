@@ -8,10 +8,11 @@ import { useSelector } from "react-redux";
 
 const HailingPage = ({ navigation }: { navigation: any }) => {
   const taskid = useSelector((state: any) => state.task.taskid);
+
   const HandleConfirm = async () => {
     try {
       const response = await fetch(
-        `https://backend-autoexpertease-production-5fd2.up.railway.app/api//delete-task/${taskid}`,
+        `https://backend-autoexpertease-production-5fd2.up.railway.app/api/delete-task/${taskid}`,
         {
           method: "DELETE",
           headers: {
@@ -24,11 +25,11 @@ const HailingPage = ({ navigation }: { navigation: any }) => {
 
       navigation.navigate("inital_service");
     } catch (error) {
-      navigation.navigate("inital_service");
-
       console.log(error);
+      navigation.navigate("inital_service");
     }
   };
+
   useFocusEffect(
     useCallback(() => {
       const onBeforeRemove = (e: any) => {
@@ -39,7 +40,13 @@ const HailingPage = ({ navigation }: { navigation: any }) => {
             onPress: () => null,
             style: "cancel",
           },
-          { text: "Yes", onPress:async () => await HandleConfirm() },
+          {
+            text: "Yes",
+            onPress: async () => {
+              navigation.removeListener("beforeRemove", onBeforeRemove);
+              await HandleConfirm();
+            },
+          },
         ]);
       };
 

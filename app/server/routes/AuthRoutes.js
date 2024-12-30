@@ -3,9 +3,9 @@ const router = express.Router()//router for nested routes
 //controllers
 const { SendEmailOtp,VerifyEmail} = require('../controllers/AuthControllers')
 //middlewares utils
-const { OtpRequestLimit } = require('../middlewares/RequestRateLimit')
+const { OtpRequestLimit ,OtpVerificationLimit} = require('../middlewares/RequestRateLimit')
 
 router.route('/sendemail').post(OtpRequestLimit,SendEmailOtp)
-router.route('/verifyemail').post(VerifyEmail)
+router.route('/verifyemail').post(OtpVerificationLimit,VerifyEmail)
 
 module.exports = router;

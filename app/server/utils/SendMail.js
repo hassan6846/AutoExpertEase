@@ -8,7 +8,7 @@ const SendOtpMail = async (email, title, body) => {
             service:"gmail",
             auth: {
                 user: 'ha6817334@gmail.com',
-                pass: 'oahs wfgq kjvi ewkq'
+                pass: 'tghg tvwn ccpv yanr'
             }
         });
 

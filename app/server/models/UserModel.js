@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema({
         minLength: [2, "Name should have more than 4 characters"],//setting min length
     },
     email: {
-        type: String, //email type 
+        type: String, //email type  
         default:"",
         required: [true, "Please Enter Your Email"],
         unique: [true, "Email is already Linked to another account."],//prevent duplciate email
@@ -25,11 +25,19 @@ const UserSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
+        validate: {
+            validator: function(v) {
+                return /^\d{12}$/.test(v);
+            },
+            message: props => `${props.value} is not a valid phone number! It should have 11 digits.`
+        },
         required: [true, "Kindly Enter the Contact Number"],
 
     },
     password: {
         type: String,
+        required: [true, "Please Enter Your Password"],
+        validate: [validator.isStrongPassword, "Password is not strong enough"],
         minLength: [8, "Password Should have more than 8 characters"],//setting min length
 
     },

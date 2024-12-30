@@ -76,7 +76,16 @@ const ExpertSchema = new mongoose.Schema({
    required: false,
 
    },//post rating and comments
-
+   rating:{
+      type: Number,
+      default: 0
+   },
+   //socket id
+   socketId:{
+      type:String,
+      default:""
+   },
+   
 
 }, { timestamps: true })
 const Expert = mongoose.model('Expert', ExpertSchema)

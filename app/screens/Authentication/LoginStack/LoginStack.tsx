@@ -4,11 +4,11 @@ const Login = createStackNavigator();
 //Screen Inside login page only....
 import PhoneLogin from "./nested/PhoneScreen";
 import PasswordScreen from "./nested/PasswordScreen";
+
+
+//libraries and imports
 import { View } from "react-native";
 import { getHeight } from "../../../utils/GetDimension";
-
-//libraries
-
 import { LinearProgress } from "@rneui/themed"
 import { useSelector } from "react-redux";
 

@@ -63,7 +63,7 @@
       [
         "expo-dev-launcher",
         {
-          "launchModeExperimental": "most-recent"
+            
         }
       ],
       [

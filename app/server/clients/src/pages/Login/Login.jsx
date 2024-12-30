@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { MDBInput } from "mdb-react-ui-kit";
@@ -6,7 +6,9 @@ import { Button as MDBBtn } from '@mui/material';
 import toast, { Toaster } from "react-hot-toast";
 import "./Login.css";
 import useAuth from "../../Hooks/useAuth";
-import ApiInstance from "../../../Instance/AxiosInstance";
+
+import axios from "axios";
+
 
 const Login = () => {
   const { login } = useAuth(); // Use login function from useAuth
@@ -21,7 +23,7 @@ const Login = () => {
       setIsSubmitting(true);
 
       try {
-        const response = await ApiInstance.post('/admin/login', {
+        const response = await axios.post('http://localhost:4001/api/v1/admin/login', {
           email: values.email,
           password: values.password
         });
@@ -85,9 +87,9 @@ const Login = () => {
             </MDBBtn>
           </form>
           <div className="login_flex">
-            <p className="login_page_tag_line">DON'T HAVE ACCOUNT?</p>
+            <p className="login_page_tag_line">DON&apos;T HAVE ACCOUNT?</p>
             <Link to="#" className="register">
-              Contact Your Admin's
+              Contact Your Admin&apos;s
             </Link>
           </div>
         </div>

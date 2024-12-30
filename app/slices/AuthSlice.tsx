@@ -8,7 +8,7 @@ const AuthSlice = createSlice({
     userToken: '', //Token 
     Progress: 0.3, //value for progress bar 
     HeaderColor: "#E04E2F",
-    Isauth: false,
+    Isauth: true,
     phone: "",
     password: "",
     firstName: "",

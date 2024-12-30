@@ -25,6 +25,7 @@ const Routing = () => {
     <Routes>
       {isAuthenticated ? (
         <Route path="/" element={<AdminOutlet />}>
+          <Route path="/" element={<Navigate to="/stats" />} />
           <Route path="/stats" element={<Stats />} />
 
           <Route path="/products" element={<AllProducts />} />

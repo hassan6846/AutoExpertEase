@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import Header from '../../../../components/Header/Header';
 import { AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
 import { BsBox2, BsShop, BsPersonGear } from 'react-icons/bs';
@@ -50,7 +50,7 @@ const Stats = () => {
       {/* Cards for mapping the earning daily users etc */}
       <div>
         <h5 style={{ marginTop: 10, marginBottom: 0 }}>Welcome Back</h5>
-        <p style={{ marginTop: 5, marginBottom: 0, fontSize: '14px' }}>Let's See What's Happening With The App Called AutoExpertEase.</p>
+        <p style={{ marginTop: 5, marginBottom: 0, fontSize: '14px' }}>Let&apos;s See What&apos;s Happening With The App Called AutoExpertEase.</p>
         {/* Row for Card Statistics. */}
         <section className='statsContainer'>
           {/* Card */}
@@ -64,7 +64,7 @@ const Stats = () => {
           <div className='StatsCard'  style={{ backgroundColor: '#2196F3' }}>
             <AiOutlineUserAdd color='#fff' size={30} />
             <h1 style={{ marginTop: 10, marginBottom: 0 ,color:"#fff"}}>{todaysRegistration}</h1>
-            <p style={{ marginTop: 5, marginBottom: 0, fontSize: '14px',color:"#fff"}}>Today's Registrations</p>
+            <p style={{ marginTop: 5, marginBottom: 0, fontSize: '14px',color:"#fff"}}>Today&apos;s Registrations</p>
           </div>
           <div className='StatsCard' style={{ backgroundColor: '#2196F3' }}>
             <BsBox2  color='#fff'  size={30} />

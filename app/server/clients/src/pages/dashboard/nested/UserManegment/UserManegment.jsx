@@ -1,5 +1,5 @@
 import "./UserManegment.css";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Avatar, Chip } from '@mui/material';
 import { toast, Toaster } from 'react-hot-toast';
 import Modal from '@mui/material/Modal';
@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Header from '../../../../components/Header/Header';
 
-import ApiInstance from '../../../../../Instance/AxiosInstance';
+import axios from "axios";
 
 const UserManegment = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -26,8 +26,8 @@ const UserManegment = () => {
   // Function to delete a user
   const deleteUsers = (userId) => {
     setDeleting(true);
-    ApiInstance.delete(`/admin/user/${userId}`)
-      .then(response => {
+    axios.delete(`http://localhost:4001/api/v1/admin/user/${userId}`)
+      .then(() => {
         // Handle successful deletion
         toast.success('User deleted successfully');
         // Update the user list after deletion
@@ -46,7 +46,7 @@ const UserManegment = () => {
   useEffect(() => {
     toast.success("Fetching users");
 
-    ApiInstance.get('/admin/getusers')
+    axios.get('http://localhost:4001/api/v1/admin/getusers')
       .then(response => {
         setUsers(response.data);
         console.log('Fetched users:', response.data);

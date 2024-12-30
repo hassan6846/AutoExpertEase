@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 //main DBConnnect Function..
 async function ConnectMongodb() {
+  const CONNECTION_STR=process.env.CONNECTION_STRING_MONGO
   try {
-    await mongoose.connect('mongodb+srv://HassanAli:rVjzBOFltsX0McAz@cluster0.g6nnuyy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+    await mongoose.connect(CONNECTION_STR, {
       // We'll Add database configs here in the future....
 
     })

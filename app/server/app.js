@@ -5,7 +5,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const { ConnectMongodb } = require("./db/ConnectionDb");
-
+ConnectMongodb();
 
 // Initialize the app
 const app = express();
@@ -62,7 +62,7 @@ app.use('/api', vendor);
 app.use('/api', booking);
 
 // Connect to MongoDB
-ConnectMongodb();
+
 
 
 

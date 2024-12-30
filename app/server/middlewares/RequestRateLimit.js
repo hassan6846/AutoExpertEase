@@ -30,7 +30,7 @@ const OtpRequestLimit=RateLimit({
 //verification canbe sumbited 10 request in 1 minute delay
 const OtpVerificationLimit=RateLimit({
     windowMs: 60 * 1000, // 1 minute
-    max: 10,
+    max: 6,
     message: { msg: 'Verification Limit Exceeded, Try Again After 1min' }
 })
 module.exports={AdminLoginLimit,LoginRequestLimits,OtpRequestLimit,OtpVerificationLimit}

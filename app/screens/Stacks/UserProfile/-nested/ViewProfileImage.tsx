@@ -5,6 +5,7 @@ import { Image } from 'expo-image';
 
 const getWidth = Dimensions.get('window').width;
 const getHeight = Dimensions.get('window').height;
+
 //State
 import { useSelector } from 'react-redux';
 

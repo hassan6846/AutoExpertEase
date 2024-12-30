@@ -3,7 +3,6 @@ const fileupload = require("express-fileupload");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const http = require("http");
 const { ConnectMongodb } = require("./db/ConnectionDb");
 
 
@@ -21,15 +20,15 @@ app.use(express.json()); // Server is JSON type
 app.use(cookieParser());
 app.use(
   bodyParser.json({
-    limit: "100mb",
+    limit: "50mb",
 
   })
 );
 app.use(
   bodyParser.urlencoded({
-    limit: "100mb",
+    limit: "50mb",
     extended: true,
-    parameterLimit: 50000000000,
+    parameterLimit: 50000, //50mb limit....
     type: "application/json"
   })
 );
@@ -60,19 +59,11 @@ app.use("/api", location);
 app.use('/api', order);
 app.use('/api', vendor);
 app.use('/api', booking);
-// Create HTTP server
-const server = http.createServer(app);
 
-// Initialize Socket.IO
-
-// Connection to MongoDB
+// Connect to MongoDB
 ConnectMongodb();
 
-// Listen for both HTTP and WebSocket connections
-const Port = process.env.PORT || 3000;
-server.listen(Port, '0.0.0.0', () => {
-  console.log(`App is running on Port ${Port}`);
-});
+
 
 // Error handler middleware
 app.use((err, req, res, next) => {

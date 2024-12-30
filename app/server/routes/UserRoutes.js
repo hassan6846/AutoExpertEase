@@ -1,9 +1,7 @@
 const express = require('express')
 const router = express.Router()//router for nested routes
 const { 
-    RegisterFunction,
-    updatepicture,
-    loginFunction,
+
     FindUser,
     GetAvatar,
     IsExepert,
@@ -11,6 +9,10 @@ const {
     CanPostCars,
     CanRentCars 
 } = require("../controllers/UserControllers")
+
+const loginFunction = require('../controllers/Auth/Login')
+const RegisterFunction = require('../controllers/Auth/Signup')
+const updatepicture = require('../controllers/Features/UpdateProfilePic')
 
 router.route('/avatar').post(updatepicture)
 router.route('/register').post(RegisterFunction)

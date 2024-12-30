@@ -16,7 +16,9 @@ const app = express();
 // Middlewares
 app.disable("x-powered-by"); // Hide tech stack from hackers
 app.use(fileupload()); // Use fileupload middleware
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors({
+  origin: 'http://localhost:5173'
+}));
 app.use(express.json()); // Server is JSON type
 app.use(cookieParser());
 app.use(

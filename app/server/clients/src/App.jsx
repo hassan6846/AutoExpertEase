@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Routing from "./routes/Routes";
-import Lottie from 'react-lottie';
-import animationData from "./assets/Animation - 1711859930533.json";
+import { CircularProgress } from "@mui/material";
+
 import { AuthProvider } from "./Providers/AuthProviders";
 
 function App() {
@@ -20,13 +20,8 @@ function App() {
       <AuthProvider>
         <div style={{ height: "100vh", justifyContent: "center", alignItems: "center", width: "100%", display: "flex" }}>
           {loading ? (
-            <Lottie
-              width={300}
-              options={{
-                loop: true,
-                autoplay: true,
-                animationData: animationData,
-              }}
+            <CircularProgress
+ 
             />
           ) : (
             <Routing />

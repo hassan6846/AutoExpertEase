@@ -18,7 +18,7 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <div style={{ height: "100vh", justifyContent: "center", alignItems: "center", width: "100%", display: "flex" }}>
+        <div style={{ height: "100vh", justifyContent: "center", alignItems: "center", width: "100%", display: "flex" ,overflow:"hidden"}}>
           {loading ? (
             <CircularProgress
  

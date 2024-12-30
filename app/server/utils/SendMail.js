@@ -4,16 +4,16 @@ const nodemailer = require("nodemailer");
 const SendOtpMail = async (email, title, body) => {
     try {
         const transporter = nodemailer.createTransport({
-    
-            service:"gmail",
+
+            service: "gmail",
             auth: {
-                user: 'ha6817334@gmail.com',
-                pass: 'oahs wfgq kjvi ewkq'
+                user: process.env.MAIL_SENDER,
+                pass: process.env.MAILER_KEY
             }
         });
 
         const mailOptions = {
-            from: 'violette.wolff@ethereal.email',
+            from: process.env.SMTP_MAIL,
             to: email,
             subject: title,
             text: body

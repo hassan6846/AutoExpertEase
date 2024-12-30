@@ -19,5 +19,11 @@ const AdminLoginLimit=RateLimit.rateLimit({
     message: { msg: 'Too many Requests from this IP, please try again after an 1hr, Kindly Dont Spam Server' }
 })
 
-
-module.exports={AdminLoginLimit,LoginRequestLimits}
+//OTP Request Limit
+//otp can be send after 30 seconds 
+const OtpRequestLimit=RateLimit({
+    windowMs: 30 * 1000, // 30 seconds
+    max: 2,
+    message: { msg: 'Otp Will be Send After 1min delay due too much request' }
+})
+module.exports={AdminLoginLimit,LoginRequestLimits,OtpRequestLimit}

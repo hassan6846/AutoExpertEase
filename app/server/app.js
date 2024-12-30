@@ -48,18 +48,18 @@ const order = require("./routes/OrderRoutes")
 const vendor = require("./routes/VendorRoutes")
 const booking = require("./routes/BookingRoute")
 // Endpoints middlewares
-app.use("/api", user);
-app.use("/api", product);
-app.use("/api", chatbot);
-app.use("/api", admin);
-app.use("/api", auth);
-app.use("/api", payment);
-app.use("/api", car);
-app.use("/api", expert);
-app.use("/api", location);
-app.use('/api', order);
-app.use('/api', vendor);
-app.use('/api', booking);
+app.use("/api/v1", user);
+app.use("/api/v1", product);
+app.use("/api/v1", chatbot);
+app.use("/api/v1", admin);
+app.use("/api/v1", auth);
+app.use("/api/v1", payment);
+app.use("/api/v1", car);
+app.use("/api/v1", expert);
+app.use("/api/v1", location);
+app.use('/api/v1', order);
+app.use('/api/v1', vendor);
+app.use('/api/v1', booking);
 
 // Connect to MongoDB
 

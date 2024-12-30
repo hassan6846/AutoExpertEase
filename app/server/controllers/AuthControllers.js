@@ -51,7 +51,7 @@ const VerifyEmail = async (req, res, next) => {
 
         if (latestOTP.otp === otp) {
             // OTP is valid
-     
+
             return res.status(200).json({ message: "OTP verified successfully" });
         } else {
             // OTP is invalid

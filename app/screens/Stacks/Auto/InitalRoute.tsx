@@ -39,7 +39,9 @@ const AutoFixInitalRoute = ({ navigation }: { navigation: any }) => {
   return (
     <SafeAreaView style={Styles.map}>
       <Mapbox.MapView
+      projection="globe"
       focusable={true}
+      zoomEnabled={true}
       style={Styles.mapView} />
       <View
         style={{

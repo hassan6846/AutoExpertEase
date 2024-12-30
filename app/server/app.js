@@ -1,3 +1,4 @@
+require("dotenv").config();// Load environment variables
 const express = require("express");
 const fileupload = require("express-fileupload");
 const cors = require("cors");
@@ -9,8 +10,8 @@ const { ConnectMongodb } = require("./db/ConnectionDb");
 // Initialize the app
 const app = express();
 
-// Load environment variables
-require("dotenv").config();
+
+
 
 // Middlewares
 app.disable("x-powered-by"); // Hide tech stack from hackers

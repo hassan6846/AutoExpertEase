@@ -20,18 +20,18 @@ const EcommerceStack = createStackNavigator()
  */
 
 //Nested Child Components
-import ShopInitalRoute from "../Stacks/Shop/InitialRoute_Shop"
-import CartPage from "../Stacks/Shop/nested/CartPage"
-import ShopCategory from "../Stacks/Shop/nested/ShopCategory"
-import Search from "../Stacks/Shop/nested/SearchPage"
-import ProductViewPage from "../Stacks/Shop/nested/ProductViewPage"
-import CategoryTabs from "../Stacks/Shop/nested/AllCategory/initialRoute"
-import Wallet from "../Stacks/Shop/nested/Wallet"
-import Checkout from "../Stacks/Shop/nested/Checkout"
+import ShopInitalRoute from "../screens/Stacks/Shop/InitialRoute_Shop"
+import CartPage from "../screens/Stacks/Shop/nested/CartPage"
+import ShopCategory from "../screens/Stacks/Shop/nested/ShopCategory"
+import Search from "../screens/Stacks/Shop/nested/SearchPage"
+import ProductViewPage from "../screens/Stacks/Shop/nested/ProductViewPage"
+import CategoryTabs from "../screens/Stacks/Shop/nested/AllCategory/initialRoute"
+import Wallet from "../screens/Stacks/Shop/nested/Wallet"
+import Checkout from "../screens/Stacks/Shop/nested/Checkout"
 //State
 
 import { useDispatch, useSelector } from "react-redux"
-import { ClearCart } from "../../slices/CartSlice"
+import { ClearCart } from "../slices/CartSlice"
 
 const EcommerceTab = ({ navigation }: { navigation: any }) => {
   const Items = useSelector((state: any) => state.cart.items)

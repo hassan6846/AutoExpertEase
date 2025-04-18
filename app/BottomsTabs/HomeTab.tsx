@@ -7,7 +7,7 @@ const HomeStack = createStackNavigator()
 import { Avatar,Icon  } from "@rneui/themed"
 
 //utils
-import { getHeight } from "../../utils/GetDimension"
+import { getHeight } from "../utils/GetDimension"
 //nested childs
 
 /////////////////////////////////////////////////////////
@@ -15,13 +15,13 @@ import { getHeight } from "../../utils/GetDimension"
 
 
 //Car Bc ALiShan  ki mkc.
-import AllCars from "../Stacks/Home/nested/CarSection/AllCars"
-import ViewCarDetails from "../Stacks/Home/nested/CarSection/nested/ViewCarDetails"
-import BookingSteps from "../Stacks/Home/nested/CarSection/nested/BookingSteps"
-import PostCar from "../Stacks/Home/nested/CarSection/nested/PostCar"
+import AllCars from "../screens/Stacks/Home/nested/CarSection/AllCars"
+import ViewCarDetails from "../screens/Stacks/Home/nested/CarSection/nested/ViewCarDetails"
+import BookingSteps from "../screens/Stacks/Home/nested/CarSection/nested/BookingSteps"
+import PostCar from "../screens/Stacks/Home/nested/CarSection/nested/PostCar"
 //State manegment
 import { useSelector } from "react-redux"
-import HomeInital from "../Stacks/Home/InitialRoute"
+import HomeInital from "../screens/Stacks/Home/InitialRoute"
 
 const HomeTab = ({ navigation }: { navigation: any }) => {
   //Select Avatar

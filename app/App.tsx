@@ -21,11 +21,11 @@ import TabsConfigs from "./configs/TabsConfigs"
 import { BottomNavigator_Height } from "./configs/TabNavigatorConfigs"
 //Stack Navigator
 //TabsMain
-import HomeTab from "./screens/BottomsTabs/HomeTab"
-import EcommerceTab from "./screens/BottomsTabs/EcommerceTab"
-import ServiceTab from "./screens/BottomsTabs/ServiceTab"
-import ProfileTab from "./screens/BottomsTabs/ProfileTab"
-import ExploreTab from "./screens/BottomsTabs/ExploreTab"
+import HomeTab from "./BottomsTabs/HomeTab"
+import EcommerceTab from "./BottomsTabs/EcommerceTab"
+import ServiceTab from "./BottomsTabs/ServiceTab"
+import ProfileTab from "./BottomsTabs/ProfileTab"
+import ExploreTab from "./BottomsTabs/ExploreTab"
 
 //Features
 import ViewProfileImage from "./screens/Stacks/UserProfile/-nested/ViewProfileImage"

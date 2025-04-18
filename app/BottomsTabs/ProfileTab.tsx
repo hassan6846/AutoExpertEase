@@ -4,7 +4,7 @@ const UserStack = createStackNavigator()
 
 
 //nested child Component or pages
-import ProfileInitial from "../Stacks/UserProfile/InitialRoute"
+import ProfileInitial from "../screens/Stacks/UserProfile/InitialRoute"
 
 const ProfileTab = () => {
     return (
